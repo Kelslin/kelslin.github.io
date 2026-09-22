@@ -8,10 +8,10 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Google Fonts: Syne (Editorial Display) & Plus Jakarta Sans (Clean Modern Sans) -->
+  <!-- Typography: Syne (Bold Display) & Plus Jakarta Sans (Clean Modern Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -22,68 +22,65 @@
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #08090D;
-      color: #E6E8EE;
+      background-color: #07080C;
+      color: #E2E8F0;
       overflow-x: hidden;
     }
     .font-syne {
       font-family: 'Syne', sans-serif;
     }
-    /* Subtle metallic gradient border */
-    .metallic-border {
-      position: relative;
-      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
-      border: 1px solid rgba(255,255,255,0.1);
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
     }
-    /* Frosted glass glaze */
+    /* Brushed metallic styling */
+    .metallic-badge {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    /* Frosted glaze glassmorphism */
     .glaze-card {
-      background: rgba(14, 17, 24, 0.65);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(12, 14, 20, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
-    /* Glow highlights */
-    .klein-glow {
-      box-shadow: 0 0 40px -10px rgba(0, 47, 167, 0.45);
-    }
-    .crimson-glow {
-      box-shadow: 0 0 35px -8px rgba(220, 38, 38, 0.35);
-    }
-    /* Noise texture overlay for high craft feel */
-    .bg-noise {
-      background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
-      background-size: 24px 24px;
+    /* Subtle dot grid for tactile depth */
+    .bg-grid {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
+      background-size: 28px 28px;
     }
   </style>
 </head>
-<body class="bg-[#08090D] selection:bg-[#002FA7] selection:text-white relative min-h-screen">
+<body class="bg-[#07080C] selection:bg-[#002FA7] selection:text-white relative min-h-screen">
 
-  <!-- Background Ambience & Noise Grid -->
-  <div class="fixed inset-0 bg-noise pointer-events-none z-0"></div>
+  <!-- Ambient Micro-Grid Texture -->
+  <div class="fixed inset-0 bg-grid pointer-events-none z-0"></div>
 
-  <!-- Ambient Light Orbs -->
-  <div class="fixed -top-40 -left-40 w-96 h-96 bg-[#002FA7]/20 rounded-full blur-[128px] pointer-events-none"></div>
-  <div class="fixed top-1/3 -right-32 w-80 h-80 bg-[#FF4500]/15 rounded-full blur-[110px] pointer-events-none"></div>
+  <!-- Atmospheric Glow Pools -->
+  <div class="fixed -top-32 -left-32 w-[30rem] h-[30rem] bg-[#002FA7]/18 rounded-full blur-[140px] pointer-events-none"></div>
+  <div class="fixed top-1/4 -right-24 w-96 h-96 bg-[#8B0000]/22 rounded-full blur-[130px] pointer-events-none"></div>
+  <div class="fixed bottom-0 right-1/3 w-80 h-80 bg-[#FF5722]/15 rounded-full blur-[120px] pointer-events-none"></div>
 
   <!-- NAVIGATION -->
-  <header class="fixed top-0 left-0 right-0 z-50 glaze-card border-b border-white/5 px-6 lg:px-12 py-4 flex items-center justify-between">
+  <header class="fixed top-0 left-0 right-0 z-50 glaze-card border-b border-white/5 px-6 lg:px-14 py-4 flex items-center justify-between">
     <div class="flex items-center space-x-3">
-      <span class="w-2.5 h-2.5 rounded-full bg-[#002FA7] shadow-[0_0_12px_#002FA7] animate-pulse"></span>
+      <span class="w-2.5 h-2.5 rounded-full bg-[#002FA7] shadow-[0_0_12px_#002FA7]"></span>
       <span class="font-syne text-lg font-bold tracking-wider text-white">KELSEY LIN</span>
-      <span class="text-xs text-white/40 tracking-widest hidden sm:inline">| YUNHAN</span>
+      <span class="font-mono-code text-[11px] text-white/40 tracking-wider hidden sm:inline">[ YUNHAN LIN ]</span>
     </div>
     
-    <nav class="flex items-center space-x-6 text-sm">
+    <nav class="flex items-center space-x-7 text-sm font-medium">
       <a href="#work" class="text-white/70 hover:text-white transition-colors duration-200">Work</a>
-      <a href="#cabinet" class="text-white/70 hover:text-white transition-colors duration-200">Cabinet</a>
+      <a href="#cabinet" class="text-white/70 hover:text-white transition-colors duration-200">Curiosity Cabinet</a>
       <a href="#about" class="text-white/70 hover:text-white transition-colors duration-200">About</a>
-      <a href="./resume.pdf" target="_blank" class="metallic-border px-3.5 py-1.5 rounded-full text-xs font-medium text-white/90 hover:border-[#FF5722] hover:text-[#FF5722] transition-all flex items-center gap-1.5">
+      <a href="./resume.pdf" target="_blank" class="metallic-badge px-4 py-1.5 rounded-full text-xs font-mono-code text-white/90 hover:border-[#FF5722] hover:text-[#FF5722] transition-all flex items-center gap-1.5">
         Résumé <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
       </a>
     </nav>
   </header>
 
-  <!-- 3D HERO CANVAS (Molecule Network + Bioluminescent Glass Jellyfish) -->
+  <!-- 3D HERO CANVAS (Interactive Molecule Matrix + Glass/Chrome Core) -->
   <div id="canvas-container" class="absolute inset-0 z-10 cursor-grab active:cursor-grabbing"></div>
 
   <!-- HERO CONTENT OVERLAY -->
@@ -91,49 +88,49 @@
     <div class="max-w-3xl pointer-events-auto">
       
       <!-- Status Badge -->
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full metallic-border text-xs text-white/80 mb-6 backdrop-blur-md">
-        <span class="w-1.5 h-1.5 rounded-full bg-[#FF4500] shadow-[0_0_8px_#FF4500]"></span>
-        <span>Founder & Product Manager</span>
+      <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full metallic-badge text-xs text-white/80 mb-6 backdrop-blur-md">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#FF5722] shadow-[0_0_8px_#FF5722] animate-ping"></span>
+        <span class="font-mono-code tracking-tight">Product Manager & Founder</span>
         <span class="text-white/30">•</span>
-        <span class="text-white/60">Ann Arbor / Silicon Valley</span>
+        <span class="text-white/60">Systems UX & Tech</span>
       </div>
 
-      <!-- Main Headline -->
-      <h1 class="font-syne text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08] mb-6">
-        Architecting <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#002FA7] via-[#7B2CBF] to-[#FF4500]">0→1 systems</span> with tactile craft.
+      <!-- Headline -->
+      <h1 class="font-syne text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.06] mb-6">
+        Solving daily friction with <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#002FA7] via-[#D9264E] to-[#FF5722]">systems logic</span> & tactile craft.
       </h1>
 
-      <!-- Subtitle -->
-      <p class="text-base sm:text-xl text-white/70 leading-relaxed max-w-2xl font-light mb-8">
-        Solving high-friction daily problems through design intuition, technical agility, and systems thinking. Bridging human emotion with scalable interfaces.
+      <!-- Positioning Subhead -->
+      <p class="text-base sm:text-xl text-white/75 leading-relaxed max-w-2xl font-light mb-8">
+        Founder of <span class="text-white font-normal underline decoration-[#002FA7] decoration-2 underline-offset-4">Afterlife Club</span>. Translating complex user behaviors and emerging technology into seamless, resonant 0→1 products.
       </p>
 
       <!-- Action Cluster -->
       <div class="flex flex-wrap items-center gap-4">
-        <a href="#work" class="px-6 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-[#FF4500] hover:text-white transition-all duration-300 flex items-center gap-2 group shadow-lg">
-          Explore Case Studies
+        <a href="#work" class="px-6 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-[#FF5722] hover:text-white transition-all duration-300 flex items-center gap-2 group shadow-xl">
+          View Flagship Work
           <i data-lucide="arrow-down" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform"></i>
         </a>
         
-        <a href="#cabinet" class="px-6 py-3.5 rounded-full metallic-border text-sm text-white/80 hover:text-white hover:border-white/30 transition-all backdrop-blur-md flex items-center gap-2">
-          <i data-lucide="sparkles" class="w-4 h-4 text-[#002FA7]"></i>
+        <a href="#cabinet" class="px-6 py-3.5 rounded-full metallic-badge text-sm text-white/80 hover:text-white hover:border-white/30 transition-all backdrop-blur-md flex items-center gap-2">
+          <i data-lucide="compass" class="w-4 h-4 text-[#002FA7]"></i>
           The Curiosity Cabinet
         </a>
       </div>
 
-      <!-- Quick Signals / Proof Points -->
+      <!-- Selected PM Signal Counters -->
       <div class="mt-14 grid grid-cols-3 gap-6 max-w-lg pt-6 border-t border-white/10">
         <div>
-          <p class="font-syne text-xl font-bold text-white">Afterlife Club</p>
-          <p class="text-xs text-white/50">Co-founder & 0→1 PM</p>
+          <p class="font-syne text-2xl font-bold text-white">0 → 1</p>
+          <p class="font-mono-code text-[11px] text-white/50 tracking-wider">FOUNDER VELOCITY</p>
         </div>
         <div>
-          <p class="font-syne text-xl font-bold text-white">Warmilu</p>
-          <p class="text-xs text-white/50">UX & Growth PM</p>
+          <p class="font-syne text-2xl font-bold text-white">Agile & UX</p>
+          <p class="font-mono-code text-[11px] text-white/50 tracking-wider">SYSTEMS STRATEGY</p>
         </div>
         <div>
-          <p class="font-syne text-xl font-bold text-white">Luxshare</p>
-          <p class="text-xs text-white/50">Agile & Analytics</p>
+          <p class="font-syne text-2xl font-bold text-white">Full-Stack</p>
+          <p class="font-mono-code text-[11px] text-white/50 tracking-wider">DESIGN + PROTOTYPING</p>
         </div>
       </div>
 
@@ -141,14 +138,14 @@
 
     <!-- Mouse Interaction Cue -->
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 pointer-events-auto flex flex-col items-center gap-2 text-white/40 text-xs">
-      <span class="tracking-widest uppercase text-[10px]">Drag to rotate · Move cursor to pulse</span>
+      <span class="font-mono-code text-[10px] uppercase tracking-widest text-white/40">Drag to inspect · Cursor shifts filament field</span>
       <div class="w-4 h-7 border border-white/20 rounded-full flex justify-center p-1">
-        <div class="w-1 h-1.5 bg-[#FF4500] rounded-full animate-bounce"></div>
+        <div class="w-1 h-1.5 bg-[#FF5722] rounded-full animate-bounce"></div>
       </div>
     </div>
   </main>
 
-  <!-- Lucide Icon Init -->
+  <!-- Lucide Init -->
   <script>
     lucide.createIcons();
   </script>
@@ -157,147 +154,150 @@
   <script>
     const container = document.getElementById('canvas-container');
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x08090D, 0.035);
+    scene.fog = new THREE.FogExp2(0x07080C, 0.032);
 
-    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
-    camera.position.set(0, 0, 14);
+    const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0, 0, 15);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.15;
     container.appendChild(renderer.domElement);
 
-    // Dynamic Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    // Dynamic Lighting System
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
 
-    // Klein Blue Point Light (Tech/Structure)
-    const blueLight = new THREE.PointLight(0x002FA7, 6, 25);
-    blueLight.position.set(8, 6, 4);
+    // Electric Klein Blue Light
+    const blueLight = new THREE.PointLight(0x002FA7, 6, 26);
+    blueLight.position.set(7, 5, 5);
     scene.add(blueLight);
 
-    // Crimson / Orange Lily Light (Vitality/Flame)
-    const flameLight = new THREE.PointLight(0xFF4500, 5, 25);
+    // Crimson / Amber Fire Light
+    const flameLight = new THREE.PointLight(0xFF4500, 5.5, 26);
     flameLight.position.set(-6, -4, 4);
     scene.add(flameLight);
 
-    // ==========================================
-    // 1. BIOLUMINESCENT JELLYFISH (琉璃 / 水母)
-    // ==========================================
-    const jellyfishGroup = new THREE.Group();
-    // Offset jellyfish to the right side on desktop screens
+    // Deep Ruby Rim Light
+    const rubyLight = new THREE.PointLight(0x8B0000, 4, 20);
+    rubyLight.position.set(0, 8, -4);
+    scene.add(rubyLight);
+
+    // ========================================================
+    // 1. CENTRAL ARTIFACT: STAINED GLASS PRISM & METALLIC GIMBAL
+    // (琉璃质感多面体 + 轨道金属环)
+    // ========================================================
+    const coreGroup = new THREE.Group();
     if (window.innerWidth > 768) {
-      jellyfishGroup.position.set(4.5, 0.2, 0);
+      coreGroup.position.set(4.8, 0.2, 0);
     } else {
-      jellyfishGroup.position.set(0, -1.5, -2);
+      coreGroup.position.set(0, -2, -3);
     }
-    scene.add(jellyfishGroup);
+    scene.add(coreGroup);
 
-    // Jellyfish Bell (Hemisphere dome with glass shader simulation)
-    const bellGeometry = new THREE.SphereGeometry(2.2, 32, 24, 0, Math.PI * 2, 0, Math.PI * 0.52);
-    const bellMaterial = new THREE.MeshPhysicalMaterial({
-      color: 0x1A2B5E,
+    // Crystalline Polyhedron (Simulating 琉璃 / Stained Glaze with physical refraction)
+    const crystalGeo = new THREE.IcosahedronGeometry(2.3, 0);
+    const crystalMat = new THREE.MeshPhysicalMaterial({
+      color: 0x1A284D,
       emissive: 0x002FA7,
-      emissiveIntensity: 0.35,
-      metalness: 0.1,
-      roughness: 0.18,
-      transmission: 0.88,
-      thickness: 1.2,
+      emissiveIntensity: 0.25,
+      roughness: 0.12,
+      metalness: 0.15,
+      transmission: 0.82,
+      thickness: 1.5,
       transparent: true,
-      opacity: 0.85,
-      wireframe: false,
+      opacity: 0.88,
+      flatShading: true
     });
-    const bellMesh = new THREE.Mesh(bellGeometry, bellMaterial);
-    bellMesh.rotation.x = Math.PI; // Face downward
-    jellyfishGroup.add(bellMesh);
+    const crystalMesh = new THREE.Mesh(crystalGeo, crystalMat);
+    coreGroup.add(crystalMesh);
 
-    // Secondary inner bell for layered refraction
-    const innerBellGeo = new THREE.SphereGeometry(1.6, 24, 16, 0, Math.PI * 2, 0, Math.PI * 0.48);
-    const innerBellMat = new THREE.MeshBasicMaterial({
-      color: 0xFF5722,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.25
+    // Inner Glowing Core (Flame & Lily Warmth)
+    const innerFlameGeo = new THREE.OctahedronGeometry(1.2, 0);
+    const innerFlameMat = new THREE.MeshStandardMaterial({
+      color: 0xFF4500,
+      emissive: 0xFF5722,
+      emissiveIntensity: 0.8,
+      roughness: 0.3,
+      metalness: 0.7,
+      wireframe: true
     });
-    const innerBellMesh = new THREE.Mesh(innerBellGeo, innerBellMat);
-    innerBellMesh.rotation.x = Math.PI;
-    jellyfishGroup.add(innerBellMesh);
+    const innerFlameMesh = new THREE.Mesh(innerFlameGeo, innerFlameMat);
+    coreGroup.add(innerFlameMesh);
 
-    // Jellyfish Tentacles
-    const tentacleCount = 14;
-    const tentacles = [];
-    const tentacleMaterial = new THREE.LineBasicMaterial({
-      color: 0x38BDF8,
-      transparent: true,
-      opacity: 0.5
+    // Orbital Metallic Rings (Brushed Chrome / Metallic Ring System)
+    const ringMat = new THREE.MeshStandardMaterial({
+      color: 0xD8DEE9,
+      metalness: 0.95,
+      roughness: 0.2,
+      side: THREE.DoubleSide
     });
 
-    for (let i = 0; i < tentacleCount; i++) {
-      const angle = (i / tentacleCount) * Math.PI * 2;
-      const radius = 1.35 + (Math.random() * 0.4);
-      const points = [];
-      const segmentCount = 18;
-      for (let j = 0; j < segmentCount; j++) {
-        points.push(new THREE.Vector3(
-          Math.cos(angle) * radius,
-          -(j * 0.32),
-          Math.sin(angle) * radius
-        ));
-      }
-      const geometry = new THREE.BufferGeometry().setFromPoints(points);
-      const tentacle = new THREE.Line(geometry, tentacleMaterial);
-      tentacle.userData = { angle, radius, points, segmentCount };
-      jellyfishGroup.add(tentacle);
-      tentacles.push(tentacle);
-    }
+    const ring1Geo = new THREE.TorusGeometry(3.2, 0.035, 16, 100);
+    const ring1 = new THREE.Mesh(ring1Geo, ringMat);
+    ring1.rotation.x = Math.PI / 3;
+    coreGroup.add(ring1);
 
-    // ==========================================
-    // 2. MOLECULAR / FIREFLY CONSTELLATION NETWORK
-    // ==========================================
-    const moleculeCount = 75;
+    const ring2Geo = new THREE.TorusGeometry(3.6, 0.025, 16, 100);
+    const ring2 = new THREE.Mesh(ring2Geo, ringMat);
+    ring2.rotation.y = Math.PI / 4;
+    ring2.rotation.x = Math.PI / 6;
+    coreGroup.add(ring2);
+
+    // ========================================================
+    // 2. THE MOLECULAR / FIREFLY CONSTELLATION LATTICE
+    // (分子链与萤火虫网络 - 灵感来源自小红书教程)
+    // ========================================================
+    const moleculeCount = 95;
     const moleculeGeometry = new THREE.BufferGeometry();
     const positions = new Float32Array(moleculeCount * 3);
     const velocities = [];
 
     for (let i = 0; i < moleculeCount; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 26;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 18;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 12;
+      positions[i * 3] = (Math.random() - 0.5) * 32;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 22;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 14;
       velocities.push({
-        x: (Math.random() - 0.5) * 0.006,
-        y: (Math.random() - 0.5) * 0.006,
-        z: (Math.random() - 0.5) * 0.006
+        x: (Math.random() - 0.5) * 0.007,
+        y: (Math.random() - 0.5) * 0.007,
+        z: (Math.random() - 0.5) * 0.007
       });
     }
     moleculeGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
+    // Molecule Nodes (Dual Color: Electric Blue & Firefly Orange)
     const moleculeMaterial = new THREE.PointsMaterial({
-      color: 0xFF7A00,
-      size: 0.16,
+      color: 0xFFA048,
+      size: 0.18,
       transparent: true,
-      opacity: 0.75,
+      opacity: 0.85,
       blending: THREE.AdditiveBlending
     });
     const moleculePoints = new THREE.Points(moleculeGeometry, moleculeMaterial);
     scene.add(moleculePoints);
 
-    // Connecting filament lines between nearby molecules
-    const lineMaterial = new THREE.LineBasicMaterial({
-      color: 0x002FA7,
-      transparent: true,
-      opacity: 0.15
-    });
-    const maxConnections = 120;
+    // Molecular Dynamic Connectors
+    const maxConnections = 160;
     const linePositions = new Float32Array(maxConnections * 6);
+    const lineColors = new Float32Array(maxConnections * 6);
     const lineGeometry = new THREE.BufferGeometry();
     lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+    lineGeometry.setAttribute('color', new THREE.BufferAttribute(lineColors, 3));
+
+    const lineMaterial = new THREE.LineBasicMaterial({
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.35,
+      blending: THREE.AdditiveBlending
+    });
     const moleculeLines = new THREE.LineSegments(lineGeometry, lineMaterial);
     scene.add(moleculeLines);
 
-    // ==========================================
+    // ========================================================
     // INTERACTION & ANIMATION LOOP
-    // ==========================================
+    // ========================================================
     let mouseX = 0, mouseY = 0;
     let targetX = 0, targetY = 0;
     let isDragging = false;
@@ -310,8 +310,8 @@
       if (isDragging) {
         const deltaX = e.clientX - previousMousePosition.x;
         const deltaY = e.clientY - previousMousePosition.y;
-        jellyfishGroup.rotation.y += deltaX * 0.008;
-        jellyfishGroup.rotation.x += deltaY * 0.008;
+        coreGroup.rotation.y += deltaX * 0.008;
+        coreGroup.rotation.x += deltaY * 0.008;
       }
       previousMousePosition = { x: e.clientX, y: e.clientY };
     });
@@ -328,53 +328,46 @@
       requestAnimationFrame(animate);
       const time = clock.getElapsedTime();
 
-      // 1. Jellyfish Pulsing Motion (Sinusoidal Expansion & Floating)
-      const contraction = Math.sin(time * 2.2);
-      const scaleXZ = 1 + contraction * 0.12;
-      const scaleY = 1 - contraction * 0.15;
-      bellMesh.scale.set(scaleXZ, scaleY, scaleXZ);
-      innerBellMesh.scale.set(scaleXZ * 0.95, scaleY * 0.95, scaleXZ * 0.95);
+      // 1. Core Polyhedron & Rings Kinetic Rotation
+      crystalMesh.rotation.x = time * 0.18;
+      crystalMesh.rotation.y = time * 0.28;
 
-      // Subtle upward/downward bobbing
-      jellyfishGroup.position.y += Math.sin(time * 1.5) * 0.004;
+      innerFlameMesh.rotation.x = -time * 0.35;
+      innerFlameMesh.rotation.z = time * 0.45;
 
-      // Mouse-guided smooth tilt
+      ring1.rotation.z = time * 0.15;
+      ring2.rotation.y = time * 0.22;
+
+      // Mouse Lerp Tracking
       if (!isDragging) {
-        targetX = mouseX * 0.35;
+        targetX = mouseX * 0.45;
         targetY = mouseY * 0.35;
-        jellyfishGroup.rotation.y += (targetX - jellyfishGroup.rotation.y) * 0.05;
-        jellyfishGroup.rotation.z += (-targetX * 0.5 - jellyfishGroup.rotation.z) * 0.05;
+        coreGroup.rotation.y += (targetX - coreGroup.rotation.y) * 0.04;
+        coreGroup.rotation.x += (-targetY - coreGroup.rotation.x) * 0.04;
       }
 
-      // Tentacles flow simulation
-      tentacles.forEach((tentacle, tIndex) => {
-        const posAttr = tentacle.geometry.attributes.position;
-        const arr = posAttr.array;
-        for (let j = 1; j < tentacle.userData.segmentCount; j++) {
-          const wave = Math.sin(time * 3 + j * 0.4 + tIndex) * (0.04 * j);
-          arr[j * 3] += (wave - arr[j * 3] + Math.cos(tentacle.userData.angle) * tentacle.userData.radius) * 0.1;
-          arr[j * 3 + 2] += (wave - arr[j * 3 + 2] + Math.sin(tentacle.userData.angle) * tentacle.userData.radius) * 0.1;
-        }
-        posAttr.needsUpdate = true;
-      });
+      // Smooth Bobbing
+      coreGroup.position.y += Math.sin(time * 1.4) * 0.003;
 
-      // 2. Molecule Constellation Drift
+      // 2. Molecule Drift Simulation & Line Connections
       const pos = moleculeGeometry.attributes.position.array;
       for (let i = 0; i < moleculeCount; i++) {
         pos[i * 3] += velocities[i].x;
         pos[i * 3 + 1] += velocities[i].y;
         pos[i * 3 + 2] += velocities[i].z;
 
-        // Boundary wrap
-        if (Math.abs(pos[i * 3]) > 14) velocities[i].x *= -1;
-        if (Math.abs(pos[i * 3 + 1]) > 10) velocities[i].y *= -1;
-        if (Math.abs(pos[i * 3 + 2]) > 7) velocities[i].z *= -1;
+        // Space Wrap Boundaries
+        if (Math.abs(pos[i * 3]) > 16) velocities[i].x *= -1;
+        if (Math.abs(pos[i * 3 + 1]) > 11) velocities[i].y *= -1;
+        if (Math.abs(pos[i * 3 + 2]) > 8) velocities[i].z *= -1;
       }
       moleculeGeometry.attributes.position.needsUpdate = true;
 
-      // Update network lines between adjacent points
+      // Dynamic Connection Calculation
       let lineIndex = 0;
       const lPos = moleculeLines.geometry.attributes.position.array;
+      const lCol = moleculeLines.geometry.attributes.color.array;
+
       for (let i = 0; i < moleculeCount; i++) {
         for (let j = i + 1; j < moleculeCount; j++) {
           const dx = pos[i * 3] - pos[j * 3];
@@ -382,34 +375,46 @@
           const dz = pos[i * 3 + 2] - pos[j * 3 + 2];
           const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
 
-          if (dist < 4.2 && lineIndex < maxConnections) {
-            lPos[lineIndex * 6] = pos[i * 3];
-            lPos[lineIndex * 6 + 1] = pos[i * 3 + 1];
-            lPos[lineIndex * 6 + 2] = pos[i * 3 + 2];
-            lPos[lineIndex * 6 + 3] = pos[j * 3];
-            lPos[lineIndex * 6 + 4] = pos[j * 3 + 1];
-            lPos[lineIndex * 6 + 5] = pos[j * 3 + 2];
+          if (dist < 4.8 && lineIndex < maxConnections) {
+            const idx = lineIndex * 6;
+            lPos[idx] = pos[i * 3];
+            lPos[idx + 1] = pos[i * 3 + 1];
+            lPos[idx + 2] = pos[i * 3 + 2];
+            lPos[idx + 3] = pos[j * 3];
+            lPos[idx + 4] = pos[j * 3 + 1];
+            lPos[idx + 5] = pos[j * 3 + 2];
+
+            // Gradient line color between Klein Blue and Firefly Amber
+            const isWarm = i % 2 === 0;
+            lCol[idx] = isWarm ? 1.0 : 0.0;
+            lCol[idx + 1] = isWarm ? 0.35 : 0.18;
+            lCol[idx + 2] = isWarm ? 0.05 : 0.65;
+            lCol[idx + 3] = isWarm ? 0.0 : 1.0;
+            lCol[idx + 4] = isWarm ? 0.18 : 0.35;
+            lCol[idx + 5] = isWarm ? 0.65 : 0.05;
+
             lineIndex++;
           }
         }
       }
       moleculeLines.geometry.attributes.position.needsUpdate = true;
+      moleculeLines.geometry.attributes.color.needsUpdate = true;
 
       renderer.render(scene, camera);
     }
 
     animate();
 
-    // Responsive Resize Handler
+    // Responsive Canvas Resizing
     window.addEventListener('resize', () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
 
       if (window.innerWidth > 768) {
-        jellyfishGroup.position.set(4.5, 0.2, 0);
+        coreGroup.position.set(4.8, 0.2, 0);
       } else {
-        jellyfishGroup.position.set(0, -1.5, -2);
+        coreGroup.position.set(0, -2, -3);
       }
     });
   </script>
