@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kelsey Lin · Product Manager & Founder</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Syne (Editorial Display) & Plus Jakarta Sans (Clean Modern Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #08090D;
+      color: #E6E8EE;
+      overflow-x: hidden;
+    }
+    .font-syne {
+      font-family: 'Syne', sans-serif;
+    }
+    /* Subtle metallic gradient border */
+    .metallic-border {
+      position: relative;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    /* Frosted glass glaze */
+    .glaze-card {
+      background: rgba(14, 17, 24, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    /* Glow highlights */
+    .klein-glow {
+      box-shadow: 0 0 40px -10px rgba(0, 47, 167, 0.45);
+    }
+    .crimson-glow {
+      box-shadow: 0 0 35px -8px rgba(220, 38, 38, 0.35);
+    }
+    /* Noise texture overlay for high craft feel */
+    .bg-noise {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+  </style>
+</head>
+<body class="bg-[#08090D] selection:bg-[#002FA7] selection:text-white relative min-h-screen">
+
+  <!-- Background Ambience & Noise Grid -->
+  <div class="fixed inset-0 bg-noise pointer-events-none z-0"></div>
+
+  <!-- Ambient Light Orbs -->
+  <div class="fixed -top-40 -left-40 w-96 h-96 bg-[#002FA7]/20 rounded-full blur-[128px] pointer-events-none"></div>
+  <div class="fixed top-1/3 -right-32 w-80 h-80 bg-[#FF4500]/15 rounded-full blur-[110px] pointer-events-none"></div>
+
+  <!-- NAVIGATION -->
+  <header class="fixed top-0 left-0 right-0 z-50 glaze-card border-b border-white/5 px-6 lg:px-12 py-4 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <span class="w-2.5 h-2.5 rounded-full bg-[#002FA7] shadow-[0_0_12px_#002FA7] animate-pulse"></span>
+      <span class="font-syne text-lg font-bold tracking-wider text-white">KELSEY LIN</span>
+      <span class="text-xs text-white/40 tracking-widest hidden sm:inline">| YUNHAN</span>
+    </div>
+    
+    <nav class="flex items-center space-x-6 text-sm">
+      <a href="#work" class="text-white/70 hover:text-white transition-colors duration-200">Work</a>
+      <a href="#cabinet" class="text-white/70 hover:text-white transition-colors duration-200">Cabinet</a>
+      <a href="#about" class="text-white/70 hover:text-white transition-colors duration-200">About</a>
+      <a href="./resume.pdf" target="_blank" class="metallic-border px-3.5 py-1.5 rounded-full text-xs font-medium text-white/90 hover:border-[#FF5722] hover:text-[#FF5722] transition-all flex items-center gap-1.5">
+        Résumé <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+      </a>
+    </nav>
+  </header>
+
+  <!-- 3D HERO CANVAS (Molecule Network + Bioluminescent Glass Jellyfish) -->
+  <div id="canvas-container" class="absolute inset-0 z-10 cursor-grab active:cursor-grabbing"></div>
+
+  <!-- HERO CONTENT OVERLAY -->
+  <main class="relative z-20 min-h-screen flex flex-col justify-center px-6 lg:px-16 pt-24 pointer-events-none">
+    <div class="max-w-3xl pointer-events-auto">
+      
+      <!-- Status Badge -->
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full metallic-border text-xs text-white/80 mb-6 backdrop-blur-md">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#FF4500] shadow-[0_0_8px_#FF4500]"></span>
+        <span>Founder & Product Manager</span>
+        <span class="text-white/30">•</span>
+        <span class="text-white/60">Ann Arbor / Silicon Valley</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="font-syne text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08] mb-6">
+        Architecting <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#002FA7] via-[#7B2CBF] to-[#FF4500]">0→1 systems</span> with tactile craft.
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-base sm:text-xl text-white/70 leading-relaxed max-w-2xl font-light mb-8">
+        Solving high-friction daily problems through design intuition, technical agility, and systems thinking. Bridging human emotion with scalable interfaces.
+      </p>
+
+      <!-- Action Cluster -->
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="#work" class="px-6 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-[#FF4500] hover:text-white transition-all duration-300 flex items-center gap-2 group shadow-lg">
+          Explore Case Studies
+          <i data-lucide="arrow-down" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform"></i>
+        </a>
+        
+        <a href="#cabinet" class="px-6 py-3.5 rounded-full metallic-border text-sm text-white/80 hover:text-white hover:border-white/30 transition-all backdrop-blur-md flex items-center gap-2">
+          <i data-lucide="sparkles" class="w-4 h-4 text-[#002FA7]"></i>
+          The Curiosity Cabinet
+        </a>
+      </div>
+
+      <!-- Quick Signals / Proof Points -->
+      <div class="mt-14 grid grid-cols-3 gap-6 max-w-lg pt-6 border-t border-white/10">
+        <div>
+          <p class="font-syne text-xl font-bold text-white">Afterlife Club</p>
+          <p class="text-xs text-white/50">Co-founder & 0→1 PM</p>
+        </div>
+        <div>
+          <p class="font-syne text-xl font-bold text-white">Warmilu</p>
+          <p class="text-xs text-white/50">UX & Growth PM</p>
+        </div>
+        <div>
+          <p class="font-syne text-xl font-bold text-white">Luxshare</p>
+          <p class="text-xs text-white/50">Agile & Analytics</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Mouse Interaction Cue -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 pointer-events-auto flex flex-col items-center gap-2 text-white/40 text-xs">
+      <span class="tracking-widest uppercase text-[10px]">Drag to rotate · Move cursor to pulse</span>
+      <div class="w-4 h-7 border border-white/20 rounded-full flex justify-center p-1">
+        <div class="w-1 h-1.5 bg-[#FF4500] rounded-full animate-bounce"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Lucide Icon Init -->
+  <script>
+    lucide.createIcons();
+  </script>
+
+  <!-- THREE.JS INTERACTION SCRIPT -->
+  <script>
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x08090D, 0.035);
+
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0, 0, 14);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    container.appendChild(renderer.domElement);
+
+    // Dynamic Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+
+    // Klein Blue Point Light (Tech/Structure)
+    const blueLight = new THREE.PointLight(0x002FA7, 6, 25);
+    blueLight.position.set(8, 6, 4);
+    scene.add(blueLight);
+
+    // Crimson / Orange Lily Light (Vitality/Flame)
+    const flameLight = new THREE.PointLight(0xFF4500, 5, 25);
+    flameLight.position.set(-6, -4, 4);
+    scene.add(flameLight);
+
+    // ==========================================
+    // 1. BIOLUMINESCENT JELLYFISH (琉璃 / 水母)
+    // ==========================================
+    const jellyfishGroup = new THREE.Group();
+    // Offset jellyfish to the right side on desktop screens
+    if (window.innerWidth > 768) {
+      jellyfishGroup.position.set(4.5, 0.2, 0);
+    } else {
+      jellyfishGroup.position.set(0, -1.5, -2);
+    }
+    scene.add(jellyfishGroup);
+
+    // Jellyfish Bell (Hemisphere dome with glass shader simulation)
+    const bellGeometry = new THREE.SphereGeometry(2.2, 32, 24, 0, Math.PI * 2, 0, Math.PI * 0.52);
+    const bellMaterial = new THREE.MeshPhysicalMaterial({
+      color: 0x1A2B5E,
+      emissive: 0x002FA7,
+      emissiveIntensity: 0.35,
+      metalness: 0.1,
+      roughness: 0.18,
+      transmission: 0.88,
+      thickness: 1.2,
+      transparent: true,
+      opacity: 0.85,
+      wireframe: false,
+    });
+    const bellMesh = new THREE.Mesh(bellGeometry, bellMaterial);
+    bellMesh.rotation.x = Math.PI; // Face downward
+    jellyfishGroup.add(bellMesh);
+
+    // Secondary inner bell for layered refraction
+    const innerBellGeo = new THREE.SphereGeometry(1.6, 24, 16, 0, Math.PI * 2, 0, Math.PI * 0.48);
+    const innerBellMat = new THREE.MeshBasicMaterial({
+      color: 0xFF5722,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.25
+    });
+    const innerBellMesh = new THREE.Mesh(innerBellGeo, innerBellMat);
+    innerBellMesh.rotation.x = Math.PI;
+    jellyfishGroup.add(innerBellMesh);
+
+    // Jellyfish Tentacles
+    const tentacleCount = 14;
+    const tentacles = [];
+    const tentacleMaterial = new THREE.LineBasicMaterial({
+      color: 0x38BDF8,
+      transparent: true,
+      opacity: 0.5
+    });
+
+    for (let i = 0; i < tentacleCount; i++) {
+      const angle = (i / tentacleCount) * Math.PI * 2;
+      const radius = 1.35 + (Math.random() * 0.4);
+      const points = [];
+      const segmentCount = 18;
+      for (let j = 0; j < segmentCount; j++) {
+        points.push(new THREE.Vector3(
+          Math.cos(angle) * radius,
+          -(j * 0.32),
+          Math.sin(angle) * radius
+        ));
+      }
+      const geometry = new THREE.BufferGeometry().setFromPoints(points);
+      const tentacle = new THREE.Line(geometry, tentacleMaterial);
+      tentacle.userData = { angle, radius, points, segmentCount };
+      jellyfishGroup.add(tentacle);
+      tentacles.push(tentacle);
+    }
+
+    // ==========================================
+    // 2. MOLECULAR / FIREFLY CONSTELLATION NETWORK
+    // ==========================================
+    const moleculeCount = 75;
+    const moleculeGeometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(moleculeCount * 3);
+    const velocities = [];
+
+    for (let i = 0; i < moleculeCount; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 26;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 18;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 12;
+      velocities.push({
+        x: (Math.random() - 0.5) * 0.006,
+        y: (Math.random() - 0.5) * 0.006,
+        z: (Math.random() - 0.5) * 0.006
+      });
+    }
+    moleculeGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+    const moleculeMaterial = new THREE.PointsMaterial({
+      color: 0xFF7A00,
+      size: 0.16,
+      transparent: true,
+      opacity: 0.75,
+      blending: THREE.AdditiveBlending
+    });
+    const moleculePoints = new THREE.Points(moleculeGeometry, moleculeMaterial);
+    scene.add(moleculePoints);
+
+    // Connecting filament lines between nearby molecules
+    const lineMaterial = new THREE.LineBasicMaterial({
+      color: 0x002FA7,
+      transparent: true,
+      opacity: 0.15
+    });
+    const maxConnections = 120;
+    const linePositions = new Float32Array(maxConnections * 6);
+    const lineGeometry = new THREE.BufferGeometry();
+    lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+    const moleculeLines = new THREE.LineSegments(lineGeometry, lineMaterial);
+    scene.add(moleculeLines);
+
+    // ==========================================
+    // INTERACTION & ANIMATION LOOP
+    // ==========================================
+    let mouseX = 0, mouseY = 0;
+    let targetX = 0, targetY = 0;
+    let isDragging = false;
+    let previousMousePosition = { x: 0, y: 0 };
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+
+      if (isDragging) {
+        const deltaX = e.clientX - previousMousePosition.x;
+        const deltaY = e.clientY - previousMousePosition.y;
+        jellyfishGroup.rotation.y += deltaX * 0.008;
+        jellyfishGroup.rotation.x += deltaY * 0.008;
+      }
+      previousMousePosition = { x: e.clientX, y: e.clientY };
+    });
+
+    window.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      previousMousePosition = { x: e.clientX, y: e.clientY };
+    });
+    window.addEventListener('mouseup', () => { isDragging = false; });
+
+    let clock = new THREE.Clock();
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const time = clock.getElapsedTime();
+
+      // 1. Jellyfish Pulsing Motion (Sinusoidal Expansion & Floating)
+      const contraction = Math.sin(time * 2.2);
+      const scaleXZ = 1 + contraction * 0.12;
+      const scaleY = 1 - contraction * 0.15;
+      bellMesh.scale.set(scaleXZ, scaleY, scaleXZ);
+      innerBellMesh.scale.set(scaleXZ * 0.95, scaleY * 0.95, scaleXZ * 0.95);
+
+      // Subtle upward/downward bobbing
+      jellyfishGroup.position.y += Math.sin(time * 1.5) * 0.004;
+
+      // Mouse-guided smooth tilt
+      if (!isDragging) {
+        targetX = mouseX * 0.35;
+        targetY = mouseY * 0.35;
+        jellyfishGroup.rotation.y += (targetX - jellyfishGroup.rotation.y) * 0.05;
+        jellyfishGroup.rotation.z += (-targetX * 0.5 - jellyfishGroup.rotation.z) * 0.05;
+      }
+
+      // Tentacles flow simulation
+      tentacles.forEach((tentacle, tIndex) => {
+        const posAttr = tentacle.geometry.attributes.position;
+        const arr = posAttr.array;
+        for (let j = 1; j < tentacle.userData.segmentCount; j++) {
+          const wave = Math.sin(time * 3 + j * 0.4 + tIndex) * (0.04 * j);
+          arr[j * 3] += (wave - arr[j * 3] + Math.cos(tentacle.userData.angle) * tentacle.userData.radius) * 0.1;
+          arr[j * 3 + 2] += (wave - arr[j * 3 + 2] + Math.sin(tentacle.userData.angle) * tentacle.userData.radius) * 0.1;
+        }
+        posAttr.needsUpdate = true;
+      });
+
+      // 2. Molecule Constellation Drift
+      const pos = moleculeGeometry.attributes.position.array;
+      for (let i = 0; i < moleculeCount; i++) {
+        pos[i * 3] += velocities[i].x;
+        pos[i * 3 + 1] += velocities[i].y;
+        pos[i * 3 + 2] += velocities[i].z;
+
+        // Boundary wrap
+        if (Math.abs(pos[i * 3]) > 14) velocities[i].x *= -1;
+        if (Math.abs(pos[i * 3 + 1]) > 10) velocities[i].y *= -1;
+        if (Math.abs(pos[i * 3 + 2]) > 7) velocities[i].z *= -1;
+      }
+      moleculeGeometry.attributes.position.needsUpdate = true;
+
+      // Update network lines between adjacent points
+      let lineIndex = 0;
+      const lPos = moleculeLines.geometry.attributes.position.array;
+      for (let i = 0; i < moleculeCount; i++) {
+        for (let j = i + 1; j < moleculeCount; j++) {
+          const dx = pos[i * 3] - pos[j * 3];
+          const dy = pos[i * 3 + 1] - pos[j * 3 + 1];
+          const dz = pos[i * 3 + 2] - pos[j * 3 + 2];
+          const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+          if (dist < 4.2 && lineIndex < maxConnections) {
+            lPos[lineIndex * 6] = pos[i * 3];
+            lPos[lineIndex * 6 + 1] = pos[i * 3 + 1];
+            lPos[lineIndex * 6 + 2] = pos[i * 3 + 2];
+            lPos[lineIndex * 6 + 3] = pos[j * 3];
+            lPos[lineIndex * 6 + 4] = pos[j * 3 + 1];
+            lPos[lineIndex * 6 + 5] = pos[j * 3 + 2];
+            lineIndex++;
+          }
+        }
+      }
+      moleculeLines.geometry.attributes.position.needsUpdate = true;
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // Responsive Resize Handler
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      if (window.innerWidth > 768) {
+        jellyfishGroup.position.set(4.5, 0.2, 0);
+      } else {
+        jellyfishGroup.position.set(0, -1.5, -2);
+      }
+    });
+  </script>
+</body>
+</html>
