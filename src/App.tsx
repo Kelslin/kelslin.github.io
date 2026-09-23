@@ -286,18 +286,6 @@ export default function App() {
           </div>
         </div>
 
-        {/* Footnote Bar */}
-        <div className="flex items-center justify-between border-t border-white/[0.06] pt-4 font-mono text-[11px] text-neutral-500">
-          <span>01 / 04 — HANDCRAFTED LIULI & KLEIN CHROMA</span>
-          <span>ANN ARBOR, MI · GLOBAL</span>
-        </div>
-      
-
-        {/* Footnote Bar */}
-        <div className="flex items-center justify-between border-t border-white/[0.06] pt-4 font-mono text-[11px] text-neutral-500">
-          <span>01 / 04 — HANDCRAFTED LIULI & KLEIN CHROMA</span>
-          <span>ANN ARBOR, MI · GLOBAL</span>
-        </div>
       </section>
 
       {/* 3. WORKS EDITORIAL CHAPTERS (UNBOXED) */}
