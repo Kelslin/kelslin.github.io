@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, MeshTransmissionMaterial, Sparkles, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import { ArrowUpRight, ChevronDown } from 'lucide-react';
 import LiuliLilyModel from './components/LiuliLilyModel';
-
+import { Float, MeshTransmissionMaterial, Sparkles, OrbitControls } from '@react-three/drei';
 // ==========================================
 // 1. 3D LIULI LILY SCULPTURE COMPONENT
 // ==========================================
@@ -92,10 +91,9 @@ function ButterflyCursor() {
       const dx = e.clientX - lastPos.current.x;
       const dy = e.clientY - lastPos.current.y;
       
-      // Calculate flight rotation angle toward velocity
       if (Math.hypot(dx, dy) > 2) {
         const rad = Math.atan2(dy, dx) * (180 / Math.PI);
-        setAngle(rad + 90); // Orient butterfly head toward travel direction
+        setAngle(rad + 90);
         setIsMoving(true);
       }
 
@@ -112,19 +110,19 @@ function ButterflyCursor() {
 
   return (
     <>
-      {/* 1. Luminescent Wake (Follower Glow that travels with the butterfly) */}
+      {/* 1. Luminescent Wake (Follower Glow) */}
       <div
-        className="pointer-events-none fixed z-30 transition-transform duration-300 ease-out will-change-transform"
+        className="pointer-events-auto fixed z-30 transition-transform duration-300 ease-out will-change-transform"
         style={{
           left: pos.x,
           top: pos.y,
           transform: 'translate(-50%, -50%)',
         }}
       >
-        <div className="w-[320px] h-[320px] rounded-full bg-gradient-to-r from-[#002FA7]/25 via-[#FF5500]/20 to-transparent blur-[75px]" />
+        <div className="w-[300px] h-[300px] rounded-full bg-gradient-to-r from-[#002FA7]/25 via-[#FF5500]/20 to-transparent blur-[75px]" />
       </div>
 
-      {/* 2. Floating Crystal Butterfly Sprite */}
+      {/* 2. Redesigned Swallowtail Butterfly */}
       <div
         className="pointer-events-none fixed z-50 transition-transform duration-75 ease-out will-change-transform"
         style={{
@@ -134,49 +132,39 @@ function ButterflyCursor() {
         }}
       >
         <div className={`relative w-12 h-12 transition-transform duration-150 ${isMoving ? 'scale-110' : 'scale-95'}`}>
-          {/* Butterfly SVG with Glass Prism Sheen */}
-          <svg
-            viewBox="0 0 100 100"
-            className="w-full h-full drop-shadow-[0_0_12px_rgba(255,140,0,0.85)] filter"
-          >
+          <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_12px_rgba(255,140,0,0.85)] filter">
             <defs>
-              <linearGradient id="liuliWing" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#FFAA00" stopOpacity="0.9" />
-                <stop offset="50%" stopColor="#FF5500" stopOpacity="0.8" />
+              <linearGradient id="swallowtail" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#FFAE00" stopOpacity="0.9" />
+                <stop offset="60%" stopColor="#FF4D00" stopOpacity="0.85" />
                 <stop offset="100%" stopColor="#0038FF" stopOpacity="0.9" />
               </linearGradient>
-              <filter id="glassRefract">
-                <feDropShadow dx="0" dy="0" stdDeviation="2" floodColor="#0055FF" floodOpacity="0.9" />
-              </filter>
             </defs>
 
-            {/* Left Wing (Animated Flap) */}
+            {/* Left Wing with Swallowtail Tail */}
             <path
-              d="M 50,50 Q 15,10 5,35 Q 0,60 50,65 Z"
-              fill="url(#liuliWing)"
+              d="M 50 48 Q 20 8 8 28 Q 0 46 32 58 Q 18 78 26 84 Q 38 88 44 72 Q 48 62 50 54 Z"
+              fill="url(#swallowtail)"
               stroke="#FFF"
               strokeWidth="0.8"
-              strokeOpacity="0.7"
-              filter="url(#glassRefract)"
-              className="origin-right animate-[pulse_0.4s_ease-in-out_infinite]"
+              strokeOpacity="0.8"
+              className="origin-[50px_50px] animate-[pulse_0.25s_ease-in-out_infinite]"
             />
-            {/* Right Wing (Animated Flap) */}
-            <path
-              d="M 50,50 Q 85,10 95,35 Q 100,60 50,65 Z"
-              fill="url(#liuliWing)"
-              stroke="#FFF"
-              strokeWidth="0.8"
-              strokeOpacity="0.7"
-              filter="url(#glassRefract)"
-              className="origin-left animate-[pulse_0.4s_ease-in-out_infinite]"
-            />
-            {/* Crystal Core Body */}
-            <ellipse cx="50" cy="50" rx="3" ry="12" fill="#FFFFFF" opacity="0.9" />
-            <circle cx="50" cy="40" r="3" fill="#FFB700" />
-          </svg>
 
-          {/* Spark trail */}
-          <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-blue-300 blur-[0.5px] animate-ping" />
+            {/* Right Wing with Swallowtail Tail */}
+            <path
+              d="M 50 48 Q 80 8 92 28 Q 100 46 68 58 Q 82 78 74 84 Q 62 88 56 72 Q 52 62 50 54 Z"
+              fill="url(#swallowtail)"
+              stroke="#FFF"
+              strokeWidth="0.8"
+              strokeOpacity="0.8"
+              className="origin-[50px_50px] animate-[pulse_0.25s_ease-in-out_infinite]"
+            />
+
+            {/* Slender Glass Body */}
+            <path d="M 50 28 L 50 70" stroke="#FFF" strokeWidth="2.2" strokeLinecap="round" />
+            <circle cx="50" cy="26" r="2.5" fill="#FFE082" />
+          </svg>
         </div>
       </div>
     </>
@@ -194,27 +182,31 @@ export default function App() {
       <ButterflyCursor />
 
       {/* Persistent Fullscreen 3D Scene */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-  <Canvas camera={{ position: [0, 0, 4.5], fov: 40 }}>
-    {/* Soft baseline ambiance */}
-    <ambientLight intensity={0.4} />
+      {/* 1. MUST BE pointer-events-auto so mouse drag works! */}
+      <div className="fixed inset-0 z-0 pointer-events-auto">
+        <Canvas camera={{ position: [0, 0, 4.3], fov: 42 }}>
+          <ambientLight intensity={0.65} />
+          <directionalLight position={[-4, 4, 3]} intensity={2.8} color="#0033FF" />
+          <pointLight position={[3, -2, 2]} intensity={3.5} color="#FF5500" />
+          <pointLight position={[0, 1, 2]} intensity={1.8} color="#FFA000" />
 
-    {/* 1. BACK-LEFT ELECTRIC KLEIN BLUE RIM LIGHT */}
-    <directionalLight position={[-4, 3, -2]} intensity={4.5} color="#0038FF" />
-    <pointLight position={[-3, 1, -1]} intensity={5.0} color="#0055FF" />
+          {/* 2. ADD ORBITCONTROLS HERE */}
+          <OrbitControls
+            enablePan={false}         // Keeps flower centered
+            enableZoom={true}        // Allows pinch / wheel zoom
+            minDistance={2.5}        // Prevents clipping too close
+            maxDistance={7.0}        // Prevents zooming too far out
+            autoRotate={true}        // Smooth, subtle idle spin
+            autoRotateSpeed={0.8}
+            dampingFactor={0.05}     // Smooth momentum feel when dragged
+            rotateSpeed={0.7}
+          />
 
-    {/* 2. WARM AMBER FILL LIGHT */}
-    <pointLight position={[3, -2, 2]} intensity={4.0} color="#FF5500" />
-    
-    {/* 3. TOP SPECULAR HIGHLIGHT */}
-    <directionalLight position={[0, 4, 3]} intensity={2.0} color="#FFFFFF" />
-
-    {/* Ensure Suspense opens AND closes properly */}
-    <Suspense fallback={null}>
-      <LiuliLilyModel />
-    </Suspense>
-  </Canvas>
-</div>
+          <Suspense fallback={null}>
+            <LilyModel />
+          </Suspense>
+        </Canvas>
+      </div>
 
       {/* Floating Ambient Lighting Fields */}
       <div className="fixed top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-[#002FA7]/18 blur-[170px] pointer-events-none" />
