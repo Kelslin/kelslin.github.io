@@ -57,26 +57,7 @@ export default function LiuliLilyModel({
     });
   }, [clonedScene]);
 
-  // 3. Blossoming Intro
-  const [bloomProgress, setBloomProgress] = React.useState(0);
-  useEffect(() => {
-    let start: number | null = null;
-    const duration = 1600;
 
-    const animateBloom = (timestamp: number) => {
-      if (!start) start = timestamp;
-      const elapsed = timestamp - start;
-      const progress = Math.min(1, elapsed / duration);
-      const ease = 1 - Math.pow(1 - progress, 3);
-      setBloomProgress(ease);
-
-      if (progress < 1) {
-        requestAnimationFrame(animateBloom);
-      }
-    };
-
-    requestAnimationFrame(animateBloom);
-  }, []);
 
   // 4. Smooth Petal Carousel Rotation between Decks (Horizontal Turntable Spin)
   useEffect(() => {
@@ -119,10 +100,8 @@ export default function LiuliLilyModel({
     petalSpinGroupRef.current.rotation.z = 0;
   });
 
-  const currentScale = 2.0 * bloomProgress;
-
   return (
-    <group ref={groupRef} position={position} scale={currentScale}>
+    <group ref={groupRef} position={position} scale={2.0}>
       {/* Organic floating breath without conflicting with camera orbit */}
       <Float speed={1.8} rotationIntensity={0.25} floatIntensity={0.35}>
         {/* Revolving petal carousel group: smoothly spins flower horizontally between project decks */}

@@ -440,26 +440,11 @@ export default function App() {
       <header className="fixed top-0 left-0 w-full z-40 px-3 sm:px-6 lg:px-10 py-3 sm:py-5 flex items-center justify-between pointer-events-auto">
         {!activeWaypoint ? (
           <>
-            {/* Overview Left: KELSEY LIN / */}
-            <button
-              onClick={() => {
-                setActiveWaypoint(null);
-                setSelectedDetailWaypoint(null);
-                setIsAboutOpen(false);
-                setIsIndexOpen(false);
-              }}
-              className="flex items-center gap-1 group text-left cursor-pointer"
-            >
-              <span className="font-mono text-xs sm:text-sm font-bold tracking-[0.18em] sm:tracking-[0.22em] text-white uppercase">
-                KELSEY LIN
-              </span>
-              <span className="text-[#0055FF] font-mono text-xs sm:text-sm font-semibold">
-                /
-              </span>
-            </button>
+            {/* Overview Left: Blank spacer (Kelsey Lin removed from nav header) */}
+            <div />
 
             {/* Overview Right: Language Switcher & Navigation */}
-            <div className="flex items-center gap-2 sm:gap-5 md:gap-8">
+            <div className="flex items-center gap-2 sm:gap-5 md:gap-8 ml-auto">
               {/* Language Switcher: EN | 中 | ES | FR */}
               <div className="flex items-center gap-0.5 sm:gap-1 p-0.5 sm:p-1 rounded-full bg-white/10 backdrop-blur-md">
                 {(['en', 'zh', 'es', 'fr'] as const).map((lang) => (
