@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Suspense } from 'react';
+import React, { useState, useEffect, useRef, useMemo, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { Layers, Mail, User, Compass } from 'lucide-react';
@@ -323,6 +323,111 @@ function CrystalFollowerCursor() {
         </div>
       </div>
     </div>
+  );
+}
+
+// ==========================================
+// 3.5 INTERACTIVE WIND RIPPLE HERO NAME
+// ==========================================
+function InteractiveWindRippleName({ name }: { name: string }) {
+  const containerRef = useRef<HTMLHeadingElement>(null);
+  const chars = useMemo(() => name.split(''), [name]);
+  const [offsets, setOffsets] = useState<{ y: number; r: number; s: number }[]>([]);
+
+  useEffect(() => {
+    setOffsets(chars.map(() => ({ y: 0, r: 0, s: 1 })));
+  }, [chars]);
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLHeadingElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    const letterEls = containerRef.current.querySelectorAll<HTMLSpanElement>('.wind-ripple-char');
+    const newOffsets = Array.from(letterEls).map((el) => {
+      const charRect = el.getBoundingClientRect();
+      const charCenterX = charRect.left - rect.left + charRect.width / 2;
+      const charCenterY = charRect.top - rect.top + charRect.height / 2;
+
+      const dist = Math.hypot(mouseX - charCenterX, mouseY - charCenterY);
+      const influence = 140; // Proximity wave influence radius
+
+      if (dist < influence) {
+        const factor = Math.cos((dist / influence) * (Math.PI / 2));
+        // Wind wave: dynamic lift, gentle angle tilt in wind direction, subtle scale
+        const y = -16 * factor;
+        const r = ((mouseX - charCenterX) / influence) * -10 * factor;
+        const s = 1 + 0.06 * factor;
+        return { y, r, s };
+      }
+      return { y: 0, r: 0, s: 1 };
+    });
+
+    setOffsets(newOffsets);
+  };
+
+  const handlePointerLeave = () => {
+    setOffsets(chars.map(() => ({ y: 0, r: 0, s: 1 })));
+  };
+
+  // Staggered breeze wave ripple across characters on pointer enter
+  const handlePointerEnter = () => {
+    chars.forEach((_, idx) => {
+      setTimeout(() => {
+        setOffsets((prev) => {
+          const next = [...prev];
+          if (next[idx]) {
+            next[idx] = { y: -14, r: -3.5, s: 1.05 };
+          }
+          return next;
+        });
+        setTimeout(() => {
+          setOffsets((prev) => {
+            const next = [...prev];
+            if (next[idx]) {
+              next[idx] = { y: 0, r: 0, s: 1 };
+            }
+            return next;
+          });
+        }, 320);
+      }, idx * 45);
+    });
+  };
+
+  return (
+    <h1
+      ref={containerRef}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      onPointerEnter={handlePointerEnter}
+      className="select-none tracking-tight relative z-20 pointer-events-auto cursor-default overflow-visible pb-2 sm:pb-3.5"
+    >
+      <span className="font-vogue text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight leading-[1.08] whitespace-nowrap block liuli-glass-shimmer-text">
+        {chars.map((char, i) => {
+          const offset = offsets[i] || { y: 0, r: 0, s: 1 };
+          if (char === ' ') {
+            return (
+              <span key={i} className="inline-block w-[0.25em]">
+                &nbsp;
+              </span>
+            );
+          }
+          return (
+            <span
+              key={i}
+              className="wind-ripple-char inline-block relative transition-transform duration-200 ease-out will-change-transform"
+              style={{
+                transform: `translate3d(0, ${offset.y}px, 0) rotate(${offset.r}deg) scale(${offset.s})`,
+                zIndex: char.toLowerCase() === 'y' ? 40 : 25,
+              }}
+            >
+              {char}
+            </span>
+          );
+        })}
+      </span>
+    </h1>
   );
 }
 
@@ -719,12 +824,8 @@ export default function App() {
       {!activeWaypoint && !isAboutOpen && !isIndexOpen && !selectedDetailWaypoint && (
         <div className="fixed left-5 sm:left-12 lg:left-20 top-24 sm:top-28 lg:top-1/2 lg:-translate-y-1/2 max-w-2xl lg:max-w-3xl xl:max-w-5xl z-20 pointer-events-none select-none">
           <div className="pointer-events-none">
-            {/* Haute Fashion Editorial Identity: Vogue Didot Bold (Single Line) */}
-            <h1 className="select-none tracking-tight relative z-10">
-              <span className="font-vogue text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight leading-[1.08] whitespace-nowrap block pb-2 sm:pb-3.5 liuli-glass-shimmer-text pointer-events-auto cursor-default">
-                {t.hero.name}
-              </span>
-            </h1>
+            {/* Haute Fashion Editorial Identity: Interactive Wind Ripple Vogue Typography */}
+            <InteractiveWindRippleName name={t.hero.name} />
 
             {/* Natural Human Recruiter Introduction (NO border, NO odd styling, NO duplicate nav buttons) */}
             <p className="relative z-0 font-sans text-neutral-300/90 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-md sm:max-w-lg mt-3 sm:mt-5">
@@ -735,13 +836,15 @@ export default function App() {
       )}
 
       {/* ========================================================================= */}
-      {/* 5. EXPERIENCE CONSTELLATION PINS (DESKTOP VERTICAL / MOBILE BOTTOM DOCK)  */}
+      {/* 5. EDITORIAL PROJECT NAVIGATION (DOTLESS, FRAMELESS, ARCHITECTURAL)       */}
       {/* ========================================================================= */}
-      {/* Desktop: Right vertical floating constellation pills */}
+      {/* Desktop: Refined Frameless Architectural Project Index (No dots, no clunky boxes) */}
       {!activeWaypoint && !isAboutOpen && !isIndexOpen && !selectedDetailWaypoint && (
-        <div className="hidden lg:flex fixed right-8 xl:right-12 top-1/2 -translate-y-1/2 z-20 pointer-events-auto flex-col gap-2.5 select-none">
+        <div className="hidden lg:flex fixed right-8 xl:right-14 top-1/2 -translate-y-1/2 z-20 pointer-events-auto flex-col items-end gap-3.5 select-none">
+          <div className="text-[10px] font-mono tracking-[0.25em] text-neutral-500 uppercase mb-1">
+            {t.constellation.title}
+          </div>
           {PORTFOLIO_WAYPOINTS.map((wp) => {
-            const isHovered = hoveredWaypoint?.id === wp.id;
             const projectT = TRANSLATIONS[language]?.projects[wp.id];
             const title = projectT?.title || wp.title;
 
@@ -752,26 +855,22 @@ export default function App() {
                 onClick={() => handleSelectWaypoint(wp)}
                 onMouseEnter={() => setHoveredWaypoint(wp)}
                 onMouseLeave={() => setHoveredWaypoint(null)}
-                className={`group flex items-center justify-end gap-3 text-right transition-all duration-300 py-1.5 px-3 rounded-xl cursor-pointer ${
-                  isHovered
-                    ? 'bg-white/15 translate-x-[-4px] shadow-[0_4px_20px_rgba(0,0,0,0.5)] backdrop-blur-md'
-                    : 'bg-black/40 hover:bg-white/10 backdrop-blur-sm'
-                }`}
+                className="group flex items-baseline justify-end gap-3 text-right transition-all duration-300 cursor-pointer py-1 relative"
               >
-                <div className="font-syne text-xs font-semibold text-white tracking-wide group-hover:text-blue-300 transition-colors">
+                <span className="font-mono text-[10px] text-neutral-500 group-hover:text-blue-400 transition-colors duration-300">
+                  {wp.chapter} //
+                </span>
+                <span className="font-syne text-xs sm:text-sm font-semibold tracking-wide text-neutral-400 group-hover:text-white group-hover:translate-x-[-4px] transition-all duration-300">
                   {title.split(/ & | y /)[0]}
-                </div>
-                <span
-                  className="w-2 h-2 rounded-full transition-transform duration-300 group-hover:scale-125"
-                  style={{ backgroundColor: wp.accentColor }}
-                />
+                </span>
+                <span className="inline-block h-px w-0 group-hover:w-5 bg-gradient-to-r from-blue-400 to-amber-400 transition-all duration-300 self-center" />
               </button>
             );
           })}
         </div>
       )}
 
-      {/* Mobile: Sleek horizontal bottom project dock (Zero overlap with name or flower) */}
+      {/* Mobile: Sleek horizontal bottom project dock (Frameless, zero dots) */}
       {!activeWaypoint && !isAboutOpen && !isIndexOpen && !selectedDetailWaypoint && (
         <div className="flex lg:hidden fixed bottom-6 left-0 right-0 z-20 pointer-events-auto justify-center gap-2 px-4 select-none overflow-x-auto no-scrollbar">
           {PORTFOLIO_WAYPOINTS.map((wp) => {
@@ -783,12 +882,9 @@ export default function App() {
                 key={wp.id}
                 type="button"
                 onClick={() => handleSelectWaypoint(wp)}
-                className="flex items-center gap-1.5 py-1.5 px-3 rounded-full bg-[#06080E]/85 backdrop-blur-md text-[10px] font-mono tracking-wider text-white/90 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95 shrink-0"
+                className="flex items-center gap-1.5 py-1.5 px-3 rounded-full bg-[#06080E]/85 backdrop-blur-md text-[10px] font-mono tracking-wider text-neutral-300 hover:text-white border border-white/10 transition-all cursor-pointer shadow-lg active:scale-95 shrink-0"
               >
-                <span
-                  className="w-1.5 h-1.5 rounded-full shrink-0"
-                  style={{ backgroundColor: wp.accentColor }}
-                />
+                <span className="text-[9px] text-blue-400 font-bold">{wp.chapter}</span>
                 <span>{title.split(' ')[0]}</span>
               </button>
             );

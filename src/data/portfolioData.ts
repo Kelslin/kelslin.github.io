@@ -13,6 +13,7 @@ export interface Waypoint {
   accentColor: string;
   glowColor: string;
   story: string;
+  deckSummary?: string;
   narrativeOrigin?: string;
   metrics: { value: string; label: string }[];
   tags: string[];
@@ -42,8 +43,11 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     lookAt: [0, -0.15, 0.15],
     accentColor: '#FF5500',
     glowColor: 'rgba(255, 85, 0, 0.45)',
+    deckSummary:
+      'Co-founded an AI-powered life journaling and digital legacy platform that transforms end-of-life planning into daily memory celebration. Led 0→1 product strategy, user research, and ethical AI boundaries without voice cloning—raising prototype completion to 88% and user trust to 92%.',
     story:
       'When we talked with people about end-of-life planning, we noticed that facing mortality directly felt overwhelming and emotionally draining. I led our pivot to reframe the product around daily memory journaling and celebrating life stories instead, which brought our prototype completion rate up to 88%. To protect user trust, I also established strict privacy guidelines that avoided artificial voice cloning, ensuring the platform felt authentic, comforting, and safe.',
+
     narrativeOrigin:
       'Rooted in my family annual portrait tradition—finding ways to keep loved ones feeling close, even when living across oceans.',
     metrics: [
@@ -86,6 +90,8 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     lookAt: [-1.15, 0.15, 0.1],
     accentColor: '#0044FF',
     glowColor: 'rgba(0, 68, 255, 0.4)',
+    deckSummary:
+      'A non-electric phase-change medical warming blanket engineered to prevent infant hypothermia in resource-constrained clinics without reliable electricity. Redesigned the procurement UX and clinician intake workflows, boosting direct sales conversion by 20% and reducing internal triage time by 40%.',
     story:
       'Warmilu creates non-electric warming blankets to help save preterm infants in clinics without consistent power. I led the complete redesign of our website and customer journey, conducting user research with healthcare workers to clarify the ordering process and increase direct sales by 20%. I also automated our customer intake workflow to route clinician inquiries faster, cutting response times by 40%.',
     metrics: [
@@ -128,6 +134,8 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     lookAt: [1.1, -0.8, 0.3],
     accentColor: '#FFAA00',
     glowColor: 'rgba(255, 170, 0, 0.4)',
+    deckSummary:
+      'A hardware-software telemetry and automated QA inspection system deployed across high-precision EV electronics manufacturing lines. Standardized testing protocols across 200 technical audits and built automated dashboards, driving line accuracy to 98% and automating 1,000+ daily production tasks.',
     story:
       'Working alongside engineering teams on high-precision electronics and EV production lines, I wrote clear product specifications and quality inspection workflows based on conversations with 15+ team leads. By standardizing testing checklists across 200 technical audits, we brought production accuracy to 98% and reduced training mistakes by 30%. I also automated data dashboards in Python and Excel to help supervisors catch delays early.',
     metrics: [
@@ -170,8 +178,11 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     lookAt: [0.8, 0.4, -0.15],
     accentColor: '#FF2A55',
     glowColor: 'rgba(255, 42, 85, 0.4)',
+    deckSummary:
+      'An embodied AI and interactive multi-robot learning platform showcased live to 1.5M+ viewers at China Big Data Expo 2025. Designed structured prompt grounding and few-shot evaluation rubrics that eliminated AI hallucinations and boosted pilot classroom adoption by 40%.',
     story:
       'At SomaSeek, I worked on embodied robotics and education tools, designing prompt frameworks and evaluation rubrics that prevented AI hallucinations and increased pilot classroom adoption by 40%. We showcased the platform live to 1.5 million viewers at the China Big Data Expo 2025, validating interactive multi-robot learning systems at scale.',
+
     metrics: [
       { value: '1.5M+', label: 'Expo Live Audience' },
       { value: '+40%', label: 'Pilot Adoption Gain' },

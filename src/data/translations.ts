@@ -61,6 +61,7 @@ export interface Translations {
       role: string;
       period: string;
       story: string;
+      deckSummary?: string;
       context: string;
       bulletPoints: string[];
     }
@@ -133,6 +134,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         subtitle: 'AI Life Journaling & Digital Legacy Platform',
         role: 'Co-Founder & Lead Product Manager',
         period: '2026 – Present',
+        deckSummary:
+          'Co-founded an AI-powered life journaling and digital legacy platform that transforms end-of-life planning into daily memory celebration. Led 0→1 product strategy, user research, and ethical AI boundaries without voice cloning—raising prototype completion to 88% and user trust to 92%.',
         story:
           'When we talked with people about end-of-life planning, we noticed that facing mortality directly felt overwhelming and emotionally draining. I led our pivot to reframe the product around daily memory journaling and celebrating life stories instead, which brought our prototype completion rate up to 88%. To protect user trust, I also established strict privacy guidelines that avoided artificial voice cloning, ensuring the platform felt authentic, comforting, and safe.',
         context:
@@ -149,6 +152,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         subtitle: 'Non-Electric Neonatal Medical Warming Technology',
         role: 'Product Management Intern',
         period: '2026',
+        deckSummary:
+          'A non-electric phase-change medical warming blanket engineered to prevent infant hypothermia in resource-constrained clinics without reliable electricity. Redesigned the procurement UX and clinician intake workflows, boosting direct sales conversion by 20% and reducing internal triage time by 40%.',
         story:
           'Warmilu creates non-electric warming blankets to help save preterm infants in clinics without consistent power. I led the complete redesign of our website and customer journey, conducting user research with healthcare workers to clarify the ordering process and increase direct sales by 20%. I also automated our customer intake workflow to route clinician inquiries faster, cutting response times by 40%.',
         context:
@@ -165,6 +170,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         subtitle: 'Hardware-Software Manufacturing Telemetry Integration',
         role: 'Product Management Intern · Hardware-Software Telemetry',
         period: '2025',
+        deckSummary:
+          'A hardware-software telemetry and automated QA inspection system deployed across high-precision EV electronics manufacturing lines. Standardized testing protocols across 200 technical audits and built automated dashboards, driving line accuracy to 98% and automating 1,000+ daily production tasks.',
         story:
           'Working alongside engineering teams on high-precision electronics and EV production lines, I wrote clear product specifications and quality inspection workflows based on conversations with 15+ team leads. By standardizing testing checklists across 200 technical audits, we brought production accuracy to 98% and reduced training mistakes by 30%. I also automated data dashboards in Python and Excel to help supervisors catch delays early.',
         context:
@@ -181,8 +188,11 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         subtitle: 'Multi-Robot Embodied AI & Interactive Robotics Platform',
         role: 'Product Manager · Embodied Robotics & AI',
         period: '2025 – 2026',
+        deckSummary:
+          'An embodied AI and interactive multi-robot learning platform showcased live to 1.5M+ viewers at China Big Data Expo 2025. Designed structured prompt grounding and few-shot evaluation rubrics that eliminated AI hallucinations and boosted pilot classroom adoption by 40%.',
         story:
           'At SomaSeek, I worked on embodied robotics and education tools, designing prompt frameworks and evaluation rubrics that prevented AI hallucinations and increased pilot classroom adoption by 40%. We showcased the platform live to 1.5 million viewers at the China Big Data Expo 2025, validating interactive multi-robot learning systems at scale.',
+
         context:
           'Using large language models to orchestrate and evaluate physical robotics activities requires precise, grounded feedback without errors or hallucinations across diverse classroom pilot environments.',
         bulletPoints: [
@@ -259,6 +269,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         subtitle: 'AI 人生记忆归档与数字遗产平台',
         role: '联合创始人 & 主产品经理',
         period: '2026 – 至今',
+        deckSummary:
+          '联合创立 AI 个人生命记忆归档与数字遗产平台，将沉重的临终规划重构为温暖的日常回忆记录。主导 0 到 1 产品全流程、用户深度访谈与严苛的 AI 伦理隐私边界，使原型任务完成率提升至 88%，用户信任度达 92%。',
         story:
           '在与用户探讨生命终末期规划时，我们发现直面死亡令人产生巨大的心理沉重感。我主导产品核心转型，将焦点转向“日常记忆记录与生命故事致敬”，使得原型任务完成率提升至88%。为捍卫用户信任，我制定了坚决不采用AI声音克隆的道德隐私准则，确保平台真实、安心且温暖。',
         context:
@@ -275,6 +287,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         subtitle: '非电动新生儿医疗保暖技术',
         role: '产品管理实习生',
         period: '2026',
+        deckSummary:
+          '为电力短缺的边远诊所打造非电动相变早产儿医疗保暖设备，防止新生儿体温过低。全面重构医疗采购数字化体验与自动化咨询流转系统，直接采购转化率提升 20%，团队响应处理时间缩短 40%。',
         story:
           'Warmilu 致力于为电力不稳定的诊所提供非电动相变保暖毯，拯救早产儿生命。我主导了官网及用户采购旅程的全面重构，深入调研医护人员需求，使直接采购转化率提升20%；同时通过自动化客户咨询分流管线，将团队响应时间缩短40%。',
         context:
@@ -291,6 +305,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         subtitle: '软硬件协同制造遥测系统集成',
         role: '产品管理实习生 · 软硬件遥测',
         period: '2025',
+        deckSummary:
+          '面向高精度新能源车与消费电子生产线的软硬件遥测监控与自动化质检系统。主导跨部门 PRD 制定并在 200 次技术审核中规范检测流程，使产线准确率达到 98%，每日自动化处理 1,000+ 项生产工序。',
         story:
           '深入高精度消费电子与新能源车产线，与15位工程主管协作制定标准产品需求文档(PRD)与质检流程。通过在200次技术审核中规范检测清单，产线准确率提升至98%，作业员培训差错减少30%。同时开发 Python/Excel 自动化看板，助力主管实时排查瓶颈。',
         context:
@@ -307,6 +323,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         subtitle: '多机器人具身智能与交互式教育平台',
         role: '产品经理 · 具身智能与机器人',
         period: '2025 – 2026',
+        deckSummary:
+          '多机器人具身智能与交互式教育平台，在 2025 中国数博会上向 150 万观众进行现场实机演示。构建结构化提示词与少样本评测标准，彻底杜绝 AI 幻觉，将试点课堂采用率提升 40%。',
         story:
           '在 SomaSeek 负责具身智能教育工具产品设计，构建结构化提示词与少样本评测标准，彻底消除 AI 幻觉，试点课堂采用率提升40%；在2025中国数博会向150万在线观众进行现场实机演示，大规模验证多机器人交互式学习系统。',
         context:
@@ -385,6 +403,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         subtitle: 'Plataforma de Memorias y Legado Digital con IA',
         role: 'Cofundadora & Lead PM',
         period: '2026 – Presente',
+        deckSummary:
+          'Cofundé una plataforma de legado digital y diario de vida con IA que transforma la planificación del final de la vida en una celebración de memorias cotidianas. Lideré la estrategia de producto 0→1, investigación de usuarios y límites éticos de IA sin clonación de voz, elevando la finalización de tareas al 88% y la confianza al 92%.',
         story:
           'Rediseñé el producto hacia la celebración de vidas en lugar del duelo, elevando la finalización de tareas al 88% sin clonación artificial de voz.',
         context:
@@ -401,6 +421,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         subtitle: 'Tecnología Médica Térmica No Eléctrica para Neonatos',
         role: 'Pasante de PM',
         period: '2026',
+        deckSummary:
+          'Tecnología médica térmica no eléctrica diseñada para prevenir la hipotermia neonatal en clínicas con suministro eléctrico inestable. Rediseñé la experiencia de adquisición digital y los flujos clínicos, aumentando las ventas directas un 20% y reduciendo los tiempos de respuesta un 40%.',
         story:
           'Rediseñé la experiencia web y el embudo de compra médica, aumentando las ventas directas un 20% y recortando la respuesta un 40%.',
         context:
@@ -417,6 +439,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         subtitle: 'Integración Telemática en Manufactura de Hardware y Software',
         role: 'Pasante de PM · Telemetría HW/SW',
         period: '2025',
+        deckSummary:
+          'Sistema de telemetría e inspección de calidad automatizada para líneas de manufactura de alta precisión en electrónica y vehículos eléctricos. Estandaricé protocolos en 200 auditorías y creé paneles automatizados, alcanzando un 98% de precisión en línea y automatizando más de 1.000 tareas diarias.',
         story:
           'Estandaricé especificaciones técnicas en 200 auditorías, elevando la precisión de línea al 98% y reduciendo fallas de capacitación un 30%.',
         context:
@@ -433,6 +457,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         subtitle: 'IA Corpórea Multirrobot y Plataforma Educativa',
         role: 'Product Manager · Robótica e IA Corpórea',
         period: '2025 – 2026',
+        deckSummary:
+          'Plataforma educativa de IA corpórea y robótica interactiva presentada en vivo ante 1.5M+ espectadores en la China Big Data Expo 2025. Diseñé marcos de prompts estructurados y rúbricas de evaluación que eliminaron alucinaciones de IA y aumentaron la adopción en aulas un 40%.',
         story:
           'Diseñé prompts estructurados para robótica educativa, eliminando alucinaciones de IA y aumentando la adopción en aulas piloto un 40%.',
         context:
@@ -511,6 +537,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         subtitle: 'Plateforme de Mémoire et d’Héritage Numérique par IA',
         role: 'Cofondatrice & Chef de Produit Principale',
         period: '2026 – Présent',
+        deckSummary:
+          "Cofondatrice d'une plateforme d'héritage numérique par IA transformant la fin de vie en célébration quotidienne des souvenirs. J'ai piloté la stratégie produit 0→1, la recherche utilisateur et l'éthique IA sans clonage vocal, portant la complétion des tâches à 88% et la confiance à 92%.",
         story:
           'En échangeant avec des utilisateurs sur la fin de vie, nous avons constaté le poids émotionnel de ce sujet. J’ai réorienté le produit vers le récit quotidien des souvenirs, portant le taux de complétion à 88%. Pour préserver la confiance, j’ai banni le clonage vocal artificiel.',
         context:
@@ -527,6 +555,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         subtitle: 'Technologie Médicale Thermique Non-Électrique pour Nouveau-Nés',
         role: 'Stagiaire en Gestion de Produit',
         period: '2026',
+        deckSummary:
+          "Dispositif médical thermique non-électrique conçu pour prévenir l'hypothermie des nouveau-nés dans les cliniques sans électricité stable. Refonte intégrale du parcours d'achat hospitalier et automatisation du routage clinique, augmentant les ventes directes de 20% et réduisant les délais de 40%.",
         story:
           'Warmilu crée des couvertures thermiques non-électriques pour sauver les prématurés dans les cliniques sans électricité stable. J’ai piloté la refonte intégrale du site et du parcours d’achat, augmentant les ventes directes de 20% et réduisant les délais de réponse de 40%.',
         context:
@@ -543,6 +573,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         subtitle: 'Intégration Télémétrique Matérielle et Logicielle en Production',
         role: 'Stagiaire Chef de Produit · Télémétrie Hardware-Software',
         period: '2025',
+        deckSummary:
+          "Système télémétrique matériel-logiciel et contrôle qualité automatisé déployé sur les lignes de production électronique et véhicules électriques. Standardisation des protocoles sur 200 audits et création de tableaux de bord automatisés, atteignant 98% de précision et automatisant 1 000+ tâches quotidiennes.",
         story:
           'Sur les lignes d’assemblage électronique de pointe et de véhicules électriques, j’ai rédigé les spécifications et procédures de contrôle qualité. Sur 200 audits techniques, la précision a atteint 98% et les erreurs de formation ont diminué de 30%.',
         context:
@@ -559,6 +591,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         subtitle: 'IA Incarnée Multi-Robots & Plateforme Éducative',
         role: 'Chef de Produit · Robotique & IA Incarnée',
         period: '2025 – 2026',
+        deckSummary:
+          "Plateforme éducative d'IA incarnée multi-robots présentée en direct devant 1,5M+ spectateurs à la China Big Data Expo 2025. Conception de prompts structurés et de grilles d'évaluation éliminant les hallucinations IA et augmentant l'adoption en classe de 40%.",
         story:
           'Chez SomaSeek, j’ai conçu des cadres de prompts et d’évaluation pour la robotique éducative, éliminant les hallucinations IA et augmentant l’adoption en classe de 40%. Présentation en direct devant 1,5 million de spectateurs à la China Big Data Expo.',
         context:

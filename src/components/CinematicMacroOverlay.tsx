@@ -82,6 +82,7 @@ export default function CinematicMacroOverlay({
   const role = projectT?.role || activeWaypoint.role;
   const period = projectT?.period || activeWaypoint.period;
   const story = projectT?.story || activeWaypoint.story;
+  const deckSummary = projectT?.deckSummary || activeWaypoint.deckSummary || story;
 
   return (
     <div className="fixed inset-0 z-30 pointer-events-none flex flex-col justify-between pt-16 sm:pt-24 pb-4 sm:pb-8 px-4 sm:px-8 md:px-12 select-none">
@@ -103,7 +104,7 @@ export default function CinematicMacroOverlay({
               onSelectWaypoint(prevWaypoint);
             }
           }}
-          className="w-full max-w-lg pointer-events-auto my-auto p-5 sm:p-8 rounded-3xl bg-[#06080E]/90 backdrop-blur-3xl shadow-[0_30px_80px_rgba(0,0,0,0.8)] text-white cursor-grab active:cursor-grabbing max-h-[68vh] sm:max-h-[80vh] overflow-y-auto"
+          className="w-full max-w-lg pointer-events-auto my-auto p-5 sm:p-8 rounded-3xl bg-[#06080E]/90 backdrop-blur-3xl border border-white/[0.08] shadow-[0_30px_80px_rgba(0,0,0,0.8)] text-white cursor-grab active:cursor-grabbing max-h-[68vh] sm:max-h-[80vh] overflow-y-auto"
         >
           {/* Line 1: Title */}
           <h2 className="font-syne text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-white leading-tight mb-1 drop-shadow-sm">
@@ -120,22 +121,24 @@ export default function CinematicMacroOverlay({
             {period}
           </div>
 
-          {/* Concise High-Signal Summary */}
-          <p className="font-sans text-[#E2E8F0] text-xs sm:text-sm font-normal leading-relaxed mb-4 sm:mb-5">
-            {story.split('. ')[0] + (story.includes('. ') ? '.' : '')}
+          {/* Concise High-Signal Scope & Achievement Summary */}
+          <p className="font-sans text-neutral-200 text-xs sm:text-sm font-normal leading-relaxed mb-4 sm:mb-5">
+            {deckSummary}
           </p>
 
-          {/* Quantified Highlight Tags (Zero card box, zero borders) */}
-          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-4 sm:mb-6">
+          {/* Quantified Impact Metrics: Architectural Data Grid (De-AI'd, Clean Hairline Dividers) */}
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 py-3 sm:py-4 my-4 sm:my-5 border-y border-white/10">
             {activeWaypoint.metrics.map((m, idx) => (
               <div
                 key={idx}
-                className="inline-flex items-baseline gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-white/[0.06]"
+                className={`flex flex-col justify-start ${
+                  idx !== activeWaypoint.metrics.length - 1 ? 'border-r border-white/10 pr-2 sm:pr-3' : ''
+                }`}
               >
-                <span className="font-syne text-xs sm:text-sm font-bold text-white tracking-tight">
+                <span className="font-syne text-base sm:text-xl font-bold tracking-tight text-white leading-tight">
                   {m.value}
                 </span>
-                <span className="font-mono text-[9px] text-[#94A3B8] uppercase tracking-wider">
+                <span className="font-mono text-[9px] sm:text-[10px] text-neutral-400 uppercase tracking-[0.14em] mt-1 leading-tight">
                   {m.label}
                 </span>
               </div>
@@ -150,26 +153,26 @@ export default function CinematicMacroOverlay({
                 href={activeWaypoint.websiteUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/link inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs text-[#CBD5E1] hover:text-white underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors cursor-pointer shrink-0"
+                className="group/link inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs text-neutral-300 hover:text-white underline underline-offset-4 decoration-neutral-500 hover:decoration-white transition-colors cursor-pointer shrink-0"
                 title={`Visit ${activeWaypoint.websiteLabel || 'official website'}`}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
                 <span className="font-medium whitespace-nowrap">
                   {activeWaypoint.websiteLabel || t.visitWebsite}
                 </span>
-                <ExternalLink className="w-3 h-3 text-[#94A3B8] group-hover/link:text-white transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 shrink-0" />
+                <ExternalLink className="w-3 h-3 text-neutral-400 group-hover/link:text-white transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 shrink-0" />
               </a>
             ) : (
               <div />
             )}
 
-            {/* Right: Highlighted Case Study Primary Button */}
+            {/* Right: De-AI'd Architectural Case Study CTA (Understated, Editorial, Tactile) */}
             <button
               onClick={onOpenDetails}
-              className="group inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-[#0A0D14] hover:bg-[#0055FF] hover:text-white font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-[0.12em] sm:tracking-[0.14em] transition-all duration-300 shadow-[0_2px_12px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_20px_rgba(0,85,255,0.45)] cursor-pointer shrink-0 ml-auto"
+              className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/30 hover:border-white bg-white/10 hover:bg-white text-white hover:text-black font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-[0.14em] transition-all duration-300 cursor-pointer shrink-0 ml-auto"
             >
               <span className="whitespace-nowrap">{t.readFullCase}</span>
-              <span className="transition-transform duration-200 group-hover:translate-x-1 font-bold">
+              <span className="transition-transform duration-200 group-hover:translate-x-1 font-mono font-bold">
                 →
               </span>
             </button>
@@ -177,35 +180,48 @@ export default function CinematicMacroOverlay({
         </motion.div>
       </AnimatePresence>
 
-      {/* Bottom Petal Rail (Clean Project Names, Scrollable on Mobile) */}
+      {/* Bottom Chapter Rail: Editorial Architectural Chapter Bar (Zero AI bubbles, zero dots) */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 15 }}
         transition={{ duration: 0.3 }}
-        className="flex items-center justify-start gap-2 pointer-events-auto text-[10px] sm:text-xs font-mono tracking-[0.12em] sm:tracking-[0.15em] uppercase overflow-x-auto no-scrollbar py-1 shrink-0"
+        className="flex items-center gap-5 sm:gap-8 pointer-events-auto text-[10px] sm:text-xs font-mono tracking-[0.15em] uppercase overflow-x-auto no-scrollbar py-2 shrink-0 border-t border-white/10"
       >
         {PORTFOLIO_WAYPOINTS.map((wp) => {
           const isCurrent = wp.id === activeWaypoint.id;
+          const projT = TRANSLATIONS[language]?.projects[wp.id];
+          const projTitle = projT?.title || wp.title;
+
           return (
             <button
               key={wp.id}
               onClick={() => onSelectWaypoint(wp)}
-              className={`transition-all duration-300 flex items-center gap-1.5 sm:gap-2 py-1.5 px-3 sm:py-2 sm:px-4 rounded-full cursor-pointer backdrop-blur-md shrink-0 ${
-                isCurrent
-                  ? 'bg-white text-black font-bold shadow-xl scale-105'
-                  : 'bg-white/10 text-[#CBD5E1] hover:bg-white/20 hover:text-white'
+              className={`group flex items-baseline gap-2 transition-all duration-300 cursor-pointer shrink-0 pb-1.5 relative ${
+                isCurrent ? 'text-white font-semibold' : 'text-neutral-500 hover:text-neutral-300'
               }`}
             >
               <span
-                className="w-1.5 h-1.5 rounded-full"
-                style={{ backgroundColor: wp.accentColor }}
-              />
-              <span>{wp.title.split(' & ')[0]}</span>
+                className={`text-[10px] ${
+                  isCurrent ? 'text-blue-400 font-bold' : 'text-neutral-600 group-hover:text-neutral-400'
+                }`}
+              >
+                {wp.chapter} //
+              </span>
+              <span className="font-syne tracking-wider text-xs sm:text-sm">
+                {projTitle.split(/ & | y /)[0]}
+              </span>
+              {isCurrent && (
+                <motion.span
+                  layoutId="activeDeckChapterLine"
+                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-blue-400 via-white to-amber-400"
+                />
+              )}
             </button>
           );
         })}
       </motion.div>
     </div>
+
     );
   }

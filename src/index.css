@@ -169,3 +169,24 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
+
+/* 7. INTERACTIVE WIND RIPPLE WAVE */
+@keyframes windRipplePulse {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  30% {
+    transform: translateY(-12px) rotate(-2.5deg) scale(1.05);
+  }
+  60% {
+    transform: translateY(3px) rotate(1deg) scale(0.98);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+.wind-letter {
+  display: inline-block;
+  will-change: transform;
+}
