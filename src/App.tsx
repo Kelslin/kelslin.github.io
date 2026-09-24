@@ -9,6 +9,8 @@ import AboutStoryModal from './components/AboutStoryModal';
 import RecruiterIndexModal from './components/RecruiterIndexModal';
 import ProjectDetailModal from './components/ProjectDetailModal';
 import AmbientAudioPlayer from './components/AmbientAudioPlayer';
+import { AudioProvider } from './context/AudioContext';
+import { HeroAudioPill, FloatingSoundToast } from './components/SensoryAudioPrompt';
 import { Waypoint, PORTFOLIO_WAYPOINTS } from './data/portfolioData';
 import { Language, TRANSLATIONS } from './data/translations';
 
@@ -327,84 +329,13 @@ function CrystalFollowerCursor() {
 }
 
 // ==========================================
-// 3.5 INTERACTIVE WIND RIPPLE HERO NAME
+// 3.5 HAUTE EDITORIAL WIND BREEZE HERO NAME
 // ==========================================
-function InteractiveWindRippleName({ name }: { name: string }) {
-  const containerRef = useRef<HTMLHeadingElement>(null);
-  const words = useMemo(() => name.split(' '), [name]);
-  const [activeCharIndex, setActiveCharIndex] = useState<number | null>(null);
-
-  // Flatten character list with global indexing for smooth breeze wave
-  const allChars = useMemo(() => {
-    const list: { char: string; wordIndex: number; charIndex: number; globalIndex: number }[] = [];
-    let g = 0;
-    words.forEach((w, wIdx) => {
-      w.split('').forEach((c, cIdx) => {
-        list.push({ char: c, wordIndex: wIdx, charIndex: cIdx, globalIndex: g++ });
-      });
-    });
-    return list;
-  }, [words]);
-
-  const totalChars = allChars.length;
-
-  const handlePointerMove = (e: React.PointerEvent<HTMLHeadingElement>) => {
-    if (!containerRef.current || totalChars === 0) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const ratio = Math.max(0, Math.min(1, mouseX / rect.width));
-    setActiveCharIndex(ratio * (totalChars - 1));
-  };
-
-  const handlePointerLeave = () => {
-    setActiveCharIndex(null);
-  };
-
+function WindBreezeHeroName({ name }: { name: string }) {
   return (
-    <h1
-      ref={containerRef}
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
-      className="select-none relative z-20 pointer-events-auto cursor-default overflow-visible pb-2 sm:pb-4"
-    >
-      <span className="font-vogue text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-normal leading-[1.08] whitespace-nowrap block liuli-glass-shimmer-text">
-        {words.map((word, wIdx) => (
-          <span
-            key={wIdx}
-            className={`inline-block whitespace-nowrap ${
-              wIdx < words.length - 1 ? 'mr-4 sm:mr-6 lg:mr-8' : ''
-            }`}
-          >
-            {word.split('').map((char, cIdx) => {
-              const item = allChars.find(
-                (a) => a.wordIndex === wIdx && a.charIndex === cIdx
-              );
-              const gIdx = item ? item.globalIndex : 0;
-              let y = 0;
-              if (activeCharIndex !== null) {
-                const dist = Math.abs(gIdx - activeCharIndex);
-                if (dist < 2.0) {
-                  // Smooth pure vertical breeze lift without any rotation or scaling
-                  const factor = Math.cos((dist / 2.0) * (Math.PI / 2));
-                  y = -10 * factor;
-                }
-              }
-
-              return (
-                <span
-                  key={cIdx}
-                  className="inline-block relative transition-transform duration-200 ease-out will-change-transform"
-                  style={{
-                    transform: `translate3d(0, ${y.toFixed(1)}px, 0)`,
-                    zIndex: char.toLowerCase() === 'y' ? 40 : 20,
-                  }}
-                >
-                  {char}
-                </span>
-              );
-            })}
-          </span>
-        ))}
+    <h1 className="select-none relative z-30 pointer-events-auto cursor-default overflow-visible mb-6 sm:mb-8">
+      <span className="font-vogue text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-normal leading-[1.2] whitespace-nowrap block liuli-glass-shimmer-text wind-breeze-hover">
+        {name}
       </span>
     </h1>
   );
@@ -566,9 +497,10 @@ export default function App() {
   };
 
   return (
-    <div className="relative w-full min-h-[100dvh] h-[100dvh] overflow-hidden bg-[#050608] text-[#D8ECF8] font-sans selection:bg-[#002FA7] selection:text-white">
-      {/* 1. Kinetic Honeybee Cursor (Zero-Render) */}
-      <CrystalFollowerCursor />
+    <AudioProvider>
+      <div className="relative w-full min-h-[100dvh] h-[100dvh] overflow-hidden bg-[#050608] text-[#D8ECF8] font-sans selection:bg-[#002FA7] selection:text-white">
+        {/* 1. Kinetic Honeybee Cursor (Zero-Render) */}
+        <CrystalFollowerCursor />
 
       {/* ========================================================================= */}
       {/* UNIFIED 3D SCENE: TACTILE LIULI GLASS WITH REAL-TIME CURSOR LIGHT & FREE ORBIT */}
@@ -803,13 +735,18 @@ export default function App() {
       {!activeWaypoint && !isAboutOpen && !isIndexOpen && !selectedDetailWaypoint && (
         <div className="fixed left-5 sm:left-12 lg:left-20 top-24 sm:top-28 lg:top-1/2 lg:-translate-y-1/2 max-w-2xl lg:max-w-3xl xl:max-w-5xl z-20 pointer-events-none select-none">
           <div className="pointer-events-none">
-            {/* Haute Fashion Editorial Identity: Interactive Wind Ripple Vogue Typography */}
-            <InteractiveWindRippleName name={t.hero.name} />
+            {/* Haute Fashion Editorial Identity: Wind Breeze Vogue Typography */}
+            <WindBreezeHeroName name={t.hero.name} />
 
-            {/* Natural Human Recruiter Introduction (NO border, NO odd styling, NO duplicate nav buttons) */}
-            <p className="relative z-0 font-sans text-neutral-300/90 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-md sm:max-w-lg mt-3 sm:mt-5">
+            {/* Natural Human Recruiter Introduction (Elevated with clean vertical rhythm) */}
+            <p className="relative z-10 font-sans text-neutral-300/90 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-md sm:max-w-lg">
               {t.hero.intro}
             </p>
+
+            {/* Sensorial Ambient Sound Experience (Recruiter Hook) */}
+            <div className="mt-5 sm:mt-7 pointer-events-auto">
+              <HeroAudioPill />
+            </div>
           </div>
         </div>
       )}
@@ -922,6 +859,10 @@ export default function App() {
         }}
         language={language}
       />
+
+      {/* Sensorial Ambient Audio Floating Feedback Toast */}
+      <FloatingSoundToast />
     </div>
+    </AudioProvider>
   );
 }
