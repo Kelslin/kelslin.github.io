@@ -588,13 +588,10 @@ export default function App() {
       {!activeWaypoint && !isAboutOpen && !isIndexOpen && !selectedDetailWaypoint && (
         <div className="fixed left-5 sm:left-12 lg:left-20 top-24 sm:top-28 lg:top-1/2 lg:-translate-y-1/2 max-w-xl z-20 pointer-events-none select-none">
           <div className="pointer-events-none">
-            {/* Direction A: High-Fashion Dual-Type Editorial (Vogue / Maison Margiela Style) */}
-            <h1 className="select-none tracking-tight leading-none mb-2 sm:mb-3">
-              <span className="block font-sans text-xl sm:text-3xl md:text-4xl lg:text-5xl font-light uppercase tracking-[0.28em] sm:tracking-[0.34em] text-neutral-300/90 mb-1 sm:mb-2">
-                KELSEY
-              </span>
-              <span className="block font-serif italic text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] font-normal tracking-tight text-white leading-[0.85] drop-shadow-md">
-                Lin
+            {/* Direction B: Tactile Liuli Glass Shimmer (Tied to the 3D Lily) */}
+            <h1 className="select-none tracking-tight">
+              <span className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-normal tracking-tight leading-[0.92] block liuli-glass-shimmer-text pointer-events-auto cursor-default">
+                {t.hero.name}
               </span>
             </h1>
 

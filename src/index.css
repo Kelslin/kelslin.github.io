@@ -59,6 +59,42 @@ body {
   filter: drop-shadow(0 0 24px rgba(255, 136, 0, 0.35));
 }
 
+/* DIRECTION B: TACTILE LIULI GLASS SHIMMER (TIED TO 3D LILY) */
+@keyframes liuliGlassShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.liuli-glass-shimmer-text {
+  background: linear-gradient(
+    115deg,
+    #FFFFFF 0%,
+    #F1F5F9 20%,
+    #BAE6FD 36%,
+    #0055FF 48%,
+    #FFAA00 62%,
+    #FFFFFF 78%,
+    #E2E8F0 100%
+  );
+  background-size: 240% 100%;
+  animation: liuliGlassShimmer 12s ease-in-out infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 14px rgba(0, 85, 255, 0.32)) drop-shadow(0 8px 30px rgba(255, 170, 0, 0.18));
+  transition: filter 0.5s ease;
+}
+
+.liuli-glass-shimmer-text:hover {
+  filter: drop-shadow(0 0 22px rgba(0, 85, 255, 0.55)) drop-shadow(0 0 45px rgba(255, 170, 0, 0.35));
+}
+
 /* 3. PALE FROSTED QUARTZ TEXT FINISH */
 .frosted-quartz-text {
   background: linear-gradient(
