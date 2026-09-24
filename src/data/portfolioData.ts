@@ -52,13 +52,13 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
       { value: '0 → 1', label: 'Strategy & Scoping' },
     ],
     tags: ['0→1 Strategy', 'Ethical AI Boundaries', 'User Research', 'Figma Interactive V1'],
-    websiteUrl: 'https://afterlifeclub.com',
-    websiteLabel: 'afterlifeclub.com',
+    websiteUrl: 'https://afterlife-club.github.io/afterlife-site/',
+    websiteLabel: 'afterlife-club.github.io',
     isLive: true,
     links: [
       { label: 'Interactive Prototype', url: 'https://figma.com/@kelseylin', category: 'Figma V1' },
       { label: 'Product PRD Spec', url: 'https://notion.so/kelseylin/afterlife-prd', category: 'Product Blueprint' },
-      { label: 'Live Platform Demo', url: 'https://afterlifeclub.com', category: 'Production' },
+      { label: 'Live Platform Demo', url: 'https://afterlife-club.github.io/afterlife-site/', category: 'Production' },
     ],
     detailedBreakdown: {
       context:
@@ -162,8 +162,8 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     codeTag: 'embodied.ai',
     subTag: '647.7468',
     title: 'SomaSeek',
-    subtitle: 'Multi-Robot Embodied AI & Michigan Startup Ecosystem',
-    role: 'Product Manager & Ecosystem Director',
+    subtitle: 'Multi-Robot Embodied AI & Interactive Robotics Platform',
+    role: 'Product Manager · Embodied Robotics & AI',
     period: '2025 – 2026',
     position3D: [0.85, 0.45, -0.2],
     camPos: [0.65, 0.45, 2.0],
@@ -171,31 +171,27 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     accentColor: '#FF2A55',
     glowColor: 'rgba(255, 42, 85, 0.4)',
     story:
-      'At SomaSeek, I worked on embodied robotics and education tools, designing prompt frameworks and evaluation rubrics that prevented AI hallucinations and increased pilot classroom adoption by 40%. We showcased the platform live to 1.5 million viewers at the China Big Data Expo 2025. In parallel, as Director of the Michigan Startup Career Fair, I led a student team of 11 to organize an event connecting over 300 students with 70 venture-backed companies.',
+      'At SomaSeek, I worked on embodied robotics and education tools, designing prompt frameworks and evaluation rubrics that prevented AI hallucinations and increased pilot classroom adoption by 40%. We showcased the platform live to 1.5 million viewers at the China Big Data Expo 2025, validating interactive multi-robot learning systems at scale.',
     metrics: [
       { value: '1.5M+', label: 'Expo Live Audience' },
       { value: '+40%', label: 'Pilot Adoption Gain' },
-      { value: '70+', label: 'Startups Scaled' },
+      { value: '95%+', label: 'Educator Trust' },
     ],
-    tags: ['LLM Prompt Grounding', 'Responsible AI', 'Cross-Functional Leadership', 'Venture Ecosystems'],
-    websiteUrl: 'https://michiganstartupfair.com',
-    websiteLabel: 'michiganstartupfair.com',
-    isLive: true,
+    tags: ['LLM Prompt Grounding', 'Responsible AI', 'Multi-Robot Systems', 'Classroom Pilot UX'],
     links: [
       { label: 'China Big Data Expo Keynote', url: 'https://youtube.com', category: '1.5M+ Live Demo' },
       { label: 'LLM Prompt Rubric Architecture', url: 'https://github.com/kelseylin', category: 'Responsible AI' },
-      { label: 'Michigan Startup Fair Portal', url: 'https://michiganstartupfair.com', category: 'Venture Ecosystem' },
     ],
     detailedBreakdown: {
       context:
-        'Using large language models to grade physical robotics activities requires precise, reliable feedback without errors or hallucinations. At the same time, university students often struggle to find clear pathways into early-stage, fast-moving startup environments.',
+        'Using large language models to orchestrate and evaluate physical robotics activities requires precise, grounded feedback without errors or hallucinations across diverse classroom pilot environments.',
       bulletPoints: [
         'Designed structured prompts and few-shot evaluation rubrics for robotics tasks, eliminating hallucinations and increasing pilot adoption by 40%.',
         'Demonstrated the AI platform live in front of 1.5 million viewers at the China Big Data Expo 2025 while keeping educator trust above 95%.',
         'Streamlined development sprints with clear progress tracking, reducing delivery turnaround by 25%.',
-        'Directed an 11-person team to host the Michigan Startup Career Fair, bringing together 300+ students and 70 startups while raising $3,000 in sponsorships.',
+        'Led user feedback loops with educators and students during pilot deployments, translating interactive physical robotics friction points into refined system prompts.',
       ],
-      technicalStack: ['LLM Prompt Grounding', 'Few-Shot Evaluation', 'Responsible AI', 'Team Leadership'],
+      technicalStack: ['LLM Prompt Grounding', 'Few-Shot Evaluation', 'Responsible AI', 'Cross-Functional Agile'],
     },
   },
 ];

@@ -178,18 +178,18 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       },
       somaseek: {
         title: 'SomaSeek',
-        subtitle: 'Multi-Robot Embodied AI & Michigan Startup Ecosystem',
-        role: 'Product Manager & Ecosystem Director',
+        subtitle: 'Multi-Robot Embodied AI & Interactive Robotics Platform',
+        role: 'Product Manager · Embodied Robotics & AI',
         period: '2025 – 2026',
         story:
-          'At SomaSeek, I worked on embodied robotics and education tools, designing prompt frameworks and evaluation rubrics that prevented AI hallucinations and increased pilot classroom adoption by 40%. We showcased the platform live to 1.5 million viewers at the China Big Data Expo 2025. In parallel, as Director of the Michigan Startup Career Fair, I led a student team of 11 to organize an event connecting over 300 students with 70 venture-backed companies.',
+          'At SomaSeek, I worked on embodied robotics and education tools, designing prompt frameworks and evaluation rubrics that prevented AI hallucinations and increased pilot classroom adoption by 40%. We showcased the platform live to 1.5 million viewers at the China Big Data Expo 2025, validating interactive multi-robot learning systems at scale.',
         context:
-          'Using large language models to grade physical robotics activities requires precise, reliable feedback without errors or hallucinations. At the same time, university students often struggle to find clear pathways into early-stage, fast-moving startup environments.',
+          'Using large language models to orchestrate and evaluate physical robotics activities requires precise, grounded feedback without errors or hallucinations across diverse classroom pilot environments.',
         bulletPoints: [
           'Designed structured prompts and few-shot evaluation rubrics for robotics tasks, eliminating hallucinations and increasing pilot adoption by 40%.',
           'Demonstrated the AI platform live in front of 1.5 million viewers at the China Big Data Expo 2025 while keeping educator trust above 95%.',
           'Streamlined development sprints with clear progress tracking, reducing delivery turnaround by 25%.',
-          'Directed an 11-person team to host the Michigan Startup Career Fair, bringing together 300+ students and 70 startups while raising $3,000 in sponsorships.',
+          'Led user feedback loops with educators and students during pilot deployments, translating interactive physical robotics friction points into refined system prompts.',
         ],
       },
     },
@@ -304,18 +304,18 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       },
       somaseek: {
         title: 'SomaSeek',
-        subtitle: '多机器人具身智能与密歇根创投生态',
-        role: '产品经理 & 创投生态总监',
+        subtitle: '多机器人具身智能与交互式教育平台',
+        role: '产品经理 · 具身智能与机器人',
         period: '2025 – 2026',
         story:
-          '在 SomaSeek 负责具身智能教育工具产品设计，构建结构化提示词与少样本评测标准，彻底消除 AI 幻觉，试点课堂采用率提升40%；在2025中国数博会向150万在线观众进行现场实机演示。同时作为密歇根创业招聘展总监，带领11人团队连接300+学生与70家顶级风投初创企业。',
+          '在 SomaSeek 负责具身智能教育工具产品设计，构建结构化提示词与少样本评测标准，彻底消除 AI 幻觉，试点课堂采用率提升40%；在2025中国数博会向150万在线观众进行现场实机演示，大规模验证多机器人交互式学习系统。',
         context:
-          '利用大模型评判实体机器人操作必须保持绝对精准严谨；与此同时，高校优秀人才往往缺乏进入早期高成长科技企业的清晰通道。',
+          '利用大语言模型协同与评测实体机器人教学活动，必须在多样化的试点课堂环境中保持输出的高可靠性与严格接地，杜绝幻觉输出。',
         bulletPoints: [
           '设计提示词工程与评测基准，杜绝幻觉输出，试点课堂采用率提升40%。',
           '在中国数博会向150万观众进行实机演示，教育行业信任度达95%。',
-          '优化开发迭代周期，将功能交付时间缩短25%。',
-          '统筹11人学生团队成功举办密歇根创业招聘展，服务300+学生与70家创新企业，筹集赞助资金。',
+          '优化敏捷开发迭代周期，将核心功能交付周期缩短25%。',
+          '建立师生实地试点反馈闭环，将实体机器人操作痛点转化为持续优化的系统指令规范。',
         ],
       },
     },
@@ -430,8 +430,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       },
       somaseek: {
         title: 'SomaSeek',
-        subtitle: 'IA Corpórea y Ecosistema Emprendedor de Michigan',
-        role: 'Product Manager & Directora de Ecosistema',
+        subtitle: 'IA Corpórea Multirrobot y Plataforma Educativa',
+        role: 'Product Manager · Robótica e IA Corpórea',
         period: '2025 – 2026',
         story:
           'Diseñé prompts estructurados para robótica educativa, eliminando alucinaciones de IA y aumentando la adopción en aulas piloto un 40%.',
@@ -441,7 +441,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           'Diseñé prompts estructurados y rúbricas de evaluación, elevando la adopción en aulas piloto un 40%.',
           'Presenté demostración en vivo ante 1.5 millones de espectadores en la China Big Data Expo.',
           'Optimicé sprints de desarrollo reduciendo el tiempo de entrega un 25%.',
-          'Lideré un equipo de 11 personas para conectar 300+ estudiantes con 70 startups de tecnología.',
+          'Establecí ciclos de retroalimentación con educadores para perfeccionar la interacción físico-robótica.',
         ],
       },
     },
@@ -556,18 +556,18 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       },
       somaseek: {
         title: 'SomaSeek',
-        subtitle: 'IA Incarnée Multi-Robots & Écosystème Entrepreneurial',
-        role: 'Chef de Produit & Directrice de l’Écosystème',
+        subtitle: 'IA Incarnée Multi-Robots & Plateforme Éducative',
+        role: 'Chef de Produit · Robotique & IA Incarnée',
         period: '2025 – 2026',
         story:
-          'Chez SomaSeek, j’ai conçu des cadres de prompts et d’évaluation pour la robotique éducative, éliminant les hallucinations IA et augmentant l’adoption en classe de 40%. Présentation en direct devant 1,5 million de spectateurs à la China Big Data Expo. En parallèle, j’ai dirigé une équipe de 11 étudiants pour réunir 300+ étudiants et 70 startups financées.',
+          'Chez SomaSeek, j’ai conçu des cadres de prompts et d’évaluation pour la robotique éducative, éliminant les hallucinations IA et augmentant l’adoption en classe de 40%. Présentation en direct devant 1,5 million de spectateurs à la China Big Data Expo.',
         context:
           'L’évaluation d’activités robotiques réelles par des modèles de langage requiert une fiabilité absolue sans la moindre hallucination.',
         bulletPoints: [
           'Conception de prompts structurés et de métriques d’évaluation, augmentant l’adoption pilote de 40%.',
           'Démonstration en direct devant 1,5 million de spectateurs à la China Big Data Expo 2025.',
           'Optimisation des cycles de développement, réduisant les délais de livraison de 25%.',
-          'Direction d’une équipe de 11 personnes pour connecter 300+ étudiants avec 70 startups innovantes.',
+          'Mise en place de boucles de retours avec les enseignants pour perfectionner l’orchestration robotique.',
         ],
       },
     },
