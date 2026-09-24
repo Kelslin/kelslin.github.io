@@ -563,21 +563,22 @@ export default function App() {
       <header className="fixed top-0 left-0 w-full z-40 px-3 sm:px-6 lg:px-10 py-3 sm:py-5 flex items-center justify-between pointer-events-auto">
         {!activeWaypoint ? (
           <>
-            {/* Overview Left: Personal Brand Signature Logo + Language Switcher (EN | 中 | ES | FR) */}
-            <div className="flex items-center gap-2.5 sm:gap-3.5">
-              <button
-                onClick={handleGoHome}
-                className="flex items-center gap-2 group cursor-pointer transition-transform duration-300 hover:scale-105"
-                title="Kelsey Lin"
-              >
-                <img
-                  src="/kelsey-signature-logo.png"
-                  alt="Kelsey Lin Logo"
-                  className="h-8 sm:h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity filter drop-shadow-[0_2px_10px_rgba(255,255,255,0.25)]"
-                />
-              </button>
+            {/* Overview Left: Personal Brand Signature Logo */}
+            <button
+              onClick={handleGoHome}
+              className="flex items-center gap-2 group cursor-pointer transition-transform duration-300 hover:scale-105"
+              title="Kelsey Lin"
+            >
+              <img
+                src="/kelsey-signature-logo.png"
+                alt="Kelsey Lin Logo"
+                className="h-8 sm:h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity filter drop-shadow-[0_2px_10px_rgba(255,255,255,0.25)]"
+              />
+            </button>
 
-              {/* Language Switcher moved next to logo */}
+            {/* Overview Right: Language Switcher & Navigation Links */}
+            <div className="flex items-center gap-2.5 sm:gap-4 md:gap-6 ml-auto">
+              {/* Language Switcher in top right corner next to navigation */}
               <div className="flex items-center gap-0.5 sm:gap-1 p-0.5 sm:p-1 rounded-full bg-white/10 backdrop-blur-md border border-white/[0.08]">
                 {(['en', 'zh', 'es', 'fr'] as const).map((lang) => (
                   <button
@@ -593,10 +594,8 @@ export default function App() {
                   </button>
                 ))}
               </div>
-            </div>
 
-            {/* Overview Right: Navigation Links */}
-            <div className="flex items-center gap-2 sm:gap-4 md:gap-6 ml-auto">
+              {/* Navigation Links */}
               <nav className="flex items-center gap-2 sm:gap-4 md:gap-6 text-[10px] sm:text-xs font-mono tracking-[0.12em] sm:tracking-[0.18em] uppercase">
                 <button
                   onClick={handleWorksClick}
@@ -649,7 +648,7 @@ export default function App() {
           </>
         ) : (
           <>
-            {/* Macro View Left: Brand Logo + Language Switcher + Overview Exit + Chapter Badge (Responsive) */}
+            {/* Macro View Left: Brand Logo & Overview Exit & Chapter Badge (Responsive) */}
             <div className="flex items-center gap-2 sm:gap-3">
               <button
                 onClick={handleGoHome}
@@ -663,8 +662,23 @@ export default function App() {
                 />
               </button>
 
-              {/* Language Switcher next to logo */}
-              <div className="flex items-center gap-0.5 sm:gap-1 p-0.5 sm:p-1 rounded-full bg-white/10 backdrop-blur-md border border-white/[0.08] mr-1">
+              <button
+                onClick={handleGoHome}
+                className="flex items-center gap-1.5 sm:gap-2 py-1.5 px-3 sm:px-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] transition-all cursor-pointer backdrop-blur-md"
+              >
+                <span>✕</span>
+                <span>{t.header.overviewExit}</span>
+              </button>
+              <span className="text-white/20 hidden sm:inline">|</span>
+              <span className="text-xs font-mono tracking-[0.2em] uppercase text-[#0055FF] hidden sm:inline font-semibold">
+                {t.projects[activeWaypoint.id]?.title || activeWaypoint.title}
+              </span>
+            </div>
+
+            {/* Macro View Right: Language Switcher + Prev / Next Petal Buttons */}
+            <div className="flex items-center gap-2 sm:gap-3">
+              {/* Language Switcher in top right corner */}
+              <div className="flex items-center gap-0.5 sm:gap-1 p-0.5 sm:p-1 rounded-full bg-white/10 backdrop-blur-md border border-white/[0.08]">
                 {(['en', 'zh', 'es', 'fr'] as const).map((lang) => (
                   <button
                     key={lang}
@@ -680,47 +694,34 @@ export default function App() {
                 ))}
               </div>
 
-              <button
-                onClick={handleGoHome}
-                className="flex items-center gap-1.5 sm:gap-2 py-1.5 px-3 sm:px-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] transition-all cursor-pointer backdrop-blur-md"
-              >
-                <span>✕</span>
-                <span>{t.header.overviewExit}</span>
-              </button>
-              <span className="text-white/20 hidden sm:inline">|</span>
-              <span className="text-xs font-mono tracking-[0.2em] uppercase text-[#0055FF] hidden sm:inline font-semibold">
-                {t.projects[activeWaypoint.id]?.title || activeWaypoint.title}
-              </span>
-            </div>
-
-            {/* Macro View Right: Prev / Next Petal Buttons */}
-            <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-mono tracking-[0.12em] sm:tracking-[0.15em] uppercase">
-              <button
-                onClick={() => {
-                  const idx = PORTFOLIO_WAYPOINTS.findIndex((w) => w.id === activeWaypoint.id);
-                  handleSelectWaypoint(
-                    PORTFOLIO_WAYPOINTS[(idx - 1 + PORTFOLIO_WAYPOINTS.length) % PORTFOLIO_WAYPOINTS.length]
-                  );
-                }}
-                className="flex items-center gap-1.5 py-1.5 px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-white/20 text-[#E2E8F0] hover:text-white backdrop-blur-md transition-colors cursor-pointer"
-                title="Previous project"
-              >
-                <span>←</span>
-                <span className="hidden sm:inline">{t.header.prev}</span>
-              </button>
-              <button
-                onClick={() => {
-                  const idx = PORTFOLIO_WAYPOINTS.findIndex((w) => w.id === activeWaypoint.id);
-                  handleSelectWaypoint(
-                    PORTFOLIO_WAYPOINTS[(idx + 1) % PORTFOLIO_WAYPOINTS.length]
-                  );
-                }}
-                className="flex items-center gap-1.5 py-1.5 px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-white/20 text-[#E2E8F0] hover:text-white backdrop-blur-md transition-colors cursor-pointer"
-                title="Next project"
-              >
-                <span className="hidden sm:inline">{t.header.next}</span>
-                <span>→</span>
-              </button>
+              <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-mono tracking-[0.12em] sm:tracking-[0.15em] uppercase">
+                <button
+                  onClick={() => {
+                    const idx = PORTFOLIO_WAYPOINTS.findIndex((w) => w.id === activeWaypoint.id);
+                    handleSelectWaypoint(
+                      PORTFOLIO_WAYPOINTS[(idx - 1 + PORTFOLIO_WAYPOINTS.length) % PORTFOLIO_WAYPOINTS.length]
+                    );
+                  }}
+                  className="flex items-center gap-1.5 py-1.5 px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-white/20 text-[#E2E8F0] hover:text-white backdrop-blur-md transition-colors cursor-pointer"
+                  title="Previous project"
+                >
+                  <span>←</span>
+                  <span className="hidden sm:inline">{t.header.prev}</span>
+                </button>
+                <button
+                  onClick={() => {
+                    const idx = PORTFOLIO_WAYPOINTS.findIndex((w) => w.id === activeWaypoint.id);
+                    handleSelectWaypoint(
+                      PORTFOLIO_WAYPOINTS[(idx + 1) % PORTFOLIO_WAYPOINTS.length]
+                    );
+                  }}
+                  className="flex items-center gap-1.5 py-1.5 px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-white/20 text-[#E2E8F0] hover:text-white backdrop-blur-md transition-colors cursor-pointer"
+                  title="Next project"
+                >
+                  <span className="hidden sm:inline">{t.header.next}</span>
+                  <span>→</span>
+                </button>
+              </div>
             </div>
           </>
         )}

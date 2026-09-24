@@ -18,7 +18,6 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const fadeIntervalRef = useRef<number | null>(null);
-  const userMutedRef = useRef(false);
 
   const fadeAudio = (targetVolume: number, onComplete?: () => void) => {
     if (!audioRef.current) return;
@@ -57,7 +56,8 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
         fadeAudio(0.32);
       })
       .catch((err) => {
-        console.warn('Audio playback waiting for user interaction:', err);
+        console.warn('Playback error:', err);
+        setIsPlaying(false);
       });
   };
 
@@ -72,10 +72,8 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 
   const toggleSound = () => {
     if (isPlaying) {
-      userMutedRef.current = true;
       pauseAudio();
     } else {
-      userMutedRef.current = false;
       playAudio();
     }
   };
@@ -94,33 +92,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     };
     audio.addEventListener('error', handleError);
 
-    // 1. Attempt unmuted autoplay immediately on mount
-    audio
-      .play()
-      .then(() => {
-        setIsPlaying(true);
-        fadeAudio(0.32);
-      })
-      .catch(() => {
-        // 2. If browser autoplay policy blocks unmuted audio on 0-click,
-        // attach passive one-time listeners so first user interaction starts sound automatically
-        const unlockOnFirstInteraction = () => {
-          if (userMutedRef.current || !audioRef.current) return;
-          audioRef.current
-            .play()
-            .then(() => {
-              setIsPlaying(true);
-              fadeAudio(0.32);
-            })
-            .catch(() => {});
-        };
-
-        window.addEventListener('pointerdown', unlockOnFirstInteraction, { once: true, passive: true });
-        window.addEventListener('click', unlockOnFirstInteraction, { once: true, passive: true });
-        window.addEventListener('touchstart', unlockOnFirstInteraction, { once: true, passive: true });
-        window.addEventListener('keydown', unlockOnFirstInteraction, { once: true, passive: true });
-      });
-
+    // Audio is strictly opt-in: no autoplay on mount or navigation
     return () => {
       if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
       audio.removeEventListener('error', handleError);

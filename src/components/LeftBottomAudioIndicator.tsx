@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { VolumeX, Minimize2, Maximize2 } from 'lucide-react';
 import { useAudio } from '../context/AudioContext';
 
@@ -8,36 +8,30 @@ interface LeftBottomAudioIndicatorProps {
 
 export default function LeftBottomAudioIndicator({ isMacroActive = false }: LeftBottomAudioIndicatorProps) {
   const { isPlaying, toggleSound } = useAudio();
-  const [isUserMinimized, setIsUserMinimized] = useState<boolean | null>(null);
+  const [isOverviewMinimized, setIsOverviewMinimized] = useState(false);
 
-  // Automatically minimize when entering a project deck or modal view
-  useEffect(() => {
-    if (isMacroActive) {
-      setIsUserMinimized(true);
-    }
-  }, [isMacroActive]);
-
-  const isMinimized = isUserMinimized !== null ? isUserMinimized : isMacroActive;
+  // When inside project deck/modals, it is strictly an icon and never expands
+  const isMinimized = isMacroActive || isOverviewMinimized;
 
   return (
     <div className="fixed bottom-3.5 sm:bottom-4 left-3.5 sm:left-6 z-40 pointer-events-auto select-none">
       {isMinimized ? (
         /* ========================================================================= */
-        /* 1. MINIMIZED: COMPACT SMALL BUTTON (ZERO BLOCKING OF PROJECT INFO/CHAPTERS) */
+        /* 1. PROJECT DECK & MINIMIZED MODE: STRICT ICON ONLY (NO HOVER EXPAND)       */
         /* ========================================================================= */
-        <div className="relative group/sound flex items-center">
+        <div className="relative flex items-center">
           <button
             type="button"
             onClick={toggleSound}
-            className={`relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full backdrop-blur-xl border transition-all duration-300 shadow-[0_6px_20px_rgba(0,0,0,0.6)] cursor-pointer ${
+            className={`relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full backdrop-blur-xl border transition-all duration-300 shadow-[0_6px_20px_rgba(0,0,0,0.6)] cursor-pointer active:scale-95 ${
               isPlaying
-                ? 'bg-[#06080E]/90 border-amber-400/50 text-amber-300 shadow-[0_0_18px_rgba(255,170,0,0.3)] hover:border-amber-300 hover:scale-105'
-                : 'bg-[#06080E]/80 hover:bg-[#06080E]/95 border-white/20 hover:border-amber-400/50 text-neutral-400 hover:text-white hover:scale-105'
+                ? 'bg-[#06080E]/90 border-amber-400/50 text-amber-300 shadow-[0_0_18px_rgba(255,170,0,0.3)] hover:border-amber-300'
+                : 'bg-[#06080E]/80 hover:bg-[#06080E]/95 border-white/20 hover:border-amber-400/50 text-neutral-400 hover:text-white'
             }`}
             title={
               isPlaying
-                ? 'Ambient Sound: Playing (Click to mute)'
-                : 'Ambient Sound: Muted (Click to play)'
+                ? 'Music On (Click to turn off)'
+                : 'Music Off (Click to turn on)'
             }
           >
             {isPlaying ? (
@@ -51,33 +45,35 @@ export default function LeftBottomAudioIndicator({ isMacroActive = false }: Left
             )}
           </button>
 
-          {/* Discreet Expand Toggle Button on Hover */}
-          <button
-            type="button"
-            onClick={() => setIsUserMinimized(false)}
-            className="opacity-0 group-hover/sound:opacity-100 transition-opacity duration-200 ml-1.5 p-1 rounded-full bg-[#06080E]/80 hover:bg-[#06080E]/95 border border-white/15 text-neutral-400 hover:text-white cursor-pointer"
-            title="Expand audio pill"
-          >
-            <Maximize2 className="w-2.5 h-2.5" />
-          </button>
+          {/* Only allow expanding on homepage overview if user manually minimized it there; NEVER in deck */}
+          {!isMacroActive && isOverviewMinimized && (
+            <button
+              type="button"
+              onClick={() => setIsOverviewMinimized(false)}
+              className="ml-1.5 p-1 rounded-full bg-[#06080E]/80 hover:bg-[#06080E]/95 border border-white/15 text-neutral-400 hover:text-white cursor-pointer"
+              title="Expand music pill"
+            >
+              <Maximize2 className="w-2.5 h-2.5" />
+            </button>
+          )}
         </div>
       ) : (
         /* ========================================================================= */
-        /* 2. EXPANDED: PILL CONTROLLER WITH MINIMIZE BUTTON                          */
+        /* 2. OVERVIEW HOMEPAGE PILL: CLEAR "MUSIC OFF" / "MUSIC ON"                 */
         /* ========================================================================= */
         <div className="flex items-center gap-1.5">
           <button
             type="button"
             onClick={toggleSound}
-            className={`group flex items-center gap-2.5 py-1.5 px-3 sm:py-2 sm:px-3.5 rounded-full backdrop-blur-xl border transition-all duration-300 shadow-[0_8px_32px_rgba(0,0,0,0.6)] cursor-pointer ${
+            className={`group flex items-center gap-2.5 py-1.5 px-3 sm:py-2 sm:px-3.5 rounded-full backdrop-blur-xl border transition-all duration-300 shadow-[0_8px_32px_rgba(0,0,0,0.6)] cursor-pointer active:scale-95 ${
               isPlaying
                 ? 'bg-[#06080E]/90 border-amber-400/40 text-amber-200 shadow-[0_0_24px_rgba(255,170,0,0.25)] hover:border-amber-400/70'
                 : 'bg-[#06080E]/80 hover:bg-[#06080E]/95 border-white/15 hover:border-amber-400/40 text-neutral-400 hover:text-white'
             }`}
             title={
               isPlaying
-                ? 'Ambient Soundscape: Playing (Click to turn off)'
-                : 'Ambient Soundscape: Muted (Click to turn on)'
+                ? 'Music On (Click to turn off)'
+                : 'Music Off (Click to turn on)'
             }
           >
             {isPlaying ? (
@@ -90,7 +86,7 @@ export default function LeftBottomAudioIndicator({ isMacroActive = false }: Left
 
                 <div className="flex flex-col items-start text-left leading-none">
                   <div className="flex items-center gap-1.5 font-mono text-[10px] sm:text-[11px] font-bold tracking-[0.14em] text-amber-300">
-                    <span>SOUND [ON]</span>
+                    <span>MUSIC ON</span>
                   </div>
                   <span className="font-mono text-[8px] sm:text-[9px] text-neutral-400 tracking-wider hidden sm:block mt-0.5">
                     Floating Reflections ♫
@@ -103,7 +99,7 @@ export default function LeftBottomAudioIndicator({ isMacroActive = false }: Left
 
                 <div className="flex flex-col items-start text-left leading-none">
                   <div className="flex items-center gap-1.5 font-mono text-[10px] sm:text-[11px] font-medium tracking-[0.14em] text-neutral-300 group-hover:text-white">
-                    <span>SOUND [OFF]</span>
+                    <span>MUSIC OFF</span>
                   </div>
                   <span className="font-mono text-[8px] sm:text-[9px] text-neutral-500 group-hover:text-neutral-300 tracking-wider hidden sm:block mt-0.5">
                     Click to play
@@ -113,12 +109,12 @@ export default function LeftBottomAudioIndicator({ isMacroActive = false }: Left
             )}
           </button>
 
-          {/* Minimize Button */}
+          {/* Minimize Button on Overview */}
           <button
             type="button"
-            onClick={() => setIsUserMinimized(true)}
+            onClick={() => setIsOverviewMinimized(true)}
             className="p-1.5 rounded-full bg-[#06080E]/80 hover:bg-[#06080E]/95 border border-white/10 hover:border-white/30 text-neutral-400 hover:text-white cursor-pointer transition-colors"
-            title="Minimize audio button"
+            title="Minimize to icon"
           >
             <Minimize2 className="w-2.5 h-2.5" />
           </button>
