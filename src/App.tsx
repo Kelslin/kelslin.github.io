@@ -440,8 +440,23 @@ export default function App() {
       <header className="fixed top-0 left-0 w-full z-40 px-3 sm:px-6 lg:px-10 py-3 sm:py-5 flex items-center justify-between pointer-events-auto">
         {!activeWaypoint ? (
           <>
-            {/* Overview Left: Blank spacer (Kelsey Lin removed from nav header) */}
-            <div />
+            {/* Overview Left: Personal Brand Signature Logo */}
+            <button
+              onClick={() => {
+                setActiveWaypoint(null);
+                setSelectedDetailWaypoint(null);
+                setIsAboutOpen(false);
+                setIsIndexOpen(false);
+              }}
+              className="flex items-center gap-2 group cursor-pointer transition-transform duration-300 hover:scale-105"
+              title="Kelsey Lin"
+            >
+              <img
+                src="/kelsey-signature-logo.png"
+                alt="Kelsey Lin Logo"
+                className="h-8 sm:h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity filter drop-shadow-[0_2px_10px_rgba(255,255,255,0.25)]"
+              />
+            </button>
 
             {/* Overview Right: Language Switcher & Navigation */}
             <div className="flex items-center gap-2 sm:gap-5 md:gap-8 ml-auto">
@@ -588,6 +603,15 @@ export default function App() {
       {!activeWaypoint && !isAboutOpen && !isIndexOpen && !selectedDetailWaypoint && (
         <div className="fixed left-5 sm:left-12 lg:left-20 top-24 sm:top-28 lg:top-1/2 lg:-translate-y-1/2 max-w-xl z-20 pointer-events-none select-none">
           <div className="pointer-events-none">
+            {/* Personal Brand Signature Emblem */}
+            <div className="mb-2 sm:mb-3">
+              <img
+                src="/kelsey-signature-logo.png"
+                alt="Kelsey Lin Emblem"
+                className="h-10 sm:h-12 md:h-14 w-auto object-contain opacity-80 filter drop-shadow-[0_2px_12px_rgba(0,85,255,0.35)]"
+              />
+            </div>
+
             {/* Direction B: Tactile Liuli Glass Shimmer (Tied to the 3D Lily) */}
             <h1 className="select-none tracking-tight">
               <span className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-normal tracking-tight leading-[0.92] block liuli-glass-shimmer-text pointer-events-auto cursor-default">

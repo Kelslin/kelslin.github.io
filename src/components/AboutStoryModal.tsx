@@ -77,7 +77,7 @@ export default function AboutStoryModal({
               <div className="relative group w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[380px] mx-auto">
                 <div className="overflow-hidden rounded-2xl bg-white/[0.02] shadow-2xl aspect-[3/4] w-full">
                   <img
-                    src="/portrait.webp"
+                    src="/portrait.jpg"
                     alt="Kelsey Lin"
                     className="w-full h-full object-cover object-top filter contrast-105 brightness-95 group-hover:brightness-100 transition-all duration-500 ease-out"
                   />
