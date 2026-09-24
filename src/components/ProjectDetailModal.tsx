@@ -61,7 +61,7 @@ export default function ProjectDetailModal({
     <AnimatePresence>
       <div className="fixed inset-0 z-50 overflow-y-auto bg-[#050608]/96 backdrop-blur-2xl selection:bg-[#002FA7] selection:text-white pointer-events-auto">
         {/* Fixed Top Exit & Navigation Bar */}
-        <div className="fixed top-3 sm:top-5 left-6 right-6 sm:left-10 sm:right-10 lg:left-16 lg:right-16 z-[70] flex items-center justify-between gap-3 pointer-events-auto">
+        <div className="fixed top-4 sm:top-5 left-4 right-4 sm:left-10 sm:right-10 z-[70] flex items-center justify-between gap-3 pointer-events-auto">
           {/* Arrow cycle buttons (Visible on all devices, single arrow each) */}
           <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-mono tracking-[0.15em] uppercase">
             <button

@@ -38,7 +38,7 @@ export default function RecruiterIndexModal({
     <AnimatePresence>
       <div className="fixed inset-0 z-50 overflow-y-auto bg-[#050608]/96 backdrop-blur-2xl selection:bg-[#002FA7] selection:text-white pointer-events-auto">
         {/* Fixed Top Exit Bar */}
-        <div className="fixed top-3 sm:top-5 right-6 sm:right-10 lg:right-16 z-[70] flex items-center gap-3 pointer-events-auto">
+        <div className="fixed top-4 right-4 sm:top-5 sm:right-10 z-[70] flex items-center gap-3 pointer-events-auto">
           <button
             onClick={onClose}
             className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold hover:bg-[#0055FF] hover:text-white transition-colors shadow-2xl cursor-pointer"

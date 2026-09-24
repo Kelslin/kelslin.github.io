@@ -13,7 +13,7 @@ export default function LeftBottomAudioIndicator({ isMacroActive = false }: Left
   if (isMacroActive) return null;
 
   return (
-    <div className="fixed bottom-4 sm:bottom-7 left-6 sm:left-10 lg:left-16 z-40 pointer-events-auto select-none">
+    <div className="fixed bottom-4 sm:bottom-7 left-4 sm:left-10 z-40 pointer-events-auto select-none">
       {/* Clean Homepage Pill: Pure Music On / Music Off Toggle (No expand-out icons) */}
       <button
         type="button"
