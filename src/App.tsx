@@ -8,7 +8,6 @@ import CinematicMacroOverlay from './components/CinematicMacroOverlay';
 import AboutStoryModal from './components/AboutStoryModal';
 import RecruiterIndexModal from './components/RecruiterIndexModal';
 import ProjectDetailModal from './components/ProjectDetailModal';
-import LiuliMonogramSeal from './components/LiuliMonogramSeal';
 import { Waypoint, PORTFOLIO_WAYPOINTS } from './data/portfolioData';
 import { Language, TRANSLATIONS } from './data/translations';
 
@@ -589,17 +588,15 @@ export default function App() {
       {!activeWaypoint && !isAboutOpen && !isIndexOpen && !selectedDetailWaypoint && (
         <div className="fixed left-5 sm:left-12 lg:left-20 top-24 sm:top-28 lg:top-1/2 lg:-translate-y-1/2 max-w-xl z-20 pointer-events-none select-none">
           <div className="pointer-events-none">
-            {/* Pure, Elegant Name with Bespoke Liuli Monogram Accent (Direction D) */}
-            <div className="flex items-center gap-3.5 sm:gap-5 md:gap-6">
-              <h1 className="select-none tracking-tight">
-                <span className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-white font-normal tracking-tight leading-[0.92] block drop-shadow-sm">
-                  {t.hero.name}
-                </span>
-              </h1>
-
-              {/* Bespoke Liuli Monogram Hallmark Seal */}
-              <LiuliMonogramSeal className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20" />
-            </div>
+            {/* Direction A: High-Fashion Dual-Type Editorial (Vogue / Maison Margiela Style) */}
+            <h1 className="select-none tracking-tight leading-none mb-2 sm:mb-3">
+              <span className="block font-sans text-xl sm:text-3xl md:text-4xl lg:text-5xl font-light uppercase tracking-[0.28em] sm:tracking-[0.34em] text-neutral-300/90 mb-1 sm:mb-2">
+                KELSEY
+              </span>
+              <span className="block font-serif italic text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] font-normal tracking-tight text-white leading-[0.85] drop-shadow-md">
+                Lin
+              </span>
+            </h1>
 
             {/* Natural Human Recruiter Introduction (NO border, NO odd styling, NO duplicate nav buttons) */}
             <p className="font-sans text-neutral-300/90 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-md sm:max-w-lg mt-3 sm:mt-5">
