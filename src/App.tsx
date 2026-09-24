@@ -339,22 +339,20 @@ export default function App() {
         onPointerCancel={handlePointerUp}
       >
         <Canvas camera={{ position: [0, 0, 4.2], fov: 42 }}>
-          {/* Authentic OG Amber Liuli Crystal Lighting Setup with Purple Rim Reflections */}
-          <ambientLight intensity={1.1} />
+          {/* Authentic OG Amber Liuli Crystal Lighting with Signature Electric Klein Blue Glow */}
+          <ambientLight intensity={1.0} />
 
-          {/* 1. Back-Left Electric Klein Blue Rim Light */}
-          <directionalLight position={[-4, 3, -2]} intensity={4.5} color="#0038FF" />
-          <pointLight position={[-3, 1, -1]} intensity={3.5} color="#0055FF" />
+          {/* 1. Back-Left & Top Electric Klein Blue Rim Lights (Klein Blue glow over orange lily) */}
+          <directionalLight position={[-3.5, 4.5, -2.0]} intensity={6.0} color="#0038FF" />
+          <pointLight position={[0, 4.5, -2.0]} intensity={5.5} color="#002FA7" />
+          <pointLight position={[-3, 1, -1]} intensity={4.5} color="#0055FF" />
+          <directionalLight position={[3, 3.5, -2.5]} intensity={3.5} color="#0038FF" />
 
-          {/* 2. Top-Back Vivid Purple / Violet Rim Light (Vivid purple reflections on petal rims) */}
-          <directionalLight position={[0, 4.5, -2.5]} intensity={5.5} color="#A855F7" />
-          <pointLight position={[0.5, 3.8, -1.5]} intensity={4.5} color="#C084FC" />
+          {/* 2. Warm Golden & Molten Amber Front Fill (Radiant orange lily body) */}
+          <pointLight position={[3, -1.5, 2.5]} intensity={5.0} color="#FF6600" />
+          <pointLight position={[-2, -2, 2.0]} intensity={4.0} color="#FFAA00" />
 
-          {/* 3. Warm Golden & Molten Amber Front Fill (Brightens petal glaze) */}
-          <pointLight position={[3, -1.5, 2.5]} intensity={5.0} color="#FF7700" />
-          <pointLight position={[-2, -2, 2.0]} intensity={3.5} color="#FFAA00" />
-
-          {/* 4. Top White Specular Key Light (Glistening wet glaze shine) */}
+          {/* 3. Top White Specular Key Light (Glistening wet glaze shine) */}
           <directionalLight position={[0, 4, 3]} intensity={3.2} color="#FFFFFF" />
 
           {/* Dynamic 3D Cursor Follower Light: Illuminates micro-details & petal reflections under cursor */}
@@ -401,7 +399,7 @@ export default function App() {
               <span className="font-mono text-xs sm:text-sm font-bold tracking-[0.22em] text-white uppercase">
                 KELSEY LIN
               </span>
-              <span className="text-[#FF5500] font-mono text-xs sm:text-sm font-semibold">
+              <span className="text-[#0055FF] font-mono text-xs sm:text-sm font-semibold">
                 /
               </span>
             </button>
@@ -508,29 +506,51 @@ export default function App() {
       </header>
 
       {/* ========================================================================= */}
-      {/* 4. OVERVIEW EDITORIAL IDENTITY (FULLY RESPONSIVE)                         */}
+      {/* 4. OVERVIEW EDITORIAL IDENTITY (FULLY RESPONSIVE & COUTURE DECORATIVE)    */}
       {/* ========================================================================= */}
       {!activeWaypoint && !isAboutOpen && !isIndexOpen && !selectedDetailWaypoint && (
         <div className="fixed left-5 sm:left-12 lg:left-20 top-[40%] sm:top-1/2 -translate-y-1/2 max-w-xl z-20 pointer-events-none select-none">
           <div className="pointer-events-none">
-            {/* Grand Editorial Headline (Scales smoothly down to 360px phones) */}
-            <h1 className="leading-[0.92] mb-6 sm:mb-8">
-              <div className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white font-normal tracking-tight">
-                Kelsey
+            {/* Bespoke Decorative Name Display */}
+            <h1 className="leading-[0.88] select-none tracking-tight mb-5 sm:mb-6">
+              {/* Line 1: Kelsey in high-fashion sculptural serif */}
+              <div className="font-decorative-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-white font-normal tracking-[-0.02em] flex items-baseline decorative-name-glow">
+                <span>Kelsey</span>
+                <span className="text-[#0055FF] text-2xl sm:text-3xl md:text-4xl font-mono ml-2.5 opacity-90 select-none font-light drop-shadow-[0_0_12px_rgba(0,56,255,0.9)]">
+                  ✦
+                </span>
               </div>
-              <div className="font-serif italic text-4xl sm:text-6xl md:text-7xl lg:text-8xl bg-gradient-to-r from-[#FFAA00] via-[#FF6600] to-[#E2E8F0] bg-clip-text text-transparent font-normal tracking-tight">
-                Lin<span className="text-[#67E8F9] not-italic">.</span>
+              {/* Line 2: Lin in sweeping dramatic italic flourish with Amber & Klein Blue glaze */}
+              <div className="font-flourish-italic text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-[-0.02em] amber-klein-prismatic-text flex items-baseline pl-1 sm:pl-2">
+                <span>Lin</span>
+                <span className="text-[#0055FF] not-italic drop-shadow-[0_0_14px_rgba(0,56,255,0.95)]">
+                  .
+                </span>
               </div>
             </h1>
 
+            {/* Clear, Human 1-Sentence Recruiter Description */}
+            <div className="border-l border-white/20 pl-4 sm:pl-5 my-5 sm:my-7 max-w-md sm:max-w-lg">
+              <p className="font-sans text-neutral-300 text-sm sm:text-base md:text-lg font-light leading-relaxed">
+                Product manager and 0→1 builder at Michigan, turning complex systems and human insights into intuitive, high-impact products.
+              </p>
+            </div>
+
             {/* High-Touch Fast Actions (Frameless, NO borders) */}
-            <div className="flex flex-wrap items-center gap-4 sm:gap-6 pointer-events-auto">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 pointer-events-auto pt-1">
               <button
                 onClick={() => setActiveWaypoint(PORTFOLIO_WAYPOINTS[0])}
-                className="group inline-flex items-center gap-2 font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-white hover:text-[#FFAA00] transition-colors cursor-pointer"
+                className="group inline-flex items-center gap-2 font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-white hover:text-[#0055FF] transition-colors cursor-pointer"
               >
                 <span>EXPLORE WORKS</span>
-                <span className="transition-transform group-hover:translate-y-0.5 text-[#FFAA00]">↓</span>
+                <span className="transition-transform group-hover:translate-y-0.5 text-[#0055FF]">↓</span>
+              </button>
+
+              <button
+                onClick={() => setIsAboutOpen(true)}
+                className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-[#94A3B8] hover:text-white transition-colors cursor-pointer"
+              >
+                // ABOUT ME
               </button>
 
               <button

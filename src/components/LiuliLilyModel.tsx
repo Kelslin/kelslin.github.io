@@ -45,7 +45,7 @@ export default function LiuliLilyModel({
           clearcoat: 1.0,                          // Wet fired glaze sheen
           clearcoatRoughness: 0.06,
           sheen: 1.0,                              // Vivid iridescent sheen along petal rims
-          sheenColor: new THREE.Color('#A855F7'),   // Purple/violet rim sheen reflection matching reference photo
+          sheenColor: new THREE.Color('#0038FF'),   // Electric Klein Blue sheen on top of orange lily
           sheenRoughness: 0.22,
           transparent: true,
           opacity: 1.0,
@@ -140,10 +140,10 @@ export default function LiuliLilyModel({
         <Sparkles count={75} scale={[8.0, 8.0, 6.0]} size={5.5} speed={0.4} color="#FFB800" />
         {/* 2. Soft Glowing Amber Embers */}
         <Sparkles count={45} scale={[6.5, 6.5, 5.0]} size={7.5} speed={0.3} color="#FF8800" />
-        {/* 3. Celestial Cyan & Fairy Blue Embers */}
-        <Sparkles count={45} scale={[8.5, 8.5, 6.0]} size={4.5} speed={0.25} color="#38BDF8" />
-        {/* 4. Deep Indigo Starlight Fireflies */}
-        <Sparkles count={30} scale={[9.0, 9.0, 7.0]} size={5.0} speed={0.35} color="#0055FF" />
+        {/* 3. Electric Klein Blue Fireflies */}
+        <Sparkles count={55} scale={[8.5, 8.5, 6.0]} size={4.8} speed={0.3} color="#0038FF" />
+        {/* 4. Deep Celestial Klein Blue Starlight */}
+        <Sparkles count={35} scale={[9.0, 9.0, 7.0]} size={5.2} speed={0.35} color="#0055FF" />
       </Float>
     </group>
   );

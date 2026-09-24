@@ -54,6 +54,28 @@ body {
   letter-spacing: -0.04em;
 }
 
+.font-decorative-display {
+  font-family: 'Italiana', 'Bodoni Moda', 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-feature-settings: "liga" 1, "dlig" 1, "clig" 1, "calt" 1;
+}
+
+.font-flourish-italic {
+  font-family: 'Playfair Display', 'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-feature-settings: "swsh" 1, "calt" 1, "liga" 1;
+}
+
+.decorative-name-glow {
+  text-shadow: 0 0 35px rgba(216, 236, 248, 0.2), 0 0 70px rgba(0, 56, 255, 0.2);
+}
+
+.amber-klein-prismatic-text {
+  background: linear-gradient(135deg, #FFB800 0%, #FF6600 38%, #0055FF 82%, #002FA7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 24px rgba(255, 136, 0, 0.35));
+}
+
 /* 3. PALE FROSTED QUARTZ TEXT FINISH */
 .frosted-quartz-text {
   background: linear-gradient(
