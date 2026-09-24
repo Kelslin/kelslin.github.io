@@ -2,17 +2,20 @@ import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowUpRight, Mail } from 'lucide-react';
 import { PORTFOLIO_WAYPOINTS, Waypoint } from '../data/portfolioData';
+import { Language, TRANSLATIONS } from '../data/translations';
 
 interface RecruiterIndexModalProps {
   isOpen: boolean;
   onClose: () => void;
   onJumpToWaypoint: (wp: Waypoint) => void;
+  language?: Language;
 }
 
 export default function RecruiterIndexModal({
   isOpen,
   onClose,
   onJumpToWaypoint,
+  language = 'en',
 }: RecruiterIndexModalProps) {
   // Escape key listener for instant exit
   useEffect(() => {
@@ -29,6 +32,8 @@ export default function RecruiterIndexModal({
 
   if (!isOpen) return null;
 
+  const t = TRANSLATIONS[language]?.index || TRANSLATIONS.en.index;
+
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-50 overflow-y-auto bg-[#050608]/96 backdrop-blur-2xl selection:bg-[#002FA7] selection:text-white pointer-events-auto">
@@ -36,10 +41,10 @@ export default function RecruiterIndexModal({
         <div className="fixed top-4 right-4 sm:top-5 sm:right-10 z-[70] flex items-center gap-3 pointer-events-auto">
           <button
             onClick={onClose}
-            className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold hover:bg-[#FFAA00] transition-colors shadow-2xl cursor-pointer"
+            className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold hover:bg-[#0055FF] hover:text-white transition-colors shadow-2xl cursor-pointer"
           >
-            <span>Close</span>
-            <span className="text-[10px] text-black/60 hidden sm:inline">[ESC]</span>
+            <span>{t.close}</span>
+            <span className="text-[10px] opacity-60 hidden sm:inline">[ESC]</span>
             <X className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -62,10 +67,10 @@ export default function RecruiterIndexModal({
           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between pb-4 sm:pb-6 mb-6 sm:mb-8 gap-4">
             <div>
               <h2 className="font-syne text-xl sm:text-2xl md:text-3xl text-white font-bold tracking-tight">
-                Selected Works
+                {t.title}
               </h2>
               <p className="text-xs font-mono text-[#94A3B8] tracking-wider mt-1">
-                A quick overview of my recent projects and case studies.
+                {t.experienceSection}
               </p>
             </div>
 
@@ -74,45 +79,52 @@ export default function RecruiterIndexModal({
                 href="mailto:kelslin@umich.edu"
                 className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/10 text-white font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] hover:bg-white/20 transition-colors"
               >
-                <Mail className="w-3.5 h-3.5 text-[#FFAA00]" />
-                <span>Get in Touch ↗</span>
+                <Mail className="w-3.5 h-3.5 text-[#0055FF]" />
+                <span>kelslin@umich.edu ↗</span>
               </a>
             </div>
           </div>
 
           {/* Minimal Prioritized Project Rows */}
           <div className="space-y-4 sm:space-y-6">
-            {PORTFOLIO_WAYPOINTS.map((wp) => (
-              <div
-                key={wp.id}
-                onClick={() => {
-                  onClose();
-                  onJumpToWaypoint(wp);
-                }}
-                className="group flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white/[0.02] hover:bg-white/[0.06] transition-all cursor-pointer"
-              >
-                <div className="space-y-1">
-                  <div className="flex items-center gap-3">
-                    <span
-                      className="w-2 h-2 rounded-full"
-                      style={{ backgroundColor: wp.accentColor }}
-                    />
-                    <h3 className="font-syne text-lg sm:text-xl text-white font-semibold group-hover:text-amber-200 transition-colors">
-                      {wp.title}
-                    </h3>
-                    <span className="text-[11px] font-mono text-[#94A3B8]">
-                      · {wp.period}
-                    </span>
-                  </div>
+            {PORTFOLIO_WAYPOINTS.map((wp) => {
+              const projectT = TRANSLATIONS[language]?.projects[wp.id] || TRANSLATIONS.en.projects[wp.id];
+              const title = projectT?.title || wp.title;
+              const role = projectT?.role || wp.role;
+              const period = projectT?.period || wp.period;
+              const story = projectT?.story || wp.story;
 
-                  <div className="text-xs font-mono text-[#FFAA00] tracking-wider uppercase pl-5">
-                    {wp.role}
-                  </div>
+              return (
+                <div
+                  key={wp.id}
+                  onClick={() => {
+                    onClose();
+                    onJumpToWaypoint(wp);
+                  }}
+                  className="group flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white/[0.02] hover:bg-white/[0.06] transition-all cursor-pointer"
+                >
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-3">
+                      <span
+                        className="w-2 h-2 rounded-full"
+                        style={{ backgroundColor: wp.accentColor }}
+                      />
+                      <h3 className="font-syne text-lg sm:text-xl text-white font-semibold group-hover:text-blue-300 transition-colors">
+                        {title}
+                      </h3>
+                      <span className="text-[11px] font-mono text-[#94A3B8]">
+                        · {period}
+                      </span>
+                    </div>
 
-                  <p className="text-xs font-sans text-[#D8ECF8]/75 font-light pl-5 max-w-2xl leading-relaxed">
-                    {wp.story.split('. ')[0] + '.'}
-                  </p>
-                </div>
+                    <div className="text-xs font-mono text-[#0055FF] tracking-wider uppercase pl-5">
+                      {role}
+                    </div>
+
+                    <p className="text-xs font-sans text-[#D8ECF8]/75 font-light pl-5 max-w-2xl leading-relaxed">
+                      {story.split('. ')[0] + (story.includes('. ') ? '.' : '')}
+                    </p>
+                  </div>
 
                 <div className="flex items-center gap-4 md:self-center pl-5 md:pl-0">
                   <div className="hidden lg:flex items-center gap-3">
@@ -130,8 +142,9 @@ export default function RecruiterIndexModal({
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
+        </div>
 
           {/* Footer Note */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-10 text-xs font-mono text-[#94A3B8] tracking-[0.2em] uppercase">

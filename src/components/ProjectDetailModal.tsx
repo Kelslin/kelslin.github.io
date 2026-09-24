@@ -2,17 +2,20 @@ import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 import { Waypoint, PORTFOLIO_WAYPOINTS } from '../data/portfolioData';
+import { Language, TRANSLATIONS } from '../data/translations';
 
 interface ProjectDetailModalProps {
   waypoint: Waypoint | null;
   onClose: () => void;
   onNavigate: (wp: Waypoint) => void;
+  language?: Language;
 }
 
 export default function ProjectDetailModal({
   waypoint,
   onClose,
   onNavigate,
+  language = 'en',
 }: ProjectDetailModalProps) {
   // Global Escape & Arrow key navigation
   useEffect(() => {
@@ -42,6 +45,16 @@ export default function ProjectDetailModal({
   const nextWaypoint =
     PORTFOLIO_WAYPOINTS[(currentIndex + 1) % PORTFOLIO_WAYPOINTS.length];
 
+  const projectT = waypoint
+    ? TRANSLATIONS[language]?.projects[waypoint.id] || TRANSLATIONS.en.projects[waypoint.id]
+    : null;
+
+  const title = projectT?.title || waypoint.title;
+  const role = projectT?.role || waypoint.role;
+  const period = projectT?.period || waypoint.period;
+  const context = projectT?.context || waypoint.detailedBreakdown.context;
+  const bulletPoints = projectT?.bulletPoints || waypoint.detailedBreakdown.bulletPoints;
+
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-50 overflow-y-auto bg-[#050608]/96 backdrop-blur-2xl selection:bg-[#002FA7] selection:text-white pointer-events-auto">
@@ -69,10 +82,10 @@ export default function ProjectDetailModal({
           {/* Close Fullscreen Button */}
           <button
             onClick={onClose}
-            className="ml-auto flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold hover:bg-[#FFAA00] transition-colors shadow-2xl cursor-pointer"
+            className="ml-auto flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold hover:bg-[#0055FF] hover:text-white transition-colors shadow-2xl cursor-pointer"
           >
             <span>Close</span>
-            <span className="text-[10px] text-black/60 hidden sm:inline">[ESC]</span>
+            <span className="text-[10px] opacity-60 hidden sm:inline">[ESC]</span>
             <X className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -93,7 +106,7 @@ export default function ProjectDetailModal({
           className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-8 lg:px-10 py-16 sm:py-24 text-[#D8ECF8]"
         >
           {/* Clean Case Study Header */}
-          <div className="flex items-center gap-2 mb-2 text-[10px] sm:text-xs font-mono tracking-[0.2em] text-[#FFAA00] uppercase font-semibold">
+          <div className="flex items-center gap-2 mb-2 text-[10px] sm:text-xs font-mono tracking-[0.2em] text-[#0055FF] uppercase font-semibold">
             <span
               className="w-2 h-2 rounded-full"
               style={{ backgroundColor: waypoint.accentColor }}
@@ -103,17 +116,17 @@ export default function ProjectDetailModal({
 
           {/* Line 1: Title */}
           <h1 className="font-syne text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.05] sm:leading-[0.98] mb-2">
-            {waypoint.title}
+            {title}
           </h1>
 
           {/* Line 2: Job Title / Role */}
-          <div className="text-xs sm:text-sm font-mono uppercase tracking-[0.18em] text-[#FFAA00] font-semibold mb-1">
-            {waypoint.role}
+          <div className="text-xs sm:text-sm font-mono uppercase tracking-[0.18em] text-[#0055FF] font-semibold mb-1">
+            {role}
           </div>
 
           {/* Line 3: Period */}
           <div className="text-[11px] sm:text-xs font-mono tracking-[0.15em] text-[#94A3B8] uppercase mb-6 sm:mb-8">
-            {waypoint.period}
+            {period}
           </div>
 
           {/* Highlight Metric Tags (Zero card boxes, zero borders) */}
@@ -139,19 +152,19 @@ export default function ProjectDetailModal({
               01 // PROBLEM & STRATEGIC CONTEXT
             </h3>
             <p className="font-sans text-[#D8ECF8]/90 text-xs sm:text-sm md:text-base font-light leading-relaxed">
-              {waypoint.detailedBreakdown.context}
+              {context}
             </p>
           </div>
 
           {/* Numbered Architecture & Execution Decisions (Frameless, zero borders) */}
           <div className="mb-8">
-            <h3 className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#FF5500] font-semibold mb-3">
+            <h3 className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#0055FF] font-semibold mb-3">
               02 // KEY ARCHITECTURE & EXECUTION DELIVERABLES
             </h3>
             <ul className="space-y-3 font-sans text-xs sm:text-sm md:text-base text-[#D8ECF8]/85 font-light leading-relaxed">
-              {waypoint.detailedBreakdown.bulletPoints.map((bp, idx) => (
+              {bulletPoints.map((bp, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <span className="font-mono text-xs font-semibold text-[#FFAA00] pt-0.5 shrink-0">
+                  <span className="font-mono text-xs font-semibold text-[#0055FF] pt-0.5 shrink-0">
                     {String(idx + 1).padStart(2, '0')}.
                   </span>
                   <span>{bp}</span>

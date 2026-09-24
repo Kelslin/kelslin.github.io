@@ -9,6 +9,36 @@ import AboutStoryModal from './components/AboutStoryModal';
 import RecruiterIndexModal from './components/RecruiterIndexModal';
 import ProjectDetailModal from './components/ProjectDetailModal';
 import { Waypoint, PORTFOLIO_WAYPOINTS } from './data/portfolioData';
+import { Language, TRANSLATIONS } from './data/translations';
+
+// ==========================================
+// 0. BULLETPROOF WEBGL ERROR BOUNDARY (FOR MOBILE RESILIENCE)
+// ==========================================
+class WebGLErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error: any) {
+    console.warn('WebGL scene handled gracefully:', error);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-[300px] h-[300px] rounded-full bg-gradient-to-tr from-[#002FA7]/30 to-[#FFAA00]/20 blur-[100px]" />
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 // ==========================================
 // 1. DYNAMIC CURSOR FOLLOWER LIGHT (MICRO-DETAIL ILLUMINATION)
@@ -18,11 +48,16 @@ function CursorInteractiveLight() {
   const { viewport } = useThree();
 
   useFrame(({ pointer }) => {
-    if (!lightRef.current) return;
-    // Map 2D pointer coordinates (-1 to 1) into 3D world space over the flower
-    const x = (pointer.x * viewport.width) / 2;
-    const y = (pointer.y * viewport.height) / 2;
-    lightRef.current.position.set(x, y, 1.2);
+    if (!lightRef.current || !viewport) return;
+    const px = pointer?.x ?? 0;
+    const py = pointer?.y ?? 0;
+    const vw = viewport.width || 10;
+    const vh = viewport.height || 10;
+    const x = (px * vw) / 2;
+    const y = (py * vh) / 2;
+    if (!isNaN(x) && !isNaN(y)) {
+      lightRef.current.position.set(x, y, 1.2);
+    }
   });
 
   return (
@@ -261,6 +296,23 @@ function CrystalFollowerCursor() {
 // 4. MAIN INTERACTIVE APPLICATION
 // ==========================================
 export default function App() {
+  const [language, setLanguage] = useState<Language>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('kelsey_portfolio_lang') as Language;
+      if (['en', 'zh', 'es', 'fr'].includes(saved)) return saved;
+    }
+    return 'en';
+  });
+
+  const handleLanguageChange = (lang: Language) => {
+    setLanguage(lang);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('kelsey_portfolio_lang', lang);
+    }
+  };
+
+  const t = TRANSLATIONS[language] || TRANSLATIONS.en;
+
   const [activeWaypoint, setActiveWaypoint] = useState<Waypoint | null>(null);
   const [hoveredWaypoint, setHoveredWaypoint] = useState<Waypoint | null>(null);
   const [selectedDetailWaypoint, setSelectedDetailWaypoint] = useState<Waypoint | null>(null);
@@ -322,7 +374,7 @@ export default function App() {
   };
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-[#050608] text-[#D8ECF8] font-sans selection:bg-[#002FA7] selection:text-white">
+    <div className="relative w-full min-h-[100dvh] h-[100dvh] overflow-hidden bg-[#050608] text-[#D8ECF8] font-sans selection:bg-[#002FA7] selection:text-white">
       {/* 1. Kinetic Honeybee Cursor (Zero-Render) */}
       <CrystalFollowerCursor />
 
@@ -338,52 +390,54 @@ export default function App() {
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerUp}
       >
-        <Canvas camera={{ position: [0, 0, 4.2], fov: 42 }}>
-          {/* Authentic OG Amber Liuli Crystal Lighting with Signature Electric Klein Blue Glow */}
-          <ambientLight intensity={1.0} />
+        <WebGLErrorBoundary>
+          <Canvas camera={{ position: [0, 0, 4.2], fov: 42 }}>
+            {/* Authentic OG Amber Liuli Crystal Lighting with Signature Electric Klein Blue Glow */}
+            <ambientLight intensity={1.0} />
 
-          {/* 1. Back-Left & Top Electric Klein Blue Rim Lights (Klein Blue glow over orange lily) */}
-          <directionalLight position={[-3.5, 4.5, -2.0]} intensity={6.0} color="#0038FF" />
-          <pointLight position={[0, 4.5, -2.0]} intensity={5.5} color="#002FA7" />
-          <pointLight position={[-3, 1, -1]} intensity={4.5} color="#0055FF" />
-          <directionalLight position={[3, 3.5, -2.5]} intensity={3.5} color="#0038FF" />
+            {/* 1. Back-Left & Top Electric Klein Blue Rim Lights (Klein Blue glow over orange lily) */}
+            <directionalLight position={[-3.5, 4.5, -2.0]} intensity={6.0} color="#0038FF" />
+            <pointLight position={[0, 4.5, -2.0]} intensity={5.5} color="#002FA7" />
+            <pointLight position={[-3, 1, -1]} intensity={4.5} color="#0055FF" />
+            <directionalLight position={[3, 3.5, -2.5]} intensity={3.5} color="#0038FF" />
 
-          {/* 2. Warm Golden & Molten Amber Front Fill (Radiant orange lily body) */}
-          <pointLight position={[3, -1.5, 2.5]} intensity={5.0} color="#FF6600" />
-          <pointLight position={[-2, -2, 2.0]} intensity={4.0} color="#FFAA00" />
+            {/* 2. Warm Golden & Molten Amber Front Fill (Radiant orange lily body) */}
+            <pointLight position={[3, -1.5, 2.5]} intensity={5.0} color="#FF6600" />
+            <pointLight position={[-2, -2, 2.0]} intensity={4.0} color="#FFAA00" />
 
-          {/* 3. Top White Specular Key Light (Glistening wet glaze shine) */}
-          <directionalLight position={[0, 4, 3]} intensity={3.2} color="#FFFFFF" />
+            {/* 3. Top White Specular Key Light (Glistening wet glaze shine) */}
+            <directionalLight position={[0, 4, 3]} intensity={3.2} color="#FFFFFF" />
 
-          {/* Dynamic 3D Cursor Follower Light: Illuminates micro-details & petal reflections under cursor */}
-          <CursorInteractiveLight />
+            {/* Dynamic 3D Cursor Follower Light: Illuminates micro-details & petal reflections under cursor */}
+            <CursorInteractiveLight />
 
-          {/* Unified Cinematic Camera Rig with Free Orbit & Wheel Zoom */}
-          <CameraRig activeWaypoint={activeWaypoint} flowerPos={flowerPos} />
+            {/* Unified Cinematic Camera Rig with Free Orbit & Wheel Zoom */}
+            <CameraRig activeWaypoint={activeWaypoint} flowerPos={flowerPos} />
 
-          <Suspense fallback={null}>
-            <group position={flowerPos}>
-              <LiuliLilyModel
-                activeWaypoint={activeWaypoint}
-                position={[0, 0, 0]}
-                dragAngleOffset={dragAngleOffset}
-              />
-            </group>
-          </Suspense>
-        </Canvas>
+            <Suspense fallback={null}>
+              <group position={flowerPos}>
+                <LiuliLilyModel
+                  activeWaypoint={activeWaypoint}
+                  position={[0, 0, 0]}
+                  dragAngleOffset={dragAngleOffset}
+                />
+              </group>
+            </Suspense>
+          </Canvas>
+        </WebGLErrorBoundary>
       </div>
 
       {/* Deep Klein Blue & Molten Amber Atmospheric Radiance */}
       <div className="fixed top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-[#002FA7]/14 blur-[180px] pointer-events-none" />
       <div className="fixed bottom-[-10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-[#FF5500]/10 blur-[180px] pointer-events-none" />
 
-      {/* Directional atmospheric vignette on left for guaranteed text contrast */}
-      <div className="fixed top-0 left-0 w-full lg:w-3/5 h-full pointer-events-none bg-gradient-to-r from-[#050608]/90 via-[#050608]/50 to-transparent z-10" />
+      {/* Directional atmospheric vignette on left for guaranteed text contrast without obscuring mobile flower */}
+      <div className="fixed top-0 left-0 w-full lg:w-3/5 h-full pointer-events-none bg-gradient-to-b from-[#050608]/75 via-transparent to-[#050608]/75 lg:bg-gradient-to-r lg:from-[#050608]/90 lg:via-[#050608]/50 lg:to-transparent z-10" />
 
       {/* ========================================================================= */}
       {/* 3. UNIFIED TOP NAVIGATION (FRAMELESS, ZERO OVERLAP, ADAPTIVE HEADER)      */}
       {/* ========================================================================= */}
-      <header className="fixed top-0 left-0 w-full z-40 px-4 sm:px-8 lg:px-10 py-4 sm:py-5 flex items-center justify-between pointer-events-auto">
+      <header className="fixed top-0 left-0 w-full z-40 px-3 sm:px-6 lg:px-10 py-3 sm:py-5 flex items-center justify-between pointer-events-auto">
         {!activeWaypoint ? (
           <>
             {/* Overview Left: KELSEY LIN / */}
@@ -394,9 +448,9 @@ export default function App() {
                 setIsAboutOpen(false);
                 setIsIndexOpen(false);
               }}
-              className="flex items-center gap-1.5 group text-left cursor-pointer"
+              className="flex items-center gap-1 group text-left cursor-pointer"
             >
-              <span className="font-mono text-xs sm:text-sm font-bold tracking-[0.22em] text-white uppercase">
+              <span className="font-mono text-xs sm:text-sm font-bold tracking-[0.18em] sm:tracking-[0.22em] text-white uppercase">
                 KELSEY LIN
               </span>
               <span className="text-[#0055FF] font-mono text-xs sm:text-sm font-semibold">
@@ -404,57 +458,77 @@ export default function App() {
               </span>
             </button>
 
-            {/* Overview Right: Works, About, Index, Contact (Adaptive spacing) */}
-            <nav className="flex items-center gap-3 sm:gap-6 md:gap-8 text-[11px] sm:text-xs font-mono tracking-[0.14em] sm:tracking-[0.2em] uppercase">
-              <button
-                onClick={() => {
-                  setActiveWaypoint(null);
-                  setSelectedDetailWaypoint(null);
-                  setIsAboutOpen(false);
-                  setIsIndexOpen(false);
-                }}
-                className={`transition-colors cursor-pointer ${
-                  !isAboutOpen && !isIndexOpen
-                    ? 'text-white font-semibold'
-                    : 'text-[#94A3B8] hover:text-white'
-                }`}
-              >
-                // WORKS
-              </button>
+            {/* Overview Right: Language Switcher & Navigation */}
+            <div className="flex items-center gap-2 sm:gap-5 md:gap-8">
+              {/* Language Switcher: EN | 中 | ES | FR */}
+              <div className="flex items-center gap-0.5 sm:gap-1 p-0.5 sm:p-1 rounded-full bg-white/10 backdrop-blur-md">
+                {(['en', 'zh', 'es', 'fr'] as const).map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => handleLanguageChange(lang)}
+                    className={`px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-mono tracking-wider transition-all cursor-pointer ${
+                      language === lang
+                        ? 'bg-white text-black font-bold shadow-sm'
+                        : 'text-[#94A3B8] hover:text-white'
+                    }`}
+                  >
+                    {lang === 'en' ? 'EN' : lang === 'zh' ? '中' : lang === 'es' ? 'ES' : 'FR'}
+                  </button>
+                ))}
+              </div>
 
-              <button
-                onClick={() => {
-                  setIsAboutOpen(true);
-                  setIsIndexOpen(false);
-                  setSelectedDetailWaypoint(null);
-                }}
-                className={`transition-colors cursor-pointer ${
-                  isAboutOpen ? 'text-white font-semibold' : 'text-[#94A3B8] hover:text-white'
-                }`}
-              >
-                // ABOUT
-              </button>
+              {/* Navigation Links */}
+              <nav className="flex items-center gap-2 sm:gap-4 md:gap-6 text-[10px] sm:text-xs font-mono tracking-[0.12em] sm:tracking-[0.18em] uppercase">
+                <button
+                  onClick={() => {
+                    setActiveWaypoint(null);
+                    setSelectedDetailWaypoint(null);
+                    setIsAboutOpen(false);
+                    setIsIndexOpen(false);
+                  }}
+                  className={`transition-colors cursor-pointer ${
+                    !isAboutOpen && !isIndexOpen
+                      ? 'text-white font-semibold'
+                      : 'text-[#94A3B8] hover:text-white'
+                  }`}
+                >
+                  {t.header.works}
+                </button>
 
-              <button
-                onClick={() => {
-                  setIsIndexOpen(true);
-                  setIsAboutOpen(false);
-                  setSelectedDetailWaypoint(null);
-                }}
-                className={`transition-colors cursor-pointer ${
-                  isIndexOpen ? 'text-white font-semibold' : 'text-[#94A3B8] hover:text-white'
-                }`}
-              >
-                // INDEX
-              </button>
+                <button
+                  onClick={() => {
+                    setIsAboutOpen(true);
+                    setIsIndexOpen(false);
+                    setSelectedDetailWaypoint(null);
+                  }}
+                  className={`transition-colors cursor-pointer ${
+                    isAboutOpen ? 'text-white font-semibold' : 'text-[#94A3B8] hover:text-white'
+                  }`}
+                >
+                  {t.header.about}
+                </button>
 
-              <a
-                href="mailto:kelslin@umich.edu"
-                className="text-[#94A3B8] hover:text-white transition-colors cursor-pointer"
-              >
-                CONTACT ↗
-              </a>
-            </nav>
+                <button
+                  onClick={() => {
+                    setIsIndexOpen(true);
+                    setIsAboutOpen(false);
+                    setSelectedDetailWaypoint(null);
+                  }}
+                  className={`transition-colors cursor-pointer hidden xs:inline ${
+                    isIndexOpen ? 'text-white font-semibold' : 'text-[#94A3B8] hover:text-white'
+                  }`}
+                >
+                  {t.header.index}
+                </button>
+
+                <a
+                  href="mailto:kelslin@umich.edu"
+                  className="text-[#94A3B8] hover:text-white transition-colors cursor-pointer"
+                >
+                  {t.header.contact}
+                </a>
+              </nav>
+            </div>
           </>
         ) : (
           <>
@@ -465,112 +539,96 @@ export default function App() {
                 className="flex items-center gap-1.5 sm:gap-2 py-1.5 px-3 sm:px-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] transition-all cursor-pointer backdrop-blur-md"
               >
                 <span>✕</span>
-                <span>Overview</span>
+                <span>{t.header.overviewExit}</span>
                 <span className="text-[10px] text-white/50 hidden sm:inline">[ESC]</span>
               </button>
               <span className="text-white/20 hidden sm:inline">|</span>
-              <span className="text-xs font-mono tracking-[0.2em] uppercase text-[#FFAA00] hidden sm:inline font-semibold">
-                {activeWaypoint.title}
+              <span className="text-xs font-mono tracking-[0.2em] uppercase text-[#0055FF] hidden sm:inline font-semibold">
+                {t.projects[activeWaypoint.id]?.title || activeWaypoint.title}
               </span>
             </div>
 
-            {/* Macro View Right: Prev / Next Petal Buttons (Responsive) */}
-            <div className="flex items-center gap-1.5 sm:gap-2.5 text-[11px] sm:text-xs font-mono tracking-[0.12em] sm:tracking-[0.15em] uppercase">
-              <button
-                onClick={() => {
-                  const idx = PORTFOLIO_WAYPOINTS.findIndex((w) => w.id === activeWaypoint.id);
-                  setActiveWaypoint(
-                    PORTFOLIO_WAYPOINTS[(idx - 1 + PORTFOLIO_WAYPOINTS.length) % PORTFOLIO_WAYPOINTS.length]
-                  );
-                }}
-                className="flex items-center gap-1 py-1.5 px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-white/20 text-[#E2E8F0] hover:text-white backdrop-blur-md transition-colors cursor-pointer"
-              >
-                <span>←</span>
-                <span className="hidden sm:inline">Prev [←]</span>
-              </button>
-              <button
-                onClick={() => {
-                  const idx = PORTFOLIO_WAYPOINTS.findIndex((w) => w.id === activeWaypoint.id);
-                  setActiveWaypoint(
-                    PORTFOLIO_WAYPOINTS[(idx + 1) % PORTFOLIO_WAYPOINTS.length]
-                  );
-                }}
-                className="flex items-center gap-1 py-1.5 px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-white/20 text-[#E2E8F0] hover:text-white backdrop-blur-md transition-colors cursor-pointer"
-              >
-                <span className="hidden sm:inline">Next [→]</span>
-                <span>→</span>
-              </button>
+            {/* Macro View Right: Language Switcher + Prev / Next Petal Buttons */}
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="hidden sm:flex items-center gap-0.5 p-0.5 rounded-full bg-white/10 backdrop-blur-md">
+                {(['en', 'zh', 'es', 'fr'] as const).map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => handleLanguageChange(lang)}
+                    className={`px-1.5 py-0.5 rounded-full text-[9px] font-mono tracking-wider transition-all cursor-pointer ${
+                      language === lang
+                        ? 'bg-white text-black font-bold shadow-sm'
+                        : 'text-[#94A3B8] hover:text-white'
+                    }`}
+                  >
+                    {lang === 'en' ? 'EN' : lang === 'zh' ? '中' : lang === 'es' ? 'ES' : 'FR'}
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-mono tracking-[0.12em] sm:tracking-[0.15em] uppercase">
+                <button
+                  onClick={() => {
+                    const idx = PORTFOLIO_WAYPOINTS.findIndex((w) => w.id === activeWaypoint.id);
+                    setActiveWaypoint(
+                      PORTFOLIO_WAYPOINTS[(idx - 1 + PORTFOLIO_WAYPOINTS.length) % PORTFOLIO_WAYPOINTS.length]
+                    );
+                  }}
+                  className="flex items-center gap-1 py-1.5 px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-white/20 text-[#E2E8F0] hover:text-white backdrop-blur-md transition-colors cursor-pointer"
+                >
+                  <span>←</span>
+                  <span className="hidden sm:inline">{t.header.prev} [←]</span>
+                </button>
+                <button
+                  onClick={() => {
+                    const idx = PORTFOLIO_WAYPOINTS.findIndex((w) => w.id === activeWaypoint.id);
+                    setActiveWaypoint(
+                      PORTFOLIO_WAYPOINTS[(idx + 1) % PORTFOLIO_WAYPOINTS.length]
+                    );
+                  }}
+                  className="flex items-center gap-1 py-1.5 px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-white/20 text-[#E2E8F0] hover:text-white backdrop-blur-md transition-colors cursor-pointer"
+                >
+                  <span className="hidden sm:inline">{t.header.next} [→]</span>
+                  <span>→</span>
+                </button>
+              </div>
             </div>
           </>
         )}
       </header>
 
       {/* ========================================================================= */}
-      {/* 4. OVERVIEW EDITORIAL IDENTITY (FULLY RESPONSIVE & COUTURE DECORATIVE)    */}
+      {/* 4. OVERVIEW EDITORIAL IDENTITY (FULLY RESPONSIVE & CLEAN)                  */}
       {/* ========================================================================= */}
       {!activeWaypoint && !isAboutOpen && !isIndexOpen && !selectedDetailWaypoint && (
-        <div className="fixed left-5 sm:left-12 lg:left-20 top-[40%] sm:top-1/2 -translate-y-1/2 max-w-xl z-20 pointer-events-none select-none">
+        <div className="fixed left-5 sm:left-12 lg:left-20 top-24 sm:top-28 lg:top-1/2 lg:-translate-y-1/2 max-w-xl z-20 pointer-events-none select-none">
           <div className="pointer-events-none">
-            {/* Bespoke Decorative Name Display */}
-            <h1 className="leading-[0.88] select-none tracking-tight mb-5 sm:mb-6">
-              {/* Line 1: Kelsey in high-fashion sculptural serif */}
-              <div className="font-decorative-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-white font-normal tracking-[-0.02em] flex items-baseline decorative-name-glow">
-                <span>Kelsey</span>
-                <span className="text-[#0055FF] text-2xl sm:text-3xl md:text-4xl font-mono ml-2.5 opacity-90 select-none font-light drop-shadow-[0_0_12px_rgba(0,56,255,0.9)]">
-                  ✦
-                </span>
-              </div>
-              {/* Line 2: Lin in sweeping dramatic italic flourish with Amber & Klein Blue glaze */}
-              <div className="font-flourish-italic text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-[-0.02em] amber-klein-prismatic-text flex items-baseline pl-1 sm:pl-2">
-                <span>Lin</span>
-                <span className="text-[#0055FF] not-italic drop-shadow-[0_0_14px_rgba(0,56,255,0.95)]">
-                  .
-                </span>
-              </div>
+            {/* Pure, Elegant, Timeless Name */}
+            <h1 className="select-none tracking-tight">
+              <span className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-white font-normal tracking-tight leading-[0.92] block drop-shadow-sm">
+                {t.hero.name}
+              </span>
             </h1>
 
-            {/* Clear, Human 1-Sentence Recruiter Description */}
-            <div className="border-l border-white/20 pl-4 sm:pl-5 my-5 sm:my-7 max-w-md sm:max-w-lg">
-              <p className="font-sans text-neutral-300 text-sm sm:text-base md:text-lg font-light leading-relaxed">
-                Product manager and 0→1 builder at Michigan, turning complex systems and human insights into intuitive, high-impact products.
-              </p>
-            </div>
-
-            {/* High-Touch Fast Actions (Frameless, NO borders) */}
-            <div className="flex flex-wrap items-center gap-4 sm:gap-6 pointer-events-auto pt-1">
-              <button
-                onClick={() => setActiveWaypoint(PORTFOLIO_WAYPOINTS[0])}
-                className="group inline-flex items-center gap-2 font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-white hover:text-[#0055FF] transition-colors cursor-pointer"
-              >
-                <span>EXPLORE WORKS</span>
-                <span className="transition-transform group-hover:translate-y-0.5 text-[#0055FF]">↓</span>
-              </button>
-
-              <button
-                onClick={() => setIsAboutOpen(true)}
-                className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-[#94A3B8] hover:text-white transition-colors cursor-pointer"
-              >
-                // ABOUT ME
-              </button>
-
-              <button
-                onClick={() => setIsIndexOpen(true)}
-                className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-[#94A3B8] hover:text-white transition-colors cursor-pointer"
-              >
-                // QUICK INDEX
-              </button>
-            </div>
+            {/* Natural Human Recruiter Introduction (NO border, NO odd styling, NO duplicate nav buttons) */}
+            <p className="font-sans text-neutral-300/90 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-md sm:max-w-lg mt-3 sm:mt-5">
+              {t.hero.intro}
+            </p>
           </div>
         </div>
       )}
 
       {/* ========================================================================= */}
-      {/* 5. ALWAYS-ON-TOP EXPERIENCE CONSTELLATION PINS (FRAMELESS GLASS)          */}
+      {/* 5. EXPERIENCE CONSTELLATION PINS (DESKTOP VERTICAL / MOBILE BOTTOM DOCK)  */}
       {/* ========================================================================= */}
+      {/* Desktop: Right vertical floating constellation pills */}
       {!activeWaypoint && !isAboutOpen && !isIndexOpen && !selectedDetailWaypoint && (
-        <div className="fixed right-3 sm:right-10 top-1/2 -translate-y-1/2 z-20 pointer-events-auto flex flex-col gap-2 sm:gap-2.5 select-none">
+        <div className="hidden lg:flex fixed right-8 xl:right-12 top-1/2 -translate-y-1/2 z-20 pointer-events-auto flex-col gap-2.5 select-none">
           {PORTFOLIO_WAYPOINTS.map((wp) => {
             const isHovered = hoveredWaypoint?.id === wp.id;
+            const projectT = TRANSLATIONS[language]?.projects[wp.id];
+            const title = projectT?.title || wp.title;
+
             return (
               <button
                 key={wp.id}
@@ -578,20 +636,17 @@ export default function App() {
                 onClick={() => setActiveWaypoint(wp)}
                 onMouseEnter={() => setHoveredWaypoint(wp)}
                 onMouseLeave={() => setHoveredWaypoint(null)}
-                className={`group flex items-center justify-end gap-2 sm:gap-3 text-right transition-all duration-300 py-1.5 px-2 sm:px-3 rounded-xl cursor-pointer ${
+                className={`group flex items-center justify-end gap-3 text-right transition-all duration-300 py-1.5 px-3 rounded-xl cursor-pointer ${
                   isHovered
                     ? 'bg-white/15 translate-x-[-4px] shadow-[0_4px_20px_rgba(0,0,0,0.5)] backdrop-blur-md'
                     : 'bg-black/40 hover:bg-white/10 backdrop-blur-sm'
                 }`}
               >
-                <div className="hidden sm:block">
-                  <div className="font-syne text-xs font-semibold text-white tracking-wide group-hover:text-amber-200 transition-colors">
-                    {wp.title.split(' & ')[0]}
-                  </div>
+                <div className="font-syne text-xs font-semibold text-white tracking-wide group-hover:text-blue-300 transition-colors">
+                  {title.split(' & ')[0]}
                 </div>
-
                 <span
-                  className="w-2.5 h-2.5 sm:w-2 sm:h-2 rounded-full transition-transform duration-300 group-hover:scale-125"
+                  className="w-2 h-2 rounded-full transition-transform duration-300 group-hover:scale-125"
                   style={{ backgroundColor: wp.accentColor }}
                 />
               </button>
@@ -600,8 +655,33 @@ export default function App() {
         </div>
       )}
 
+      {/* Mobile: Sleek horizontal bottom project dock (Zero overlap with name or flower) */}
+      {!activeWaypoint && !isAboutOpen && !isIndexOpen && !selectedDetailWaypoint && (
+        <div className="flex lg:hidden fixed bottom-6 left-0 right-0 z-20 pointer-events-auto justify-center gap-2 px-4 select-none overflow-x-auto no-scrollbar">
+          {PORTFOLIO_WAYPOINTS.map((wp) => {
+            const projectT = TRANSLATIONS[language]?.projects[wp.id];
+            const title = projectT?.title || wp.title;
+
+            return (
+              <button
+                key={wp.id}
+                type="button"
+                onClick={() => setActiveWaypoint(wp)}
+                className="flex items-center gap-1.5 py-1.5 px-3 rounded-full bg-[#06080E]/85 backdrop-blur-md text-[10px] font-mono tracking-wider text-white/90 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95 shrink-0"
+              >
+                <span
+                  className="w-1.5 h-1.5 rounded-full shrink-0"
+                  style={{ backgroundColor: wp.accentColor }}
+                />
+                <span>{title.split(' ')[0]}</span>
+              </button>
+            );
+          })}
+        </div>
+      )}
+
       {/* ========================================================================= */}
-      {/* 6. CINEMATIC MACRO OVERLAY (ZOOMED INTO PETAL — ZERO TEXT OVERLAP)        */}
+      {/* 6. CINEMATIC MACRO OVERLAY (ZOOMED INTO PETAL)                            */}
       {/* ========================================================================= */}
       <CinematicMacroOverlay
         activeWaypoint={activeWaypoint}
@@ -612,6 +692,7 @@ export default function App() {
             setSelectedDetailWaypoint(activeWaypoint);
           }
         }}
+        language={language}
       />
 
       {/* ========================================================================= */}
@@ -624,6 +705,7 @@ export default function App() {
           setSelectedDetailWaypoint(wp);
           setActiveWaypoint(wp);
         }}
+        language={language}
       />
 
       {/* ========================================================================= */}
@@ -637,6 +719,7 @@ export default function App() {
           setActiveWaypoint(null);
           setSelectedDetailWaypoint(null);
         }}
+        language={language}
       />
 
       {/* ========================================================================= */}
@@ -649,6 +732,7 @@ export default function App() {
           setIsIndexOpen(false);
           setActiveWaypoint(wp);
         }}
+        language={language}
       />
     </div>
   );

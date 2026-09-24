@@ -2,12 +2,14 @@ import React, { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileText, ArrowRight, ArrowLeft } from 'lucide-react';
 import { Waypoint, PORTFOLIO_WAYPOINTS } from '../data/portfolioData';
+import { Language, TRANSLATIONS } from '../data/translations';
 
 interface CinematicMacroOverlayProps {
   activeWaypoint: Waypoint | null;
   onClose: () => void;
   onSelectWaypoint: (wp: Waypoint) => void;
   onOpenDetails: () => void;
+  language?: Language;
 }
 
 export default function CinematicMacroOverlay({
@@ -15,6 +17,7 @@ export default function CinematicMacroOverlay({
   onClose,
   onSelectWaypoint,
   onOpenDetails,
+  language = 'en',
 }: CinematicMacroOverlayProps) {
   const touchStartX = useRef<number | null>(null);
 
@@ -72,6 +75,14 @@ export default function CinematicMacroOverlay({
   const nextWaypoint =
     PORTFOLIO_WAYPOINTS[(currentIndex + 1) % PORTFOLIO_WAYPOINTS.length];
 
+  const t = TRANSLATIONS[language]?.macro || TRANSLATIONS.en.macro;
+  const projectT = TRANSLATIONS[language]?.projects[activeWaypoint.id] || TRANSLATIONS.en.projects[activeWaypoint.id];
+
+  const title = projectT?.title || activeWaypoint.title;
+  const role = projectT?.role || activeWaypoint.role;
+  const period = projectT?.period || activeWaypoint.period;
+  const story = projectT?.story || activeWaypoint.story;
+
   return (
     <div className="fixed inset-0 z-30 pointer-events-none flex flex-col justify-between pt-16 sm:pt-24 pb-4 sm:pb-8 px-4 sm:px-8 md:px-12 select-none">
       {/* Swipeable Cinematic Spatial Content Card */}
@@ -96,22 +107,22 @@ export default function CinematicMacroOverlay({
         >
           {/* Line 1: Title */}
           <h2 className="font-syne text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-white leading-tight mb-1 drop-shadow-sm">
-            {activeWaypoint.title}
+            {title}
           </h2>
 
           {/* Line 2: Job Title / Role */}
-          <div className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.18em] text-[#FFAA00] font-semibold mb-1">
-            {activeWaypoint.role}
+          <div className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.18em] text-[#0055FF] font-semibold mb-1">
+            {role}
           </div>
 
           {/* Line 3: Period */}
           <div className="text-[10px] sm:text-[11px] font-mono tracking-[0.16em] text-[#94A3B8] uppercase mb-3 sm:mb-4">
-            {activeWaypoint.period}
+            {period}
           </div>
 
           {/* Concise High-Signal Summary */}
           <p className="font-sans text-[#E2E8F0] text-xs sm:text-sm font-normal leading-relaxed mb-4 sm:mb-5">
-            {activeWaypoint.story.split('. ')[0] + '.'}
+            {story.split('. ')[0] + (story.includes('. ') ? '.' : '')}
           </p>
 
           {/* Quantified Highlight Tags (Zero card box, zero borders) */}
@@ -135,18 +146,18 @@ export default function CinematicMacroOverlay({
           <div className="flex items-center justify-between pt-1">
             <button
               onClick={onOpenDetails}
-              className="group inline-flex items-center gap-2 font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-white hover:text-[#FFAA00] transition-colors cursor-pointer"
+              className="group inline-flex items-center gap-2 font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-white hover:text-[#0055FF] transition-colors cursor-pointer"
             >
-              <span className="group-hover:text-[#FFAA00] transition-colors font-semibold">
-                READ FULL CASE STUDY
+              <span className="group-hover:text-[#0055FF] transition-colors font-semibold">
+                {t.readFullCase}
               </span>
-              <span className="transition-transform group-hover:translate-x-1 text-[#FFAA00]">
+              <span className="transition-transform group-hover:translate-x-1 text-[#0055FF]">
                 →
               </span>
             </button>
 
             <span className="text-[9px] font-mono text-[#94A3B8]/60 tracking-[0.15em] uppercase hidden sm:inline">
-              Swipe card [← →]
+              [← →]
             </span>
           </div>
         </motion.div>
