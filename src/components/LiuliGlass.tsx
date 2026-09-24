@@ -27,6 +27,12 @@ export default function LiuliGlass({
           <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-[#FF4500]/25 rounded-full blur-3xl pointer-events-none -z-10" />
         </>
       )}
+      {glow === 'blue' && (
+        <div className="absolute -top-12 -left-12 w-52 h-52 bg-[#002FA7]/35 rounded-full blur-3xl pointer-events-none -z-10" />
+      )}
+      {glow === 'flame' && (
+        <div className="absolute -bottom-12 -right-12 w-52 h-52 bg-[#FF4500]/30 rounded-full blur-3xl pointer-events-none -z-10" />
+      )}
 
       {/* Real Content */}
       <div className="relative z-10">

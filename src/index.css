@@ -1,72 +1,106 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html{
+/* 1. OPTIONAL LOCAL FONT-FACE DEFINITIONS (Drop files in public/fonts/) */
+@font-face {
+  font-family: 'Switella';
+  src: url('/fonts/Switella.woff2') format('woff2'),
+       url('/fonts/Switella.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ogg';
+  src: url('/fonts/Ogg-Roman.woff2') format('woff2'),
+       url('/fonts/Ogg-Roman.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html, body, *, *::before, *::after, a, button, [role="button"], input, select, textarea, canvas {
+    cursor: none !important;
+  }
+}
+
+/* Zero button borders across all platforms and browsers */
+button, [role="button"], input, select, textarea {
+  border: none !important;
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: #07090E;
-  color: #fff;
-  /* Make sure body does NOT have overflow: hidden */
+  background-color: #050608;
+  color: #D8ECF8;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   overflow-x: hidden;
 }
 
-@layer utilities {
-  /* The Authentic Heavy Liuli Crystal Slab */
-  .liuli-slab {
-    position: relative;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.08) 0%,
-      rgba(0, 47, 167, 0.08) 35%,
-      rgba(255, 69, 0, 0.04) 70%,
-      rgba(10, 14, 24, 0.65) 100%
-    );
-    backdrop-filter: blur(28px) saturate(190%);
-    -webkit-backdrop-filter: blur(28px) saturate(190%);
-    border-radius: 1.5rem;
-    box-shadow: 
-      0 20px 50px -10px rgba(0, 7, 24, 0.7),
-      0 0 40px -5px rgba(0, 47, 167, 0.15),
-      inset 0 1px 2px 0 rgba(255, 255, 255, 0.4),
-      inset 1px 0 2px 0 rgba(0, 47, 167, 0.3),
-      inset 0 -2px 4px 0 rgba(255, 69, 0, 0.2);
-    overflow: hidden;
-  }
+/* 2. IDENTITY DISPLAY: OPENTYPE LIGATURES & COUTURE LETTERING */
+.font-couture {
+  font-family: 'Switella', 'Ogg', 'Bodoni Moda', 'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
+  font-feature-settings: "liga" 1, "dlig" 1, "clig" 1, "calt" 1, "kern" 1;
+  letter-spacing: -0.04em;
+}
 
-  /* Internal Molten Swirl & Caustics Layer */
-  .liuli-caustic-bg {
-    background: 
-      radial-gradient(ellipse 80% 50% at 20% 40%, rgba(0, 47, 167, 0.22), transparent 70%),
-      radial-gradient(ellipse 60% 60% at 80% 80%, rgba(255, 69, 0, 0.18), transparent 60%),
-      radial-gradient(ellipse 50% 40% at 50% 20%, rgba(255, 165, 0, 0.12), transparent 70%);
-  }
+/* 3. PALE FROSTED QUARTZ TEXT FINISH */
+.frosted-quartz-text {
+  background: linear-gradient(
+    135deg,
+    #FFFFFF 0%,
+    #E8F5FD 30%,
+    #D8ECF8 60%,
+    #A5D4F5 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(216, 236, 248, 0.25));
+}
 
-  /* Beveled Prism Rim Reflection */
-  .liuli-prism-edge {
-    position: relative;
-  }
-  .liuli-prism-edge::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.6) 0%,
-      rgba(0, 47, 167, 0.5) 40%,
-      rgba(255, 69, 0, 0.4) 80%,
-      rgba(255, 255, 255, 0.1) 100%
-    );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-  }
+/* 4. LIQUID CHROME HAIRLINE OUTLINE */
+.chrome-hairline-text {
+  background: linear-gradient(
+    180deg,
+    #FFFFFF 0%,
+    #D5E5F2 42%,
+    #6A8EA8 48%,
+    #FFFFFF 54%,
+    #D8ECF8 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.04em;
+}
+
+/* 5. LIVING CORE: MOLTEN AMBER FLAME GLOW */
+.molten-amber-text {
+  background: linear-gradient(135deg, #FFAA00 0%, #FF5500 50%, #FF2A55 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 16px rgba(255, 85, 0, 0.4));
+}
+
+/* 6. TECHNICAL FORENSIC TAGS & HUD */
+.forensic-label {
+  font-family: 'JetBrains Mono', 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #94A3B8;
+}
+
+.forensic-hairline {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
