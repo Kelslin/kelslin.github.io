@@ -213,19 +213,19 @@ function CrystalFollowerCursor() {
 
   return (
     <div className="hidden lg:block">
-      {/* Warm Golden Radiant Glory & Stardust Aura Wake */}
+      {/* Warm Radiant Glory & Pollen Aura Wake (Concentrated Warm Halo) */}
       <div
         ref={wakeRef}
         className="pointer-events-none fixed top-0 left-0 z-[998] will-change-transform"
         style={{ transform: 'translate3d(-200px, -200px, 0) translate(-50%, -50%)' }}
       >
-        {/* Outer ambient warm golden amber glow */}
-        <div className="w-[280px] h-[280px] rounded-full bg-gradient-to-r from-[#FF5500]/25 via-[#FFAA00]/30 to-transparent blur-[60px]" />
-        {/* Soft living warm amber lantern core centered right behind firefly */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80px] h-[80px] rounded-full bg-[#FFAA00]/65 blur-[18px] animate-[pulse_2s_ease-in-out_infinite]" />
+        {/* Outer ambient warm golden glow */}
+        <div className="w-[280px] h-[280px] rounded-full bg-gradient-to-r from-[#FF5500]/30 via-[#FFAA00]/35 to-transparent blur-[65px]" />
+        {/* Concentrated radiant inner glory halo centered right behind firefly */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85px] h-[85px] rounded-full bg-[#FFAA00]/70 blur-[18px]" />
       </div>
 
-      {/* Bioluminescent Glass Hotaru (Firefly) with Warm Amber Glow & Iridescent Wings */}
+      {/* Bioluminescent Glass Hotaru (Firefly) with Concentrated Warm Glow & Iridescent Wings */}
       <div
         ref={beeRef}
         className="pointer-events-none fixed top-0 left-0 z-[999] will-change-transform"
@@ -233,38 +233,37 @@ function CrystalFollowerCursor() {
       >
         <div className="relative">
           <svg
-            width="40"
-            height="40"
+            width="42"
+            height="42"
             viewBox="0 0 100 100"
-            className="drop-shadow-[0_0_14px_rgba(255,170,0,0.95)] drop-shadow-[0_0_6px_rgba(255,200,80,0.85)]"
+            className="drop-shadow-[0_0_14px_rgba(255,170,0,0.95)] drop-shadow-[0_0_5px_rgba(255,255,255,0.85)]"
           >
             <defs>
-              {/* Warm Golden Amber Bioluminescent Lantern Gradient */}
+              {/* Concentrated Warm Golden Lantern Gradient */}
               <radialGradient id="fireflyLantern" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stopColor="#FFFFFF" />
-                <stop offset="25%" stopColor="#FFF4D0" />
-                <stop offset="55%" stopColor="#FFD24D" />
-                <stop offset="80%" stopColor="#FFAA00" />
-                <stop offset="100%" stopColor="#FF6600" />
+                <stop offset="25%" stopColor="#FFF0B3" />
+                <stop offset="55%" stopColor="#FFAA00" />
+                <stop offset="85%" stopColor="#FF5500" />
+                <stop offset="100%" stopColor="#1E1404" />
               </radialGradient>
 
               {/* Iridescent Crystalline Gossamer Wing */}
               <linearGradient id="fireflyWing" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.85" />
-                <stop offset="40%" stopColor="#E0F2FE" stopOpacity="0.6" />
-                <stop offset="75%" stopColor="#BAE6FD" stopOpacity="0.35" />
-                <stop offset="100%" stopColor="#818CF8" stopOpacity="0.2" />
+                <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.9" />
+                <stop offset="50%" stopColor="#67E8F9" stopOpacity="0.55" />
+                <stop offset="100%" stopColor="#002FA7" stopOpacity="0.3" />
               </linearGradient>
 
               <radialGradient id="lanternHalo" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#FFAA00" stopOpacity="0.75" />
-                <stop offset="60%" stopColor="#FF8800" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="#FF6600" stopOpacity="0" />
+                <stop offset="0%" stopColor="#FFAA00" stopOpacity="0.8" />
+                <stop offset="60%" stopColor="#FF7700" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#FF7700" stopOpacity="0" />
               </radialGradient>
             </defs>
 
-            {/* Soft Pulsing Warm Lantern Aura behind abdomen */}
-            <circle cx="50" cy="58" r="22" fill="url(#lanternHalo)" className="animate-[pulse_1.8s_ease-in-out_infinite]" />
+            {/* Concentrated Warm Lantern Core behind abdomen */}
+            <circle cx="50" cy="56" r="14" fill="url(#lanternHalo)" />
 
             {/* Forewings (Long, delicate, aerodynamic crystal gossamer) */}
             {/* Left Forewing */}
