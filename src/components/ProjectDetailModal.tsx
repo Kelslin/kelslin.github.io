@@ -9,6 +9,7 @@ interface ProjectDetailModalProps {
   onClose: () => void;
   onNavigate: (wp: Waypoint) => void;
   language?: Language;
+  onLanguageChange?: (lang: Language) => void;
 }
 
 export default function ProjectDetailModal({
@@ -16,6 +17,7 @@ export default function ProjectDetailModal({
   onClose,
   onNavigate,
   language = 'en',
+  onLanguageChange,
 }: ProjectDetailModalProps) {
   // Global Escape & Arrow key navigation
   useEffect(() => {
@@ -59,35 +61,57 @@ export default function ProjectDetailModal({
     <AnimatePresence>
       <div className="fixed inset-0 z-50 overflow-y-auto bg-[#050608]/96 backdrop-blur-2xl selection:bg-[#002FA7] selection:text-white pointer-events-auto">
         {/* Fixed Top Exit & Navigation Bar */}
-        <div className="fixed top-5 left-6 right-6 sm:left-10 sm:right-10 z-[70] flex items-center justify-between pointer-events-auto">
-          {/* Arrow cycle hints */}
-          <div className="hidden sm:flex items-center gap-3 text-xs font-mono tracking-[0.2em] text-[#94A3B8] uppercase">
+        <div className="fixed top-4 sm:top-5 left-4 right-4 sm:left-10 sm:right-10 z-[70] flex items-center justify-between gap-3 pointer-events-auto">
+          {/* Arrow cycle buttons (Visible on all devices, single arrow each) */}
+          <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-mono tracking-[0.15em] uppercase">
             <button
               onClick={() => onNavigate(prevWaypoint)}
-              className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer py-1.5 px-3 rounded-full bg-white/10"
+              className="flex items-center gap-1.5 hover:text-white text-[#D8ECF8] transition-colors cursor-pointer py-1.5 px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md"
+              title="Previous project"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Prev [←]</span>
+              <span className="hidden xs:inline">Prev</span>
             </button>
             <span className="text-white/20">/</span>
             <button
               onClick={() => onNavigate(nextWaypoint)}
-              className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer py-1.5 px-3 rounded-full bg-white/10"
+              className="flex items-center gap-1.5 hover:text-white text-[#D8ECF8] transition-colors cursor-pointer py-1.5 px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md"
+              title="Next project"
             >
-              <span>Next [→]</span>
+              <span className="hidden xs:inline">Next</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
-          {/* Close Fullscreen Button */}
-          <button
-            onClick={onClose}
-            className="ml-auto flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold hover:bg-[#0055FF] hover:text-white transition-colors shadow-2xl cursor-pointer"
-          >
-            <span>Close</span>
-            <span className="text-[10px] opacity-60 hidden sm:inline">[ESC]</span>
-            <X className="w-3.5 h-3.5" />
-          </button>
+          {/* Right side: Language Switcher & Close Button */}
+          <div className="flex items-center gap-2 sm:gap-3 ml-auto">
+            {onLanguageChange && (
+              <div className="flex items-center gap-0.5 sm:gap-1 p-1 rounded-full bg-white/10 backdrop-blur-md">
+                {(['en', 'zh', 'es', 'fr'] as const).map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => onLanguageChange(lang)}
+                    className={`px-2 sm:px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-mono tracking-wider transition-all cursor-pointer font-medium ${
+                      language === lang
+                        ? 'bg-white text-black font-bold shadow-sm'
+                        : 'text-[#94A3B8] hover:text-white'
+                    }`}
+                  >
+                    {lang === 'en' ? 'EN' : lang === 'zh' ? '中' : lang === 'es' ? 'ES' : 'FR'}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Close Fullscreen Button (No [ESC]) */}
+            <button
+              onClick={onClose}
+              className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold hover:bg-[#0055FF] hover:text-white transition-colors shadow-2xl cursor-pointer"
+            >
+              <span>Close</span>
+              <X className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
 
         {/* Backdrop click dismisses */}

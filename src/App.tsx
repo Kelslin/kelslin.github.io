@@ -559,7 +559,6 @@ export default function App() {
               >
                 <span>✕</span>
                 <span>{t.header.overviewExit}</span>
-                <span className="text-[10px] text-white/50 hidden sm:inline">[ESC]</span>
               </button>
               <span className="text-white/20 hidden sm:inline">|</span>
               <span className="text-xs font-mono tracking-[0.2em] uppercase text-[#0055FF] hidden sm:inline font-semibold">
@@ -567,15 +566,15 @@ export default function App() {
               </span>
             </div>
 
-            {/* Macro View Right: Ambient Sound + Language Switcher + Prev / Next Petal Buttons */}
+            {/* Macro View Right: Ambient Sound + Enlarged Language Switcher + Prev / Next Petal Buttons */}
             <div className="flex items-center gap-2 sm:gap-3">
               <AmbientAudioPlayer />
-              <div className="hidden sm:flex items-center gap-0.5 p-0.5 rounded-full bg-white/10 backdrop-blur-md">
+              <div className="flex items-center gap-0.5 sm:gap-1 p-1 rounded-full bg-white/10 backdrop-blur-md">
                 {(['en', 'zh', 'es', 'fr'] as const).map((lang) => (
                   <button
                     key={lang}
                     onClick={() => handleLanguageChange(lang)}
-                    className={`px-1.5 py-0.5 rounded-full text-[9px] font-mono tracking-wider transition-all cursor-pointer ${
+                    className={`px-2 sm:px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-mono tracking-wider transition-all cursor-pointer font-medium ${
                       language === lang
                         ? 'bg-white text-black font-bold shadow-sm'
                         : 'text-[#94A3B8] hover:text-white'
@@ -594,10 +593,11 @@ export default function App() {
                       PORTFOLIO_WAYPOINTS[(idx - 1 + PORTFOLIO_WAYPOINTS.length) % PORTFOLIO_WAYPOINTS.length]
                     );
                   }}
-                  className="flex items-center gap-1 py-1.5 px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-white/20 text-[#E2E8F0] hover:text-white backdrop-blur-md transition-colors cursor-pointer"
+                  className="flex items-center gap-1.5 py-1.5 px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-white/20 text-[#E2E8F0] hover:text-white backdrop-blur-md transition-colors cursor-pointer"
+                  title="Previous project"
                 >
                   <span>←</span>
-                  <span className="hidden sm:inline">{t.header.prev} [←]</span>
+                  <span className="hidden sm:inline">{t.header.prev}</span>
                 </button>
                 <button
                   onClick={() => {
@@ -606,9 +606,10 @@ export default function App() {
                       PORTFOLIO_WAYPOINTS[(idx + 1) % PORTFOLIO_WAYPOINTS.length]
                     );
                   }}
-                  className="flex items-center gap-1 py-1.5 px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-white/20 text-[#E2E8F0] hover:text-white backdrop-blur-md transition-colors cursor-pointer"
+                  className="flex items-center gap-1.5 py-1.5 px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-white/20 text-[#E2E8F0] hover:text-white backdrop-blur-md transition-colors cursor-pointer"
+                  title="Next project"
                 >
-                  <span className="hidden sm:inline">{t.header.next} [→]</span>
+                  <span className="hidden sm:inline">{t.header.next}</span>
                   <span>→</span>
                 </button>
               </div>
@@ -726,6 +727,7 @@ export default function App() {
           setActiveWaypoint(wp);
         }}
         language={language}
+        onLanguageChange={handleLanguageChange}
       />
 
       {/* ========================================================================= */}

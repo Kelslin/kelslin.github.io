@@ -44,7 +44,6 @@ export default function RecruiterIndexModal({
             className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold hover:bg-[#0055FF] hover:text-white transition-colors shadow-2xl cursor-pointer"
           >
             <span>{t.close}</span>
-            <span className="text-[10px] opacity-60 hidden sm:inline">[ESC]</span>
             <X className="w-3.5 h-3.5" />
           </button>
         </div>
