@@ -89,7 +89,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       hint: 'Click or drag flower to explore',
     },
     macro: {
-      readFullCase: 'Read full case study ↗',
+      readFullCase: 'Read full case study',
       dragToRotate: 'Drag horizontally to rotate petals · Click to explore',
       overviewBtn: 'Exit to Overview',
       visitWebsite: 'Visit Live Site ↗',
@@ -215,7 +215,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       hint: '点击或拖拽琉璃花进行浏览',
     },
     macro: {
-      readFullCase: '查看完整项目分析 ↗',
+      readFullCase: '查看完整项目分析',
       dragToRotate: '左右滑动花瓣切换项目 · 点击深入探索',
       overviewBtn: '返回总览',
       visitWebsite: '访问项目官网 ↗',
@@ -341,7 +341,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       hint: 'Haz clic o arrastra la flor para explorar',
     },
     macro: {
-      readFullCase: 'Leer caso de estudio completo ↗',
+      readFullCase: 'Leer caso de estudio completo',
       dragToRotate: 'Desliza horizontalmente para rotar · Clic para explorar',
       overviewBtn: 'Volver al resumen',
       visitWebsite: 'Visitar sitio web ↗',
@@ -467,7 +467,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       hint: 'Cliquez ou glissez la fleur pour explorer',
     },
     macro: {
-      readFullCase: "Lire l'étude de cas complète ↗",
+      readFullCase: "Lire l'étude de cas complète",
       dragToRotate: 'Glissez horizontalement pour faire tourner · Cliquez pour explorer',
       overviewBtn: "Retour à l'aperçu",
       visitWebsite: 'Visiter le site officiel ↗',
