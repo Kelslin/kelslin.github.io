@@ -124,9 +124,29 @@ export default function ProjectDetailModal({
             {role}
           </div>
 
-          {/* Line 3: Period */}
-          <div className="text-[11px] sm:text-xs font-mono tracking-[0.15em] text-[#94A3B8] uppercase mb-6 sm:mb-8">
-            {period}
+          {/* Line 3: Period & Live Website Link */}
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5 mb-6 sm:mb-8">
+            <div className="text-[11px] sm:text-xs font-mono tracking-[0.15em] text-[#94A3B8] uppercase">
+              {period}
+            </div>
+
+            {waypoint.websiteUrl && (
+              <>
+                <span className="text-white/20 hidden xs:inline">·</span>
+                <a
+                  href={waypoint.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/site inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.08] hover:bg-white/[0.18] border border-white/10 hover:border-white/25 text-[11px] font-mono text-[#D8ECF8] hover:text-white transition-all shadow-sm cursor-pointer"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
+                  <span className="font-medium text-white group-hover/site:text-[#0055FF] transition-colors">
+                    {waypoint.websiteLabel || 'Visit Live Platform'}
+                  </span>
+                  <ExternalLink className="w-3 h-3 text-[#94A3B8] group-hover/site:text-white transition-transform group-hover/site:translate-x-0.5 group-hover/site:-translate-y-0.5" />
+                </a>
+              </>
+            )}
           </div>
 
           {/* Highlight Metric Tags (Zero card boxes, zero borders) */}

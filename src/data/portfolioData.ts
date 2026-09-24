@@ -16,6 +16,9 @@ export interface Waypoint {
   narrativeOrigin?: string;
   metrics: { value: string; label: string }[];
   tags: string[];
+  websiteUrl?: string;
+  websiteLabel?: string;
+  isLive?: boolean;
   links?: { label: string; url: string; category: string }[];
   detailedBreakdown: {
     context: string;
@@ -49,6 +52,9 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
       { value: '0 → 1', label: 'Strategy & Scoping' },
     ],
     tags: ['0→1 Strategy', 'Ethical AI Boundaries', 'User Research', 'Figma Interactive V1'],
+    websiteUrl: 'https://afterlifeclub.com',
+    websiteLabel: 'afterlifeclub.com',
+    isLive: true,
     links: [
       { label: 'Interactive Prototype', url: 'https://figma.com/@kelseylin', category: 'Figma V1' },
       { label: 'Product PRD Spec', url: 'https://notion.so/kelseylin/afterlife-prd', category: 'Product Blueprint' },
@@ -88,6 +94,9 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
       { value: '+18%', label: 'Qualified Inquiries' },
     ],
     tags: ['Medical Device UX', 'Conversion Funnel', 'Agile Sprints', 'A/B Multivariate Testing'],
+    websiteUrl: 'https://warmilu.com',
+    websiteLabel: 'warmilu.com',
+    isLive: true,
     links: [
       { label: 'Clinical Intake Funnel', url: 'https://warmilu.com', category: 'Live Deployment' },
       { label: 'Design System & UX Spec', url: 'https://figma.com/@kelseylin', category: 'Figma Library' },
@@ -127,6 +136,9 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
       { value: '1,000+', label: 'Daily Tasks Automated' },
     ],
     tags: ['Hardware-Software Integration', 'Python Telemetry', 'PRD Blueprints', 'Manufacturing QA'],
+    websiteUrl: 'https://www.luxshare-ict.com',
+    websiteLabel: 'luxshare-ict.com',
+    isLive: true,
     links: [
       { label: 'Telemetry Python Architecture', url: 'https://github.com/kelseylin', category: 'Codebase' },
       { label: 'Hardware-Software PRD', url: 'https://notion.so/kelseylin/luxshare-prd', category: 'PRD Specifications' },
@@ -166,6 +178,9 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
       { value: '70+', label: 'Startups Scaled' },
     ],
     tags: ['LLM Prompt Grounding', 'Responsible AI', 'Cross-Functional Leadership', 'Venture Ecosystems'],
+    websiteUrl: 'https://michiganstartupfair.com',
+    websiteLabel: 'michiganstartupfair.com',
+    isLive: true,
     links: [
       { label: 'China Big Data Expo Keynote', url: 'https://youtube.com', category: '1.5M+ Live Demo' },
       { label: 'LLM Prompt Rubric Architecture', url: 'https://github.com/kelseylin', category: 'Responsible AI' },

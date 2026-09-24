@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowUpRight, Mail } from 'lucide-react';
+import { X, ArrowUpRight, Mail, ExternalLink } from 'lucide-react';
 import { PORTFOLIO_WAYPOINTS, Waypoint } from '../data/portfolioData';
 import { Language, TRANSLATIONS } from '../data/translations';
 
@@ -136,9 +136,26 @@ export default function RecruiterIndexModal({
                     ))}
                   </div>
 
-                  <div className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.15em] text-[#D8ECF8] group-hover:text-[#FFAA00] transition-colors">
-                    <span>{t.viewProject || 'View Project'}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-[#FFAA00] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <div className="flex items-center gap-3">
+                    {wp.websiteUrl && (
+                      <a
+                        href={wp.websiteUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.05] hover:bg-white/[0.14] text-[10px] font-mono text-[#94A3B8] hover:text-white transition-all cursor-pointer shadow-sm border border-white/[0.06] hover:border-white/20"
+                        title={`Visit ${wp.websiteLabel || 'official website'}`}
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                        <span>{wp.websiteLabel}</span>
+                        <ExternalLink className="w-2.5 h-2.5" />
+                      </a>
+                    )}
+
+                    <div className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.15em] text-[#D8ECF8] group-hover:text-[#FFAA00] transition-colors">
+                      <span>{t.viewProject || 'View Project'}</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-[#FFAA00] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </div>
                   </div>
                 </div>
               </div>

@@ -23,6 +23,7 @@ export interface Translations {
     readFullCase: string;
     dragToRotate: string;
     overviewBtn: string;
+    visitWebsite: string;
   };
   about: {
     badge: string;
@@ -91,6 +92,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       readFullCase: 'Read full case study ↗',
       dragToRotate: 'Drag horizontally to rotate petals · Click to explore',
       overviewBtn: 'Exit to Overview',
+      visitWebsite: 'Visit Live Site ↗',
     },
     about: {
       badge: 'ABOUT ME',
@@ -216,6 +218,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       readFullCase: '查看完整项目分析 ↗',
       dragToRotate: '左右滑动花瓣切换项目 · 点击深入探索',
       overviewBtn: '返回总览',
+      visitWebsite: '访问项目官网 ↗',
     },
     about: {
       badge: '关于我',
@@ -341,6 +344,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       readFullCase: 'Leer caso de estudio completo ↗',
       dragToRotate: 'Desliza horizontalmente para rotar · Clic para explorar',
       overviewBtn: 'Volver al resumen',
+      visitWebsite: 'Visitar sitio web ↗',
     },
     about: {
       badge: 'SOBRE MÍ',
@@ -466,6 +470,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       readFullCase: "Lire l'étude de cas complète ↗",
       dragToRotate: 'Glissez horizontalement pour faire tourner · Cliquez pour explorer',
       overviewBtn: "Retour à l'aperçu",
+      visitWebsite: 'Visiter le site officiel ↗',
     },
     about: {
       badge: 'À PROPOS',

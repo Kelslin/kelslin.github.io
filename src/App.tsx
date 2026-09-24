@@ -8,6 +8,7 @@ import CinematicMacroOverlay from './components/CinematicMacroOverlay';
 import AboutStoryModal from './components/AboutStoryModal';
 import RecruiterIndexModal from './components/RecruiterIndexModal';
 import ProjectDetailModal from './components/ProjectDetailModal';
+import AmbientAudioPlayer from './components/AmbientAudioPlayer';
 import { Waypoint, PORTFOLIO_WAYPOINTS } from './data/portfolioData';
 import { Language, TRANSLATIONS } from './data/translations';
 
@@ -458,8 +459,10 @@ export default function App() {
               />
             </button>
 
-            {/* Overview Right: Language Switcher & Navigation */}
-            <div className="flex items-center gap-2 sm:gap-5 md:gap-8 ml-auto">
+            {/* Overview Right: Ambient Sound + Language Switcher & Navigation */}
+            <div className="flex items-center gap-2 sm:gap-4 md:gap-6 ml-auto">
+              <AmbientAudioPlayer />
+
               {/* Language Switcher: EN | 中 | ES | FR */}
               <div className="flex items-center gap-0.5 sm:gap-1 p-0.5 sm:p-1 rounded-full bg-white/10 backdrop-blur-md">
                 {(['en', 'zh', 'es', 'fr'] as const).map((lang) => (
@@ -564,8 +567,9 @@ export default function App() {
               </span>
             </div>
 
-            {/* Macro View Right: Language Switcher + Prev / Next Petal Buttons */}
+            {/* Macro View Right: Ambient Sound + Language Switcher + Prev / Next Petal Buttons */}
             <div className="flex items-center gap-2 sm:gap-3">
+              <AmbientAudioPlayer />
               <div className="hidden sm:flex items-center gap-0.5 p-0.5 rounded-full bg-white/10 backdrop-blur-md">
                 {(['en', 'zh', 'es', 'fr'] as const).map((lang) => (
                   <button

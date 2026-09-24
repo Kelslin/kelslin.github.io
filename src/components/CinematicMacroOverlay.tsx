@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileText, ArrowRight, ArrowLeft } from 'lucide-react';
+import { FileText, ArrowRight, ArrowLeft, ExternalLink } from 'lucide-react';
 import { Waypoint, PORTFOLIO_WAYPOINTS } from '../data/portfolioData';
 import { Language, TRANSLATIONS } from '../data/translations';
 
@@ -142,8 +142,8 @@ export default function CinematicMacroOverlay({
             ))}
           </div>
 
-          {/* Frameless Editorial Case Study Link (Zero Frame, Zero Border) */}
-          <div className="flex items-center justify-between pt-1">
+          {/* Frameless Editorial Case Study Link & Seamless Live Website Pill */}
+          <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
             <button
               onClick={onOpenDetails}
               className="group inline-flex items-center gap-2 font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-white hover:text-[#0055FF] transition-colors cursor-pointer"
@@ -156,9 +156,22 @@ export default function CinematicMacroOverlay({
               </span>
             </button>
 
-            <span className="text-[9px] font-mono text-[#94A3B8]/60 tracking-[0.15em] uppercase hidden sm:inline">
-              [← →]
-            </span>
+            {/* Seamless Aesthetic External Website Link */}
+            {activeWaypoint.websiteUrl && (
+              <a
+                href={activeWaypoint.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/link inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.08] hover:bg-white/[0.18] text-[11px] sm:text-xs font-mono tracking-wider text-[#D8ECF8] hover:text-white transition-all shadow-sm border border-white/10 hover:border-white/25 cursor-pointer backdrop-blur-md"
+                title={`Visit ${activeWaypoint.websiteLabel || 'official website'}`}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
+                <span className="font-medium">
+                  {activeWaypoint.websiteLabel || t.visitWebsite}
+                </span>
+                <ExternalLink className="w-3 h-3 text-[#94A3B8] group-hover/link:text-white transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+              </a>
+            )}
           </div>
         </motion.div>
       </AnimatePresence>
