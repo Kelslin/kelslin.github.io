@@ -319,57 +319,6 @@ export default function App() {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isIndexOpen, setIsIndexOpen] = useState(false);
 
-  // Haute Fashion Editorial Font Options for Kelsey Lin
-  const FONT_OPTIONS = [
-    {
-      id: 'vogue-bold',
-      name: 'Vogue Didot Bold',
-      desc: 'Iconic high-fashion masthead with deep, statuesque vertical stems & razor hairlines',
-      className: 'font-vogue font-bold tracking-tight',
-    },
-    {
-      id: 'vogue-italic',
-      name: 'Vogue Runway Italic',
-      desc: 'Slanted couture editorial curves with sweeping high-contrast serifs',
-      className: 'font-vogue-italic font-bold tracking-tight',
-    },
-    {
-      id: 'bodoni-black',
-      name: 'Bodoni Black Display',
-      desc: 'Architectural luxury with monumental weight and intense ink density',
-      className: 'font-bodoni-black font-black tracking-tight',
-    },
-    {
-      id: 'cinzel-couture',
-      name: 'Cinzel Couture',
-      desc: 'Sculpted Roman imperial capitals with haute joaillerie flourishes',
-      className: 'font-cinzel font-bold tracking-wide uppercase',
-    },
-  ] as const;
-
-  const [fontOptionIndex, setFontOptionIndex] = useState<number>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('kelsey_font_option');
-      if (saved !== null) {
-        const idx = parseInt(saved, 10);
-        if (!isNaN(idx) && idx >= 0 && idx < 4) return idx;
-      }
-    }
-    return 0; // Default: Vogue Didot Bold
-  });
-
-  const handleFontCycle = () => {
-    setFontOptionIndex((prev) => {
-      const next = (prev + 1) % FONT_OPTIONS.length;
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('kelsey_font_option', String(next));
-      }
-      return next;
-    });
-  };
-
-  const activeFont = FONT_OPTIONS[fontOptionIndex];
-
   // Responsive layout detection to place flower elegantly in center-right on desktop
   const [isDesktop, setIsDesktop] = useState(
     typeof window !== 'undefined' ? window.innerWidth >= 1024 : true
@@ -668,33 +617,14 @@ export default function App() {
       {/* 4. OVERVIEW EDITORIAL IDENTITY (FULLY RESPONSIVE & CLEAN)                  */}
       {/* ========================================================================= */}
       {!activeWaypoint && !isAboutOpen && !isIndexOpen && !selectedDetailWaypoint && (
-        <div className="fixed left-5 sm:left-12 lg:left-20 top-24 sm:top-28 lg:top-1/2 lg:-translate-y-1/2 max-w-xl z-20 pointer-events-none select-none">
+        <div className="fixed left-5 sm:left-12 lg:left-20 top-24 sm:top-28 lg:top-1/2 lg:-translate-y-1/2 max-w-2xl lg:max-w-3xl xl:max-w-5xl z-20 pointer-events-none select-none">
           <div className="pointer-events-none">
-            {/* Haute Fashion Editorial Identity (Vogue Didot Bold by default; interactive couture preview) */}
-            <div className="group/name relative">
-              <h1 className="select-none tracking-tight">
-                <span
-                  onClick={handleFontCycle}
-                  title={`Typography: ${activeFont.name}. Click to preview chic fashion styles.`}
-                  className={`${activeFont.className} text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.92] block liuli-glass-shimmer-text pointer-events-auto cursor-pointer transition-all duration-300`}
-                >
-                  {t.hero.name}
-                </span>
-              </h1>
-
-              {/* Chic discreet font indicator badge on hover */}
-              <div className="opacity-0 group-hover/name:opacity-100 transition-opacity duration-300 mt-2 pointer-events-auto">
-                <button
-                  type="button"
-                  onClick={handleFontCycle}
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 text-[10px] font-mono tracking-wider text-blue-300/90 cursor-pointer backdrop-blur-md shadow-sm transition-all"
-                >
-                  <span className="text-white/60">✦</span>
-                  <span className="font-semibold">{activeFont.name}</span>
-                  <span className="text-white/40">· Click to switch</span>
-                </button>
-              </div>
-            </div>
+            {/* Haute Fashion Editorial Identity: Vogue Didot Bold (Single Line) */}
+            <h1 className="select-none tracking-tight">
+              <span className="font-vogue text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight leading-[0.95] whitespace-nowrap block liuli-glass-shimmer-text pointer-events-auto cursor-default">
+                {t.hero.name}
+              </span>
+            </h1>
 
             {/* Natural Human Recruiter Introduction (NO border, NO odd styling, NO duplicate nav buttons) */}
             <p className="font-sans text-neutral-300/90 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-md sm:max-w-lg mt-3 sm:mt-5">
