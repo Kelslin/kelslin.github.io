@@ -126,16 +126,11 @@ export default function CinematicMacroOverlay({
             {deckSummary}
           </p>
 
-          {/* Quantified Impact Metrics: Architectural Data Grid (De-AI'd, Clean Hairline Dividers) */}
-          <div className="grid grid-cols-3 gap-2 sm:gap-4 py-3 sm:py-4 my-4 sm:my-5 border-y border-white/10">
+          {/* Quantified Impact Metrics: Clean Frameless Numbers (Zero lines, zero borders) */}
+          <div className="grid grid-cols-3 gap-3 sm:gap-6 my-4 sm:my-5">
             {activeWaypoint.metrics.map((m, idx) => (
-              <div
-                key={idx}
-                className={`flex flex-col justify-start ${
-                  idx !== activeWaypoint.metrics.length - 1 ? 'border-r border-white/10 pr-2 sm:pr-3' : ''
-                }`}
-              >
-                <span className="font-syne text-base sm:text-xl font-bold tracking-tight text-white leading-tight">
+              <div key={idx} className="flex flex-col justify-start">
+                <span className="font-syne text-lg sm:text-2xl font-bold tracking-tight text-white leading-tight">
                   {m.value}
                 </span>
                 <span className="font-mono text-[9px] sm:text-[10px] text-neutral-400 uppercase tracking-[0.14em] mt-1 leading-tight">

@@ -331,68 +331,33 @@ function CrystalFollowerCursor() {
 // ==========================================
 function InteractiveWindRippleName({ name }: { name: string }) {
   const containerRef = useRef<HTMLHeadingElement>(null);
-  const chars = useMemo(() => name.split(''), [name]);
-  const [offsets, setOffsets] = useState<{ y: number; r: number; s: number }[]>([]);
+  const words = useMemo(() => name.split(' '), [name]);
+  const [activeCharIndex, setActiveCharIndex] = useState<number | null>(null);
 
-  useEffect(() => {
-    setOffsets(chars.map(() => ({ y: 0, r: 0, s: 1 })));
-  }, [chars]);
+  // Flatten character list with global indexing for smooth breeze wave
+  const allChars = useMemo(() => {
+    const list: { char: string; wordIndex: number; charIndex: number; globalIndex: number }[] = [];
+    let g = 0;
+    words.forEach((w, wIdx) => {
+      w.split('').forEach((c, cIdx) => {
+        list.push({ char: c, wordIndex: wIdx, charIndex: cIdx, globalIndex: g++ });
+      });
+    });
+    return list;
+  }, [words]);
+
+  const totalChars = allChars.length;
 
   const handlePointerMove = (e: React.PointerEvent<HTMLHeadingElement>) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || totalChars === 0) return;
     const rect = containerRef.current.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-
-    const letterEls = containerRef.current.querySelectorAll<HTMLSpanElement>('.wind-ripple-char');
-    const newOffsets = Array.from(letterEls).map((el) => {
-      const charRect = el.getBoundingClientRect();
-      const charCenterX = charRect.left - rect.left + charRect.width / 2;
-      const charCenterY = charRect.top - rect.top + charRect.height / 2;
-
-      const dist = Math.hypot(mouseX - charCenterX, mouseY - charCenterY);
-      const influence = 140; // Proximity wave influence radius
-
-      if (dist < influence) {
-        const factor = Math.cos((dist / influence) * (Math.PI / 2));
-        // Wind wave: dynamic lift, gentle angle tilt in wind direction, subtle scale
-        const y = -16 * factor;
-        const r = ((mouseX - charCenterX) / influence) * -10 * factor;
-        const s = 1 + 0.06 * factor;
-        return { y, r, s };
-      }
-      return { y: 0, r: 0, s: 1 };
-    });
-
-    setOffsets(newOffsets);
+    const ratio = Math.max(0, Math.min(1, mouseX / rect.width));
+    setActiveCharIndex(ratio * (totalChars - 1));
   };
 
   const handlePointerLeave = () => {
-    setOffsets(chars.map(() => ({ y: 0, r: 0, s: 1 })));
-  };
-
-  // Staggered breeze wave ripple across characters on pointer enter
-  const handlePointerEnter = () => {
-    chars.forEach((_, idx) => {
-      setTimeout(() => {
-        setOffsets((prev) => {
-          const next = [...prev];
-          if (next[idx]) {
-            next[idx] = { y: -14, r: -3.5, s: 1.05 };
-          }
-          return next;
-        });
-        setTimeout(() => {
-          setOffsets((prev) => {
-            const next = [...prev];
-            if (next[idx]) {
-              next[idx] = { y: 0, r: 0, s: 1 };
-            }
-            return next;
-          });
-        }, 320);
-      }, idx * 45);
-    });
+    setActiveCharIndex(null);
   };
 
   return (
@@ -400,32 +365,46 @@ function InteractiveWindRippleName({ name }: { name: string }) {
       ref={containerRef}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      onPointerEnter={handlePointerEnter}
-      className="select-none tracking-tight relative z-20 pointer-events-auto cursor-default overflow-visible pb-2 sm:pb-3.5"
+      className="select-none relative z-20 pointer-events-auto cursor-default overflow-visible pb-2 sm:pb-4"
     >
-      <span className="font-vogue text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight leading-[1.08] whitespace-nowrap block liuli-glass-shimmer-text">
-        {chars.map((char, i) => {
-          const offset = offsets[i] || { y: 0, r: 0, s: 1 };
-          if (char === ' ') {
-            return (
-              <span key={i} className="inline-block w-[0.25em]">
-                &nbsp;
-              </span>
-            );
-          }
-          return (
-            <span
-              key={i}
-              className="wind-ripple-char inline-block relative transition-transform duration-200 ease-out will-change-transform"
-              style={{
-                transform: `translate3d(0, ${offset.y}px, 0) rotate(${offset.r}deg) scale(${offset.s})`,
-                zIndex: char.toLowerCase() === 'y' ? 40 : 25,
-              }}
-            >
-              {char}
-            </span>
-          );
-        })}
+      <span className="font-vogue text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-normal leading-[1.08] whitespace-nowrap block liuli-glass-shimmer-text">
+        {words.map((word, wIdx) => (
+          <span
+            key={wIdx}
+            className={`inline-block whitespace-nowrap ${
+              wIdx < words.length - 1 ? 'mr-4 sm:mr-6 lg:mr-8' : ''
+            }`}
+          >
+            {word.split('').map((char, cIdx) => {
+              const item = allChars.find(
+                (a) => a.wordIndex === wIdx && a.charIndex === cIdx
+              );
+              const gIdx = item ? item.globalIndex : 0;
+              let y = 0;
+              if (activeCharIndex !== null) {
+                const dist = Math.abs(gIdx - activeCharIndex);
+                if (dist < 2.0) {
+                  // Smooth pure vertical breeze lift without any rotation or scaling
+                  const factor = Math.cos((dist / 2.0) * (Math.PI / 2));
+                  y = -10 * factor;
+                }
+              }
+
+              return (
+                <span
+                  key={cIdx}
+                  className="inline-block relative transition-transform duration-200 ease-out will-change-transform"
+                  style={{
+                    transform: `translate3d(0, ${y.toFixed(1)}px, 0)`,
+                    zIndex: char.toLowerCase() === 'y' ? 40 : 20,
+                  }}
+                >
+                  {char}
+                </span>
+              );
+            })}
+          </span>
+        ))}
       </span>
     </h1>
   );
