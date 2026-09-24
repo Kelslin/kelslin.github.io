@@ -6,7 +6,7 @@ interface AmbientAudioPlayerProps {
 }
 
 export default function AmbientAudioPlayer({
-  audioSrc = '/ambient-theme.mp3',
+  audioSrc,
 }: AmbientAudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [hasFile, setHasFile] = useState<boolean>(true);
@@ -14,14 +14,20 @@ export default function AmbientAudioPlayer({
   const fadeIntervalRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const audio = new Audio(audioSrc);
+    // Primary soundscape: /ambient-theme.m4a (AAC/Audio) with /ambient-theme.mp3 fallback
+    const initialSrc = audioSrc || '/ambient-theme.m4a';
+    const audio = new Audio(initialSrc);
     audio.loop = true;
     audio.volume = 0; // Starts at 0 for smooth fade-in
     audioRef.current = audio;
 
-    // Check if file exists / loads
+    // Check if file exists / loads, or fallback to mp3 if needed
     const handleError = () => {
-      // Gracefully handle if file isn't placed yet
+      if (!audioSrc && audio.src.includes('.m4a')) {
+        audio.src = '/ambient-theme.mp3';
+        audio.load();
+        return;
+      }
       setHasFile(false);
       setIsPlaying(false);
     };
