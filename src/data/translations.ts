@@ -101,7 +101,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       location: 'KELSEY LIN · UNIVERSITY OF MICHIGAN',
       story1Title: '01 // Learning to listen and observe',
       story1Text:
-        'When I was 13, I moved from China to the United States entirely on my own, stepping into a completely new environment, culture, and lifestyle without knowing any English. Being immersed in unfamiliar territory where I had to navigate situations I had never experienced before taught me to become exceptionally adaptable and observant—learning to read room dynamics, unspoken emotional cues, and human intent long before words were shared. That formative journey built my resilience in high-ambiguity spaces, and it directly shapes my work in product management today: uncovering latent user needs, rapidly adapting across complex technical domains, and designing with genuine empathy.',
+        'When I was 13, I moved from China to the United States entirely on my own, stepping into a completely new environment, culture, and lifestyle. Being immersed in unfamiliar territory where I had to navigate situations I had never experienced before taught me to become exceptionally adaptable and observant—learning to read room dynamics, unspoken emotional cues, and human intent long before words were shared. That formative journey built my resilience in high-ambiguity spaces, and it directly shapes my work in product management today: uncovering latent user needs, rapidly adapting across complex technical domains, and designing with genuine empathy.',
       story2Title: '02 // Turning ideas into reality',
       story2Text:
         'I love taking complex, ambiguous problems and turning them into clear, reliable systems. Whether that meant co-founding a digital memory platform with Afterlife Club, streamlining telemetry dashboards across assembly lines at Luxshare, or creating prompt guardrails for robotics at SomaSeek, I focus on helping teams move fast while keeping people at the center.',
@@ -226,7 +226,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       location: 'KELSEY LIN · 密歇根大学',
       story1Title: '01 // 学会倾听与敏锐观察',
       story1Text:
-        '13岁那年，我独自一人从中国来到美国，置身于一个完全陌生的文化与生活环境中，当时我一句英语也不会说。面对从未经历过的新环境，我必须保持高度的适应力与敏锐的观察力——去读懂他人的肢体语言、微表情与未曾言明的真实感受。这段经历培养了我在面对高度不确定性时的坚韧心态，也深刻塑造了我今天作为产品经理的核心特质：不仅倾听用户口头表达的需求，更善于洞察他们内心的潜意识诉求，在复杂多变的业务场景中迅速适应，打磨出真正体贴入微的产品。',
+        '13岁那年，我独自一人从中国来到美国，置身于一个完全陌生的文化与生活环境中。面对从未经历过的新环境，我必须保持高度的适应力与敏锐的观察力——去读懂他人的肢体语言、微表情与未曾言明的真实感受。这段经历培养了我在面对高度不确定性时的坚韧心态，也深刻塑造了我今天作为产品经理的核心特质：不仅倾听用户口头表达的需求，更善于洞察他们内心的潜意识诉求，在复杂多变的业务场景中迅速适应，打磨出真正体贴入微的产品。',
       story2Title: '02 // 将复杂问题化为现实系统',
       story2Text:
         '我热衷于拆解复杂模糊的系统难题。无论是联合创办 Afterlife Club 记忆归档平台、在立讯精密优化千万级产线数据看板，还是在 SomaSeek 为具身机器人构建提示词护栏，我都坚持在推进敏捷交付的同时，始终把人的体验放在核心位置。',
@@ -351,7 +351,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       location: 'KELSEY LIN · UNIVERSIDAD DE MICHIGAN',
       story1Title: '01 // Aprender a escuchar y observar con agudeza',
       story1Text:
-        'A los 13 años me mudé completamente sola de China a los Estados Unidos, sumergiéndome en un entorno, cultura y estilo de vida totalmente nuevos sin hablar inglés. Estar frente a situaciones nunca antes experimentadas me obligó a ser extraordinariamente adaptable y observadora: aprendí a captar el lenguaje no verbal, los silencios y las dinámicas humanas antes de que se pronunciara una sola palabra. Esta experiencia forjó mi resiliencia en entornos de alta incertidumbre y guía mi enfoque como líder de producto: descifrar las necesidades no articuladas de los usuarios, adaptarme con rapidez a problemas complejos y diseñar con profunda empatía.',
+        'A los 13 años me mudé completamente sola de China a los Estados Unidos, sumergiéndome en un entorno, cultura y estilo de vida totalmente nuevos. Estar frente a situaciones nunca antes experimentadas me obligó a ser extraordinariamente adaptable y observadora: aprendí a captar el lenguaje no verbal, los silencios y las dinámicas humanas antes de que se pronunciara una sola palabra. Esta experiencia forjó mi resiliencia en entornos de alta incertidumbre y guía mi enfoque como líder de producto: descifrar las necesidades no articuladas de los usuarios, adaptarme con rapidez a problemas complejos y diseñar con profunda empatía.',
       story2Title: '02 // Convertir ideas en realidad',
       story2Text:
         'Me apasiona tomar problemas complejos y ambiguos y transformarlos en sistemas claros y confiables. Ya sea cofundando Afterlife Club, optimizando paneles de telemetría en Luxshare o diseñando salvaguardas para robótica en SomaSeek, mantengo siempre a las personas en el centro.',
@@ -476,7 +476,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       location: 'KELSEY LIN · UNIVERSITÉ DU MICHIGAN',
       story1Title: '01 // Écouter et observer avec acuité',
       story1Text:
-        "À 13 ans, j'ai déménagé entièrement seule de Chine aux États-Unis, plongée dans un environnement, une culture et un mode de vie totalement inédits sans parler un mot d'anglais. Me retrouver face à des situations jamais vécues m'a appris à être profondément adaptable et observatrice — déchiffrer le langage corporel, les non-dits et les réactions humaines avant même que les mots ne soient prononcés. Cette expérience a forgé ma résilience face à l'inconnu et définit ma vision du Product Management : capter les besoins implicites des utilisateurs, pivoter rapidement dans des écosystèmes complexes et concevoir avec une authentique empathie.",
+        "À 13 ans, j'ai déménagé entièrement seule de Chine aux États-Unis, plongée dans un environnement, une culture et un mode de vie totalement inédits. Me retrouver face à des situations jamais vécues m'a appris à être profondément adaptable et observatrice — déchiffrer le langage corporel, les non-dits et les réactions humaines avant même que les mots ne soient prononcés. Cette expérience a forgé ma résilience face à l'inconnu et définit ma vision du Product Management : capter les besoins implicites des utilisateurs, pivoter rapidement dans des écosystèmes complexes et concevoir avec une authentique empathie.",
       story2Title: '02 // Donner vie aux idées',
       story2Text:
         "J'aime transformer des problèmes complexes et ambigus en systèmes clairs et fiables. Que ce soit en cofondant Afterlife Club, en optimisant la télémétrie industrielle chez Luxshare ou en cadrant la robotique chez SomaSeek, je place toujours l'humain au centre.",
