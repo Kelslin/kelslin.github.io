@@ -356,6 +356,80 @@ export default function App() {
     setDragAngleOffset((delta / 250) * (Math.PI / 3));
   };
 
+  // Navigate to homepage / overview of everything
+  const handleGoHome = () => {
+    setActiveWaypoint(null);
+    setSelectedDetailWaypoint(null);
+    setIsAboutOpen(false);
+    setIsIndexOpen(false);
+    if (typeof window !== 'undefined') {
+      window.history.pushState(null, '', '#works');
+    }
+  };
+
+  // Jump directly to Afterlife Club (first project) when clicking // WORKS
+  const handleWorksClick = () => {
+    setIsAboutOpen(false);
+    setIsIndexOpen(false);
+    setSelectedDetailWaypoint(null);
+    setActiveWaypoint(PORTFOLIO_WAYPOINTS[0]);
+    if (typeof window !== 'undefined') {
+      window.history.pushState(null, '', '#afterlife');
+    }
+  };
+
+  // Navigate to specific waypoint
+  const handleSelectWaypoint = (wp: Waypoint) => {
+    setActiveWaypoint(wp);
+    setIsAboutOpen(false);
+    setIsIndexOpen(false);
+    if (typeof window !== 'undefined') {
+      window.history.pushState(null, '', `#${wp.id}`);
+    }
+  };
+
+  // URL Hash routing & sync: initial #works requirement & browser back/forward support
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const syncFromHash = () => {
+      const rawHash = window.location.hash.replace('#', '').trim();
+      const hash = rawHash.toLowerCase();
+
+      if (!hash || hash === 'works' || hash === 'overview' || hash === 'home') {
+        // Ensure the address bar contains #works on the homepage overview
+        if (!window.location.hash || window.location.hash === '#' || window.location.hash === '') {
+          window.history.replaceState(null, '', '#works');
+        }
+        setActiveWaypoint(null);
+        setSelectedDetailWaypoint(null);
+        setIsAboutOpen(false);
+        setIsIndexOpen(false);
+      } else if (hash === 'about') {
+        setIsAboutOpen(true);
+        setIsIndexOpen(false);
+        setActiveWaypoint(null);
+        setSelectedDetailWaypoint(null);
+      } else if (hash === 'index') {
+        setIsIndexOpen(true);
+        setIsAboutOpen(false);
+        setActiveWaypoint(null);
+        setSelectedDetailWaypoint(null);
+      } else {
+        const found = PORTFOLIO_WAYPOINTS.find((w) => w.id.toLowerCase() === hash);
+        if (found) {
+          setActiveWaypoint(found);
+          setIsAboutOpen(false);
+          setIsIndexOpen(false);
+        }
+      }
+    };
+
+    syncFromHash();
+    window.addEventListener('hashchange', syncFromHash);
+    return () => window.removeEventListener('hashchange', syncFromHash);
+  }, []);
+
   const handlePointerUp = () => {
     if (!activeWaypoint || !isDraggingFlower.current) return;
     isDraggingFlower.current = false;
@@ -365,10 +439,10 @@ export default function App() {
     const idx = PORTFOLIO_WAYPOINTS.findIndex((w) => w.id === activeWaypoint.id);
     if (delta < -35) {
       // Swiped / dragged left: go to next project
-      setActiveWaypoint(PORTFOLIO_WAYPOINTS[(idx + 1) % PORTFOLIO_WAYPOINTS.length]);
+      handleSelectWaypoint(PORTFOLIO_WAYPOINTS[(idx + 1) % PORTFOLIO_WAYPOINTS.length]);
     } else if (delta > 35) {
       // Swiped / dragged right: go to prev project
-      setActiveWaypoint(
+      handleSelectWaypoint(
         PORTFOLIO_WAYPOINTS[(idx - 1 + PORTFOLIO_WAYPOINTS.length) % PORTFOLIO_WAYPOINTS.length]
       );
     }
@@ -443,12 +517,7 @@ export default function App() {
           <>
             {/* Overview Left: Personal Brand Signature Logo */}
             <button
-              onClick={() => {
-                setActiveWaypoint(null);
-                setSelectedDetailWaypoint(null);
-                setIsAboutOpen(false);
-                setIsIndexOpen(false);
-              }}
+              onClick={handleGoHome}
               className="flex items-center gap-2 group cursor-pointer transition-transform duration-300 hover:scale-105"
               title="Kelsey Lin"
             >
@@ -483,17 +552,13 @@ export default function App() {
               {/* Navigation Links */}
               <nav className="flex items-center gap-2 sm:gap-4 md:gap-6 text-[10px] sm:text-xs font-mono tracking-[0.12em] sm:tracking-[0.18em] uppercase">
                 <button
-                  onClick={() => {
-                    setActiveWaypoint(null);
-                    setSelectedDetailWaypoint(null);
-                    setIsAboutOpen(false);
-                    setIsIndexOpen(false);
-                  }}
+                  onClick={handleWorksClick}
                   className={`transition-colors cursor-pointer ${
                     !isAboutOpen && !isIndexOpen
                       ? 'text-white font-semibold'
                       : 'text-[#94A3B8] hover:text-white'
                   }`}
+                  title="Explore Works (Afterlife Club)"
                 >
                   {t.header.works}
                 </button>
@@ -503,6 +568,7 @@ export default function App() {
                     setIsAboutOpen(true);
                     setIsIndexOpen(false);
                     setSelectedDetailWaypoint(null);
+                    if (typeof window !== 'undefined') window.history.pushState(null, '', '#about');
                   }}
                   className={`transition-colors cursor-pointer ${
                     isAboutOpen ? 'text-white font-semibold' : 'text-[#94A3B8] hover:text-white'
@@ -516,6 +582,7 @@ export default function App() {
                     setIsIndexOpen(true);
                     setIsAboutOpen(false);
                     setSelectedDetailWaypoint(null);
+                    if (typeof window !== 'undefined') window.history.pushState(null, '', '#index');
                   }}
                   className={`transition-colors cursor-pointer hidden xs:inline ${
                     isIndexOpen ? 'text-white font-semibold' : 'text-[#94A3B8] hover:text-white'
@@ -538,12 +605,7 @@ export default function App() {
             {/* Macro View Left: Brand Logo & Overview Exit & Chapter Badge (Responsive) */}
             <div className="flex items-center gap-2 sm:gap-3">
               <button
-                onClick={() => {
-                  setActiveWaypoint(null);
-                  setSelectedDetailWaypoint(null);
-                  setIsAboutOpen(false);
-                  setIsIndexOpen(false);
-                }}
+                onClick={handleGoHome}
                 className="flex items-center gap-2 group cursor-pointer transition-transform duration-300 hover:scale-105 mr-1"
                 title="Kelsey Lin — Homepage"
               >
@@ -554,7 +616,7 @@ export default function App() {
                 />
               </button>
               <button
-                onClick={() => setActiveWaypoint(null)}
+                onClick={handleGoHome}
                 className="flex items-center gap-1.5 sm:gap-2 py-1.5 px-3 sm:px-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] transition-all cursor-pointer backdrop-blur-md"
               >
                 <span>✕</span>
@@ -589,7 +651,7 @@ export default function App() {
                 <button
                   onClick={() => {
                     const idx = PORTFOLIO_WAYPOINTS.findIndex((w) => w.id === activeWaypoint.id);
-                    setActiveWaypoint(
+                    handleSelectWaypoint(
                       PORTFOLIO_WAYPOINTS[(idx - 1 + PORTFOLIO_WAYPOINTS.length) % PORTFOLIO_WAYPOINTS.length]
                     );
                   }}
@@ -602,7 +664,7 @@ export default function App() {
                 <button
                   onClick={() => {
                     const idx = PORTFOLIO_WAYPOINTS.findIndex((w) => w.id === activeWaypoint.id);
-                    setActiveWaypoint(
+                    handleSelectWaypoint(
                       PORTFOLIO_WAYPOINTS[(idx + 1) % PORTFOLIO_WAYPOINTS.length]
                     );
                   }}
@@ -654,7 +716,7 @@ export default function App() {
               <button
                 key={wp.id}
                 type="button"
-                onClick={() => setActiveWaypoint(wp)}
+                onClick={() => handleSelectWaypoint(wp)}
                 onMouseEnter={() => setHoveredWaypoint(wp)}
                 onMouseLeave={() => setHoveredWaypoint(null)}
                 className={`group flex items-center justify-end gap-3 text-right transition-all duration-300 py-1.5 px-3 rounded-xl cursor-pointer ${
@@ -687,7 +749,7 @@ export default function App() {
               <button
                 key={wp.id}
                 type="button"
-                onClick={() => setActiveWaypoint(wp)}
+                onClick={() => handleSelectWaypoint(wp)}
                 className="flex items-center gap-1.5 py-1.5 px-3 rounded-full bg-[#06080E]/85 backdrop-blur-md text-[10px] font-mono tracking-wider text-white/90 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95 shrink-0"
               >
                 <span
@@ -706,8 +768,8 @@ export default function App() {
       {/* ========================================================================= */}
       <CinematicMacroOverlay
         activeWaypoint={activeWaypoint}
-        onClose={() => setActiveWaypoint(null)}
-        onSelectWaypoint={setActiveWaypoint}
+        onClose={handleGoHome}
+        onSelectWaypoint={handleSelectWaypoint}
         onOpenDetails={() => {
           if (activeWaypoint) {
             setSelectedDetailWaypoint(activeWaypoint);
@@ -724,7 +786,7 @@ export default function App() {
         onClose={() => setSelectedDetailWaypoint(null)}
         onNavigate={(wp) => {
           setSelectedDetailWaypoint(wp);
-          setActiveWaypoint(wp);
+          handleSelectWaypoint(wp);
         }}
         language={language}
         onLanguageChange={handleLanguageChange}
@@ -735,12 +797,8 @@ export default function App() {
       {/* ========================================================================= */}
       <AboutStoryModal
         isOpen={isAboutOpen}
-        onClose={() => setIsAboutOpen(false)}
-        onExploreWorks={() => {
-          setIsAboutOpen(false);
-          setActiveWaypoint(null);
-          setSelectedDetailWaypoint(null);
-        }}
+        onClose={handleGoHome}
+        onExploreWorks={handleWorksClick}
         language={language}
       />
 
@@ -749,10 +807,10 @@ export default function App() {
       {/* ========================================================================= */}
       <RecruiterIndexModal
         isOpen={isIndexOpen}
-        onClose={() => setIsIndexOpen(false)}
+        onClose={handleGoHome}
         onJumpToWaypoint={(wp) => {
           setIsIndexOpen(false);
-          setActiveWaypoint(wp);
+          handleSelectWaypoint(wp);
         }}
         language={language}
       />

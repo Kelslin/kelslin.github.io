@@ -53,7 +53,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     ],
     tags: ['0→1 Strategy', 'Ethical AI Boundaries', 'User Research', 'Figma Interactive V1'],
     websiteUrl: 'https://afterlife-club.github.io/afterlife-site/',
-    websiteLabel: 'afterlife-club.github.io',
+    websiteLabel: 'Afterlife Club Website',
     isLive: true,
     links: [
       { label: 'Interactive Prototype', url: 'https://figma.com/@kelseylin', category: 'Figma V1' },
@@ -95,7 +95,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     ],
     tags: ['Medical Device UX', 'Conversion Funnel', 'Agile Sprints', 'A/B Multivariate Testing'],
     websiteUrl: 'https://warmilu.com',
-    websiteLabel: 'warmilu.com',
+    websiteLabel: 'Warmilu Website',
     isLive: true,
     links: [
       { label: 'Clinical Intake Funnel', url: 'https://warmilu.com', category: 'Live Deployment' },
@@ -137,7 +137,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     ],
     tags: ['Hardware-Software Integration', 'Python Telemetry', 'PRD Blueprints', 'Manufacturing QA'],
     websiteUrl: 'https://www.luxshare-ict.com',
-    websiteLabel: 'luxshare-ict.com',
+    websiteLabel: 'Luxshare ICT Website',
     isLive: true,
     links: [
       { label: 'Telemetry Python Architecture', url: 'https://github.com/kelseylin', category: 'Codebase' },

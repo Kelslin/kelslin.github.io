@@ -142,36 +142,37 @@ export default function CinematicMacroOverlay({
             ))}
           </div>
 
-          {/* Frameless Editorial Case Study Link & Seamless Live Website Pill */}
-          <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
-            <button
-              onClick={onOpenDetails}
-              className="group inline-flex items-center gap-2 font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-white hover:text-[#0055FF] transition-colors cursor-pointer"
-            >
-              <span className="group-hover:text-[#0055FF] transition-colors font-semibold">
-                {t.readFullCase}
-              </span>
-              <span className="transition-transform group-hover:translate-x-1 text-[#0055FF]">
-                →
-              </span>
-            </button>
-
-            {/* Seamless Aesthetic External Website Link */}
-            {activeWaypoint.websiteUrl && (
+          {/* Action Row: Frameless Underlined Website Link (Left) & Highlighted Case Study CTA (Right) */}
+          <div className="flex items-center justify-between gap-2.5 sm:gap-4 pt-3 border-t border-white/10">
+            {/* Left: Underlined Clickable Website Link (Frameless & Clean) */}
+            {activeWaypoint.websiteUrl ? (
               <a
                 href={activeWaypoint.websiteUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/link inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.08] hover:bg-white/[0.18] text-[11px] sm:text-xs font-mono tracking-wider text-[#D8ECF8] hover:text-white transition-all shadow-sm border border-white/10 hover:border-white/25 cursor-pointer backdrop-blur-md"
+                className="group/link inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs text-[#CBD5E1] hover:text-white underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors cursor-pointer shrink-0"
                 title={`Visit ${activeWaypoint.websiteLabel || 'official website'}`}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
-                <span className="font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
+                <span className="font-medium whitespace-nowrap">
                   {activeWaypoint.websiteLabel || t.visitWebsite}
                 </span>
-                <ExternalLink className="w-3 h-3 text-[#94A3B8] group-hover/link:text-white transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                <ExternalLink className="w-3 h-3 text-[#94A3B8] group-hover/link:text-white transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 shrink-0" />
               </a>
+            ) : (
+              <div />
             )}
+
+            {/* Right: Highlighted Case Study Primary Button */}
+            <button
+              onClick={onOpenDetails}
+              className="group inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-[#0A0D14] hover:bg-[#0055FF] hover:text-white font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-[0.12em] sm:tracking-[0.14em] transition-all duration-300 shadow-[0_2px_12px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_20px_rgba(0,85,255,0.45)] cursor-pointer shrink-0 ml-auto"
+            >
+              <span className="whitespace-nowrap">{t.readFullCase}</span>
+              <span className="transition-transform duration-200 group-hover:translate-x-1 font-bold">
+                →
+              </span>
+            </button>
           </div>
         </motion.div>
       </AnimatePresence>
