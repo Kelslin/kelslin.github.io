@@ -852,8 +852,10 @@ export default function App() {
         language={language}
       />
 
-      {/* Single Dedicated Audio Controller on Left Bottom Screen */}
-      <LeftBottomAudioIndicator />
+      {/* Single Dedicated Audio Controller on Left Bottom Screen (Auto-minimizes in deck/modals) */}
+      <LeftBottomAudioIndicator
+        isMacroActive={Boolean(activeWaypoint || isAboutOpen || isIndexOpen || selectedDetailWaypoint)}
+      />
     </div>
     </AudioProvider>
   );

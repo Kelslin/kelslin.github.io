@@ -181,7 +181,7 @@ export default function CinematicMacroOverlay({
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 15 }}
         transition={{ duration: 0.3 }}
-        className="flex items-center gap-5 sm:gap-8 pointer-events-auto text-[10px] sm:text-xs font-mono tracking-[0.15em] uppercase overflow-x-auto no-scrollbar py-2 shrink-0 border-t border-white/10"
+        className="flex items-center gap-5 sm:gap-8 pointer-events-auto text-[10px] sm:text-xs font-mono tracking-[0.15em] uppercase overflow-x-auto no-scrollbar py-2 shrink-0 border-t border-white/10 pl-12 sm:pl-16"
       >
         {PORTFOLIO_WAYPOINTS.map((wp) => {
           const isCurrent = wp.id === activeWaypoint.id;
