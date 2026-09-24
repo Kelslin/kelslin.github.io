@@ -687,14 +687,14 @@ export default function App() {
         <div className="fixed left-5 sm:left-12 lg:left-20 top-24 sm:top-28 lg:top-1/2 lg:-translate-y-1/2 max-w-2xl lg:max-w-3xl xl:max-w-5xl z-20 pointer-events-none select-none">
           <div className="pointer-events-none">
             {/* Haute Fashion Editorial Identity: Vogue Didot Bold (Single Line) */}
-            <h1 className="select-none tracking-tight">
-              <span className="font-vogue text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight leading-[0.95] whitespace-nowrap block liuli-glass-shimmer-text pointer-events-auto cursor-default">
+            <h1 className="select-none tracking-tight relative z-10">
+              <span className="font-vogue text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight leading-[1.08] whitespace-nowrap block pb-2 sm:pb-3.5 liuli-glass-shimmer-text pointer-events-auto cursor-default">
                 {t.hero.name}
               </span>
             </h1>
 
             {/* Natural Human Recruiter Introduction (NO border, NO odd styling, NO duplicate nav buttons) */}
-            <p className="font-sans text-neutral-300/90 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-md sm:max-w-lg mt-3 sm:mt-5">
+            <p className="relative z-0 font-sans text-neutral-300/90 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-md sm:max-w-lg mt-3 sm:mt-5">
               {t.hero.intro}
             </p>
           </div>
