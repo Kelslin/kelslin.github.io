@@ -37,16 +37,16 @@ export default function LiuliLilyModel({
 
         mesh.material = new THREE.MeshPhysicalMaterial({
           map: originalMap || null,
-          roughness: 0.18,                         // Glossy crystal surface
+          roughness: 0.10,                         // High-gloss wet crystal surface
           metalness: 0.05,
-          transmission: 0.75,                      // Lets light pass through without washing out texture
+          transmission: 0.82,                      // Lets light pass through without washing out texture
           ior: 1.52,                               // Glass refraction index
-          thickness: 1.2,                          // Physical depth
+          thickness: 1.0,                          // Physical depth
           clearcoat: 1.0,                          // Wet fired glaze sheen
-          clearcoatRoughness: 0.1,
-          sheen: 0.8,
-          sheenColor: new THREE.Color('#0044FF'),   // Signature Klein blue edge sheen highlight
-          sheenRoughness: 0.3,
+          clearcoatRoughness: 0.06,
+          sheen: 1.0,                              // Vivid iridescent sheen along petal rims
+          sheenColor: new THREE.Color('#A855F7'),   // Purple/violet rim sheen reflection matching reference photo
+          sheenRoughness: 0.22,
           transparent: true,
           opacity: 1.0,
         });
@@ -135,9 +135,15 @@ export default function LiuliLilyModel({
           />
         </group>
 
-        {/* Floating amber and Klein Blue micro-embers */}
-        <Sparkles count={40} scale={4.5} size={2.5} speed={0.35} color="#FFA500" />
-        <Sparkles count={25} scale={5.0} size={3.0} speed={0.25} color="#0055FF" />
+        {/* Floating Magical Garden Fireflies (Warm golden embers & celestial fairy lights) */}
+        {/* 1. Warm Golden Yellow Fireflies */}
+        <Sparkles count={75} scale={[8.0, 8.0, 6.0]} size={5.5} speed={0.4} color="#FFB800" />
+        {/* 2. Soft Glowing Amber Embers */}
+        <Sparkles count={45} scale={[6.5, 6.5, 5.0]} size={7.5} speed={0.3} color="#FF8800" />
+        {/* 3. Celestial Cyan & Fairy Blue Embers */}
+        <Sparkles count={45} scale={[8.5, 8.5, 6.0]} size={4.5} speed={0.25} color="#38BDF8" />
+        {/* 4. Deep Indigo Starlight Fireflies */}
+        <Sparkles count={30} scale={[9.0, 9.0, 7.0]} size={5.0} speed={0.35} color="#0055FF" />
       </Float>
     </group>
   );

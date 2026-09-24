@@ -22,14 +22,14 @@ function CursorInteractiveLight() {
     // Map 2D pointer coordinates (-1 to 1) into 3D world space over the flower
     const x = (pointer.x * viewport.width) / 2;
     const y = (pointer.y * viewport.height) / 2;
-    lightRef.current.position.set(x, y, 1.8);
+    lightRef.current.position.set(x, y, 1.2);
   });
 
   return (
     <pointLight
       ref={lightRef}
-      intensity={5.5}
-      distance={5.5}
+      intensity={8.5}
+      distance={6.5}
       decay={2}
       color="#FFAA00"
     />
@@ -177,16 +177,19 @@ function CrystalFollowerCursor() {
 
   return (
     <div className="hidden lg:block">
-      {/* Warm Pollen Glow Wake */}
+      {/* Warm Radiant Glory & Pollen Aura Wake */}
       <div
         ref={wakeRef}
         className="pointer-events-none fixed top-0 left-0 z-[998] will-change-transform"
         style={{ transform: 'translate3d(-200px, -200px, 0) translate(-50%, -50%)' }}
       >
-        <div className="w-[180px] h-[180px] rounded-full bg-gradient-to-r from-[#FF5500]/20 via-[#FFAA00]/20 to-transparent blur-[55px]" />
+        {/* Outer ambient warm golden glow */}
+        <div className="w-[280px] h-[280px] rounded-full bg-gradient-to-r from-[#FF5500]/30 via-[#FFAA00]/35 to-transparent blur-[65px]" />
+        {/* Radiant inner glory halo centered right behind bee */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85px] h-[85px] rounded-full bg-[#FFAA00]/70 blur-[18px]" />
       </div>
 
-      {/* Glass Liuli Honeybee */}
+      {/* Glass Liuli Honeybee with Luminous Glory */}
       <div
         ref={beeRef}
         className="pointer-events-none fixed top-0 left-0 z-[999] will-change-transform"
@@ -194,10 +197,10 @@ function CrystalFollowerCursor() {
       >
         <div className="relative">
           <svg
-            width="36"
-            height="36"
+            width="42"
+            height="42"
             viewBox="0 0 100 100"
-            className="drop-shadow-[0_0_10px_rgba(255,85,0,0.8)]"
+            className="drop-shadow-[0_0_14px_rgba(255,170,0,0.95)] drop-shadow-[0_0_5px_rgba(255,255,255,0.85)]"
           >
             <defs>
               <linearGradient id="beeBody" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -336,12 +339,23 @@ export default function App() {
         onPointerCancel={handlePointerUp}
       >
         <Canvas camera={{ position: [0, 0, 4.2], fov: 42 }}>
-          {/* Authentic OG Amber Liuli Crystal Lighting Setup (Commit 826bc89) */}
-          <ambientLight intensity={0.7} />
-          <directionalLight position={[-4, 3, -2]} intensity={4.0} color="#0038FF" />
-          <pointLight position={[3, -2, 2]} intensity={3.5} color="#FF5500" />
-          <directionalLight position={[0, 4, 3]} intensity={2.0} color="#FFFFFF" />
-          <directionalLight position={[4, 2, -3]} intensity={1.6} color="#6366F1" />
+          {/* Authentic OG Amber Liuli Crystal Lighting Setup with Purple Rim Reflections */}
+          <ambientLight intensity={1.1} />
+
+          {/* 1. Back-Left Electric Klein Blue Rim Light */}
+          <directionalLight position={[-4, 3, -2]} intensity={4.5} color="#0038FF" />
+          <pointLight position={[-3, 1, -1]} intensity={3.5} color="#0055FF" />
+
+          {/* 2. Top-Back Vivid Purple / Violet Rim Light (Vivid purple reflections on petal rims) */}
+          <directionalLight position={[0, 4.5, -2.5]} intensity={5.5} color="#A855F7" />
+          <pointLight position={[0.5, 3.8, -1.5]} intensity={4.5} color="#C084FC" />
+
+          {/* 3. Warm Golden & Molten Amber Front Fill (Brightens petal glaze) */}
+          <pointLight position={[3, -1.5, 2.5]} intensity={5.0} color="#FF7700" />
+          <pointLight position={[-2, -2, 2.0]} intensity={3.5} color="#FFAA00" />
+
+          {/* 4. Top White Specular Key Light (Glistening wet glaze shine) */}
+          <directionalLight position={[0, 4, 3]} intensity={3.2} color="#FFFFFF" />
 
           {/* Dynamic 3D Cursor Follower Light: Illuminates micro-details & petal reflections under cursor */}
           <CursorInteractiveLight />
