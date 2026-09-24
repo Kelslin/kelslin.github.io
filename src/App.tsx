@@ -213,19 +213,19 @@ function CrystalFollowerCursor() {
 
   return (
     <div className="hidden lg:block">
-      {/* Warm Radiant Glory & Pollen Aura Wake */}
+      {/* Warm Bioluminescent Stardust Aura Wake */}
       <div
         ref={wakeRef}
         className="pointer-events-none fixed top-0 left-0 z-[998] will-change-transform"
         style={{ transform: 'translate3d(-200px, -200px, 0) translate(-50%, -50%)' }}
       >
-        {/* Outer ambient warm golden glow */}
-        <div className="w-[280px] h-[280px] rounded-full bg-gradient-to-r from-[#FF5500]/30 via-[#FFAA00]/35 to-transparent blur-[65px]" />
-        {/* Radiant inner glory halo centered right behind bee */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85px] h-[85px] rounded-full bg-[#FFAA00]/70 blur-[18px]" />
+        {/* Outer ambient bioluminescent chartreuse-gold stardust glow */}
+        <div className="w-[260px] h-[260px] rounded-full bg-gradient-to-r from-[#FACC15]/20 via-[#84CC16]/22 to-transparent blur-[55px]" />
+        {/* Soft living lantern core centered right behind firefly */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75px] h-[75px] rounded-full bg-[#EAB308]/50 blur-[16px] animate-[pulse_2s_ease-in-out_infinite]" />
       </div>
 
-      {/* Glass Liuli Honeybee with Luminous Glory */}
+      {/* Bioluminescent Glass Hotaru (Firefly) with Iridescent Gossamer Wings */}
       <div
         ref={beeRef}
         className="pointer-events-none fixed top-0 left-0 z-[999] will-change-transform"
@@ -233,58 +233,92 @@ function CrystalFollowerCursor() {
       >
         <div className="relative">
           <svg
-            width="42"
-            height="42"
+            width="40"
+            height="40"
             viewBox="0 0 100 100"
-            className="drop-shadow-[0_0_14px_rgba(255,170,0,0.95)] drop-shadow-[0_0_5px_rgba(255,255,255,0.85)]"
+            className="drop-shadow-[0_0_12px_rgba(234,179,8,0.95)] drop-shadow-[0_0_6px_rgba(132,204,22,0.85)]"
           >
             <defs>
-              <linearGradient id="beeBody" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#FFAA00" />
-                <stop offset="35%" stopColor="#1E1404" />
-                <stop offset="55%" stopColor="#FF5500" />
-                <stop offset="75%" stopColor="#140D02" />
-                <stop offset="100%" stopColor="#FF8800" />
+              {/* Glowing Bioluminescent Lantern Gradient */}
+              <radialGradient id="fireflyLantern" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#FFFFFF" />
+                <stop offset="25%" stopColor="#FEF08A" />
+                <stop offset="65%" stopColor="#EAB308" />
+                <stop offset="90%" stopColor="#84CC16" />
+                <stop offset="100%" stopColor="#4D7C0F" />
+              </radialGradient>
+
+              {/* Iridescent Crystalline Gossamer Wing */}
+              <linearGradient id="fireflyWing" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.85" />
+                <stop offset="40%" stopColor="#E0F2FE" stopOpacity="0.6" />
+                <stop offset="75%" stopColor="#BAE6FD" stopOpacity="0.35" />
+                <stop offset="100%" stopColor="#818CF8" stopOpacity="0.2" />
               </linearGradient>
-              <linearGradient id="crystalWing" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.9" />
-                <stop offset="50%" stopColor="#67E8F9" stopOpacity="0.55" />
-                <stop offset="100%" stopColor="#002FA7" stopOpacity="0.3" />
-              </linearGradient>
+
+              <radialGradient id="lanternHalo" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#FACC15" stopOpacity="0.7" />
+                <stop offset="60%" stopColor="#84CC16" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#84CC16" stopOpacity="0" />
+              </radialGradient>
             </defs>
 
-            {/* Left Glass Wing */}
+            {/* Soft Pulsing Lantern Aura behind abdomen */}
+            <circle cx="50" cy="58" r="20" fill="url(#lanternHalo)" className="animate-[pulse_1.8s_ease-in-out_infinite]" />
+
+            {/* Forewings (Long, delicate, aerodynamic crystal gossamer) */}
+            {/* Left Forewing */}
             <path
-              d="M 48 45 C 20 20 8 30 15 50 C 22 68 45 52 48 48 Z"
-              fill="url(#crystalWing)"
-              stroke="rgba(216,236,248,0.8)"
-              strokeWidth="0.8"
-              className="origin-[48px_48px] animate-[pulse_0.18s_ease-in-out_infinite]"
+              d="M 49 38 C 24 16, 12 30, 20 52 C 27 66, 46 48, 48 42 Z"
+              fill="url(#fireflyWing)"
+              stroke="rgba(255,255,255,0.75)"
+              strokeWidth="0.7"
+              className="origin-[49px_40px] animate-[pulse_0.22s_ease-in-out_infinite]"
+            />
+            {/* Right Forewing */}
+            <path
+              d="M 51 38 C 76 16, 88 30, 80 52 C 73 66, 54 48, 52 42 Z"
+              fill="url(#fireflyWing)"
+              stroke="rgba(255,255,255,0.75)"
+              strokeWidth="0.7"
+              className="origin-[51px_40px] animate-[pulse_0.22s_ease-in-out_infinite]"
             />
 
-            {/* Right Glass Wing */}
+            {/* Hindwings (Smaller delicate lower wings) */}
             <path
-              d="M 52 45 C 80 20 92 30 85 50 C 78 68 55 52 52 48 Z"
-              fill="url(#crystalWing)"
-              stroke="rgba(216,236,248,0.8)"
-              strokeWidth="0.8"
-              className="origin-[52px_48px] animate-[pulse_0.18s_ease-in-out_infinite]"
+              d="M 49 42 C 34 46, 26 58, 32 68 C 38 74, 47 56, 49 48 Z"
+              fill="url(#fireflyWing)"
+              stroke="rgba(255,255,255,0.5)"
+              strokeWidth="0.5"
+              className="origin-[49px_46px] animate-[pulse_0.18s_ease-in-out_infinite]"
+            />
+            <path
+              d="M 51 42 C 66 46, 74 58, 68 68 C 62 74, 53 56, 51 48 Z"
+              fill="url(#fireflyWing)"
+              stroke="rgba(255,255,255,0.5)"
+              strokeWidth="0.5"
+              className="origin-[51px_46px] animate-[pulse_0.18s_ease-in-out_infinite]"
             />
 
-            {/* Honeybee Head & Antennas */}
-            <circle cx="50" cy="30" r="6" fill="#1C1405" stroke="#FFAA00" strokeWidth="0.5" />
-            <path d="M 48 26 Q 44 20 40 21" stroke="#FFAA00" strokeWidth="1" strokeLinecap="round" fill="none" />
-            <path d="M 52 26 Q 56 20 60 21" stroke="#FFAA00" strokeWidth="1" strokeLinecap="round" fill="none" />
+            {/* Slender Obsidian/Bronze Thorax */}
+            <ellipse cx="50" cy="38" rx="4.5" ry="5.5" fill="#18181B" stroke="#71717A" strokeWidth="0.6" />
 
-            {/* Striped Glass Abdomen */}
-            <ellipse
-              cx="50"
-              cy="52"
-              rx="10"
-              ry="16"
-              fill="url(#beeBody)"
-              stroke="rgba(255,255,255,0.4)"
+            {/* Delicate Head & Calligraphic Antennas */}
+            <circle cx="50" cy="28" r="3.2" fill="#18181B" stroke="#71717A" strokeWidth="0.5" />
+            {/* Left Antenna with Glowing Stardust Tip */}
+            <path d="M 48 26 Q 42 16 35 17" stroke="#FDE047" strokeWidth="0.7" strokeLinecap="round" fill="none" />
+            <circle cx="35" cy="17" r="1.2" fill="#FEF08A" />
+            {/* Right Antenna with Glowing Stardust Tip */}
+            <path d="M 52 26 Q 58 16 65 17" stroke="#FDE047" strokeWidth="0.7" strokeLinecap="round" fill="none" />
+            <circle cx="65" cy="17" r="1.2" fill="#FEF08A" />
+
+            {/* Glowing Bioluminescent Lantern Abdomen (Smooth Teardrop) */}
+            <path
+              d="M 46 42 C 44 48, 44 58, 50 68 C 56 58, 56 48, 54 42 Z"
+              fill="url(#fireflyLantern)"
+              stroke="rgba(255,255,255,0.7)"
               strokeWidth="0.8"
+              className="animate-[pulse_1.6s_ease-in-out_infinite]"
             />
           </svg>
         </div>
