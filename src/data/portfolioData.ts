@@ -149,7 +149,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     chapter: '04',
     codeTag: 'embodied.ai',
     subTag: '647.7468',
-    title: 'SomaSeek & Michigan Startup Fair',
+    title: 'SomaSeek',
     subtitle: 'Multi-Robot Embodied AI & Michigan Startup Ecosystem',
     role: 'Product Manager & Ecosystem Director',
     period: '2025 – 2026',

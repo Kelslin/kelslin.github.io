@@ -628,7 +628,7 @@ export default function App() {
                 }`}
               >
                 <div className="font-syne text-xs font-semibold text-white tracking-wide group-hover:text-blue-300 transition-colors">
-                  {title.split(' & ')[0]}
+                  {title.split(/ & | y /)[0]}
                 </div>
                 <span
                   className="w-2 h-2 rounded-full transition-transform duration-300 group-hover:scale-125"

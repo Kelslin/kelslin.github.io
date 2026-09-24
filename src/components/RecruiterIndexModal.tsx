@@ -137,7 +137,7 @@ export default function RecruiterIndexModal({
                   </div>
 
                   <div className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.15em] text-[#D8ECF8] group-hover:text-[#FFAA00] transition-colors">
-                    <span>View Project</span>
+                    <span>{t.viewProject || 'View Project'}</span>
                     <ArrowUpRight className="w-3.5 h-3.5 text-[#FFAA00] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </div>
                 </div>

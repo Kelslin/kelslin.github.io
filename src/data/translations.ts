@@ -50,6 +50,7 @@ export interface Translations {
     educationSection: string;
     skillsSection: string;
     connectSection: string;
+    viewProject: string;
   };
   projects: Record<
     string,
@@ -122,6 +123,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       educationSection: 'Education & Honors',
       skillsSection: 'Core Capabilities',
       connectSection: 'Direct Channels',
+      viewProject: 'View Project',
     },
     projects: {
       afterlife: {
@@ -173,7 +175,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         ],
       },
       somaseek: {
-        title: 'SomaSeek & Michigan Startup Fair',
+        title: 'SomaSeek',
         subtitle: 'Multi-Robot Embodied AI & Michigan Startup Ecosystem',
         role: 'Product Manager & Ecosystem Director',
         period: '2025 – 2026',
@@ -246,6 +248,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       educationSection: '教育与学术荣誉',
       skillsSection: '核心专业能力',
       connectSection: '直接联系渠道',
+      viewProject: '查看项目',
     },
     projects: {
       afterlife: {
@@ -297,7 +300,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         ],
       },
       somaseek: {
-        title: 'SomaSeek & 密歇根创业展',
+        title: 'SomaSeek',
         subtitle: '多机器人具身智能与密歇根创投生态',
         role: '产品经理 & 创投生态总监',
         period: '2025 – 2026',
@@ -370,15 +373,16 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       educationSection: 'Educación y Logros',
       skillsSection: 'Competencias Principales',
       connectSection: 'Canales Directos',
+      viewProject: 'Ver Proyecto',
     },
     projects: {
       afterlife: {
         title: 'Afterlife Club',
-        subtitle: 'Plataforma de Legado Digital y Memorias con IA',
-        role: 'Cofundadora y Gerente Principal de Producto',
+        subtitle: 'Plataforma de Memorias y Legado Digital con IA',
+        role: 'Cofundadora & Lead PM',
         period: '2026 – Presente',
         story:
-          'Al dialogar con usuarios sobre planificación hacia el final de la vida, notamos que enfrentar la mortalidad resultaba abrumador. Lideré el giro estratégico hacia el relato diario de memorias y celebración de vidas, elevando la tasa de finalización al 88%. Para resguardar la confianza, establecí límites éticos estrictos evitando la clonación de voz.',
+          'Rediseñé el producto hacia la celebración de vidas en lugar del duelo, elevando la finalización de tareas al 88% sin clonación artificial de voz.',
         context:
           'Las herramientas tradicionales sufren alto abandono debido al peso emocional. Diseñamos Afterlife Club como un espacio cálido y reconfortante para preservar recuerdos y cartas familiares.',
         bulletPoints: [
@@ -391,10 +395,10 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       warmilu: {
         title: 'Warmilu',
         subtitle: 'Tecnología Médica Térmica No Eléctrica para Neonatos',
-        role: 'Pasante de Gestión de Producto',
+        role: 'Pasante de PM',
         period: '2026',
         story:
-          'Warmilu produce mantas térmicas no eléctricas para salvar recién nacidos en clínicas sin electricidad constante. Lideré el rediseño completo de la experiencia web y el embudo de ventas, aumentando las compras directas un 20% y recortando los tiempos de respuesta del equipo un 40%.',
+          'Rediseñé la experiencia web y el embudo de compra médica, aumentando las ventas directas un 20% y recortando la respuesta un 40%.',
         context:
           'Las mantas médicas salvan vidas infantiles, pero el sitio anterior complicaba a hospitales y donantes comprender la tecnología o adquirir unidades.',
         bulletPoints: [
@@ -407,10 +411,10 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       luxshare: {
         title: 'Luxshare Precision',
         subtitle: 'Integración Telemática en Manufactura de Hardware y Software',
-        role: 'Pasante de Producto · Telemetría de Hardware-Software',
+        role: 'Pasante de PM · Telemetría HW/SW',
         period: '2025',
         story:
-          'En líneas de producción de componentes de alta precisión y vehículos eléctricos, redacté especificaciones y flujos de inspección estandarizados. A través de 200 auditorías técnicas, elevamos la precisión de línea al 98% y redujimos errores de entrenamiento un 30%.',
+          'Estandaricé especificaciones técnicas en 200 auditorías, elevando la precisión de línea al 98% y reduciendo fallas de capacitación un 30%.',
         context:
           'La fabricación de alta tecnología requiere sincronización entre pruebas de software automatizadas, cámaras ópticas y técnicos de ensamblaje.',
         bulletPoints: [
@@ -421,12 +425,12 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         ],
       },
       somaseek: {
-        title: 'SomaSeek y Feria de Startups de Michigan',
-        subtitle: 'IA Corpórea Multi-Robot y Ecosistema Emprendedor',
-        role: 'Gerente de Producto y Directora del Ecosistema',
+        title: 'SomaSeek',
+        subtitle: 'IA Corpórea y Ecosistema Emprendedor de Michigan',
+        role: 'Product Manager & Directora de Ecosistema',
         period: '2025 – 2026',
         story:
-          'En SomaSeek diseñé marcos de prompts y rúbricas de evaluación para robótica educativa que eliminaron alucinaciones de IA y aumentaron la adopción en aulas un 40%. Presenté la plataforma en vivo ante 1.5 millones de espectadores en la China Big Data Expo. Como Directora de la Feria de Startups de Michigan, lideré un equipo de 11 personas conectando a más de 300 estudiantes con 70 empresas de capital riesgo.',
+          'Diseñé prompts estructurados para robótica educativa, eliminando alucinaciones de IA y aumentando la adopción en aulas piloto un 40%.',
         context:
           'Evaluar tareas robóticas con modelos de lenguaje exige confiabilidad absoluta sin margen de error ni alucinaciones.',
         bulletPoints: [
@@ -494,6 +498,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       educationSection: 'Formation & Distinctions',
       skillsSection: 'Compétences Clés',
       connectSection: 'Canaux Directs',
+      viewProject: 'Voir le Projet',
     },
     projects: {
       afterlife: {
@@ -545,7 +550,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         ],
       },
       somaseek: {
-        title: 'SomaSeek & Salon des Startups du Michigan',
+        title: 'SomaSeek',
         subtitle: 'IA Incarnée Multi-Robots & Écosystème Entrepreneurial',
         role: 'Chef de Produit & Directrice de l’Écosystème',
         period: '2025 – 2026',
