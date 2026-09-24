@@ -562,7 +562,7 @@ export default function App() {
       {/* ========================================================================= */}
       {/* 3. UNIFIED TOP NAVIGATION (FRAMELESS, ZERO OVERLAP, ADAPTIVE HEADER)      */}
       {/* ========================================================================= */}
-      <header className="fixed top-0 left-0 w-full z-40 px-3 sm:px-6 lg:px-10 py-3 sm:py-5 flex items-center justify-between pointer-events-auto">
+      <header className="fixed top-0 left-0 w-full z-40 px-6 sm:px-10 lg:px-16 py-3 sm:py-5 flex items-center justify-between pointer-events-auto">
         {!activeWaypoint ? (
           <>
             {/* Overview Left: Personal Brand Signature Logo */}
@@ -729,7 +729,7 @@ export default function App() {
       {/* 4. OVERVIEW EDITORIAL IDENTITY (FULLY RESPONSIVE & CLEAN)                  */}
       {/* ========================================================================= */}
       {!activeWaypoint && !isAboutOpen && !isIndexOpen && !selectedDetailWaypoint && (
-        <div className="fixed left-5 sm:left-12 lg:left-20 top-24 sm:top-28 lg:top-1/2 lg:-translate-y-1/2 max-w-2xl lg:max-w-3xl xl:max-w-5xl z-20 pointer-events-none select-none">
+        <div className="fixed left-6 sm:left-10 lg:left-16 top-24 sm:top-28 lg:top-1/2 lg:-translate-y-1/2 max-w-2xl lg:max-w-3xl xl:max-w-5xl z-20 pointer-events-none select-none">
           <div className="pointer-events-none">
             {/* Haute Fashion Editorial Identity: Wind Breeze Vogue Typography */}
             <WindBreezeHeroName name={t.hero.name} />
@@ -747,7 +747,7 @@ export default function App() {
       {/* ========================================================================= */}
       {/* Desktop: Refined Frameless Architectural Project Index (No dots, no clunky boxes) */}
       {!activeWaypoint && !isAboutOpen && !isIndexOpen && !selectedDetailWaypoint && (
-        <div className="hidden lg:flex fixed right-8 xl:right-14 top-1/2 -translate-y-1/2 z-20 pointer-events-auto flex-col items-end gap-3.5 select-none">
+        <div className="hidden lg:flex fixed right-6 sm:right-10 lg:right-16 top-1/2 -translate-y-1/2 z-20 pointer-events-auto flex-col items-end gap-3.5 select-none">
           <div className="text-[10px] font-mono tracking-[0.25em] text-neutral-500 uppercase mb-1">
             {t.constellation.title}
           </div>
@@ -779,7 +779,7 @@ export default function App() {
 
       {/* Mobile: Sleek horizontal bottom project dock (Frameless, zero dots) */}
       {!activeWaypoint && !isAboutOpen && !isIndexOpen && !selectedDetailWaypoint && (
-        <div className="flex lg:hidden fixed bottom-16 left-0 right-0 z-20 pointer-events-auto justify-center gap-2 px-4 select-none overflow-x-auto no-scrollbar">
+        <div className="flex lg:hidden fixed bottom-16 left-0 right-0 z-20 pointer-events-auto justify-center gap-2 px-6 select-none overflow-x-auto no-scrollbar">
           {PORTFOLIO_WAYPOINTS.map((wp) => {
             const projectT = TRANSLATIONS[language]?.projects[wp.id];
             const title = projectT?.title || wp.title;

@@ -87,7 +87,7 @@ export default function CinematicMacroOverlay({
   const { isPlaying, toggleSound } = useAudio();
 
   return (
-    <div className="fixed inset-0 z-30 pointer-events-none flex flex-col justify-between pt-16 sm:pt-24 pb-4 sm:pb-8 px-4 sm:px-8 md:px-12 select-none">
+    <div className="fixed inset-0 z-30 pointer-events-none flex flex-col justify-between pt-16 sm:pt-24 pb-4 sm:pb-8 px-6 sm:px-10 lg:px-16 select-none">
       {/* Swipeable Cinematic Spatial Content Card */}
       <AnimatePresence mode="popLayout" initial={false}>
         <motion.div
