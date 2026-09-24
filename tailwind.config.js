@@ -44,22 +44,28 @@ export default {
         },
       },
       fontFamily: {
-        // Identity Display: Switella / Ogg Roman with Bodoni Moda & Instrument Serif
-        display: [
-          '"Switella"',
-          '"Ogg"',
+        // Identity Display & Haute Fashion Editorial Typography (Vogue Didot / Bodoni)
+        vogue: [
+          'Didot',
+          '"Bodoni MT"',
           '"Bodoni Moda"',
-          '"Instrument Serif"',
-          '"Cormorant Garamond"',
+          '"Playfair Display"',
+          'Georgia',
+          'serif',
+        ],
+        display: [
+          'Didot',
+          '"Bodoni MT"',
+          '"Bodoni Moda"',
+          '"Playfair Display"',
           'Georgia',
           'serif',
         ],
         serif: [
-          '"Switella"',
-          '"Ogg"',
+          'Didot',
+          '"Bodoni MT"',
           '"Bodoni Moda"',
-          '"Instrument Serif"',
-          '"Cormorant Garamond"',
+          '"Playfair Display"',
           'Georgia',
           'serif',
         ],

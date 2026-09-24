@@ -30,11 +30,35 @@ body {
   overflow-x: hidden;
 }
 
-/* 2. IDENTITY DISPLAY: OPENTYPE LIGATURES & COUTURE LETTERING */
+/* 2. IDENTITY DISPLAY: VOGUE & HAUTE COUTURE EDITORIAL TYPOGRAPHY */
+.font-vogue {
+  font-family: Didot, 'Bodoni MT', 'Bodoni Moda', 'Playfair Display', Georgia, serif;
+  font-optical-sizing: auto;
+  font-feature-settings: "liga" 1, "dlig" 1, "calt" 1;
+}
+
+.font-vogue-italic {
+  font-family: Didot, 'Bodoni MT', 'Bodoni Moda', 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-optical-sizing: auto;
+  font-feature-settings: "swsh" 1, "liga" 1, "calt" 1;
+}
+
+.font-bodoni-black {
+  font-family: 'Bodoni Moda', Didot, 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-optical-sizing: auto;
+  font-feature-settings: "liga" 1, "calt" 1;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel Decorative', Didot, 'Bodoni Moda', Georgia, serif;
+  font-feature-settings: "liga" 1, "dlig" 1;
+}
+
 .font-couture {
-  font-family: 'Switella', 'Ogg', 'Bodoni Moda', 'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
+  font-family: Didot, 'Bodoni MT', 'Bodoni Moda', 'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
   font-feature-settings: "liga" 1, "dlig" 1, "clig" 1, "calt" 1, "kern" 1;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
 }
 
 .font-decorative-display {
