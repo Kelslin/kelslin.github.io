@@ -8,9 +8,8 @@ import CinematicMacroOverlay from './components/CinematicMacroOverlay';
 import AboutStoryModal from './components/AboutStoryModal';
 import RecruiterIndexModal from './components/RecruiterIndexModal';
 import ProjectDetailModal from './components/ProjectDetailModal';
-import AmbientAudioPlayer from './components/AmbientAudioPlayer';
+import LeftBottomAudioIndicator from './components/LeftBottomAudioIndicator';
 import { AudioProvider } from './context/AudioContext';
-import { HeroAudioPill, FloatingSoundToast } from './components/SensoryAudioPrompt';
 import { Waypoint, PORTFOLIO_WAYPOINTS } from './data/portfolioData';
 import { Language, TRANSLATIONS } from './data/translations';
 
@@ -329,12 +328,12 @@ function CrystalFollowerCursor() {
 }
 
 // ==========================================
-// 3.5 HAUTE EDITORIAL WIND BREEZE HERO NAME
+// 3.5 HAUTE EDITORIAL HERO NAME
 // ==========================================
 function WindBreezeHeroName({ name }: { name: string }) {
   return (
-    <h1 className="select-none relative z-30 pointer-events-auto cursor-default overflow-visible mb-6 sm:mb-8">
-      <span className="font-vogue text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-normal leading-[1.2] whitespace-nowrap block liuli-glass-shimmer-text wind-breeze-hover">
+    <h1 className="select-none relative z-30 pointer-events-auto cursor-default overflow-visible mb-4 sm:mb-6">
+      <span className="font-vogue text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-normal leading-[1.28] whitespace-nowrap block liuli-glass-shimmer-text pb-6 sm:pb-8 lg:pb-10 overflow-visible">
         {name}
       </span>
     </h1>
@@ -564,25 +563,22 @@ export default function App() {
       <header className="fixed top-0 left-0 w-full z-40 px-3 sm:px-6 lg:px-10 py-3 sm:py-5 flex items-center justify-between pointer-events-auto">
         {!activeWaypoint ? (
           <>
-            {/* Overview Left: Personal Brand Signature Logo */}
-            <button
-              onClick={handleGoHome}
-              className="flex items-center gap-2 group cursor-pointer transition-transform duration-300 hover:scale-105"
-              title="Kelsey Lin"
-            >
-              <img
-                src="/kelsey-signature-logo.png"
-                alt="Kelsey Lin Logo"
-                className="h-8 sm:h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity filter drop-shadow-[0_2px_10px_rgba(255,255,255,0.25)]"
-              />
-            </button>
+            {/* Overview Left: Personal Brand Signature Logo + Language Switcher (EN | 中 | ES | FR) */}
+            <div className="flex items-center gap-2.5 sm:gap-3.5">
+              <button
+                onClick={handleGoHome}
+                className="flex items-center gap-2 group cursor-pointer transition-transform duration-300 hover:scale-105"
+                title="Kelsey Lin"
+              >
+                <img
+                  src="/kelsey-signature-logo.png"
+                  alt="Kelsey Lin Logo"
+                  className="h-8 sm:h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity filter drop-shadow-[0_2px_10px_rgba(255,255,255,0.25)]"
+                />
+              </button>
 
-            {/* Overview Right: Ambient Sound + Language Switcher & Navigation */}
-            <div className="flex items-center gap-2 sm:gap-4 md:gap-6 ml-auto">
-              <AmbientAudioPlayer />
-
-              {/* Language Switcher: EN | 中 | ES | FR */}
-              <div className="flex items-center gap-0.5 sm:gap-1 p-0.5 sm:p-1 rounded-full bg-white/10 backdrop-blur-md">
+              {/* Language Switcher moved next to logo */}
+              <div className="flex items-center gap-0.5 sm:gap-1 p-0.5 sm:p-1 rounded-full bg-white/10 backdrop-blur-md border border-white/[0.08]">
                 {(['en', 'zh', 'es', 'fr'] as const).map((lang) => (
                   <button
                     key={lang}
@@ -597,8 +593,10 @@ export default function App() {
                   </button>
                 ))}
               </div>
+            </div>
 
-              {/* Navigation Links */}
+            {/* Overview Right: Navigation Links */}
+            <div className="flex items-center gap-2 sm:gap-4 md:gap-6 ml-auto">
               <nav className="flex items-center gap-2 sm:gap-4 md:gap-6 text-[10px] sm:text-xs font-mono tracking-[0.12em] sm:tracking-[0.18em] uppercase">
                 <button
                   onClick={handleWorksClick}
@@ -651,7 +649,7 @@ export default function App() {
           </>
         ) : (
           <>
-            {/* Macro View Left: Brand Logo & Overview Exit & Chapter Badge (Responsive) */}
+            {/* Macro View Left: Brand Logo + Language Switcher + Overview Exit + Chapter Badge (Responsive) */}
             <div className="flex items-center gap-2 sm:gap-3">
               <button
                 onClick={handleGoHome}
@@ -664,6 +662,24 @@ export default function App() {
                   className="h-8 sm:h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity filter drop-shadow-[0_2px_10px_rgba(255,255,255,0.25)]"
                 />
               </button>
+
+              {/* Language Switcher next to logo */}
+              <div className="flex items-center gap-0.5 sm:gap-1 p-0.5 sm:p-1 rounded-full bg-white/10 backdrop-blur-md border border-white/[0.08] mr-1">
+                {(['en', 'zh', 'es', 'fr'] as const).map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => handleLanguageChange(lang)}
+                    className={`px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-mono tracking-wider transition-all cursor-pointer ${
+                      language === lang
+                        ? 'bg-white text-black font-bold shadow-sm'
+                        : 'text-[#94A3B8] hover:text-white'
+                    }`}
+                  >
+                    {lang === 'en' ? 'EN' : lang === 'zh' ? '中' : lang === 'es' ? 'ES' : 'FR'}
+                  </button>
+                ))}
+              </div>
+
               <button
                 onClick={handleGoHome}
                 className="flex items-center gap-1.5 sm:gap-2 py-1.5 px-3 sm:px-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] transition-all cursor-pointer backdrop-blur-md"
@@ -677,53 +693,34 @@ export default function App() {
               </span>
             </div>
 
-            {/* Macro View Right: Ambient Sound + Enlarged Language Switcher + Prev / Next Petal Buttons */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              <AmbientAudioPlayer />
-              <div className="flex items-center gap-0.5 sm:gap-1 p-1 rounded-full bg-white/10 backdrop-blur-md">
-                {(['en', 'zh', 'es', 'fr'] as const).map((lang) => (
-                  <button
-                    key={lang}
-                    onClick={() => handleLanguageChange(lang)}
-                    className={`px-2 sm:px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-mono tracking-wider transition-all cursor-pointer font-medium ${
-                      language === lang
-                        ? 'bg-white text-black font-bold shadow-sm'
-                        : 'text-[#94A3B8] hover:text-white'
-                    }`}
-                  >
-                    {lang === 'en' ? 'EN' : lang === 'zh' ? '中' : lang === 'es' ? 'ES' : 'FR'}
-                  </button>
-                ))}
-              </div>
-
-              <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-mono tracking-[0.12em] sm:tracking-[0.15em] uppercase">
-                <button
-                  onClick={() => {
-                    const idx = PORTFOLIO_WAYPOINTS.findIndex((w) => w.id === activeWaypoint.id);
-                    handleSelectWaypoint(
-                      PORTFOLIO_WAYPOINTS[(idx - 1 + PORTFOLIO_WAYPOINTS.length) % PORTFOLIO_WAYPOINTS.length]
-                    );
-                  }}
-                  className="flex items-center gap-1.5 py-1.5 px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-white/20 text-[#E2E8F0] hover:text-white backdrop-blur-md transition-colors cursor-pointer"
-                  title="Previous project"
-                >
-                  <span>←</span>
-                  <span className="hidden sm:inline">{t.header.prev}</span>
-                </button>
-                <button
-                  onClick={() => {
-                    const idx = PORTFOLIO_WAYPOINTS.findIndex((w) => w.id === activeWaypoint.id);
-                    handleSelectWaypoint(
-                      PORTFOLIO_WAYPOINTS[(idx + 1) % PORTFOLIO_WAYPOINTS.length]
-                    );
-                  }}
-                  className="flex items-center gap-1.5 py-1.5 px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-white/20 text-[#E2E8F0] hover:text-white backdrop-blur-md transition-colors cursor-pointer"
-                  title="Next project"
-                >
-                  <span className="hidden sm:inline">{t.header.next}</span>
-                  <span>→</span>
-                </button>
-              </div>
+            {/* Macro View Right: Prev / Next Petal Buttons */}
+            <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-mono tracking-[0.12em] sm:tracking-[0.15em] uppercase">
+              <button
+                onClick={() => {
+                  const idx = PORTFOLIO_WAYPOINTS.findIndex((w) => w.id === activeWaypoint.id);
+                  handleSelectWaypoint(
+                    PORTFOLIO_WAYPOINTS[(idx - 1 + PORTFOLIO_WAYPOINTS.length) % PORTFOLIO_WAYPOINTS.length]
+                  );
+                }}
+                className="flex items-center gap-1.5 py-1.5 px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-white/20 text-[#E2E8F0] hover:text-white backdrop-blur-md transition-colors cursor-pointer"
+                title="Previous project"
+              >
+                <span>←</span>
+                <span className="hidden sm:inline">{t.header.prev}</span>
+              </button>
+              <button
+                onClick={() => {
+                  const idx = PORTFOLIO_WAYPOINTS.findIndex((w) => w.id === activeWaypoint.id);
+                  handleSelectWaypoint(
+                    PORTFOLIO_WAYPOINTS[(idx + 1) % PORTFOLIO_WAYPOINTS.length]
+                  );
+                }}
+                className="flex items-center gap-1.5 py-1.5 px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-white/20 text-[#E2E8F0] hover:text-white backdrop-blur-md transition-colors cursor-pointer"
+                title="Next project"
+              >
+                <span className="hidden sm:inline">{t.header.next}</span>
+                <span>→</span>
+              </button>
             </div>
           </>
         )}
@@ -742,11 +739,6 @@ export default function App() {
             <p className="relative z-10 font-sans text-neutral-300/90 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-md sm:max-w-lg">
               {t.hero.intro}
             </p>
-
-            {/* Sensorial Ambient Sound Experience (Recruiter Hook) */}
-            <div className="mt-5 sm:mt-7 pointer-events-auto">
-              <HeroAudioPill />
-            </div>
           </div>
         </div>
       )}
@@ -788,7 +780,7 @@ export default function App() {
 
       {/* Mobile: Sleek horizontal bottom project dock (Frameless, zero dots) */}
       {!activeWaypoint && !isAboutOpen && !isIndexOpen && !selectedDetailWaypoint && (
-        <div className="flex lg:hidden fixed bottom-6 left-0 right-0 z-20 pointer-events-auto justify-center gap-2 px-4 select-none overflow-x-auto no-scrollbar">
+        <div className="flex lg:hidden fixed bottom-16 left-0 right-0 z-20 pointer-events-auto justify-center gap-2 px-4 select-none overflow-x-auto no-scrollbar">
           {PORTFOLIO_WAYPOINTS.map((wp) => {
             const projectT = TRANSLATIONS[language]?.projects[wp.id];
             const title = projectT?.title || wp.title;
@@ -860,8 +852,8 @@ export default function App() {
         language={language}
       />
 
-      {/* Sensorial Ambient Audio Floating Feedback Toast */}
-      <FloatingSoundToast />
+      {/* Single Dedicated Audio Controller on Left Bottom Screen */}
+      <LeftBottomAudioIndicator />
     </div>
     </AudioProvider>
   );
