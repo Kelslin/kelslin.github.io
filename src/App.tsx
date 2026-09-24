@@ -213,19 +213,19 @@ function CrystalFollowerCursor() {
 
   return (
     <div className="hidden lg:block">
-      {/* Warm Bioluminescent Stardust Aura Wake */}
+      {/* Warm Golden Radiant Glory & Stardust Aura Wake */}
       <div
         ref={wakeRef}
         className="pointer-events-none fixed top-0 left-0 z-[998] will-change-transform"
         style={{ transform: 'translate3d(-200px, -200px, 0) translate(-50%, -50%)' }}
       >
-        {/* Outer ambient bioluminescent chartreuse-gold stardust glow */}
-        <div className="w-[260px] h-[260px] rounded-full bg-gradient-to-r from-[#FACC15]/20 via-[#84CC16]/22 to-transparent blur-[55px]" />
-        {/* Soft living lantern core centered right behind firefly */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75px] h-[75px] rounded-full bg-[#EAB308]/50 blur-[16px] animate-[pulse_2s_ease-in-out_infinite]" />
+        {/* Outer ambient warm golden amber glow */}
+        <div className="w-[280px] h-[280px] rounded-full bg-gradient-to-r from-[#FF5500]/25 via-[#FFAA00]/30 to-transparent blur-[60px]" />
+        {/* Soft living warm amber lantern core centered right behind firefly */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80px] h-[80px] rounded-full bg-[#FFAA00]/65 blur-[18px] animate-[pulse_2s_ease-in-out_infinite]" />
       </div>
 
-      {/* Bioluminescent Glass Hotaru (Firefly) with Iridescent Gossamer Wings */}
+      {/* Bioluminescent Glass Hotaru (Firefly) with Warm Amber Glow & Iridescent Wings */}
       <div
         ref={beeRef}
         className="pointer-events-none fixed top-0 left-0 z-[999] will-change-transform"
@@ -236,16 +236,16 @@ function CrystalFollowerCursor() {
             width="40"
             height="40"
             viewBox="0 0 100 100"
-            className="drop-shadow-[0_0_12px_rgba(234,179,8,0.95)] drop-shadow-[0_0_6px_rgba(132,204,22,0.85)]"
+            className="drop-shadow-[0_0_14px_rgba(255,170,0,0.95)] drop-shadow-[0_0_6px_rgba(255,200,80,0.85)]"
           >
             <defs>
-              {/* Glowing Bioluminescent Lantern Gradient */}
+              {/* Warm Golden Amber Bioluminescent Lantern Gradient */}
               <radialGradient id="fireflyLantern" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stopColor="#FFFFFF" />
-                <stop offset="25%" stopColor="#FEF08A" />
-                <stop offset="65%" stopColor="#EAB308" />
-                <stop offset="90%" stopColor="#84CC16" />
-                <stop offset="100%" stopColor="#4D7C0F" />
+                <stop offset="25%" stopColor="#FFF4D0" />
+                <stop offset="55%" stopColor="#FFD24D" />
+                <stop offset="80%" stopColor="#FFAA00" />
+                <stop offset="100%" stopColor="#FF6600" />
               </radialGradient>
 
               {/* Iridescent Crystalline Gossamer Wing */}
@@ -257,14 +257,14 @@ function CrystalFollowerCursor() {
               </linearGradient>
 
               <radialGradient id="lanternHalo" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#FACC15" stopOpacity="0.7" />
-                <stop offset="60%" stopColor="#84CC16" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="#84CC16" stopOpacity="0" />
+                <stop offset="0%" stopColor="#FFAA00" stopOpacity="0.75" />
+                <stop offset="60%" stopColor="#FF8800" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#FF6600" stopOpacity="0" />
               </radialGradient>
             </defs>
 
-            {/* Soft Pulsing Lantern Aura behind abdomen */}
-            <circle cx="50" cy="58" r="20" fill="url(#lanternHalo)" className="animate-[pulse_1.8s_ease-in-out_infinite]" />
+            {/* Soft Pulsing Warm Lantern Aura behind abdomen */}
+            <circle cx="50" cy="58" r="22" fill="url(#lanternHalo)" className="animate-[pulse_1.8s_ease-in-out_infinite]" />
 
             {/* Forewings (Long, delicate, aerodynamic crystal gossamer) */}
             {/* Left Forewing */}
