@@ -403,14 +403,14 @@ export default function App() {
     setDragAngleOffset((delta / 250) * (Math.PI / 3));
   };
 
-  // Navigate to homepage / overview of everything
+  // Navigate to homepage / overview of everything (clean root URL, nothing selected)
   const handleGoHome = () => {
     setActiveWaypoint(null);
     setSelectedDetailWaypoint(null);
     setIsAboutOpen(false);
     setIsIndexOpen(false);
     if (typeof window !== 'undefined') {
-      window.history.pushState(null, '', '#works');
+      window.history.pushState(null, '', window.location.pathname + window.location.search);
     }
   };
 
@@ -435,7 +435,7 @@ export default function App() {
     }
   };
 
-  // URL Hash routing & sync: initial #works requirement & browser back/forward support
+  // URL Hash routing & sync
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -443,12 +443,14 @@ export default function App() {
       const rawHash = window.location.hash.replace('#', '').trim();
       const hash = rawHash.toLowerCase();
 
-      if (!hash || hash === 'works' || hash === 'overview' || hash === 'home') {
-        // Ensure the address bar contains #works on the homepage overview
-        if (!window.location.hash || window.location.hash === '#' || window.location.hash === '') {
-          window.history.replaceState(null, '', '#works');
-        }
+      if (!hash || hash === 'home' || hash === 'overview') {
         setActiveWaypoint(null);
+        setSelectedDetailWaypoint(null);
+        setIsAboutOpen(false);
+        setIsIndexOpen(false);
+      } else if (hash === 'works') {
+        // Direct jump to Afterlife Club if URL explicitly has #works
+        setActiveWaypoint(PORTFOLIO_WAYPOINTS[0]);
         setSelectedDetailWaypoint(null);
         setIsAboutOpen(false);
         setIsIndexOpen(false);
@@ -599,11 +601,7 @@ export default function App() {
               <nav className="flex items-center gap-2 sm:gap-4 md:gap-6 text-[10px] sm:text-xs font-mono tracking-[0.12em] sm:tracking-[0.18em] uppercase">
                 <button
                   onClick={handleWorksClick}
-                  className={`transition-colors cursor-pointer ${
-                    !isAboutOpen && !isIndexOpen
-                      ? 'text-white font-semibold'
-                      : 'text-[#94A3B8] hover:text-white'
-                  }`}
+                  className="text-[#94A3B8] hover:text-white transition-colors cursor-pointer"
                   title="Explore Works (Afterlife Club)"
                 >
                   {t.header.works}

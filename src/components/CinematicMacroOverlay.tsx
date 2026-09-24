@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileText, ArrowRight, ArrowLeft, ExternalLink } from 'lucide-react';
+import { FileText, ArrowRight, ArrowLeft, ExternalLink, VolumeX } from 'lucide-react';
+import { useAudio } from '../context/AudioContext';
 import { Waypoint, PORTFOLIO_WAYPOINTS } from '../data/portfolioData';
 import { Language, TRANSLATIONS } from '../data/translations';
 
@@ -83,6 +84,7 @@ export default function CinematicMacroOverlay({
   const period = projectT?.period || activeWaypoint.period;
   const story = projectT?.story || activeWaypoint.story;
   const deckSummary = projectT?.deckSummary || activeWaypoint.deckSummary || story;
+  const { isPlaying, toggleSound } = useAudio();
 
   return (
     <div className="fixed inset-0 z-30 pointer-events-none flex flex-col justify-between pt-16 sm:pt-24 pb-4 sm:pb-8 px-4 sm:px-8 md:px-12 select-none">
@@ -181,8 +183,32 @@ export default function CinematicMacroOverlay({
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 15 }}
         transition={{ duration: 0.3 }}
-        className="flex items-center gap-5 sm:gap-8 pointer-events-auto text-[10px] sm:text-xs font-mono tracking-[0.15em] uppercase overflow-x-auto no-scrollbar py-2 shrink-0 border-t border-white/10 pl-12 sm:pl-16"
+        className="flex items-center gap-4 sm:gap-6 pointer-events-auto text-[10px] sm:text-xs font-mono tracking-[0.15em] uppercase overflow-x-auto no-scrollbar py-2 shrink-0 border-t border-white/10"
       >
+        {/* Minimized Music Icon Button directly aligned with the projects */}
+        <button
+          type="button"
+          onClick={toggleSound}
+          className={`flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full backdrop-blur-md border transition-all duration-300 cursor-pointer shrink-0 active:scale-95 ${
+            isPlaying
+              ? 'bg-amber-500/15 border-amber-400/50 text-amber-300 shadow-[0_0_12px_rgba(255,170,0,0.3)] hover:border-amber-300'
+              : 'bg-white/10 hover:bg-white/20 border-white/15 text-neutral-400 hover:text-white'
+          }`}
+          title={isPlaying ? 'Music On (Click to turn off)' : 'Music Off (Click to turn on)'}
+        >
+          {isPlaying ? (
+            <span className="flex items-end gap-0.5 h-3 w-3 py-0.5">
+              <span className="w-0.5 bg-amber-400 rounded-full animate-[pulse_0.6s_ease-in-out_infinite] h-full" />
+              <span className="w-0.5 bg-amber-300 rounded-full animate-[pulse_0.4s_ease-in-out_infinite] h-2/3" />
+              <span className="w-0.5 bg-blue-400 rounded-full animate-[pulse_0.8s_ease-in-out_infinite] h-4/5" />
+            </span>
+          ) : (
+            <VolumeX className="w-3.5 h-3.5" />
+          )}
+        </button>
+
+        <span className="h-3.5 w-px bg-white/15 shrink-0" />
+
         {PORTFOLIO_WAYPOINTS.map((wp) => {
           const isCurrent = wp.id === activeWaypoint.id;
           const projT = TRANSLATIONS[language]?.projects[wp.id];
