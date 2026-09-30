@@ -276,6 +276,9 @@ export default function App() {
   // Performance optimized mutable scroll ref for 60fps Three.js animation
   const scrollStateRef = useRef({ heroProgress: 0 });
 
+  // Mutable ref for dynamic background blur and scrim transition as user scrolls
+  const blurVeilRef = useRef<HTMLDivElement>(null);
+
   // Mutable ref for interactive mouse/touch orbit control and cursor parallax
   const manualOrbitRef = useRef({
     dragY: 0,
@@ -363,6 +366,17 @@ export default function App() {
           // 1. Continuous smooth hero progress for Three.js camera & model tilt
           const heroProgress = Math.min(1, Math.max(0, scrollY / (vh * 0.65)));
           scrollStateRef.current.heroProgress = heroProgress;
+
+          // Dynamically adjust background flower blur and dark veil
+          // At scrollY = 0 (Hero): 0px blur, 0 opacity (completely clear flower)
+          // As user scrolls down: slowly dissolves into a soft, dreamlike background bokeh for high text contrast
+          if (blurVeilRef.current) {
+            const blurPx = heroProgress * 8;
+            const scrimAlpha = heroProgress * 0.65;
+            blurVeilRef.current.style.backdropFilter = `blur(${blurPx.toFixed(1)}px)`;
+            blurVeilRef.current.style.webkitBackdropFilter = `blur(${blurPx.toFixed(1)}px)`;
+            blurVeilRef.current.style.backgroundColor = `rgba(5, 6, 8, ${scrimAlpha.toFixed(2)})`;
+          }
 
           // 2. Discrete section detection
           const aboutEl = document.getElementById('about');
@@ -512,8 +526,17 @@ export default function App() {
         <div className="fixed top-[-10%] left-[-10%] w-[650px] h-[650px] rounded-full bg-[#002FA7]/10 blur-[180px] pointer-events-none" />
         <div className="fixed bottom-[-10%] right-[-10%] w-[650px] h-[650px] rounded-full bg-[#FF5500]/08 blur-[180px] pointer-events-none" />
 
-        {/* Soft atmospheric scrim & backdrop blur over 3D background canvas for supreme text legibility */}
-        <div className="fixed inset-0 pointer-events-none bg-[#050608]/55 backdrop-blur-[3.5px] z-[1]" />
+        {/* Dynamic atmospheric scrim & backdrop blur over 3D background canvas:
+            Starts at 0px blur & transparent in Hero, smoothly blurring to soft bokeh as user scrolls down */}
+        <div
+          ref={blurVeilRef}
+          className="fixed inset-0 pointer-events-none z-[1] will-change-[backdrop-filter,background-color]"
+          style={{
+            backdropFilter: 'blur(0px)',
+            WebkitBackdropFilter: 'blur(0px)',
+            backgroundColor: 'rgba(5, 6, 8, 0)',
+          }}
+        />
 
         {/* ========================================================================= */}
         {/* FIXED TOP NAVIGATION BAR WITH HORIZONTAL MENU & MOBILE DROPDOWN           */}
@@ -538,7 +561,7 @@ export default function App() {
           <nav className="hidden md:flex items-center gap-1 sm:gap-1.5 p-1 rounded-full bg-white/[0.06] backdrop-blur-xl shadow-lg">
             <button
               onClick={handleScrollToTop}
-              className={`px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-[0.14em] transition-all cursor-pointer ${
+              className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
                 activeSection === 'hero'
                   ? 'bg-white text-black font-bold shadow-md'
                   : 'text-neutral-300 hover:text-white'
@@ -549,7 +572,7 @@ export default function App() {
 
             <button
               onClick={handleScrollToAbout}
-              className={`px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-[0.14em] transition-all cursor-pointer ${
+              className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
                 activeSection === 'about'
                   ? 'bg-white text-black font-bold shadow-md'
                   : 'text-neutral-300 hover:text-white'
@@ -560,7 +583,7 @@ export default function App() {
 
             <button
               onClick={handleScrollToVentures}
-              className={`px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-[0.14em] transition-all cursor-pointer ${
+              className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
                 activeLens === 'ventures' && activeSection !== 'hero' && activeSection !== 'about'
                   ? 'bg-[#0055FF] text-white font-bold shadow-md'
                   : 'text-neutral-300 hover:text-white'
@@ -571,7 +594,7 @@ export default function App() {
 
             <button
               onClick={handleScrollToLeadership}
-              className={`px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-[0.14em] transition-all cursor-pointer ${
+              className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
                 activeLens === 'leadership' && activeSection !== 'hero' && activeSection !== 'about'
                   ? 'bg-[#FFAA00] text-black font-bold shadow-md'
                   : 'text-neutral-300 hover:text-white'
@@ -582,7 +605,7 @@ export default function App() {
 
             <button
               onClick={handleScrollToContact}
-              className="px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-[0.14em] text-neutral-300 hover:text-white transition-all cursor-pointer"
+              className="px-4 py-1.5 rounded-full text-xs font-mono tracking-wider text-neutral-300 hover:text-white transition-all cursor-pointer"
             >
               Contact
             </button>
@@ -613,31 +636,31 @@ export default function App() {
             >
               <button
                 onClick={handleScrollToTop}
-                className="text-left px-4 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider text-neutral-200 hover:bg-white/10 hover:text-white transition-colors"
+                className="text-left px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider text-neutral-200 hover:bg-white/10 hover:text-white transition-colors"
               >
                 Home
               </button>
               <button
                 onClick={handleScrollToAbout}
-                className="text-left px-4 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider text-neutral-200 hover:bg-white/10 hover:text-white transition-colors"
+                className="text-left px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider text-neutral-200 hover:bg-white/10 hover:text-white transition-colors"
               >
                 About
               </button>
               <button
                 onClick={handleScrollToVentures}
-                className="text-left px-4 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider text-neutral-200 hover:bg-white/10 hover:text-white transition-colors"
+                className="text-left px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider text-neutral-200 hover:bg-white/10 hover:text-white transition-colors"
               >
-                Ventures & Products
+                Ventures
               </button>
               <button
                 onClick={handleScrollToLeadership}
-                className="text-left px-4 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider text-neutral-200 hover:bg-white/10 hover:text-white transition-colors"
+                className="text-left px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider text-neutral-200 hover:bg-white/10 hover:text-white transition-colors"
               >
-                Campus Leadership
+                Leadership
               </button>
               <button
                 onClick={handleScrollToContact}
-                className="text-left px-4 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider text-neutral-200 hover:bg-white/10 hover:text-white transition-colors"
+                className="text-left px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider text-neutral-200 hover:bg-white/10 hover:text-white transition-colors"
               >
                 Contact
               </button>
