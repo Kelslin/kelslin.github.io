@@ -87,7 +87,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     hero: {
       name: 'Kelsey Lin',
       intro:
-        'Product manager and 0→1 builder at the University of Michigan, focused on turning complex systems into intuitive, human-centered products.',
+        'Product Manager & 0→1 Builder at the University of Michigan. Bridging hardware telemetry, ethical AI, and clinical devices into intuitive, reliable systems.',
     },
     constellation: {
       title: 'Lens Perspectives',
@@ -106,12 +106,12 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       visitWebsite: 'Visit Live Site ↗',
     },
     about: {
-      badge: 'ABOUT ME',
-      title: 'Building products with empathy,',
-      subtitle: 'technical care, and curiosity.',
+      badge: 'PERSPECTIVE',
+      title: 'Building zero-to-one digital products',
+      subtitle: 'and intentional physical craft.',
       manifesto:
-        'To me, great products come from paying close attention to people—not just measuring clicks, but understanding what people truly feel and need.',
-      location: 'KELSEY LIN · UNIVERSITY OF MICHIGAN',
+        'Great products come from paying close attention to people—not just measuring vanity metrics, but understanding what people truly feel, need, and trust.',
+      location: 'University of Michigan · Ann Arbor, MI',
       story1Title: 'Learning to listen and observe',
       story1Text:
         'When I was 13, I moved from China to the United States entirely on my own, stepping into a completely new environment, culture, and lifestyle. Being immersed in unfamiliar territory where I had to navigate situations I had never experienced before taught me to become exceptionally adaptable and observant—learning to read room dynamics, unspoken emotional cues, and human intent long before words were shared. That formative journey built my resilience in high-ambiguity spaces, and it directly shapes my work in product management today: uncovering latent user needs, rapidly adapting across complex technical domains, and designing with genuine empathy.',

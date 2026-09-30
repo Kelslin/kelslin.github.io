@@ -9,6 +9,8 @@ import AboutSection from './components/AboutSection';
 import ProjectScrollCard from './components/ProjectScrollCard';
 import RecruiterIndexModal from './components/RecruiterIndexModal';
 import ProjectDetailModal from './components/ProjectDetailModal';
+import AboutStoryModal from './components/AboutStoryModal';
+import LeadershipSection from './components/LeadershipSection';
 import LeftBottomAudioIndicator from './components/LeftBottomAudioIndicator';
 import { AudioProvider } from './context/AudioContext';
 import { Waypoint, PORTFOLIO_WAYPOINTS, LensType } from './data/portfolioData';
@@ -293,6 +295,7 @@ export default function App() {
   // Modals
   const [selectedDetailWaypoint, setSelectedDetailWaypoint] = useState<Waypoint | null>(null);
   const [isIndexOpen, setIsIndexOpen] = useState(false);
+  const [isAboutStoryOpen, setIsAboutStoryOpen] = useState(false);
 
   // Interactive Mouse / Touch Drag Orbit Control for 3D Flower
   useEffect(() => {
@@ -378,39 +381,55 @@ export default function App() {
             blurVeilRef.current.style.backgroundColor = `rgba(5, 6, 8, ${scrimAlpha.toFixed(2)})`;
           }
 
-          // 2. Discrete section detection
+          // 2. Discrete section detection via getBoundingClientRect (reliable across nested offset parents)
           const aboutEl = document.getElementById('about');
+          const venturesEl = document.getElementById('chapter-ventures');
+          const leadershipEl = document.getElementById('chapter-leadership');
+          const contactEl = document.getElementById('contact');
           const projectEls = document.querySelectorAll<HTMLElement>('.project-scroll-section');
 
-          const scrollCenter = scrollY + vh * 0.42;
+          const isNearBottom = Boolean(contactEl && contactEl.getBoundingClientRect().top <= vh * 0.75);
+          const aboutRect = aboutEl?.getBoundingClientRect();
+          const venturesRect = venturesEl?.getBoundingClientRect();
+          const leadershipRect = leadershipEl?.getBoundingClientRect();
 
-          if (aboutEl && scrollCenter < aboutEl.offsetTop) {
-            setActiveSection((prev) => (prev !== 'hero' ? 'hero' : prev));
-            setActiveProjectIndex((prev) => (prev !== -1 ? -1 : prev));
-          } else if (projectEls.length > 0 && scrollCenter < projectEls[0].offsetTop) {
-            setActiveSection((prev) => (prev !== 'about' ? 'about' : prev));
-            setActiveProjectIndex((prev) => (prev !== -1 ? -1 : prev));
-          } else {
-            let foundIdx = -1;
-            let foundId = '';
+          if (isNearBottom) {
+            setActiveSection((prev) => (prev !== 'contact' ? 'contact' : prev));
+          } else if (leadershipRect && leadershipRect.top <= vh * 0.5) {
+            // User has scrolled into Leadership & Community
+            setActiveLens((prev) => (prev !== 'leadership' ? 'leadership' : prev));
+            setActiveSection((prev) => (prev !== 'leadership' ? 'leadership' : prev));
+          } else if (venturesRect && venturesRect.top <= vh * 0.5) {
+            // User has scrolled into Ventures & Products
+            setActiveLens((prev) => (prev !== 'ventures' ? 'ventures' : prev));
+
+            let activeIdx = -1;
+            let activeId = '';
+            let closestDist = Infinity;
 
             projectEls.forEach((el, idx) => {
-              const top = el.offsetTop;
-              const height = el.offsetHeight;
-              if (scrollCenter >= top - 100 && scrollCenter < top + height) {
-                foundIdx = idx;
-                foundId = el.getAttribute('data-project-id') || '';
+              const rect = el.getBoundingClientRect();
+              const elMid = rect.top + rect.height / 2;
+              const dist = Math.abs(elMid - vh * 0.45);
+              if (dist < closestDist) {
+                closestDist = dist;
+                activeIdx = idx;
+                activeId = el.getAttribute('data-project-id') || '';
               }
             });
 
-            if (foundIdx >= 0) {
-              setActiveProjectIndex((prev) => (prev !== foundIdx ? foundIdx : prev));
-              setActiveSection((prev) => (prev !== foundId ? foundId : prev));
-              const currentWp = PORTFOLIO_WAYPOINTS[foundIdx];
-              if (currentWp) {
-                setActiveLens((prev) => (prev !== currentWp.lens ? currentWp.lens : prev));
-              }
+            if (activeIdx >= 0) {
+              setActiveProjectIndex((prev) => (prev !== activeIdx ? activeIdx : prev));
+              setActiveSection((prev) => (prev !== activeId ? activeId : prev));
             }
+          } else if (aboutRect && aboutRect.top <= vh * 0.6) {
+            // In About section
+            setActiveSection((prev) => (prev !== 'about' ? 'about' : prev));
+            setActiveProjectIndex((prev) => (prev !== -1 ? -1 : prev));
+          } else {
+            // In Hero section
+            setActiveSection((prev) => (prev !== 'hero' ? 'hero' : prev));
+            setActiveProjectIndex((prev) => (prev !== -1 ? -1 : prev));
           }
 
           ticking = false;
@@ -585,8 +604,8 @@ export default function App() {
               <button
                 onClick={handleScrollToVentures}
                 className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
-                  activeLens === 'ventures' && activeSection !== 'hero' && activeSection !== 'about'
-                    ? 'bg-[#0055FF] text-white font-semibold shadow-md'
+                  activeLens === 'ventures' && activeSection !== 'hero' && activeSection !== 'about' && activeSection !== 'contact'
+                    ? 'bg-white text-black font-semibold shadow-md'
                     : 'text-neutral-300 hover:text-white hover:bg-white/[0.06]'
                 }`}
               >
@@ -596,8 +615,8 @@ export default function App() {
               <button
                 onClick={handleScrollToLeadership}
                 className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
-                  activeLens === 'leadership' && activeSection !== 'hero' && activeSection !== 'about'
-                    ? 'bg-[#FFAA00] text-black font-semibold shadow-md'
+                  activeLens === 'leadership' && activeSection !== 'hero' && activeSection !== 'about' && activeSection !== 'contact'
+                    ? 'bg-white text-black font-semibold shadow-md'
                     : 'text-neutral-300 hover:text-white hover:bg-white/[0.06]'
                 }`}
               >
@@ -606,7 +625,11 @@ export default function App() {
 
               <button
                 onClick={handleScrollToContact}
-                className="px-4 py-1.5 rounded-full text-xs font-mono tracking-wider text-neutral-300 hover:text-white hover:bg-white/[0.06] transition-all cursor-pointer"
+                className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
+                  activeSection === 'contact'
+                    ? 'bg-white text-black font-semibold shadow-md'
+                    : 'text-neutral-300 hover:text-white hover:bg-white/[0.06]'
+                }`}
               >
                 Contact
               </button>
@@ -638,31 +661,51 @@ export default function App() {
             >
               <button
                 onClick={handleScrollToTop}
-                className="text-left px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider text-neutral-200 hover:bg-white/10 hover:text-white transition-colors"
+                className={`text-left px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider transition-colors ${
+                  activeSection === 'hero'
+                    ? 'bg-white text-black font-semibold'
+                    : 'text-neutral-200 hover:bg-white/10 hover:text-white'
+                }`}
               >
                 Home
               </button>
               <button
                 onClick={handleScrollToAbout}
-                className="text-left px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider text-neutral-200 hover:bg-white/10 hover:text-white transition-colors"
+                className={`text-left px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider transition-colors ${
+                  activeSection === 'about'
+                    ? 'bg-white text-black font-semibold'
+                    : 'text-neutral-200 hover:bg-white/10 hover:text-white'
+                }`}
               >
                 About
               </button>
               <button
                 onClick={handleScrollToVentures}
-                className="text-left px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider text-neutral-200 hover:bg-white/10 hover:text-white transition-colors"
+                className={`text-left px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider transition-colors ${
+                  activeLens === 'ventures' && activeSection !== 'hero' && activeSection !== 'about' && activeSection !== 'contact'
+                    ? 'bg-white text-black font-semibold'
+                    : 'text-neutral-200 hover:bg-white/10 hover:text-white'
+                }`}
               >
                 Ventures
               </button>
               <button
                 onClick={handleScrollToLeadership}
-                className="text-left px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider text-neutral-200 hover:bg-white/10 hover:text-white transition-colors"
+                className={`text-left px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider transition-colors ${
+                  activeLens === 'leadership' && activeSection !== 'hero' && activeSection !== 'about' && activeSection !== 'contact'
+                    ? 'bg-white text-black font-semibold'
+                    : 'text-neutral-200 hover:bg-white/10 hover:text-white'
+                }`}
               >
                 Leadership
               </button>
               <button
                 onClick={handleScrollToContact}
-                className="text-left px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider text-neutral-200 hover:bg-white/10 hover:text-white transition-colors"
+                className={`text-left px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider transition-colors ${
+                  activeSection === 'contact'
+                    ? 'bg-white text-black font-semibold'
+                    : 'text-neutral-200 hover:bg-white/10 hover:text-white'
+                }`}
               >
                 Contact
               </button>
@@ -691,48 +734,24 @@ export default function App() {
               {t.hero.intro}
             </p>
           </div>
-
-          {/* Downward Scroll & Drag to Orbit Indicators */}
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-[10px] sm:text-xs font-mono tracking-[0.2em] text-neutral-400 uppercase pointer-events-auto self-start">
-            <button
-              type="button"
-              onClick={handleScrollToAbout}
-              className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer"
-            >
-              <ChevronDown className="w-4 h-4 text-[#0055FF] animate-bounce" />
-              <span>SCROLL DOWN TO BLOOM</span>
-            </button>
-
-            <span className="text-white/20 hidden sm:inline">·</span>
-
-            <div className="flex items-center gap-2 text-neutral-300">
-              <RotateCcw className="w-3.5 h-3.5 text-[#FFAA00]" />
-              <span>CLICK & DRAG ANYWHERE TO ORBIT FLOWER</span>
-            </div>
-          </div>
         </section>
 
         {/* ========================================================================= */}
-        {/* 2. ABOUT SECTION (FRAMELESS & BORDERLESS EDITORIAL SPREAD)                 */}
-        {/* ========================================================================= */}
-        <AboutSection language={language} />
+        <AboutSection
+          language={language}
+          onOpenStory={() => setIsAboutStoryOpen(true)}
+        />
 
         {/* ========================================================================= */}
         {/* 3. SELECTED WORKS (WHOLE VIEW SPREAD WITH PETALS ROTATING IN BACK)        */}
         {/* ========================================================================= */}
-        <section id="works" className="relative z-10 w-full px-4 sm:px-8 lg:px-12 pb-16 sm:pb-24">
+        <section id="works" className="relative z-10 w-full px-4 sm:px-8 lg:px-12 pb-20 sm:pb-32">
           {/* VENTURES & PRODUCTS */}
-          <div id="chapter-ventures" className="pt-6 sm:pt-10">
-            <div className="max-w-6xl mx-auto pb-2 mb-6 sm:mb-8 flex items-baseline justify-between">
-              <div className="flex items-center gap-3">
-                <span className="w-2 h-2 rounded-full bg-[#0055FF]" />
-                <h2 className="font-syne text-lg sm:text-xl md:text-2xl text-white font-bold uppercase tracking-wider">
-                  Ventures & Products
-                </h2>
-              </div>
-              <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-widest hidden sm:inline">
-                0→1 Medical Devices, Telemetry & Systems
-              </span>
+          <div id="chapter-ventures" className="pt-10 sm:pt-16">
+            <div className="max-w-6xl mx-auto pb-3 mb-8 sm:mb-12 border-b border-white/[0.06]">
+              <h2 className="font-syne text-xl sm:text-2xl md:text-3xl text-white font-bold tracking-tight">
+                Ventures & Products
+              </h2>
             </div>
 
             {/* Whole View Projects One by One */}
@@ -749,33 +768,11 @@ export default function App() {
             </div>
           </div>
 
-          {/* CAMPUS LEADERSHIP & COMMUNITY */}
-          <div id="chapter-leadership" className="pt-10 sm:pt-14">
-            <div className="max-w-6xl mx-auto pb-2 mb-6 sm:mb-8 flex items-baseline justify-between">
-              <div className="flex items-center gap-3">
-                <span className="w-2 h-2 rounded-full bg-[#FFAA00]" />
-                <h2 className="font-syne text-lg sm:text-xl md:text-2xl text-white font-bold uppercase tracking-wider">
-                  Campus Leadership & Community
-                </h2>
-              </div>
-              <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-widest hidden sm:inline">
-                Richard Collins Fellowship, ELP Cohort 2 & Product Motion
-              </span>
-            </div>
-
-            {/* Whole View Projects One by One */}
-            <div className="space-y-8 sm:space-y-12">
-              {leadershipProjects.map((wp, idx) => (
-                <ProjectScrollCard
-                  key={wp.id}
-                  waypoint={wp}
-                  index={ventureProjects.length + idx}
-                  onOpenDetails={(p) => setSelectedDetailWaypoint(p)}
-                  language={language}
-                />
-              ))}
-            </div>
-          </div>
+          {/* CAMPUS LEADERSHIP & COMMUNITY (ORGANIZED & INTUITIVE ROSTER FORMAT) */}
+          <LeadershipSection
+            onOpenDetails={(p) => setSelectedDetailWaypoint(p)}
+            language={language}
+          />
         </section>
 
         {/* ========================================================================= */}
@@ -851,6 +848,15 @@ export default function App() {
           onNavigate={(wp) => setSelectedDetailWaypoint(wp)}
           language={language}
           onLanguageChange={handleLanguageChange}
+        />
+
+        {/* ========================================================================= */}
+        {/* FULL-SCREEN ABOUT STORY & PHOTO GALLERY FLOATING MODAL                    */}
+        {/* ========================================================================= */}
+        <AboutStoryModal
+          isOpen={isAboutStoryOpen}
+          onClose={() => setIsAboutStoryOpen(false)}
+          language={language}
         />
 
         {/* ========================================================================= */}

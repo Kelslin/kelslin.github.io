@@ -115,11 +115,7 @@ export default function ProjectDetailModal({
           className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-8 lg:px-10 py-16 sm:py-24 text-[#D8ECF8]"
         >
           {/* Clean Case Study Category */}
-          <div className="flex items-center gap-2 mb-3 text-[10px] sm:text-xs font-mono tracking-[0.2em] text-[#0055FF] uppercase font-semibold">
-            <span
-              className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: waypoint.accentColor }}
-            />
+          <div className="mb-3 text-[11px] font-mono tracking-wider text-neutral-400 uppercase font-semibold">
             <span>{waypoint.lens === 'ventures' ? 'Ventures & Product Architecture' : 'Campus Leadership & Impact'}</span>
           </div>
 
@@ -129,7 +125,7 @@ export default function ProjectDetailModal({
           </h1>
 
           {/* Line 2: Job Title / Role */}
-          <div className="text-xs sm:text-sm font-mono uppercase tracking-[0.18em] text-[#0055FF] font-semibold mb-1">
+          <div className="text-xs sm:text-sm font-mono uppercase tracking-[0.16em] text-white font-medium mb-1">
             {role}
           </div>
 
@@ -148,7 +144,6 @@ export default function ProjectDetailModal({
                   rel="noopener noreferrer"
                   className="group/site inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.08] hover:bg-white/[0.18] border border-white/10 hover:border-white/25 text-[11px] font-mono text-[#D8ECF8] hover:text-white transition-all shadow-sm cursor-pointer"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
                   <span className="font-medium text-white group-hover/site:text-[#0055FF] transition-colors">
                     {waypoint.websiteLabel || 'Visit Live Platform'}
                   </span>
@@ -210,30 +205,6 @@ export default function ProjectDetailModal({
               ))}
             </ul>
           </div>
-
-          {/* 03 · External Verification & Artifacts */}
-          {waypoint.links && waypoint.links.length > 0 && (
-            <div className="mb-8">
-              <h3 className="font-mono text-[11px] sm:text-xs tracking-[0.16em] text-[#FFAA00] font-semibold mb-3">
-                03 · External Verification & Artifacts
-              </h3>
-              <div className="flex flex-wrap gap-2.5 sm:gap-3">
-                {waypoint.links.map((link, idx) => (
-                  <a
-                    key={idx}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-2 rounded-full bg-white/[0.06] hover:bg-white text-[11px] sm:text-xs font-mono text-white hover:text-black transition-all group cursor-pointer shadow-md"
-                  >
-                    <span className="text-[#FFAA00] group-hover:text-black font-semibold">{link.category} ·</span>
-                    <span>{link.label}</span>
-                    <ExternalLink className="w-3 h-3 text-[#94A3B8] group-hover:text-black transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </a>
-                ))}
-              </div>
-            </div>
-          )}
 
           {/* Narrative Footnote */}
           {waypoint.narrativeOrigin && (

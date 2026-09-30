@@ -116,22 +116,14 @@ export default function LiuliLilyModel({
       tiltGroupRef.current.rotation.z = THREE.MathUtils.lerp(-0.06, 0, heroToAboutTransition);
     }
 
-    // 2. Turntable Spin Y: Rotate the flower so that the corresponding petal aligns with the active project
+    // 2. Turntable Spin Y: Ambient auto-rotation ONLY on the home page; zero auto-rotation on scroll
     if (petalSpinGroupRef.current) {
-      const activeWaypoints = PORTFOLIO_WAYPOINTS.filter((w) => w.lens !== 'craft');
-      const count = activeWaypoints.length || 1;
-      const anglePerProject = (2 * Math.PI) / count;
-
-      if (activeProjectIndex >= 0) {
-        // Rotating so project petal is featured
-        targetAngleRef.current = -activeProjectIndex * anglePerProject;
-      } else if (activeSection === 'hero') {
-        // Gentle ambient rotation in hero
+      if (activeSection === 'hero' && heroToAboutTransition < 0.1) {
+        // Gentle ambient rotation strictly on the home page
         targetAngleRef.current += delta * 0.12;
-      } else {
-        // In about section: centered symmetry
-        targetAngleRef.current = 0;
       }
+      // When scrolling past the home page, zero auto-rotation is applied.
+      // Petals do not auto-rotate on scroll, keeping the flower settled.
 
       currentAngleRef.current = THREE.MathUtils.damp(
         currentAngleRef.current,

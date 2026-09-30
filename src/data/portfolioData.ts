@@ -256,59 +256,15 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
       technicalStack: ['LLM Prompt Grounding', 'Few-Shot Evaluation', 'Responsible AI', 'Cross-Functional Agile'],
     },
   },
-  {
-    id: 'bestfit',
-    lens: 'ventures',
-    chapter: '05',
-    codeTag: 'hackathon.fsf',
-    subTag: 'devpost.v1',
-    title: 'Best Fit',
-    subtitle: 'Freshman Year Hackathon · Fashion Scholarship & Alumni Network',
-    role: 'Product Designer & Frontend Developer',
-    period: 'Freshman Year',
-    position3D: [-0.5, -0.6, 0.2],
-    camPos: [-0.3, -0.5, 2.1],
-    lookAt: [-0.45, -0.55, 0.15],
-    accentColor: '#FFAA00',
-    glowColor: 'rgba(255, 170, 0, 0.4)',
-    imageVisual: '/visuals/bestfit.jpg',
-    deckSummary:
-      'Engineered during freshman year to connect prospective students with Fashion Scholarship Fund opportunities and alumni mentors through personalized matchmaking algorithms.',
-    story:
-      'Developed during a freshman year hackathon, Best Fit bridges the gap between prospective students and competitive fashion scholarships. We built an intuitive matching interface in Figma and CodePen that surfaces tailored opportunities from the Fashion Scholarship Fund and pairs applicants directly with alumni mentors.',
-    metrics: [
-      { value: 'Freshman', label: 'Hackathon Venture' },
-      { value: 'Devpost', label: 'Featured Project' },
-      { value: 'FSF', label: 'Scholarship Focus' },
-    ],
-    tags: ['Devpost Hackathon', 'Figma Prototype', 'Frontend Architecture', 'Freshman Venture'],
-    websiteUrl: 'https://devpost.com/software/best-fit',
-    websiteLabel: 'Devpost Submission',
-    isLive: true,
-    links: [
-      { label: 'Devpost Submission', url: 'https://devpost.com/software/best-fit', category: 'Hackathon' },
-    ],
-    detailedBreakdown: {
-      context:
-        'Navigating competitive scholarship applications like the Fashion Scholarship Fund is intimidating for first-year applicants without an existing alumni network. Best Fit was designed to demystify requirements and provide automated mentor matchmaking.',
-      bulletPoints: [
-        'Designed end-to-end user experience and wireframes in Figma within a high-speed 36-hour hackathon environment.',
-        'Engineered responsive frontend components with HTML, CSS, and CodePen interactive prototypes.',
-        'Curated scholarship criteria and alumni mentorship directory to help students discover funding tailored to their background.',
-      ],
-      technicalStack: ['Figma V1', 'HTML5 / CSS3', 'CodePen Prototype', 'Devpost'],
-    },
-  },
-
   // ==========================================
-  // LENS 02 // LEADERSHIP & DEI
+  // LENS 02 // LEADERSHIP & COMMUNITY
   // ==========================================
   {
     id: 'portrait_project',
     lens: 'leadership',
     chapter: '01',
-    codeTag: 'fellowship.dei',
-    subTag: 'archive:01',
+    codeTag: 'fellowship.arts',
+    subTag: 'brandeis.cast',
     title: 'Captured Moments: Through The Eyes Of Our Youth',
     subtitle: 'Richard Collins Fellowship · Brandeis Arts Festival & Chesterbrook Community',
     role: 'Richard Collins Fellow & Co-Founder',
@@ -320,7 +276,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     glowColor: 'rgba(0, 85, 255, 0.45)',
     imageVisual: '/visuals/rich_collins_exhibition.jpg',
     deckSummary:
-      'Provided after-school photography lessons to youth at Chesterbrook Community Foundation to learn camera mechanics and express themselves creatively, culminating in an exhibition at the Brandeis University Leonard Bernstein Festival of the Creative Arts.',
+      'Co-founded after-school photography workshops teaching camera mechanics and visual self-expression to youth at Chesterbrook Community Foundation, culminating in a featured public exhibition at the Brandeis University Leonard Bernstein Festival of the Creative Arts.',
     story:
       'As a Richard Collins Fellow in collaboration with Efosa Ologbosere and the Chesterbrook Community Foundation, I initiated this project to share the magic of photography with youth. Over weekly sessions, we taught students camera settings and led neighborhood photo walks, culminating in a public exhibition at the Brandeis University Leonard Bernstein Festival of the Creative Arts featuring their personal perspectives.',
     narrativeOrigin:
@@ -328,7 +284,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     metrics: [
       { value: '2nd Year', label: 'Festival Feature' },
       { value: '100%', label: 'Youth-Curated Art' },
-      { value: 'Brandeis', label: 'Slosberg Lobby' },
+      { value: 'Slosberg', label: 'Lobby Exhibition' },
     ],
     tags: ['Richard Collins Fellowship', 'Youth Photography', 'Chesterbrook Foundation', 'Brandeis Arts Festival'],
     websiteUrl: 'https://www.brandeis.edu/arts/festival/festival-features.html',
@@ -351,14 +307,14 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     },
   },
   {
-    id: 'campus_leadership',
+    id: 'product_motion',
     lens: 'leadership',
     chapter: '02',
-    codeTag: 'guild.cfe',
-    subTag: 'mentorship.v1',
-    title: 'Product Motion & CFE Advising',
-    subtitle: 'VP of Product Motion · CFE Peer Advisor · ELP Cohort 2 Fellow',
-    role: 'VP of Product Motion · CFE Peer Advisor · ELP Fellow',
+    codeTag: 'pm.guild',
+    subTag: 'vp.motion',
+    title: 'Product Motion',
+    subtitle: 'Undergraduate Product Management Guild · University of Michigan',
+    role: 'Vice President',
     period: '2024 – Present',
     position3D: [0.7, 0.3, 0.3],
     camPos: [0.55, 0.3, 2.0],
@@ -367,33 +323,116 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     glowColor: 'rgba(255, 170, 0, 0.45)',
     imageVisual: '/visuals/campus_leadership.jpg',
     deckSummary:
-      'Championing student venture building and opening accessible product management pathways as Vice President of Product Motion, Entrepreneurial Leadership Program (ELP) Cohort 2 Fellow, and CFE Peer Advisor at the University of Michigan.',
+      'Directing Michigan’s premier undergraduate product management guild. Led end-to-end strategy for PM case competitions, sprint curricula, and industry portfolio teardowns to open accessible product pathways for students across disciplines.',
     story:
-      'Leading Product Motion and advising at the Center for Entrepreneurship (CFE), I facilitate hands-on product sprints, portfolio critiques, and mentorship sessions that demystify technical PM careers for students from non-traditional backgrounds while advancing venture leadership as an ELP Cohort 2 fellow.',
+      'As VP of Product Motion, I lead our executive board in architecting hands-on product sprints, case competitions, and interview preparation tracks that bridge academic coursework with real-world product management execution.',
     metrics: [
-      { value: 'Cohort 2', label: 'ELP Fellow' },
-      { value: 'VP', label: 'Product Motion' },
-      { value: '200+', label: 'Founders Mentored' },
+      { value: 'VP', label: 'Executive Board' },
+      { value: '200+', label: 'Students Mentored' },
+      { value: '0 → 1', label: 'Product Sprints' },
     ],
-    tags: ['ELP Cohort 2', 'Product Motion VP', 'CFE Peer Advisor', 'Venture Mentorship'],
+    tags: ['Product Motion VP', 'PM Case Sprints', 'Curriculum Design', 'Student Guild'],
     websiteUrl: 'https://www.productmotion.org/',
     websiteLabel: 'Product Motion Website',
     isLive: true,
     links: [
       { label: 'Product Motion Website', url: 'https://www.productmotion.org/', category: 'Student Org' },
-      { label: 'CFE ELP Cohort 2 Profile', url: 'https://cfe.umich.edu/launch/entrepreneurial-leadership-program/entrepreneurial-leadership-program-cohort-2/', category: 'CFE Leadership' },
+    ],
+    detailedBreakdown: {
+      context:
+        'Breaking into product management is traditionally opaque and competitive. Product Motion provides hands-on product sprints, curriculum tracks, and mentorship to demystify technical PM careers for students from non-traditional backgrounds.',
+      bulletPoints: [
+        'Directed organization strategy, leading weekly executive meetings and coordinating student case competitions.',
+        'Designed and facilitated practical PM workshops covering user story mapping, metrics definition, and technical roadmapping.',
+        'Connected undergraduate students with industry PM mentors across software, healthcare, and robotics.',
+      ],
+      technicalStack: ['Product Sprints', 'Roadmap Workshops', 'Case Competitions', 'Student Guild Leadership'],
+    },
+  },
+  {
+    id: 'cfe_advising',
+    lens: 'leadership',
+    chapter: '03',
+    codeTag: 'cfe.advising',
+    subTag: 'peer.advisor',
+    title: 'Center for Entrepreneurship Advising',
+    subtitle: 'CFE Entrepreneurship Minor Peer Advising · UMich College of Engineering',
+    role: 'CFE Peer Advisor · Entrepreneurship Minor',
+    period: '2024 – Present',
+    position3D: [0.5, 0.1, 0.2],
+    camPos: [0.4, 0.2, 1.9],
+    lookAt: [0.45, 0.1, 0.15],
+    accentColor: '#0055FF',
+    glowColor: 'rgba(0, 85, 255, 0.4)',
+    imageVisual: '/visuals/campus_leadership.jpg',
+    deckSummary:
+      'Appointed peer advisor guiding undergraduate founders and engineers across campus through venture capstones, grant navigation, and zero-to-one business hypotheses at the Center for Entrepreneurship.',
+    story:
+      'At the Center for Entrepreneurship (CFE), I provide one-on-one academic and venture advising for students pursuing the Entrepreneurship Minor, helping them select capstones, test market hypotheses, and secure campus startup resources.',
+    metrics: [
+      { value: '80+', label: 'Founders Guided' },
+      { value: '1-on-1', label: 'Capstone Advising' },
+      { value: 'CFE', label: 'Venture Guild' },
+    ],
+    tags: ['CFE Peer Advisor', 'Entrepreneurship Minor', 'Venture Capstones', 'Founder Office Hours'],
+    websiteUrl: 'https://ent-minor.umich.edu/advising/',
+    websiteLabel: 'CFE Advising Directory',
+    isLive: true,
+    links: [
       { label: 'CFE Advising Directory', url: 'https://ent-minor.umich.edu/advising/', category: 'U-M Advising' },
     ],
     detailedBreakdown: {
       context:
-        'Breaking into product management and entrepreneurship is often opaque, especially for students from diverse academic and cultural backgrounds. Product Motion and the UMich Center for Entrepreneurship provide real-world venture sprints, curriculum pathways, and founder mentorship.',
+        'The Entrepreneurship Minor at Michigan unites students across Engineering, LSA, Ross, and Art & Design. Peer advisors serve as the primary bridge helping students tailor courses and incubate startup capstones.',
       bulletPoints: [
-        'Elected Vice President of Product Motion, designing hands-on PM case competitions, product sprint roadmaps, and student workshops.',
-        'Selected for the competitive Entrepreneurial Leadership Program (ELP) Cohort 2, immersing in high-growth venture creation.',
-        'Advise students across campus as an official CFE Entrepreneurship Minor Peer Advisor, guiding venture curriculum, capstones, and career roadmaps.',
-        'Organized speaker panels and portfolio review sessions connecting undergrads with product leaders across software, health tech, and hardware.',
+        'Held weekly advising office hours, mentoring over 80 prospective and declared student founders on venture capstones.',
+        'Assisted students in applying for campus grants, pitch competitions, and incubator programs.',
+        'Collaborated with CFE faculty to organize experiential entrepreneurship showcases and community panels.',
       ],
-      technicalStack: ['Product Curriculum', 'Venture Sprints', 'Career Mentorship', 'UMich CFE Guild'],
+      technicalStack: ['Academic Advising', 'Capstone Roadmaps', 'Founder Office Hours', 'CFE Program Operations'],
+    },
+  },
+  {
+    id: 'elp_fellowship',
+    lens: 'leadership',
+    chapter: '04',
+    codeTag: 'elp.cohort2',
+    subTag: 'fellow.launch',
+    title: 'Entrepreneurial Leadership Program',
+    subtitle: 'ELP Cohort 2 Fellow · Center for Entrepreneurship',
+    role: 'ELP Cohort 2 Fellow',
+    period: '2024 – Present',
+    position3D: [0.6, -0.2, 0.3],
+    camPos: [0.5, -0.1, 2.0],
+    lookAt: [0.55, -0.2, 0.25],
+    accentColor: '#FFAA00',
+    glowColor: 'rgba(255, 170, 0, 0.45)',
+    imageVisual: '/visuals/campus_leadership.jpg',
+    deckSummary:
+      'Selected for the competitive, year-long venture leadership fellowship. Immersion in venture creation, founder masterclasses, and executive problem-solving alongside top builders across the university.',
+    story:
+      'As an ELP Cohort 2 Fellow, I participate in rigorous venture leadership immersions, executive roundtables, and collaborative problem-solving treks designed to build resilient 0→1 founders and technology leaders.',
+    metrics: [
+      { value: 'Cohort 2', label: 'Competitive Fellow' },
+      { value: 'Year-Long', label: 'Venture Immersion' },
+      { value: 'Top 5%', label: 'Selective Cohort' },
+    ],
+    tags: ['ELP Fellowship', 'Venture Immersion', 'Cohort 2', 'Founder Masterclasses'],
+    websiteUrl: 'https://cfe.umich.edu/launch/entrepreneurial-leadership-program/entrepreneurial-leadership-program-cohort-2/',
+    websiteLabel: 'ELP Cohort 2 Profile',
+    isLive: true,
+    links: [
+      { label: 'ELP Cohort 2 Profile', url: 'https://cfe.umich.edu/launch/entrepreneurial-leadership-program/entrepreneurial-leadership-program-cohort-2/', category: 'CFE Leadership' },
+    ],
+    detailedBreakdown: {
+      context:
+        'The Entrepreneurial Leadership Program (ELP) is the Center for Entrepreneurship’s flagship, highly selective venture leadership accelerator for top undergraduate entrepreneurs.',
+      bulletPoints: [
+        'Engaged in intensive leadership development retreats, executive simulations, and cross-functional team building.',
+        'Analyzed venture financing, product-market fit dynamics, and ethical technology scaling with guest founders and venture partners.',
+        'Applied venture hypotheses directly to real-world venture capstones and Michigan community impact initiatives.',
+      ],
+      technicalStack: ['Venture Accelerator', 'Executive Simulations', 'Leadership Retreats', 'Venture Finance'],
     },
   },
 
@@ -509,6 +548,53 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
         'Builds physical stamina and unwavering psychological endurance for navigating ambiguous 0→1 challenges.',
       ],
       technicalStack: ['Compound Barbell Lifts', 'Biomechanical Leverage', 'Progressive Overload', 'Recovery Protocol'],
+    },
+  },
+];
+
+// Preserved for future archival reference
+export const HIDDEN_WAYPOINTS: Waypoint[] = [
+  {
+    id: 'bestfit',
+    lens: 'ventures',
+    chapter: '05',
+    codeTag: 'hackathon.fsf',
+    subTag: 'devpost.v1',
+    title: 'Best Fit',
+    subtitle: 'Freshman Year Hackathon · Fashion Scholarship & Alumni Network',
+    role: 'Product Designer & Frontend Developer',
+    period: 'Freshman Year',
+    position3D: [-0.5, -0.6, 0.2],
+    camPos: [-0.3, -0.5, 2.1],
+    lookAt: [-0.45, -0.55, 0.15],
+    accentColor: '#FFAA00',
+    glowColor: 'rgba(255, 170, 0, 0.4)',
+    imageVisual: '/visuals/bestfit.jpg',
+    deckSummary:
+      'Engineered during freshman year to connect prospective students with Fashion Scholarship Fund opportunities and alumni mentors through personalized matchmaking algorithms.',
+    story:
+      'Developed during a freshman year hackathon, Best Fit bridges the gap between prospective students and competitive fashion scholarships. We built an intuitive matching interface in Figma and CodePen that surfaces tailored opportunities from the Fashion Scholarship Fund and pairs applicants directly with alumni mentors.',
+    metrics: [
+      { value: 'Freshman', label: 'Hackathon Venture' },
+      { value: 'Devpost', label: 'Featured Project' },
+      { value: 'FSF', label: 'Scholarship Focus' },
+    ],
+    tags: ['Devpost Hackathon', 'Figma Prototype', 'Frontend Architecture', 'Freshman Venture'],
+    websiteUrl: 'https://devpost.com/software/best-fit',
+    websiteLabel: 'Devpost Submission',
+    isLive: true,
+    links: [
+      { label: 'Devpost Submission', url: 'https://devpost.com/software/best-fit', category: 'Hackathon' },
+    ],
+    detailedBreakdown: {
+      context:
+        'Navigating competitive scholarship applications like the Fashion Scholarship Fund is intimidating for first-year applicants without an existing alumni network. Best Fit was designed to demystify requirements and provide automated mentor matchmaking.',
+      bulletPoints: [
+        'Designed end-to-end user experience and wireframes in Figma within a high-speed 36-hour hackathon environment.',
+        'Engineered responsive frontend components with HTML, CSS, and CodePen interactive prototypes.',
+        'Curated scholarship criteria and alumni mentorship directory to help students discover funding tailored to their background.',
+      ],
+      technicalStack: ['Figma V1', 'HTML5 / CSS3', 'CodePen Prototype', 'Devpost'],
     },
   },
 ];
