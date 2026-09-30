@@ -28,7 +28,7 @@ export default function LeadershipSection({
             Leadership & Community
           </h2>
         </div>
-        <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider hidden sm:inline">
+        <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider hidden sm:inline pb-0.5">
           4 Initiatives · 2024 — Present
         </span>
       </div>

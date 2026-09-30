@@ -102,10 +102,10 @@ export default function AboutStoryModal({
         {/* Fixed Top Exit Bar */}
         <div className="fixed top-4 sm:top-5 left-4 right-4 sm:left-10 sm:right-10 z-[70] flex items-center justify-between gap-3 pointer-events-auto">
           {/* Header Monospace Stamp */}
-          <div className="flex items-center gap-2 text-[11px] sm:text-xs font-mono tracking-[0.15em] uppercase text-neutral-400">
+          <div className="flex items-center text-[11px] sm:text-xs font-mono tracking-[0.15em] uppercase text-neutral-400">
             <span className="font-semibold text-white">PERSPECTIVE</span>
-            <span className="text-white/20">/</span>
-            <span>LEADERSHIP ARCHITECTURE</span>
+            <span className="text-white/20 mx-2">·</span>
+            <span>EXECUTIVE PROFILE</span>
           </div>
 
           {/* Close Button */}
@@ -133,8 +133,10 @@ export default function AboutStoryModal({
           className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-8 lg:px-10 py-16 sm:py-24 text-[#D8ECF8]"
         >
           {/* Section Category Stamp */}
-          <div className="mb-3 text-[11px] font-mono tracking-wider text-neutral-400 uppercase font-semibold">
-            <span>PERSPECTIVE · EXECUTIVE PROFILE & STORY</span>
+          <div className="mb-3 text-[11px] font-mono tracking-wider text-neutral-400 uppercase">
+            <span className="font-semibold text-white">PERSPECTIVE</span>
+            <span className="text-white/20 mx-2">·</span>
+            <span>EXECUTIVE PROFILE & STORY</span>
           </div>
 
           {/* Title */}

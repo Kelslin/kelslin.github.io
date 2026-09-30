@@ -115,8 +115,10 @@ export default function ProjectDetailModal({
           className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-8 lg:px-10 py-16 sm:py-24 text-[#D8ECF8]"
         >
           {/* Clean Case Study Category */}
-          <div className="mb-3 text-[11px] font-mono tracking-wider text-neutral-400 uppercase font-semibold">
-            <span>{waypoint.lens === 'ventures' ? 'Ventures & Product Architecture' : 'Campus Leadership & Impact'}</span>
+          <div className="mb-3 text-[11px] font-mono tracking-wider text-neutral-400 uppercase">
+            <span className="font-semibold text-white">PERSPECTIVE</span>
+            <span className="text-white/20 mx-2">·</span>
+            <span>{waypoint.lens === 'ventures' ? 'VENTURES & PRODUCTS' : 'LEADERSHIP & COMMUNITY'}</span>
           </div>
 
           {/* Line 1: Title */}

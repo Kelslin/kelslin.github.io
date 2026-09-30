@@ -38,7 +38,7 @@ export default function ProjectScrollCard({
       className="project-scroll-section py-14 sm:py-20 lg:py-24 flex items-center justify-center pointer-events-auto relative z-10 w-full"
     >
       {/* Expansive "Whole View" Editorial Spread */}
-      <div className="w-full max-w-6xl mx-auto px-4 sm:px-8 lg:px-12">
+      <div className="w-full max-w-6xl mx-auto">
         <div
           className={`grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-16 items-center ${
             isEven ? '' : 'lg:grid-flow-dense'
