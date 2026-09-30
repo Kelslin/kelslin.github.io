@@ -36,8 +36,21 @@ class WebGLErrorBoundary extends React.Component<
   render() {
     if (this.state.hasError) {
       return (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="w-[300px] h-[300px] rounded-full bg-gradient-to-tr from-[#002FA7]/30 to-[#FFAA00]/20 blur-[100px]" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-auto z-20">
+          <div className="w-[360px] h-[360px] rounded-full bg-gradient-to-tr from-[#002FA7]/30 to-[#FFAA00]/20 blur-[100px] pointer-events-none" />
+          <div className="relative z-10 text-center space-y-3 px-4">
+            <p className="font-syne text-lg text-white font-bold">3D View Offline</p>
+            <p className="text-xs font-mono text-neutral-400 max-w-sm">
+              WebGL graphics encountered a browser glitch. The rest of the portfolio is fully functional.
+            </p>
+            <button
+              type="button"
+              onClick={() => window.location.reload()}
+              className="mt-2 px-4 py-2 rounded-full bg-white text-black font-mono text-xs font-semibold hover:bg-neutral-200 transition-colors cursor-pointer shadow-lg"
+            >
+              Reload 3D Scene
+            </button>
+          </div>
         </div>
       );
     }
@@ -748,20 +761,10 @@ export default function App() {
         <section id="works" className="relative z-10 w-full px-4 sm:px-8 lg:px-12 pb-20 sm:pb-32">
           {/* VENTURES & PRODUCTS */}
           <div id="chapter-ventures" className="pt-16 sm:pt-24">
-            <div className="max-w-6xl mx-auto pb-3 mb-8 sm:mb-12 border-b border-white/[0.06] flex flex-col sm:flex-row sm:items-end justify-between gap-2">
-              <div>
-                <div className="text-[11px] font-mono tracking-wider text-neutral-400 uppercase mb-2">
-                  <span className="font-semibold text-white">PERSPECTIVE</span>
-                  <span className="text-white/20 mx-2">·</span>
-                  <span>VENTURES & PRODUCTS</span>
-                </div>
-                <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
-                  Ventures & Products
-                </h2>
-              </div>
-              <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider hidden sm:inline pb-0.5">
-                4 Case Studies · 2025 — Present
-              </span>
+            <div className="max-w-6xl mx-auto pb-3 mb-8 sm:mb-12 border-b border-white/[0.06]">
+              <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
+                Ventures & Products
+              </h2>
             </div>
 
             {/* Whole View Projects One by One */}
@@ -793,20 +796,10 @@ export default function App() {
           className="relative z-10 w-full pt-16 sm:pt-24 pb-20 sm:pb-28 px-4 sm:px-8 lg:px-12 pointer-events-none"
         >
           {/* Section Header Line (Consistent Across All Sessions) */}
-          <div className="max-w-6xl mx-auto pb-3 mb-8 sm:mb-12 border-b border-white/[0.06] flex flex-col sm:flex-row sm:items-end justify-between gap-2 pointer-events-auto">
-            <div>
-              <div className="text-[11px] font-mono tracking-wider text-neutral-400 uppercase mb-2">
-                <span className="font-semibold text-white">PERSPECTIVE</span>
-                <span className="text-white/20 mx-2">·</span>
-                <span>GET IN TOUCH</span>
-              </div>
-              <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
-                Contact
-              </h2>
-            </div>
-            <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider hidden sm:inline pb-0.5">
-              Open to Opportunities · Ann Arbor, MI
-            </span>
+          <div className="max-w-6xl mx-auto pb-3 mb-8 sm:mb-12 border-b border-white/[0.06] pointer-events-auto">
+            <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
+              Contact
+            </h2>
           </div>
 
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 p-6 sm:p-8 rounded-3xl bg-[#050608]/50 backdrop-blur-2xl border border-white/[0.08] shadow-[0_20px_60px_rgba(0,0,0,0.5)] pointer-events-auto">

@@ -4,41 +4,67 @@ import { useProgress } from '@react-three/drei';
 import { LOGO_SVG_DATA } from '../data/logoSvgData';
 
 export default function LiuliPreloader() {
-  const { progress, active } = useProgress();
+  const { progress, active, errors } = useProgress();
+  const [shouldShow, setShouldShow] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [displayProgress, setDisplayProgress] = useState(0);
+  const [isGlitched, setIsGlitched] = useState(false);
 
-  // Smooth progress count-up
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setDisplayProgress((prev) => {
-        if (prev < progress) {
-          return Math.min(progress, prev + 2);
-        }
-        return prev;
-      });
-    }, 20);
-
-    return () => clearInterval(timer);
-  }, [progress]);
-
-  // When progress reaches 100% or loading is complete, wait a moment for the signature trace to complete
+  // If already loaded on initial mount, do not display loading screen on entrance
   useEffect(() => {
     if (progress >= 100 && !active) {
-      const timeout = setTimeout(() => {
+      setIsLoaded(true);
+      return;
+    }
+
+    // Only reveal loading screen if the website is actually taking time to load assets (> 150ms)
+    const thresholdTimer = setTimeout(() => {
+      if (!isLoaded && (active || progress < 100)) {
+        setShouldShow(true);
+      }
+    }, 150);
+
+    return () => clearTimeout(thresholdTimer);
+  }, []);
+
+  // Update display progress smoothly
+  useEffect(() => {
+    setDisplayProgress((prev) => {
+      if (progress > prev) {
+        return Math.max(prev, progress);
+      }
+      return prev;
+    });
+  }, [progress]);
+
+  // When loading completes, dismiss smoothly
+  useEffect(() => {
+    if (progress >= 100 && !active) {
+      const dismissTimer = setTimeout(() => {
         setIsLoaded(true);
-      }, 700);
-      return () => clearTimeout(timeout);
+      }, 300);
+      return () => clearTimeout(dismissTimer);
     }
   }, [progress, active]);
 
-  // Fallback safety: never hang more than 2.8s even on slow connections
+  // Detect glitched/stalled state if errors occur or asset loading hangs
   useEffect(() => {
-    const fallback = setTimeout(() => {
-      setIsLoaded(true);
-    }, 2800);
-    return () => clearTimeout(fallback);
-  }, []);
+    if (errors && errors.length > 0) {
+      setIsGlitched(true);
+      setShouldShow(true);
+    }
+    const timeout = setTimeout(() => {
+      if (!isLoaded && active) {
+        setIsGlitched(true);
+        setShouldShow(true);
+      }
+    }, 3800);
+    return () => clearTimeout(timeout);
+  }, [errors, isLoaded, active]);
+
+  if (!shouldShow || isLoaded) {
+    return null;
+  }
 
   const combinedPath = LOGO_SVG_DATA.paths.join(' ');
 
@@ -49,7 +75,7 @@ export default function LiuliPreloader() {
           key="preloader"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#050608] text-white selection:bg-transparent pointer-events-auto"
         >
           {/* Subtle Ambient Radial Glow */}
@@ -60,7 +86,7 @@ export default function LiuliPreloader() {
             <motion.div
               initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5 }}
               className="relative w-44 sm:w-56 h-auto aspect-[656/527] flex items-center justify-center"
             >
               <svg
@@ -98,8 +124,8 @@ export default function LiuliPreloader() {
                     fillOpacity: [0, 0, 0.95],
                   }}
                   transition={{
-                    pathLength: { duration: 1.8, ease: [0.16, 1, 0.3, 1] },
-                    fillOpacity: { duration: 0.8, delay: 1.2, ease: 'easeOut' },
+                    pathLength: { duration: 1.4, ease: [0.16, 1, 0.3, 1] },
+                    fillOpacity: { duration: 0.6, delay: 0.9, ease: 'easeOut' },
                   }}
                 />
               </svg>
@@ -111,7 +137,7 @@ export default function LiuliPreloader() {
                 Kelsey Lin
               </p>
               <p className="text-[10px] sm:text-[11px] font-mono tracking-[0.28em] text-[#94A3B8] uppercase">
-                Product Manager · 0→1 Systems
+                Product Manager
               </p>
             </div>
 
@@ -119,15 +145,26 @@ export default function LiuliPreloader() {
             <div className="w-48 sm:w-56 h-[1.5px] bg-white/10 rounded-full overflow-hidden mt-2 relative">
               <motion.div
                 className="h-full bg-gradient-to-r from-[#0055FF] via-white to-[#FFAA00] rounded-full"
-                style={{ width: `${Math.max(12, displayProgress)}%` }}
+                style={{ width: `${Math.max(10, displayProgress)}%` }}
                 transition={{ ease: 'easeOut', duration: 0.2 }}
               />
             </div>
 
-            {/* Percentage Counter */}
-            <div className="text-[9px] font-mono tracking-[0.24em] text-neutral-400 uppercase">
-              {Math.round(displayProgress)}% · BOTANICAL ARCHIVE
+            {/* Percentage Counter (No botanical archive word) */}
+            <div className="text-[10px] font-mono tracking-[0.24em] text-neutral-400 uppercase">
+              {isGlitched ? 'Loading Delayed' : `${Math.round(displayProgress)}%`}
             </div>
+
+            {/* Recovery action if glitched or stalled */}
+            {isGlitched && (
+              <button
+                type="button"
+                onClick={() => setIsLoaded(true)}
+                className="mt-2 px-4 py-1.5 rounded-full bg-white/10 hover:bg-white text-neutral-200 hover:text-black font-mono text-[10px] uppercase tracking-wider transition-all cursor-pointer shadow-md"
+              >
+                Enter Portfolio →
+              </button>
+            )}
           </div>
         </motion.div>
       )}

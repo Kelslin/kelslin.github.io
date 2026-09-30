@@ -17,20 +17,10 @@ export default function LeadershipSection({
   return (
     <div id="chapter-leadership" className="pt-16 sm:pt-24 max-w-6xl mx-auto">
       {/* Chapter Header */}
-      <div className="pb-3 mb-8 sm:mb-12 border-b border-white/[0.06] flex flex-col sm:flex-row sm:items-end justify-between gap-2">
-        <div>
-          <div className="text-[11px] font-mono tracking-wider text-neutral-400 uppercase mb-2">
-            <span className="font-semibold text-white">PERSPECTIVE</span>
-            <span className="text-white/20 mx-2">·</span>
-            <span>LEADERSHIP & COMMUNITY</span>
-          </div>
-          <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
-            Leadership & Community
-          </h2>
-        </div>
-        <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider hidden sm:inline pb-0.5">
-          4 Initiatives · 2024 — Present
-        </span>
+      <div className="pb-3 mb-8 sm:mb-12 border-b border-white/[0.06]">
+        <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
+          Leadership & Community
+        </h2>
       </div>
 
       {/* Organized & Intuitive Multi-Experience Roster Grid */}

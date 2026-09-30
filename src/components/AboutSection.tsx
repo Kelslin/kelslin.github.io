@@ -21,20 +21,10 @@ export default function AboutSection({
       {/* Editorial Spread Container */}
       <div className="w-full max-w-6xl mx-auto">
         {/* Section Header Line (Consistent Across All Sessions) */}
-        <div className="pb-3 mb-8 sm:mb-12 border-b border-white/[0.06] flex flex-col sm:flex-row sm:items-end justify-between gap-2">
-          <div>
-            <div className="text-[11px] font-mono tracking-wider text-neutral-400 uppercase mb-2">
-              <span className="font-semibold text-white">PERSPECTIVE</span>
-              <span className="text-white/20 mx-2">·</span>
-              <span>ABOUT KELSEY LIN</span>
-            </div>
-            <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
-              About
-            </h2>
-          </div>
-          <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider hidden sm:inline pb-0.5">
-            University of Michigan
-          </span>
+        <div className="pb-3 mb-8 sm:mb-12 border-b border-white/[0.06]">
+          <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
+            About
+          </h2>
         </div>
 
         {/* Two-Column Haute Editorial Spread — Open, Human-Crafted */}
@@ -89,10 +79,7 @@ export default function AboutSection({
             {/* Headline */}
             <div>
               <h3 className="font-syne text-3xl sm:text-4xl lg:text-5xl text-white font-bold leading-[1.1] tracking-tight mb-4">
-                Building zero-to-one digital products <br />
-                <span className="font-serif italic font-light text-neutral-300">
-                  and intentional physical craft.
-                </span>
+                Building zero-to-one digital products and intentional physical craft.
               </h3>
 
               <p className="font-sans text-sm sm:text-base text-neutral-200 font-normal leading-relaxed mt-4">
