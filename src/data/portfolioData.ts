@@ -256,13 +256,10 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
       technicalStack: ['LLM Prompt Grounding', 'Few-Shot Evaluation', 'Responsible AI', 'Cross-Functional Agile'],
     },
   },
-  // ==========================================
-  // LENS 02 // LEADERSHIP & COMMUNITY
-  // ==========================================
   {
     id: 'portrait_project',
-    lens: 'leadership',
-    chapter: '01',
+    lens: 'ventures',
+    chapter: '05',
     codeTag: 'fellowship.arts',
     subTag: 'brandeis.cast',
     title: 'Captured Moments: Through The Eyes Of Our Youth',
@@ -306,10 +303,13 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
       technicalStack: ['DSLR & 35mm Cameras', 'Archival Printing', 'Community Mentorship', 'Brandeis CAST'],
     },
   },
+  // ==========================================
+  // LENS 02 // LEADERSHIP & COMMUNITY
+  // ==========================================
   {
     id: 'product_motion',
     lens: 'leadership',
-    chapter: '02',
+    chapter: '01',
     codeTag: 'pm.guild',
     subTag: 'vp.motion',
     title: 'Product Motion',
@@ -364,7 +364,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     lookAt: [0.45, 0.1, 0.15],
     accentColor: '#0055FF',
     glowColor: 'rgba(0, 85, 255, 0.4)',
-    imageVisual: '/visuals/campus_leadership.jpg',
+    imageVisual: '/visuals/cfe_advising.jpg',
     deckSummary:
       'Appointed peer advisor guiding undergraduate founders and engineers across campus through venture capstones, grant navigation, and zero-to-one business hypotheses at the Center for Entrepreneurship.',
     story:
@@ -395,7 +395,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
   {
     id: 'elp_fellowship',
     lens: 'leadership',
-    chapter: '04',
+    chapter: '03',
     codeTag: 'elp.cohort2',
     subTag: 'fellow.launch',
     title: 'Entrepreneurial Leadership Program',
@@ -407,7 +407,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     lookAt: [0.55, -0.2, 0.25],
     accentColor: '#FFAA00',
     glowColor: 'rgba(255, 170, 0, 0.45)',
-    imageVisual: '/visuals/campus_leadership.jpg',
+    imageVisual: '/visuals/elp_fellowship.jpg',
     deckSummary:
       'Selected for the competitive, year-long venture leadership fellowship. Immersion in venture creation, founder masterclasses, and executive problem-solving alongside top builders across the university.',
     story:
