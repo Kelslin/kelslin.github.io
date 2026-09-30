@@ -97,20 +97,8 @@ export default function ProjectScrollCard({
               {deckSummary}
             </p>
 
-            {/* Tactile Material Chips (Borderless) */}
-            <div className="flex flex-wrap gap-2 pt-1">
-              {waypoint.tags.map((tag, idx) => (
-                <span
-                  key={idx}
-                  className="px-3 py-1 rounded-full bg-white/[0.06] text-[10px] sm:text-[11px] font-mono tracking-wider text-neutral-300"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-
             {/* Frameless Impact Metrics (No Border) */}
-            <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-3 pb-1 max-w-lg">
+            <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-2 pb-1 max-w-lg">
               {waypoint.metrics.map((m, idx) => (
                 <div key={idx} className="flex flex-col justify-start">
                   <span className="font-syne text-xl sm:text-2xl font-bold tracking-tight text-white leading-tight">

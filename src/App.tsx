@@ -539,92 +539,94 @@ export default function App() {
         />
 
         {/* ========================================================================= */}
-        {/* FIXED TOP NAVIGATION BAR WITH HORIZONTAL MENU & MOBILE DROPDOWN           */}
+        {/* FLOATING TOP NAVIGATION DOCK (FLOATING ON TOP OF CONTENT, NO SPLIT BAR)  */}
         {/* ========================================================================= */}
-        <header className="fixed top-0 left-0 w-full z-40 px-4 sm:px-8 lg:px-12 py-3.5 sm:py-4 flex items-center justify-between pointer-events-auto backdrop-blur-md bg-[#050608]/80">
-          {/* Brand Signature Logo (Scrolls to top) */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={handleScrollToTop}
-              className="flex items-center gap-2 group cursor-pointer transition-transform duration-300 hover:scale-105"
-              title="Kelsey Lin — Return to Top"
-            >
-              <img
-                src="/kelsey-signature-logo.png"
-                alt="Kelsey Lin Logo"
-                className="h-8 sm:h-9 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity filter drop-shadow-[0_2px_10px_rgba(255,255,255,0.25)]"
-              />
-            </button>
-          </div>
+        <header className="fixed top-4 sm:top-6 left-0 right-0 z-40 px-4 sm:px-8 lg:px-12 pointer-events-none">
+          <div className="max-w-6xl mx-auto flex items-center justify-between pointer-events-none">
+            {/* Brand Signature Logo Floating Island */}
+            <div className="flex items-center gap-3 pointer-events-auto">
+              <button
+                onClick={handleScrollToTop}
+                className="flex items-center gap-2 p-1.5 sm:p-2 rounded-full bg-[#050608]/50 backdrop-blur-2xl border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)] group cursor-pointer transition-all duration-300 hover:scale-105 hover:border-white/20"
+                title="Kelsey Lin — Return to Top"
+              >
+                <img
+                  src="/kelsey-signature-logo.png"
+                  alt="Kelsey Lin Logo"
+                  className="h-7 sm:h-8 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity filter drop-shadow-[0_2px_10px_rgba(255,255,255,0.25)]"
+                />
+              </button>
+            </div>
 
-          {/* Desktop Horizontal Navigation Menu (No Boxes, No Borders) */}
-          <nav className="hidden md:flex items-center gap-1 sm:gap-1.5 p-1 rounded-full bg-white/[0.06] backdrop-blur-xl shadow-lg">
-            <button
-              onClick={handleScrollToTop}
-              className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
-                activeSection === 'hero'
-                  ? 'bg-white text-black font-bold shadow-md'
-                  : 'text-neutral-300 hover:text-white'
-              }`}
-            >
-              Home
-            </button>
+            {/* Desktop Horizontal Floating Capsule Nav */}
+            <nav className="pointer-events-auto hidden md:flex items-center gap-1 sm:gap-1.5 p-1.5 rounded-full bg-[#050608]/50 backdrop-blur-2xl border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-all">
+              <button
+                onClick={handleScrollToTop}
+                className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
+                  activeSection === 'hero'
+                    ? 'bg-white text-black font-semibold shadow-md'
+                    : 'text-neutral-300 hover:text-white hover:bg-white/[0.06]'
+                }`}
+              >
+                Home
+              </button>
 
-            <button
-              onClick={handleScrollToAbout}
-              className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
-                activeSection === 'about'
-                  ? 'bg-white text-black font-bold shadow-md'
-                  : 'text-neutral-300 hover:text-white'
-              }`}
-            >
-              About
-            </button>
+              <button
+                onClick={handleScrollToAbout}
+                className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
+                  activeSection === 'about'
+                    ? 'bg-white text-black font-semibold shadow-md'
+                    : 'text-neutral-300 hover:text-white hover:bg-white/[0.06]'
+                }`}
+              >
+                About
+              </button>
 
-            <button
-              onClick={handleScrollToVentures}
-              className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
-                activeLens === 'ventures' && activeSection !== 'hero' && activeSection !== 'about'
-                  ? 'bg-[#0055FF] text-white font-bold shadow-md'
-                  : 'text-neutral-300 hover:text-white'
-              }`}
-            >
-              Ventures
-            </button>
+              <button
+                onClick={handleScrollToVentures}
+                className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
+                  activeLens === 'ventures' && activeSection !== 'hero' && activeSection !== 'about'
+                    ? 'bg-[#0055FF] text-white font-semibold shadow-md'
+                    : 'text-neutral-300 hover:text-white hover:bg-white/[0.06]'
+                }`}
+              >
+                Ventures
+              </button>
 
-            <button
-              onClick={handleScrollToLeadership}
-              className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
-                activeLens === 'leadership' && activeSection !== 'hero' && activeSection !== 'about'
-                  ? 'bg-[#FFAA00] text-black font-bold shadow-md'
-                  : 'text-neutral-300 hover:text-white'
-              }`}
-            >
-              Leadership
-            </button>
+              <button
+                onClick={handleScrollToLeadership}
+                className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
+                  activeLens === 'leadership' && activeSection !== 'hero' && activeSection !== 'about'
+                    ? 'bg-[#FFAA00] text-black font-semibold shadow-md'
+                    : 'text-neutral-300 hover:text-white hover:bg-white/[0.06]'
+                }`}
+              >
+                Leadership
+              </button>
 
-            <button
-              onClick={handleScrollToContact}
-              className="px-4 py-1.5 rounded-full text-xs font-mono tracking-wider text-neutral-300 hover:text-white transition-all cursor-pointer"
-            >
-              Contact
-            </button>
-          </nav>
+              <button
+                onClick={handleScrollToContact}
+                className="px-4 py-1.5 rounded-full text-xs font-mono tracking-wider text-neutral-300 hover:text-white hover:bg-white/[0.06] transition-all cursor-pointer"
+              >
+                Contact
+              </button>
+            </nav>
 
-          {/* Mobile Menu Toggle Button */}
-          <div className="flex items-center gap-2 md:hidden">
-            <button
-              type="button"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
-              aria-label="Toggle navigation menu"
-            >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
+            {/* Mobile Menu Toggle Floating Capsule */}
+            <div className="flex items-center gap-2 md:hidden pointer-events-auto">
+              <button
+                type="button"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2.5 rounded-full bg-[#050608]/60 backdrop-blur-2xl border border-white/[0.08] text-white hover:bg-white/10 transition-colors cursor-pointer shadow-lg"
+                aria-label="Toggle navigation menu"
+              >
+                {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
           </div>
         </header>
 
-        {/* Mobile Dropdown Navigation Card */}
+        {/* Mobile Dropdown Navigation Card (Floating Island) */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
@@ -632,7 +634,7 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.22 }}
-              className="fixed top-16 left-4 right-4 z-40 p-4 rounded-2xl bg-[#050608]/95 backdrop-blur-2xl shadow-2xl flex flex-col gap-1.5 md:hidden pointer-events-auto"
+              className="fixed top-20 left-4 right-4 z-40 p-4 rounded-2xl bg-[#050608]/85 backdrop-blur-2xl border border-white/10 shadow-2xl flex flex-col gap-1.5 md:hidden pointer-events-auto"
             >
               <button
                 onClick={handleScrollToTop}
@@ -777,28 +779,28 @@ export default function App() {
         </section>
 
         {/* ========================================================================= */}
-        {/* ARCHITECTURAL FOOTER WITH DIRECT CONTACT & SOCIAL CHANNELS               */}
+        {/* FLOATING CONTACT & SOCIAL DOCK (FLOATING ON TOP, ZERO SPLIT SECTION)     */}
         {/* ========================================================================= */}
         <footer
           id="contact"
-          className="relative z-10 w-full py-14 px-6 sm:px-12 lg:px-20 bg-[#050608]/95 backdrop-blur-xl"
+          className="relative z-10 w-full pt-16 pb-20 px-4 sm:px-8 lg:px-12 pointer-events-none"
         >
-          <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 p-6 sm:p-8 rounded-3xl bg-[#050608]/50 backdrop-blur-2xl border border-white/[0.08] shadow-[0_20px_60px_rgba(0,0,0,0.5)] pointer-events-auto">
             <div className="text-center md:text-left">
-              <p className="font-syne text-lg text-white font-bold mb-1">Kelsey Lin</p>
-              <p className="text-xs font-mono text-[#94A3B8] tracking-wider">
+              <p className="font-syne text-xl text-white font-bold tracking-tight">Kelsey Lin</p>
+              <p className="text-xs font-mono text-[#94A3B8] tracking-wider mt-1">
                 Product Manager · University of Michigan · Ann Arbor, MI
               </p>
             </div>
 
-            {/* Direct Channels: LinkedIn, GitHub, Email (Resume hidden) */}
+            {/* Direct Channels: LinkedIn, GitHub, Email */}
             <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 sm:gap-4">
               {/* LinkedIn */}
               <a
                 href="https://www.linkedin.com/in/kel-lin"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] hover:bg-white text-neutral-300 hover:text-black transition-all duration-300 shadow-md cursor-pointer text-xs font-mono"
+                className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] hover:bg-white text-neutral-300 hover:text-black border border-white/[0.08] hover:border-transparent transition-all duration-300 shadow-md cursor-pointer text-xs font-mono"
                 title="LinkedIn Profile"
               >
                 <Linkedin className="w-3.5 h-3.5 text-[#0055FF] group-hover:text-black transition-colors" />
@@ -810,7 +812,7 @@ export default function App() {
                 href="https://github.com/Kelslin"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] hover:bg-white text-neutral-300 hover:text-black transition-all duration-300 shadow-md cursor-pointer text-xs font-mono"
+                className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] hover:bg-white text-neutral-300 hover:text-black border border-white/[0.08] hover:border-transparent transition-all duration-300 shadow-md cursor-pointer text-xs font-mono"
                 title="GitHub Profile"
               >
                 <Github className="w-3.5 h-3.5 text-neutral-300 group-hover:text-black transition-colors" />
@@ -820,7 +822,7 @@ export default function App() {
               {/* Email */}
               <a
                 href="mailto:kelslin@umich.edu"
-                className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] hover:bg-white text-neutral-300 hover:text-black transition-all duration-300 shadow-md cursor-pointer text-xs font-mono"
+                className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] hover:bg-white text-neutral-300 hover:text-black border border-white/[0.08] hover:border-transparent transition-all duration-300 shadow-md cursor-pointer text-xs font-mono"
                 title="Send Email to kelslin@umich.edu"
               >
                 <Mail className="w-3.5 h-3.5 text-[#FFAA00] group-hover:text-black transition-colors" />
@@ -831,7 +833,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={handleScrollToTop}
-                className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 hover:bg-white text-white hover:text-black transition-all cursor-pointer ml-1 shadow-md"
+                className="flex items-center justify-center w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white text-white hover:text-black border border-white/[0.08] hover:border-transparent transition-all cursor-pointer shadow-md"
                 title="Return to top"
               >
                 <ArrowUp className="w-3.5 h-3.5" />
