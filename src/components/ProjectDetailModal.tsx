@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
+import { X, ArrowLeft, ArrowRight, ExternalLink, VolumeX } from 'lucide-react';
+import { useAudio } from '../context/AudioContext';
 import { Waypoint, PORTFOLIO_WAYPOINTS } from '../data/portfolioData';
 import { Language, TRANSLATIONS } from '../data/translations';
 
@@ -51,6 +52,8 @@ export default function ProjectDetailModal({
     ? TRANSLATIONS[language]?.projects[waypoint.id] || TRANSLATIONS.en.projects[waypoint.id]
     : null;
 
+  const { isPlaying, toggleSound } = useAudio();
+
   const title = projectT?.title || waypoint.title;
   const role = projectT?.role || waypoint.role;
   const period = projectT?.period || waypoint.period;
@@ -83,27 +86,9 @@ export default function ProjectDetailModal({
             </button>
           </div>
 
-          {/* Right side: Language Switcher & Close Button */}
+          {/* Right side: Close Button */}
           <div className="flex items-center gap-2 sm:gap-3 ml-auto">
-            {onLanguageChange && (
-              <div className="flex items-center gap-0.5 sm:gap-1 p-1 rounded-full bg-white/10 backdrop-blur-md">
-                {(['en', 'zh', 'es', 'fr'] as const).map((lang) => (
-                  <button
-                    key={lang}
-                    onClick={() => onLanguageChange(lang)}
-                    className={`px-2 sm:px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-mono tracking-wider transition-all cursor-pointer font-medium ${
-                      language === lang
-                        ? 'bg-white text-black font-bold shadow-sm'
-                        : 'text-[#94A3B8] hover:text-white'
-                    }`}
-                  >
-                    {lang === 'en' ? 'EN' : lang === 'zh' ? '中' : lang === 'es' ? 'ES' : 'FR'}
-                  </button>
-                ))}
-              </div>
-            )}
-
-            {/* Close Fullscreen Button (No [ESC]) */}
+            {/* Close Fullscreen Button */}
             <button
               onClick={onClose}
               className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold hover:bg-[#0055FF] hover:text-white transition-colors shadow-2xl cursor-pointer"
@@ -178,17 +163,30 @@ export default function ProjectDetailModal({
             {waypoint.metrics.map((m, idx) => (
               <div
                 key={idx}
-                className="inline-flex items-baseline gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/[0.06]"
+                className="flex items-baseline gap-1.5 py-1 px-3 rounded-full bg-white/[0.04] border border-white/[0.08]"
               >
-                <span className="font-syne text-sm sm:text-base md:text-lg font-bold text-white tracking-tight">
+                <span className="font-syne text-sm sm:text-base font-bold text-white">
                   {m.value}
                 </span>
-                <span className="font-mono text-[9px] sm:text-[10px] text-[#94A3B8] uppercase tracking-wider">
+                <span className="font-mono text-[9px] text-[#94A3B8] uppercase tracking-wider">
                   {m.label}
                 </span>
               </div>
             ))}
           </div>
+
+          {/* Visual Hero Image in Full Spec / Archive View */}
+          {waypoint.imageVisual && (
+            <div className="relative w-full aspect-[16/9] mb-8 sm:mb-12 rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/50">
+              <img
+                src={waypoint.imageVisual}
+                alt={title}
+                className="w-full h-full object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#06080E]/70 via-transparent to-transparent pointer-events-none" />
+            </div>
+          )}
+
 
           {/* Problem & Strategic Context */}
           <div className="mb-8">

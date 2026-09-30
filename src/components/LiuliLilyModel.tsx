@@ -1,33 +1,53 @@
-import React, { useRef, useMemo, useEffect } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF, Float, Sparkles } from '@react-three/drei';
 import * as THREE from 'three';
-import { Waypoint, PORTFOLIO_WAYPOINTS } from '../data/portfolioData';
+import { Waypoint, PORTFOLIO_WAYPOINTS, LensType } from '../data/portfolioData';
 
 interface LiuliLilyModelProps {
   activeWaypoint?: Waypoint | null;
+  activeLens?: LensType;
+  heroToAboutTransition?: number; // 0.0 (hero side view) -> 1.0 (top-down bloom view)
+  activeProjectIndex?: number; // -1 for hero/about, 0..8 for projects
+  activeSection?: string;
   position?: [number, number, number];
   dragAngleOffset?: number;
+  dragTiltOffset?: number;
+  hoverOffset?: { x: number; y: number };
+  manualOrbitRef?: React.MutableRefObject<{
+    dragY: number;
+    dragTiltX: number;
+    hoverX: number;
+    hoverY: number;
+  }>;
 }
 
 export default function LiuliLilyModel({
-  activeWaypoint = null,
+  heroToAboutTransition = 0,
+  activeProjectIndex = -1,
+  activeSection = 'hero',
   position = [0, 0, 0],
   dragAngleOffset = 0,
+  dragTiltOffset = 0,
+  hoverOffset = { x: 0, y: 0 },
+  manualOrbitRef,
 }: LiuliLilyModelProps) {
   const groupRef = useRef<THREE.Group>(null);
+  const tiltGroupRef = useRef<THREE.Group>(null);
   const petalSpinGroupRef = useRef<THREE.Group>(null);
   const modelRef = useRef<THREE.Group>(null);
 
   const currentAngleRef = useRef<number>(0);
   const targetAngleRef = useRef<number>(0);
-  const prevIndexRef = useRef<number>(-1);
+  const currentTiltXRef = useRef<number>(0.28);
+  const currentDragYRef = useRef<number>(0);
+  const currentDragXRef = useRef<number>(0);
 
   // 1. Load the Meshy 3D Model
   const { scene } = useGLTF('/lily.glb');
   const clonedScene = useMemo(() => scene.clone(), [scene]);
 
-  // 2. High-Touch Tactile Liuli Glass Material (Preserves Meshy's baked texture and authentic warm amber crystal)
+  // 2. High-Touch Tactile Liuli Glass Material
   useMemo(() => {
     clonedScene.traverse((child) => {
       if ((child as THREE.Mesh).isMesh) {
@@ -37,92 +57,114 @@ export default function LiuliLilyModel({
 
         mesh.material = new THREE.MeshPhysicalMaterial({
           map: originalMap || null,
-          roughness: 0.10,                         // High-gloss wet crystal surface
+          roughness: 0.12, // High-gloss wet crystal surface
           metalness: 0.05,
-          transmission: 0.82,                      // Lets light pass through without washing out texture
-          ior: 1.52,                               // Glass refraction index
-          thickness: 1.0,                          // Physical depth
-          clearcoat: 1.0,                          // Wet fired glaze sheen
-          clearcoatRoughness: 0.06,
-          sheen: 1.0,                              // Vivid iridescent sheen along petal rims
-          sheenColor: new THREE.Color('#0038FF'),   // Electric Klein Blue sheen on top of orange lily
+          transmission: 0.80, // Refractive light through crystal
+          ior: 1.52, // Glass refraction index
+          thickness: 0.9, // Physical depth
+          clearcoat: 0.9, // Wet fired glaze sheen
+          clearcoatRoughness: 0.08,
+          sheen: 1.0, // Vivid iridescent sheen along petal rims
+          sheenColor: new THREE.Color('#0038FF'), // Electric Klein Blue sheen
           sheenRoughness: 0.22,
           transparent: true,
           opacity: 1.0,
         });
 
-        mesh.castShadow = true;
-        mesh.receiveShadow = true;
+        mesh.castShadow = false; // Disable heavy shadow maps for silky 60fps
+        mesh.receiveShadow = false;
       }
     });
   }, [clonedScene]);
 
+  // 3. Butter-smooth physical damping for tilt and horizontal turntable spin
+  useFrame((state, delta) => {
+    const targetDragY = manualOrbitRef?.current ? manualOrbitRef.current.dragY : dragAngleOffset;
+    const targetDragTiltX = manualOrbitRef?.current ? manualOrbitRef.current.dragTiltX : dragTiltOffset;
+    const targetHoverX = manualOrbitRef?.current ? manualOrbitRef.current.hoverX : hoverOffset.x;
+    const targetHoverY = manualOrbitRef?.current ? manualOrbitRef.current.hoverY : hoverOffset.y;
 
-
-  // 4. Smooth Petal Carousel Rotation between Decks (Horizontal Turntable Spin)
-  useEffect(() => {
-    if (!activeWaypoint) {
-      targetAngleRef.current = 0;
-      prevIndexRef.current = -1;
-      return;
-    }
-
-    const newIdx = PORTFOLIO_WAYPOINTS.findIndex((w) => w.id === activeWaypoint.id);
-    if (newIdx === -1) return;
-
-    const count = PORTFOLIO_WAYPOINTS.length;
-    const anglePerDeck = (2 * Math.PI) / count; // 90° for 4 cards, completing full 360° horizontal carousel
-
-    if (prevIndexRef.current === -1) {
-      // First time entering deck mode: rotate to this project's petal directly
-      targetAngleRef.current = -newIdx * anglePerDeck;
-    } else {
-      // Step continuously in the shortest directed angular direction
-      let diff = newIdx - prevIndexRef.current;
-      if (diff > count / 2) diff -= count;
-      if (diff < -count / 2) diff += count;
-      targetAngleRef.current -= diff * anglePerDeck;
-    }
-    prevIndexRef.current = newIdx;
-  }, [activeWaypoint]);
-
-  // Butter-smooth physical damping for horizontal flower turntable spin
-  useFrame((_, delta) => {
-    if (!petalSpinGroupRef.current) return;
-    currentAngleRef.current = THREE.MathUtils.damp(
-      currentAngleRef.current,
-      targetAngleRef.current,
-      6.0,
+    // Smoothly damp manual user mouse/touch orbit offsets
+    currentDragYRef.current = THREE.MathUtils.damp(
+      currentDragYRef.current,
+      targetDragY,
+      5.0,
       delta
     );
-    // Spinning horizontally around the vertical Y-axis + user drag gesture
-    petalSpinGroupRef.current.rotation.y = currentAngleRef.current + dragAngleOffset;
-    petalSpinGroupRef.current.rotation.z = 0;
+    currentDragXRef.current = THREE.MathUtils.damp(
+      currentDragXRef.current,
+      targetDragTiltX,
+      5.0,
+      delta
+    );
+
+    // 1. Tilt X: Smoothly interpolate from side profile (0.28) in Hero to top-to-bottom blossom (-0.50)
+    if (tiltGroupRef.current) {
+      const sideTiltX = 0.28;
+      const topTiltX = -0.50; // Points flower face directly up toward camera
+      const baseTiltX = THREE.MathUtils.lerp(sideTiltX, topTiltX, heroToAboutTransition);
+      const targetTiltX =
+        baseTiltX + currentDragXRef.current + targetHoverY * 0.15;
+
+      currentTiltXRef.current = THREE.MathUtils.damp(
+        currentTiltXRef.current,
+        targetTiltX,
+        4.0,
+        delta
+      );
+      tiltGroupRef.current.rotation.x = currentTiltXRef.current;
+      tiltGroupRef.current.rotation.z = THREE.MathUtils.lerp(-0.06, 0, heroToAboutTransition);
+    }
+
+    // 2. Turntable Spin Y: Rotate the flower so that the corresponding petal aligns with the active project
+    if (petalSpinGroupRef.current) {
+      const activeWaypoints = PORTFOLIO_WAYPOINTS.filter((w) => w.lens !== 'craft');
+      const count = activeWaypoints.length || 1;
+      const anglePerProject = (2 * Math.PI) / count;
+
+      if (activeProjectIndex >= 0) {
+        // Rotating so project petal is featured
+        targetAngleRef.current = -activeProjectIndex * anglePerProject;
+      } else if (activeSection === 'hero') {
+        // Gentle ambient rotation in hero
+        targetAngleRef.current += delta * 0.12;
+      } else {
+        // In about section: centered symmetry
+        targetAngleRef.current = 0;
+      }
+
+      currentAngleRef.current = THREE.MathUtils.damp(
+        currentAngleRef.current,
+        targetAngleRef.current,
+        3.8,
+        delta
+      );
+      petalSpinGroupRef.current.rotation.y =
+        currentAngleRef.current +
+        currentDragYRef.current +
+        targetHoverX * 0.2;
+    }
   });
 
   return (
-    <group ref={groupRef} position={position} scale={2.0}>
-      {/* Organic floating breath without conflicting with camera orbit */}
-      <Float speed={1.8} rotationIntensity={0.25} floatIntensity={0.35}>
-        {/* Revolving petal carousel group: smoothly spins flower horizontally between project decks */}
-        <group ref={petalSpinGroupRef}>
-          {/* Lifted slightly upward matching initial reference file so it orbits easily and elegantly */}
-          <primitive
-            ref={modelRef}
-            object={clonedScene}
-            position={[0, -0.45, 0]}
-          />
+    <group ref={groupRef} position={position} scale={2.35}>
+      {/* Organic floating breath */}
+      <Float speed={1.4} rotationIntensity={0.15} floatIntensity={0.22}>
+        {/* Tilt group: transitions from side view (hero) to centered top-to-bottom bloom (about & projects) */}
+        <group ref={tiltGroupRef}>
+          {/* Revolving petal carousel group: smoothly spins flower horizontally behind project texts */}
+          <group ref={petalSpinGroupRef}>
+            <primitive
+              ref={modelRef}
+              object={clonedScene}
+              position={[0, -0.45, 0]}
+            />
+          </group>
         </group>
 
-        {/* Floating Magical Garden Fireflies (Warm golden embers & celestial fairy lights) */}
-        {/* 1. Warm Golden Yellow Fireflies */}
-        <Sparkles count={75} scale={[8.0, 8.0, 6.0]} size={5.5} speed={0.4} color="#FFB800" />
-        {/* 2. Soft Glowing Amber Embers */}
-        <Sparkles count={45} scale={[6.5, 6.5, 5.0]} size={7.5} speed={0.3} color="#FF8800" />
-        {/* 3. Electric Klein Blue Fireflies */}
-        <Sparkles count={55} scale={[8.5, 8.5, 6.0]} size={4.8} speed={0.3} color="#0038FF" />
-        {/* 4. Deep Celestial Klein Blue Starlight */}
-        <Sparkles count={35} scale={[9.0, 9.0, 7.0]} size={5.2} speed={0.35} color="#0055FF" />
+        {/* Lightweight Optimized Ambient Fireflies (Performance tuned) */}
+        <Sparkles count={40} scale={[8.0, 8.0, 6.0]} size={4.5} speed={0.25} color="#FFB800" />
+        <Sparkles count={25} scale={[8.5, 8.5, 6.0]} size={4.0} speed={0.25} color="#0038FF" />
       </Float>
     </group>
   );
