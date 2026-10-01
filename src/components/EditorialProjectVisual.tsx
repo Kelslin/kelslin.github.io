@@ -54,100 +54,80 @@ export default function EditorialProjectVisual({
 }
 
 // =========================================================================
-// 1. AFTERLIFE CLUB // PURE OFFICIAL LOGO
+// 1. AFTERLIFE CLUB // OFFICIAL UPLOADED LOGO
 // =========================================================================
 function AfterlifeLogoVisual({ isModal, className = '' }: { isModal: boolean; className?: string }) {
   return (
     <div
-      className={`relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-2xl flex flex-col items-center justify-center overflow-hidden select-none bg-[#050608]/60 border border-white/[0.04] transition-all duration-500 group shadow-[0_20px_60px_rgba(0,0,0,0.8)] ${className}`}
+      className={`relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-2xl flex flex-col items-center justify-center overflow-hidden select-none bg-[#050608]/60 border border-white/[0.04] transition-all duration-500 group shadow-[0_20px_60px_rgba(0,0,0,0.8)] p-6 ${className}`}
     >
       {/* Soft Ambient Brand Glow (Salmon & Warm Espresso) */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-56 h-56 rounded-full bg-[#FA8072]/15 blur-[70px] group-hover:scale-110 transition-transform duration-700" />
-        <div className="w-44 h-44 rounded-full bg-[#704A36]/20 blur-[60px]" />
+        <div className="w-64 h-64 rounded-full bg-[#FA8072]/15 blur-[75px] group-hover:scale-110 transition-transform duration-700" />
+        <div className="w-48 h-48 rounded-full bg-[#704A36]/20 blur-[60px]" />
       </div>
 
-      {/* Official Tulip Crest SVG + Clean Wordmark */}
-      <div className="relative z-10 flex flex-col items-center gap-4 transition-transform duration-500 group-hover:scale-105">
-        <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-[#FDF5E6] p-3.5 shadow-2xl flex items-center justify-center">
-          <svg viewBox="0 0 64 64" className="w-full h-full drop-shadow-sm">
-            <path
-              d="M32 14c-6 0-10 5-10 11 0 4 2 7 4 9-2 2-3 5-3 8 0 6 4 10 9 10s9-4 9-10c0-3-1-6-3-8 2-2 4-5 4-9 0-6-4-11-10-11z"
-              fill="#704A36"
-            />
-            <path
-              d="M32 14c-3 0-5 3-5 6 0 2 1 4 2 5 1-1 2-3 3-3s2 2 3 3c1-1 2-3 2-5 0-3-2-6-5-6z"
-              fill="#FA8072"
-            />
-            <path d="M32 34c-2 0-3 2-3 4s1 4 3 4 3-2 3-4-1-4-3-4z" fill="#FDF5E6" />
-          </svg>
-        </div>
-
-        <div className="text-center">
-          <span className="font-syne font-bold text-lg sm:text-xl tracking-[0.25em] text-white/90 uppercase">
-            AFTERLIFE
-          </span>
-        </div>
+      {/* Official Afterlife Brandmark on warm cream backing */}
+      <div className="relative z-10 w-full max-w-[260px] sm:max-w-[320px] px-6 py-6 sm:py-7 rounded-2xl bg-[#FDF5E6] flex items-center justify-center shadow-2xl transition-transform duration-500 group-hover:scale-105 border border-white/20">
+        <img
+          src="/visuals/logos/afterlife.png"
+          alt="Afterlife Club"
+          className="w-full h-auto max-h-24 sm:max-h-28 object-contain filter contrast-105"
+          loading="lazy"
+        />
       </div>
     </div>
   );
 }
 
 // =========================================================================
-// 2. WARMILU // PURE OFFICIAL LOGO
+// 2. WARMILU // OFFICIAL UPLOADED LOGO
 // =========================================================================
 function WarmiluLogoVisual({ isModal, className = '' }: { isModal: boolean; className?: string }) {
   return (
     <div
-      className={`relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-2xl flex flex-col items-center justify-center overflow-hidden select-none bg-[#050608]/60 border border-white/[0.04] transition-all duration-500 group shadow-[0_20px_60px_rgba(0,0,0,0.8)] ${className}`}
+      className={`relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-2xl flex flex-col items-center justify-center overflow-hidden select-none bg-[#050608]/60 border border-white/[0.04] transition-all duration-500 group shadow-[0_20px_60px_rgba(0,0,0,0.8)] p-6 ${className}`}
     >
       {/* Soft Ambient Thermal Amber Glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-60 h-60 rounded-full bg-[#FFAA00]/12 blur-[75px] group-hover:scale-110 transition-transform duration-700" />
-        <div className="w-40 h-40 rounded-full bg-amber-900/15 blur-[60px]" />
+        <div className="w-72 h-72 rounded-full bg-[#FFAA00]/15 blur-[80px] group-hover:scale-110 transition-transform duration-700" />
+        <div className="w-48 h-48 rounded-full bg-amber-900/20 blur-[60px]" />
       </div>
 
-      {/* Official Warmilu Lowercase Geometric Brandmark */}
-      <div className="relative z-10 flex flex-col items-center transition-transform duration-500 group-hover:scale-105">
-        <div className="flex items-baseline">
-          <span className="font-syne font-bold text-3xl sm:text-4xl md:text-5xl text-white tracking-wide">
-            warm
-          </span>
-          <span className="relative font-syne font-bold text-3xl sm:text-4xl md:text-5xl text-white tracking-wide">
-            i
-            {/* Radiant Thermal Amber Dot on the 'i' */}
-            <span className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FFAA00] shadow-[0_0_12px_#FFAA00]" />
-          </span>
-          <span className="font-syne font-bold text-3xl sm:text-4xl md:text-5xl text-white tracking-wide">
-            lu
-          </span>
-        </div>
+      {/* Official Warmilu Brandmark */}
+      <div className="relative z-10 w-full max-w-[300px] sm:max-w-[380px] p-4 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+        <img
+          src="/visuals/logos/warmilu.png"
+          alt="Warmilu"
+          className="w-full h-auto max-h-20 sm:max-h-24 object-contain drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)] filter brightness-105"
+          loading="lazy"
+        />
       </div>
     </div>
   );
 }
 
 // =========================================================================
-// 3. LUXSHARE-ICT // PURE OFFICIAL LOGO
+// 3. LUXSHARE-ICT // OFFICIAL UPLOADED LOGO
 // =========================================================================
 function LuxshareLogoVisual({ isModal, className = '' }: { isModal: boolean; className?: string }) {
   return (
     <div
-      className={`relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-2xl flex flex-col items-center justify-center overflow-hidden select-none bg-[#050608]/60 border border-white/[0.04] transition-all duration-500 group shadow-[0_20px_60px_rgba(0,0,0,0.8)] ${className}`}
+      className={`relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-2xl flex flex-col items-center justify-center overflow-hidden select-none bg-[#050608]/60 border border-white/[0.04] transition-all duration-500 group shadow-[0_20px_60px_rgba(0,0,0,0.8)] p-6 ${className}`}
     >
       {/* Soft Precision Ice-Cyan Glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-64 h-64 rounded-full bg-sky-500/10 blur-[80px] group-hover:scale-110 transition-transform duration-700" />
+        <div className="w-72 h-72 rounded-full bg-sky-500/12 blur-[80px] group-hover:scale-110 transition-transform duration-700" />
       </div>
 
-      {/* Official LUXSHARE-ICT Corporate Precision Brandmark */}
-      <div className="relative z-10 flex items-center gap-1 transition-transform duration-500 group-hover:scale-105 px-6">
-        <span className="font-syne font-extrabold text-2xl sm:text-3xl md:text-4xl text-white tracking-[0.16em]">
-          LUXSHARE
-        </span>
-        <span className="font-syne font-extrabold text-2xl sm:text-3xl md:text-4xl text-[#38BDF8] tracking-widest">
-          -ICT
-        </span>
+      {/* Official LUXSHARE-ICT Corporate Precision Brandmark on crisp white card */}
+      <div className="relative z-10 w-full max-w-[280px] sm:max-w-[340px] px-8 py-7 sm:py-8 rounded-2xl bg-white flex items-center justify-center shadow-2xl transition-transform duration-500 group-hover:scale-105 border border-white/20">
+        <img
+          src="/visuals/logos/luxshare.png"
+          alt="LUXSHARE-ICT"
+          className="w-full h-auto max-h-16 sm:max-h-20 object-contain filter contrast-105"
+          loading="lazy"
+        />
       </div>
     </div>
   );

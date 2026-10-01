@@ -77,7 +77,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     visualType: 'wireframe',
     statusBadge: 'BETA',
     specimenCode: '01 / AC',
-    images: [],
+    images: ['/visuals/logos/afterlife.png'],
     lens: 'ventures',
     chapter: '01',
     codeTag: 'afterlife.prd',
@@ -91,6 +91,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     lookAt: [0, -0.15, 0.15],
     accentColor: '#FF6600',
     glowColor: 'rgba(255, 102, 0, 0.20)',
+    imageVisual: '/visuals/logos/afterlife.png',
     summary:
       'An AI memory preservation and digital legacy platform that transforms end-of-life planning into daily life celebration—deliberately built without artificial voice cloning to safeguard family trust.',
     deckSummary:
@@ -131,7 +132,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     visualType: 'liuli',
     statusBadge: 'CLINICAL',
     specimenCode: '02 / WM',
-    images: [],
+    images: ['/visuals/logos/warmilu.png'],
     lens: 'ventures',
     chapter: '02',
     codeTag: 'thermal.flow',
@@ -145,6 +146,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     lookAt: [-1.15, 0.15, 0.1],
     accentColor: '#F59E0B',
     glowColor: 'rgba(245, 158, 11, 0.20)',
+    imageVisual: '/visuals/logos/warmilu.png',
     summary:
       'Engineered digital procurement and clinician intake workflows for non-electric phase-change medical blankets saving preterm infants in resource-constrained clinics without reliable electricity.',
     deckSummary:
@@ -184,7 +186,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     visualType: 'telemetry',
     statusBadge: 'DEPLOYED',
     specimenCode: '03 / LX',
-    images: [],
+    images: ['/visuals/logos/luxshare.png'],
     lens: 'ventures',
     chapter: '03',
     codeTag: 'telemetry.qa',
@@ -198,6 +200,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     lookAt: [1.1, -0.8, 0.3],
     accentColor: '#FFAA00',
     glowColor: 'rgba(255, 170, 0, 0.18)',
+    imageVisual: '/visuals/logos/luxshare.png',
     summary:
       'Standardized hardware-software telemetry and automated optical QA protocols across EV electronics manufacturing lines, auditing 200 checkpoints to eliminate assembly bottlenecks.',
     deckSummary:
