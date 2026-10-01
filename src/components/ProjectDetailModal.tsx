@@ -158,11 +158,11 @@ export default function ProjectDetailModal({
             ))}
           </div>
 
-          {/* Editorial Visual Hero (Wireframe, Contact Sheet, Telemetry, Specimen) */}
+          {/* Editorial Visual Hero */}
           <EditorialProjectVisual
             project={waypoint}
             isModal={true}
-            className="mb-8 sm:mb-12 shadow-[0_30px_80px_rgba(0,0,0,0.85)]"
+            className="mb-8 sm:mb-12"
           />
 
           {/* Problem & Strategic Context */}

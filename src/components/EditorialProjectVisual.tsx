@@ -20,11 +20,43 @@ interface EditorialProjectVisualProps {
   isModal?: boolean;
 }
 
+const BOTANICAL_VISUALS: Record<string, { image: string; subtitle: string; tint: string }> = {
+  afterlife: {
+    image: '/visuals/afterlife_chroma_lily.jpg',
+    subtitle: 'ETHEREAL CHROMA LILY · MEMORY PRESERVATION',
+    tint: '#00F0FF',
+  },
+  warmilu: {
+    image: '/visuals/warmilu_amber_lotus.jpg',
+    subtitle: 'MOLTEN AMBER LOTUS · THERMAL PHASE-CHANGE CORE',
+    tint: '#FFAA00',
+  },
+  luxshare: {
+    image: '/visuals/luxshare_optic_orchid.jpg',
+    subtitle: 'PRECISION OPTIC ORCHID · HIGH-SPEED TELEMETRY',
+    tint: '#0055FF',
+  },
+  somaseek: {
+    image: '/visuals/somaseek_cyber_flora.jpg',
+    subtitle: 'CYBERNETIC DICHROIC FLORA · EMBODIED ROBOTICS',
+    tint: '#D946EF',
+  },
+};
+
 export default function EditorialProjectVisual({
   project,
   className = '',
   isModal = false,
 }: EditorialProjectVisualProps) {
+  // Check if project has a curated 3D chromatic botanical flower visual
+  if (project.id in BOTANICAL_VISUALS) {
+    return (
+      <div className={`relative w-full select-none ${className}`}>
+        <ChromaticBotanicalVisual project={project} isModal={isModal} />
+      </div>
+    );
+  }
+
   const visualType = project.visualType || 'specimen';
 
   return (
@@ -38,6 +70,52 @@ export default function EditorialProjectVisual({
       {visualType === 'telemetry' && <TelemetryVisual project={project} isModal={isModal} />}
       {visualType === 'specimen' && <SpecimenVisual project={project} isModal={isModal} />}
       {visualType === 'liuli' && <LiuliGlassVisual project={project} isModal={isModal} />}
+    </div>
+  );
+}
+
+// =========================================================================
+// 0. BORDERLESS CHROMATIC BOTANICAL FLORA VISUAL
+// Surreal 3D iridescent liquid chrome & crystal glass floral sculptures
+// =========================================================================
+function ChromaticBotanicalVisual({ project, isModal }: { project: Project | Waypoint; isModal: boolean }) {
+  const visual = BOTANICAL_VISUALS[project.id];
+  if (!visual) return null;
+
+  return (
+    <div
+      className={`relative w-full flex items-center justify-center select-none overflow-visible group/flora transition-all duration-700 ${
+        isModal
+          ? 'h-[320px] sm:h-[420px] md:h-[480px]'
+          : 'h-[300px] sm:h-[380px] md:h-[420px]'
+      }`}
+    >
+      {/* 1. Ambient Background Glow Matching Flower Tonal Identity */}
+      <div
+        className="absolute w-[240px] sm:w-[320px] md:w-[380px] h-[240px] sm:h-[320px] md:h-[380px] rounded-full blur-[90px] sm:blur-[120px] opacity-20 pointer-events-none transition-all duration-700 ease-out group-hover/flora:scale-115 group-hover/flora:opacity-30"
+        style={{ backgroundColor: visual.tint }}
+      />
+
+      {/* 2. Seamless Borderless Botanical Image with Elliptical Radial Mask */}
+      <div
+        className="relative z-10 w-full h-full flex items-center justify-center overflow-hidden transition-transform duration-700 ease-out group-hover/flora:scale-[1.04]"
+        style={{
+          maskImage: 'radial-gradient(ellipse at center, black 60%, transparent 96%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at center, black 60%, transparent 96%)',
+        }}
+      >
+        <img
+          src={visual.image}
+          alt={`${project.title} - Chromatic Botanical Visual`}
+          className="w-full h-full object-contain object-center filter contrast-[1.05] brightness-[1.02] drop-shadow-[0_15px_35px_rgba(0,0,0,0.9)]"
+          loading="eager"
+        />
+      </div>
+
+      {/* 3. Archival Monospace Caption (Borderless & Floating) */}
+      <div className="absolute bottom-1 right-2 sm:right-4 z-20 pointer-events-none select-none text-[9px] sm:text-[10px] font-mono tracking-[0.2em] text-[#94A3B8] opacity-75 group-hover/flora:opacity-100 transition-opacity">
+        [ {visual.subtitle} ]
+      </div>
     </div>
   );
 }

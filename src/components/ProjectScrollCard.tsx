@@ -63,12 +63,12 @@ export default function ProjectScrollCard({
                 }
               }}
               aria-label={`Open case specification for ${title}`}
-              className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.85)] group/visual cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#F59E0B]/40 transition-shadow duration-300 hover:shadow-[0_25px_60px_rgba(0,0,0,0.95)]"
+              className="relative w-full group/visual cursor-pointer focus:outline-none py-1 sm:py-2 select-none"
             >
               <EditorialProjectVisual project={waypoint} />
 
-              {/* Subtle Hover Affordance */}
-              <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 opacity-0 group-hover/visual:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center gap-1.5 z-20">
+              {/* Subtle Frameless Hover Affordance */}
+              <div className="absolute top-3 right-3 px-3 py-1.5 rounded-full bg-white/[0.08] backdrop-blur-md opacity-0 group-hover/visual:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center gap-1.5 z-20">
                 <span className="font-mono text-[10px] uppercase tracking-wider text-white">
                   View Spec
                 </span>
