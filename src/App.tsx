@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ArrowUp, Linkedin, Github, Mail, Menu, X, RotateCcw } from 'lucide-react';
+import { ChevronDown, ArrowUp, Linkedin, Github, Mail, Menu, X, RotateCcw, Plus, Minus, ExternalLink } from 'lucide-react';
 import * as THREE from 'three';
 import LiuliPreloader from './components/LiuliPreloader';
 import LiuliLilyModel from './components/LiuliLilyModel';
@@ -95,19 +95,26 @@ function CursorInteractiveLight() {
 // ==========================================
 function CenteredScrollyCameraRig({
   scrollStateRef,
+  zoomRef,
 }: {
   scrollStateRef: React.MutableRefObject<{ heroProgress: number }>;
+  zoomRef: React.MutableRefObject<number>;
 }) {
   const { camera, size } = useThree();
   const isMobile = size.width < 768;
 
   useFrame(() => {
     const heroToAboutTransition = scrollStateRef.current.heroProgress;
+    const zoomOffset = zoomRef.current; // -1.8 (zoom in) to +2.5 (zoom out)
+
+    // Fade out manual zoom as user leaves Hero (heroProgress > 0)
+    const effectiveZoom = zoomOffset * (1 - Math.min(1, heroToAboutTransition * 3));
 
     // 1. Side profile view coordinates (Hero section: centered side profile of the glass lily)
+    const baseSideZ = isMobile ? 4.8 : 4.3;
     const sidePos = isMobile
-      ? new THREE.Vector3(0, 0.2, 4.8)
-      : new THREE.Vector3(0, 0.25, 4.3);
+      ? new THREE.Vector3(0, 0.2, baseSideZ + effectiveZoom)
+      : new THREE.Vector3(0, 0.25, baseSideZ + effectiveZoom);
     const sideLook = new THREE.Vector3(0, 0, 0);
 
     // 2. Centered top-to-bottom blossom view (About & Projects: camera looks straight down into the petals at the back)
@@ -305,6 +312,28 @@ export default function App() {
   // Mobile menu dropdown state
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Header scroll state (frosted glass transition)
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // 3D Lily interactive zoom control (macro view to wide view)
+  const [zoomDisplay, setZoomDisplay] = useState(100);
+  const zoomRef = useRef(0); // 0 = default, -1.8 = ~150% macro view, +2.5 = ~50% wide view
+
+  const handleZoomIn = () => {
+    zoomRef.current = Math.max(-1.8, zoomRef.current - 0.45);
+    setZoomDisplay(Math.round((1 - zoomRef.current / 4.3) * 100));
+  };
+
+  const handleZoomOut = () => {
+    zoomRef.current = Math.min(2.5, zoomRef.current + 0.45);
+    setZoomDisplay(Math.round((1 - zoomRef.current / 4.3) * 100));
+  };
+
+  const handleZoomReset = () => {
+    zoomRef.current = 0;
+    setZoomDisplay(100);
+  };
+
   // Modals
   const [selectedDetailWaypoint, setSelectedDetailWaypoint] = useState<Waypoint | null>(null);
   const [isIndexOpen, setIsIndexOpen] = useState(false);
@@ -369,6 +398,23 @@ export default function App() {
     };
   }, []);
 
+  // Wheel / Trackpad pinch zoom on 3D lily when in Hero section
+  useEffect(() => {
+    const onWheel = (e: WheelEvent) => {
+      if (window.scrollY > 80) return;
+      // Trackpad pinch gesture (ctrlKey) or Shift key held zooms the 3D flower
+      if (e.ctrlKey || e.shiftKey) {
+        e.preventDefault();
+        const delta = e.deltaY * 0.005;
+        zoomRef.current = Math.max(-1.8, Math.min(2.5, zoomRef.current + delta));
+        setZoomDisplay(Math.round((1 - zoomRef.current / 4.3) * 100));
+      }
+    };
+
+    window.addEventListener('wheel', onWheel, { passive: false });
+    return () => window.removeEventListener('wheel', onWheel);
+  }, []);
+
   // Throttled high-performance scroll listener
   useEffect(() => {
     let ticking = false;
@@ -378,6 +424,9 @@ export default function App() {
         window.requestAnimationFrame(() => {
           const scrollY = window.scrollY;
           const vh = window.innerHeight;
+
+          // Update header frosted glass state
+          setIsScrolled(scrollY > 20);
 
           // 1. Continuous smooth hero progress for Three.js camera & model tilt
           const heroProgress = Math.min(1, Math.max(0, scrollY / (vh * 0.65)));
@@ -538,7 +587,7 @@ export default function App() {
               <CursorInteractiveLight />
 
               {/* Scrollytelling Camera Rig: Centered top-to-bottom blossom view in back */}
-              <CenteredScrollyCameraRig scrollStateRef={scrollStateRef} />
+              <CenteredScrollyCameraRig scrollStateRef={scrollStateRef} zoomRef={zoomRef} />
 
               <Suspense fallback={null}>
                 <LiuliLilyModel
@@ -571,33 +620,42 @@ export default function App() {
         />
 
         {/* ========================================================================= */}
-        {/* FLOATING TOP NAVIGATION DOCK (FLOATING ON TOP OF CONTENT, NO SPLIT BAR)  */}
+        {/* COHESIVE EDGE-TO-EDGE TOP NAVIGATION (FROSTED ON SCROLL, MASKING CONTENT) */}
         {/* ========================================================================= */}
-        <header className="fixed top-4 sm:top-6 left-0 right-0 z-40 px-4 sm:px-8 lg:px-12 pointer-events-none">
-          <div className="max-w-6xl mx-auto flex items-center justify-between pointer-events-none">
-            {/* Brand Signature Logo Floating Island */}
-            <div className="flex items-center gap-3 pointer-events-auto">
+        <header
+          className={`fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 pointer-events-auto ${
+            isScrolled
+              ? 'bg-[#050608]/85 backdrop-blur-2xl border-b border-white/[0.08] shadow-[0_8px_30px_rgba(0,0,0,0.5)] py-3 sm:py-3.5'
+              : 'bg-transparent border-b border-transparent py-5 sm:py-6'
+          }`}
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between">
+            {/* Brand Signature Monogram & Name */}
+            <div className="flex items-center gap-3">
               <button
                 onClick={handleScrollToTop}
-                className="flex items-center gap-2 p-1.5 sm:p-2 rounded-full bg-[#050608]/50 backdrop-blur-2xl border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)] group cursor-pointer transition-all duration-300 hover:scale-105 hover:border-white/20"
+                className="flex items-center gap-2.5 p-1 rounded-full hover:opacity-90 transition-opacity cursor-pointer focus:outline-none"
                 title="Kelsey Lin — Return to Top"
               >
                 <img
                   src="/kelsey-signature-logo.png"
                   alt="Kelsey Lin Logo"
-                  className="h-7 sm:h-8 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity filter drop-shadow-[0_2px_10px_rgba(255,255,255,0.25)]"
+                  className="h-7 sm:h-8 w-auto object-contain filter drop-shadow-[0_2px_8px_rgba(255,255,255,0.2)]"
                 />
+                <span className="font-syne font-bold text-white text-sm sm:text-base tracking-tight hidden xs:inline">
+                  Kelsey Lin
+                </span>
               </button>
             </div>
 
-            {/* Desktop Horizontal Floating Capsule Nav */}
-            <nav className="pointer-events-auto hidden md:flex items-center gap-1 sm:gap-1.5 p-1.5 rounded-full bg-[#050608]/50 backdrop-blur-2xl border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-all">
+            {/* Desktop Horizontal Navigation Capsule */}
+            <nav className="hidden md:flex items-center gap-1 p-1 rounded-full bg-white/[0.04] border border-white/[0.08] backdrop-blur-md">
               <button
                 onClick={handleScrollToTop}
-                className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
                   activeSection === 'hero'
-                    ? 'bg-white text-black font-semibold shadow-md'
-                    : 'text-neutral-300 hover:text-white hover:bg-white/[0.06]'
+                    ? 'bg-white text-black font-semibold shadow-sm'
+                    : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
                 }`}
               >
                 Home
@@ -605,10 +663,10 @@ export default function App() {
 
               <button
                 onClick={handleScrollToAbout}
-                className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
                   activeSection === 'about'
-                    ? 'bg-white text-black font-semibold shadow-md'
-                    : 'text-neutral-300 hover:text-white hover:bg-white/[0.06]'
+                    ? 'bg-white text-black font-semibold shadow-sm'
+                    : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
                 }`}
               >
                 About
@@ -616,10 +674,10 @@ export default function App() {
 
               <button
                 onClick={handleScrollToVentures}
-                className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
                   activeLens === 'ventures' && activeSection !== 'hero' && activeSection !== 'about' && activeSection !== 'contact'
-                    ? 'bg-white text-black font-semibold shadow-md'
-                    : 'text-neutral-300 hover:text-white hover:bg-white/[0.06]'
+                    ? 'bg-white text-black font-semibold shadow-sm'
+                    : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
                 }`}
               >
                 Ventures
@@ -627,10 +685,10 @@ export default function App() {
 
               <button
                 onClick={handleScrollToLeadership}
-                className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
                   activeLens === 'leadership' && activeSection !== 'hero' && activeSection !== 'about' && activeSection !== 'contact'
-                    ? 'bg-white text-black font-semibold shadow-md'
-                    : 'text-neutral-300 hover:text-white hover:bg-white/[0.06]'
+                    ? 'bg-white text-black font-semibold shadow-sm'
+                    : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
                 }`}
               >
                 Leadership
@@ -638,10 +696,10 @@ export default function App() {
 
               <button
                 onClick={handleScrollToContact}
-                className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
                   activeSection === 'contact'
-                    ? 'bg-white text-black font-semibold shadow-md'
-                    : 'text-neutral-300 hover:text-white hover:bg-white/[0.06]'
+                    ? 'bg-white text-black font-semibold shadow-sm'
+                    : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
                 }`}
               >
                 Contact
@@ -649,11 +707,11 @@ export default function App() {
             </nav>
 
             {/* Mobile Menu Toggle Floating Capsule */}
-            <div className="flex items-center gap-2 md:hidden pointer-events-auto">
+            <div className="flex items-center gap-2 md:hidden">
               <button
                 type="button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2.5 rounded-full bg-[#050608]/60 backdrop-blur-2xl border border-white/[0.08] text-white hover:bg-white/10 transition-colors cursor-pointer shadow-lg"
+                className="p-2 rounded-full bg-white/[0.06] border border-white/10 text-white hover:bg-white/15 transition-colors cursor-pointer shadow-md"
                 aria-label="Toggle navigation menu"
               >
                 {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -747,6 +805,38 @@ export default function App() {
               {t.hero.intro}
             </p>
           </div>
+
+          {/* 3D Model Interactive Zoom Controls */}
+          <div className="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 z-20 pointer-events-auto flex items-center gap-1.5 p-1.5 rounded-full bg-[#050608]/60 backdrop-blur-xl border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
+            <button
+              type="button"
+              onClick={handleZoomOut}
+              className="w-8 h-8 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              title="Zoom Out Lily"
+              aria-label="Zoom out 3D flower"
+            >
+              <Minus className="w-3.5 h-3.5" />
+            </button>
+
+            <button
+              type="button"
+              onClick={handleZoomReset}
+              className="px-2.5 py-1 rounded-full text-[10px] font-mono text-white/80 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              title="Reset Lily View"
+            >
+              {zoomDisplay}%
+            </button>
+
+            <button
+              type="button"
+              onClick={handleZoomIn}
+              className="w-8 h-8 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              title="Zoom In Lily"
+              aria-label="Zoom in 3D flower"
+            >
+              <Plus className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </section>
 
         {/* ========================================================================= */}
@@ -760,7 +850,7 @@ export default function App() {
         {/* ========================================================================= */}
         <section id="works" className="relative z-10 w-full px-4 sm:px-8 lg:px-12 pb-20 sm:pb-32">
           {/* VENTURES & PRODUCTS */}
-          <div id="chapter-ventures" className="pt-16 sm:pt-24">
+          <div id="chapter-ventures" className="pt-16 sm:pt-24 scroll-mt-24">
             <div className="max-w-6xl mx-auto pb-3 mb-8 sm:mb-12 border-b border-white/[0.06]">
               <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
                 Ventures & Products
@@ -789,73 +879,151 @@ export default function App() {
         </section>
 
         {/* ========================================================================= */}
-        {/* CONTACT & SOCIAL DOCK (CONSISTENT SECTION HEADER & FLOATING DOCK)        */}
+        {/* 4. CONTACT SECTION (HIGH-IMPACT EDITORIAL INVITATION & DIRECT CHANNELS)   */}
         {/* ========================================================================= */}
-        <footer
+        <section
           id="contact"
-          className="relative z-10 w-full pt-16 sm:pt-24 pb-20 sm:pb-28 px-4 sm:px-8 lg:px-12 pointer-events-none"
+          className="relative z-10 w-full pt-20 sm:pt-28 pb-16 sm:pb-24 px-4 sm:px-8 lg:px-12 pointer-events-auto scroll-mt-24"
         >
-          {/* Section Header Line (Consistent Across All Sessions) */}
-          <div className="max-w-6xl mx-auto pb-3 mb-8 sm:mb-12 border-b border-white/[0.06] pointer-events-auto">
-            <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
-              Contact
-            </h2>
-          </div>
-
-          <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 p-6 sm:p-8 rounded-3xl bg-[#050608]/50 backdrop-blur-2xl border border-white/[0.08] shadow-[0_20px_60px_rgba(0,0,0,0.5)] pointer-events-auto">
-            <div className="text-center md:text-left">
-              <p className="font-syne text-xl text-white font-bold tracking-tight">Kelsey Lin</p>
-              <p className="text-xs font-mono text-[#94A3B8] tracking-wider mt-1">
-                Product Manager · University of Michigan · Ann Arbor, MI
-              </p>
+          <div className="max-w-6xl mx-auto">
+            {/* Section Header Line (Consistent Across All Sessions) */}
+            <div className="pb-3 mb-10 sm:mb-14 border-b border-white/[0.06]">
+              <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
+                Contact
+              </h2>
             </div>
 
-            {/* Direct Channels: LinkedIn, GitHub, Email */}
-            <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 sm:gap-4">
-              {/* LinkedIn */}
-              <a
-                href="https://www.linkedin.com/in/kel-lin"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] hover:bg-white text-neutral-300 hover:text-black border border-white/[0.08] hover:border-transparent transition-all duration-300 shadow-md cursor-pointer text-xs font-mono"
-                title="LinkedIn Profile"
-              >
-                <Linkedin className="w-3.5 h-3.5 text-[#0055FF] group-hover:text-black transition-colors" />
-                <span className="font-medium">LinkedIn</span>
-              </a>
+            {/* Editorial Contact Spread */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start">
+              {/* Left Column: Context & Intent */}
+              <div className="lg:col-span-7 space-y-5">
+                <h3 className="font-syne text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+                  Let’s build something intentional together.
+                </h3>
+                <p className="font-sans text-neutral-300 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-2xl">
+                  Currently seeking Product Management roles and zero-to-one product opportunities. Open to discussions on technical product strategy, user research, and early-stage venture collaborations.
+                </p>
 
-              {/* GitHub */}
-              <a
-                href="https://github.com/Kelslin"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] hover:bg-white text-neutral-300 hover:text-black border border-white/[0.08] hover:border-transparent transition-all duration-300 shadow-md cursor-pointer text-xs font-mono"
-                title="GitHub Profile"
-              >
-                <Github className="w-3.5 h-3.5 text-neutral-300 group-hover:text-black transition-colors" />
-                <span className="font-medium">GitHub</span>
-              </a>
+                {/* Status Badge */}
+                <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-500/[0.08] border border-emerald-500/20 text-emerald-400 font-mono text-xs tracking-wider uppercase mt-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Available for Summer & Fall 2026 PM Roles</span>
+                </div>
+              </div>
 
-              {/* Email */}
-              <a
-                href="mailto:kelslin@umich.edu"
-                className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] hover:bg-white text-neutral-300 hover:text-black border border-white/[0.08] hover:border-transparent transition-all duration-300 shadow-md cursor-pointer text-xs font-mono"
-                title="Send Email to kelslin@umich.edu"
-              >
-                <Mail className="w-3.5 h-3.5 text-[#FFAA00] group-hover:text-black transition-colors" />
-                <span className="font-medium">Email</span>
-              </a>
+              {/* Right Column: Direct Channels Grid */}
+              <div className="lg:col-span-5 space-y-4">
+                {/* Primary: Direct Email Card */}
+                <a
+                  href="mailto:kelslin@umich.edu"
+                  className="group flex items-center justify-between p-6 rounded-3xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] hover:border-white/20 transition-all duration-300 shadow-lg cursor-pointer"
+                >
+                  <div className="space-y-1">
+                    <div className="text-[10px] font-mono text-neutral-400 uppercase tracking-wider">Direct Email</div>
+                    <div className="font-syne text-base sm:text-lg font-semibold text-white group-hover:text-[#67E8F9] transition-colors">
+                      kelslin@umich.edu
+                    </div>
+                    <div className="text-[11px] font-mono text-neutral-400">Direct response within 24 hours</div>
+                  </div>
+                  <div className="w-11 h-11 rounded-full bg-white/[0.06] group-hover:bg-white text-white group-hover:text-black flex items-center justify-center transition-all duration-300 shrink-0">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                </a>
 
-              {/* Back to Top */}
+                {/* Secondary Channels Grid: LinkedIn & GitHub */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* LinkedIn */}
+                  <a
+                    href="https://www.linkedin.com/in/kel-lin"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex flex-col justify-between p-5 rounded-3xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] hover:border-white/20 transition-all duration-300 shadow-md cursor-pointer"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-wider">Network</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white transition-colors" />
+                    </div>
+                    <div className="font-syne text-base font-semibold text-white group-hover:text-[#67E8F9] transition-colors mt-4">
+                      LinkedIn ↗
+                    </div>
+                  </a>
+
+                  {/* GitHub */}
+                  <a
+                    href="https://github.com/Kelslin"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex flex-col justify-between p-5 rounded-3xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] hover:border-white/20 transition-all duration-300 shadow-md cursor-pointer"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-wider">Code</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white transition-colors" />
+                    </div>
+                    <div className="font-syne text-base font-semibold text-white group-hover:text-[#67E8F9] transition-colors mt-4">
+                      GitHub ↗
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================================= */}
+        {/* GROUNDED SITE FOOTER (FULL-BLEED ARCHITECTURAL BASE WITH SITEMAP & META)  */}
+        {/* ========================================================================= */}
+        <footer className="w-full border-t border-white/[0.08] bg-[#030406]/95 backdrop-blur-2xl py-12 sm:py-16 px-4 sm:px-8 lg:px-12 pointer-events-auto relative z-10">
+          <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-white/[0.06]">
+            {/* Identity & Mission */}
+            <div className="flex items-center gap-4">
+              <img
+                src="/kelsey-signature-logo.png"
+                alt="Kelsey Lin Logo"
+                className="h-9 w-auto object-contain opacity-90 filter drop-shadow-[0_2px_8px_rgba(255,255,255,0.25)]"
+              />
+              <div>
+                <div className="font-syne text-lg font-bold text-white tracking-tight">Kelsey Lin</div>
+                <div className="text-xs font-mono text-neutral-400 mt-0.5">
+                  Product Management · University of Michigan
+                </div>
+              </div>
+            </div>
+
+            {/* Sitemap Navigation & Return to Top */}
+            <div className="flex flex-wrap items-center gap-6 sm:gap-8">
+              <nav className="flex items-center gap-5 text-xs font-mono text-neutral-400">
+                <button onClick={handleScrollToTop} className="hover:text-white transition-colors cursor-pointer">
+                  Home
+                </button>
+                <button onClick={handleScrollToAbout} className="hover:text-white transition-colors cursor-pointer">
+                  About
+                </button>
+                <button onClick={handleScrollToVentures} className="hover:text-white transition-colors cursor-pointer">
+                  Ventures
+                </button>
+                <button onClick={handleScrollToLeadership} className="hover:text-white transition-colors cursor-pointer">
+                  Leadership
+                </button>
+                <button onClick={handleScrollToContact} className="hover:text-white transition-colors cursor-pointer">
+                  Contact
+                </button>
+              </nav>
+
               <button
                 type="button"
                 onClick={handleScrollToTop}
-                className="flex items-center justify-center w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white text-white hover:text-black border border-white/[0.08] hover:border-transparent transition-all cursor-pointer shadow-md"
-                title="Return to top"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-white text-neutral-300 hover:text-black border border-white/10 hover:border-white text-xs font-mono uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-sm"
               >
+                <span>Back to Top</span>
                 <ArrowUp className="w-3.5 h-3.5" />
               </button>
             </div>
+          </div>
+
+          {/* Colophon & Archival Stamps */}
+          <div className="max-w-6xl mx-auto pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[11px] font-mono text-neutral-500">
+            <div>© {new Date().getFullYear()} Kelsey Lin · Designed & Engineered in Ann Arbor, MI</div>
+            <div>Ann Arbor, MI & San Francisco / Bay Area</div>
           </div>
         </footer>
 
