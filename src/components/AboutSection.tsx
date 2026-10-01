@@ -1,27 +1,25 @@
 import React from 'react';
-import { Mail, ArrowRight } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../data/translations';
 
 interface AboutSectionProps {
   language?: Language;
-  onOpenStory?: () => void;
 }
 
 export default function AboutSection({
   language = 'en',
-  onOpenStory,
 }: AboutSectionProps) {
   const t = TRANSLATIONS[language]?.about || TRANSLATIONS.en.about;
 
   return (
     <section
       id="about"
-      className="relative z-10 w-full py-16 sm:py-24 lg:py-28 px-4 sm:px-8 lg:px-12 flex items-center justify-center pointer-events-auto scroll-mt-24"
+      className="relative z-10 w-full pt-8 sm:pt-10 pb-8 sm:pb-12 px-4 sm:px-8 lg:px-12 flex items-center justify-center pointer-events-auto scroll-mt-20"
     >
       {/* Editorial Spread Container */}
       <div className="w-full max-w-6xl mx-auto">
         {/* Section Header Line (Consistent Across All Sessions) */}
-        <div className="pb-3 mb-8 sm:mb-12 border-b border-white/[0.06]">
+        <div className="pb-3 mb-6 sm:mb-8 border-b border-white/[0.06]">
           <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
             About
           </h2>
@@ -115,18 +113,6 @@ export default function AboutSection({
                   Entrepreneurial Leadership Program (ELP Cohort 2) Fellow, VP of Product Motion, and CFE Peer Advisor guiding 80+ student founders and engineering capstones at Michigan.
                 </p>
               </div>
-            </div>
-
-            {/* Read More Floating Page Action Trigger */}
-            <div className="pt-3">
-              <button
-                type="button"
-                onClick={onOpenStory}
-                className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 hover:bg-white text-white hover:text-black font-mono text-xs uppercase tracking-wider font-semibold transition-all duration-300 cursor-pointer shadow-md"
-              >
-                <span>Read Full Background & Photo Gallery</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-              </button>
             </div>
           </div>
         </div>

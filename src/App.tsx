@@ -9,9 +9,7 @@ import AboutSection from './components/AboutSection';
 import ProjectScrollCard from './components/ProjectScrollCard';
 import RecruiterIndexModal from './components/RecruiterIndexModal';
 import ProjectDetailModal from './components/ProjectDetailModal';
-import AboutStoryModal from './components/AboutStoryModal';
 import LeadershipSection from './components/LeadershipSection';
-import LeftBottomAudioIndicator from './components/LeftBottomAudioIndicator';
 import { AudioProvider } from './context/AudioContext';
 import { Waypoint, PORTFOLIO_WAYPOINTS, LensType } from './data/portfolioData';
 import { Language, TRANSLATIONS } from './data/translations';
@@ -337,7 +335,6 @@ export default function App() {
   // Modals
   const [selectedDetailWaypoint, setSelectedDetailWaypoint] = useState<Waypoint | null>(null);
   const [isIndexOpen, setIsIndexOpen] = useState(false);
-  const [isAboutStoryOpen, setIsAboutStoryOpen] = useState(false);
 
   // Interactive Mouse / Touch Drag Orbit Control for 3D Flower
   useEffect(() => {
@@ -447,21 +444,17 @@ export default function App() {
           const aboutEl = document.getElementById('about');
           const venturesEl = document.getElementById('chapter-ventures');
           const leadershipEl = document.getElementById('chapter-leadership');
-          const contactEl = document.getElementById('contact');
           const projectEls = document.querySelectorAll<HTMLElement>('.project-scroll-section');
 
-          const isNearBottom = Boolean(contactEl && contactEl.getBoundingClientRect().top <= vh * 0.75);
           const aboutRect = aboutEl?.getBoundingClientRect();
           const venturesRect = venturesEl?.getBoundingClientRect();
           const leadershipRect = leadershipEl?.getBoundingClientRect();
 
-          if (isNearBottom) {
-            setActiveSection((prev) => (prev !== 'contact' ? 'contact' : prev));
-          } else if (leadershipRect && leadershipRect.top <= vh * 0.5) {
+          if (leadershipRect && leadershipRect.top <= vh * 0.45) {
             // User has scrolled into Leadership & Community
             setActiveLens((prev) => (prev !== 'leadership' ? 'leadership' : prev));
             setActiveSection((prev) => (prev !== 'leadership' ? 'leadership' : prev));
-          } else if (venturesRect && venturesRect.top <= vh * 0.5) {
+          } else if (venturesRect && venturesRect.top <= vh * 0.45) {
             // User has scrolled into Ventures & Products
             setActiveLens((prev) => (prev !== 'ventures' ? 'ventures' : prev));
 
@@ -484,7 +477,7 @@ export default function App() {
               setActiveProjectIndex((prev) => (prev !== activeIdx ? activeIdx : prev));
               setActiveSection((prev) => (prev !== activeId ? activeId : prev));
             }
-          } else if (aboutRect && aboutRect.top <= vh * 0.6) {
+          } else if (aboutRect && aboutRect.top <= vh * 0.5) {
             // In About section
             setActiveSection((prev) => (prev !== 'about' ? 'about' : prev));
             setActiveProjectIndex((prev) => (prev !== -1 ? -1 : prev));
@@ -513,22 +506,17 @@ export default function App() {
 
   const handleScrollToAbout = () => {
     setIsMobileMenuOpen(false);
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const handleScrollToVentures = () => {
     setIsMobileMenuOpen(false);
-    document.getElementById('chapter-ventures')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('chapter-ventures')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const handleScrollToLeadership = () => {
     setIsMobileMenuOpen(false);
-    document.getElementById('chapter-leadership')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const handleScrollToContact = () => {
-    setIsMobileMenuOpen(false);
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('chapter-leadership')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const handleJumpToWaypoint = (wp: Waypoint) => {
@@ -630,8 +618,8 @@ export default function App() {
           }`}
         >
           <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between">
-            {/* Brand Signature Monogram & Name */}
-            <div className="flex items-center gap-3">
+            {/* Brand Signature Monogram & Name + Dynamic Contact Icons on Scroll */}
+            <div className="flex items-center gap-2 sm:gap-3">
               <button
                 onClick={handleScrollToTop}
                 className="flex items-center gap-2.5 p-1 rounded-full hover:opacity-90 transition-opacity cursor-pointer focus:outline-none"
@@ -646,6 +634,48 @@ export default function App() {
                   Kelsey Lin
                 </span>
               </button>
+
+              {/* Dynamic Contact Channels in Sticky Header on Scroll */}
+              <AnimatePresence>
+                {isScrolled && (
+                  <motion.div
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -8 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex items-center gap-1 sm:gap-1.5 pl-2 sm:pl-3 border-l border-white/10"
+                  >
+                    <a
+                      href="https://www.linkedin.com/in/kel-lin"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-1.5 rounded-full text-neutral-400 hover:text-white hover:bg-white/[0.08] transition-colors"
+                      title="LinkedIn"
+                      aria-label="LinkedIn"
+                    >
+                      <Linkedin className="w-3.5 h-3.5" />
+                    </a>
+                    <a
+                      href="https://github.com/Kelslin"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-1.5 rounded-full text-neutral-400 hover:text-white hover:bg-white/[0.08] transition-colors"
+                      title="GitHub"
+                      aria-label="GitHub"
+                    >
+                      <Github className="w-3.5 h-3.5" />
+                    </a>
+                    <a
+                      href="mailto:kelslin@umich.edu"
+                      className="p-1.5 rounded-full text-neutral-400 hover:text-white hover:bg-white/[0.08] transition-colors"
+                      title="Email Kelsey"
+                      aria-label="Email"
+                    >
+                      <Mail className="w-3.5 h-3.5" />
+                    </a>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             {/* Desktop Horizontal Navigation Capsule */}
@@ -675,7 +705,7 @@ export default function App() {
               <button
                 onClick={handleScrollToVentures}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
-                  activeLens === 'ventures' && activeSection !== 'hero' && activeSection !== 'about' && activeSection !== 'contact'
+                  activeLens === 'ventures' && activeSection !== 'hero' && activeSection !== 'about'
                     ? 'bg-white text-black font-semibold shadow-sm'
                     : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
                 }`}
@@ -686,23 +716,12 @@ export default function App() {
               <button
                 onClick={handleScrollToLeadership}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
-                  activeLens === 'leadership' && activeSection !== 'hero' && activeSection !== 'about' && activeSection !== 'contact'
+                  activeLens === 'leadership' && activeSection !== 'hero' && activeSection !== 'about'
                     ? 'bg-white text-black font-semibold shadow-sm'
                     : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
                 }`}
               >
                 Leadership
-              </button>
-
-              <button
-                onClick={handleScrollToContact}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
-                  activeSection === 'contact'
-                    ? 'bg-white text-black font-semibold shadow-sm'
-                    : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
-                }`}
-              >
-                Contact
               </button>
             </nav>
 
@@ -753,7 +772,7 @@ export default function App() {
               <button
                 onClick={handleScrollToVentures}
                 className={`text-left px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider transition-colors ${
-                  activeLens === 'ventures' && activeSection !== 'hero' && activeSection !== 'about' && activeSection !== 'contact'
+                  activeLens === 'ventures' && activeSection !== 'hero' && activeSection !== 'about'
                     ? 'bg-white text-black font-semibold'
                     : 'text-neutral-200 hover:bg-white/10 hover:text-white'
                 }`}
@@ -763,22 +782,12 @@ export default function App() {
               <button
                 onClick={handleScrollToLeadership}
                 className={`text-left px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider transition-colors ${
-                  activeLens === 'leadership' && activeSection !== 'hero' && activeSection !== 'about' && activeSection !== 'contact'
+                  activeLens === 'leadership' && activeSection !== 'hero' && activeSection !== 'about'
                     ? 'bg-white text-black font-semibold'
                     : 'text-neutral-200 hover:bg-white/10 hover:text-white'
                 }`}
               >
                 Leadership
-              </button>
-              <button
-                onClick={handleScrollToContact}
-                className={`text-left px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider transition-colors ${
-                  activeSection === 'contact'
-                    ? 'bg-white text-black font-semibold'
-                    : 'text-neutral-200 hover:bg-white/10 hover:text-white'
-                }`}
-              >
-                Contact
               </button>
             </motion.div>
           )}
@@ -789,7 +798,7 @@ export default function App() {
         {/* ========================================================================= */}
         <section
           id="hero"
-          className="relative min-h-[100dvh] h-[100dvh] flex flex-col justify-between pt-28 pb-10 sm:pb-14 px-6 sm:px-12 lg:px-20 pointer-events-none select-none z-10"
+          className="relative min-h-[100dvh] h-[100dvh] flex flex-col justify-between pt-24 pb-8 sm:pb-12 px-6 sm:px-12 lg:px-20 pointer-events-none select-none z-10"
         >
           {/* Hero Typography & Identity */}
           <div className="my-auto max-w-3xl lg:max-w-4xl xl:max-w-5xl pointer-events-auto">
@@ -804,6 +813,38 @@ export default function App() {
             <p className="relative z-10 font-sans text-neutral-200 text-sm sm:text-base md:text-lg lg:text-xl font-normal leading-relaxed max-w-xl sm:max-w-2xl drop-shadow-sm">
               {t.hero.intro}
             </p>
+
+            {/* Direct Contact Channels */}
+            <div className="flex items-center gap-3 pt-5">
+              <a
+                href="https://www.linkedin.com/in/kel-lin"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-white/20 text-neutral-300 hover:text-white text-xs font-mono transition-all duration-200"
+                aria-label="LinkedIn Profile"
+              >
+                <Linkedin className="w-3.5 h-3.5 text-neutral-300" />
+                <span>LinkedIn</span>
+              </a>
+              <a
+                href="https://github.com/Kelslin"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-white/20 text-neutral-300 hover:text-white text-xs font-mono transition-all duration-200"
+                aria-label="GitHub Profile"
+              >
+                <Github className="w-3.5 h-3.5 text-neutral-300" />
+                <span>GitHub</span>
+              </a>
+              <a
+                href="mailto:kelslin@umich.edu"
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-white/20 text-neutral-300 hover:text-white text-xs font-mono transition-all duration-200"
+                aria-label="Email Kelsey"
+              >
+                <Mail className="w-3.5 h-3.5 text-neutral-300" />
+                <span>Email</span>
+              </a>
+            </div>
           </div>
 
           {/* 3D Model Interactive Zoom Controls */}
@@ -840,25 +881,22 @@ export default function App() {
         </section>
 
         {/* ========================================================================= */}
-        <AboutSection
-          language={language}
-          onOpenStory={() => setIsAboutStoryOpen(true)}
-        />
+        <AboutSection language={language} />
 
         {/* ========================================================================= */}
         {/* 3. SELECTED WORKS (WHOLE VIEW SPREAD WITH PETALS ROTATING IN BACK)        */}
         {/* ========================================================================= */}
-        <section id="works" className="relative z-10 w-full px-4 sm:px-8 lg:px-12 pb-20 sm:pb-32">
+        <section id="works" className="relative z-10 w-full px-4 sm:px-8 lg:px-12 pb-12 sm:pb-16">
           {/* VENTURES & PRODUCTS */}
-          <div id="chapter-ventures" className="pt-16 sm:pt-24 scroll-mt-24">
-            <div className="max-w-6xl mx-auto pb-3 mb-8 sm:mb-12 border-b border-white/[0.06]">
+          <div id="chapter-ventures" className="pt-6 sm:pt-8 scroll-mt-20">
+            <div className="max-w-6xl mx-auto pb-3 mb-6 sm:mb-8 border-b border-white/[0.06]">
               <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
                 Ventures & Products
               </h2>
             </div>
 
             {/* Whole View Projects One by One */}
-            <div className="space-y-8 sm:space-y-12">
+            <div className="space-y-4 sm:space-y-6">
               {ventureProjects.map((wp, idx) => (
                 <ProjectScrollCard
                   key={wp.id}
@@ -879,155 +917,6 @@ export default function App() {
         </section>
 
         {/* ========================================================================= */}
-        {/* 4. CONTACT SECTION (HIGH-IMPACT EDITORIAL INVITATION & DIRECT CHANNELS)   */}
-        {/* ========================================================================= */}
-        <section
-          id="contact"
-          className="relative z-10 w-full pt-20 sm:pt-28 pb-16 sm:pb-24 px-4 sm:px-8 lg:px-12 pointer-events-auto scroll-mt-24"
-        >
-          <div className="max-w-6xl mx-auto">
-            {/* Section Header Line (Consistent Across All Sessions) */}
-            <div className="pb-3 mb-10 sm:mb-14 border-b border-white/[0.06]">
-              <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
-                Contact
-              </h2>
-            </div>
-
-            {/* Editorial Contact Spread */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start">
-              {/* Left Column: Context & Intent */}
-              <div className="lg:col-span-7 space-y-5">
-                <h3 className="font-syne text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-                  Let’s build something intentional together.
-                </h3>
-                <p className="font-sans text-neutral-300 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-2xl">
-                  Currently seeking Product Management roles and zero-to-one product opportunities. Open to discussions on technical product strategy, user research, and early-stage venture collaborations.
-                </p>
-
-                {/* Status Badge */}
-                <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-500/[0.08] border border-emerald-500/20 text-emerald-400 font-mono text-xs tracking-wider uppercase mt-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>Available for Summer & Fall 2026 PM Roles</span>
-                </div>
-              </div>
-
-              {/* Right Column: Direct Channels Grid */}
-              <div className="lg:col-span-5 space-y-4">
-                {/* Primary: Direct Email Card */}
-                <a
-                  href="mailto:kelslin@umich.edu"
-                  className="group flex items-center justify-between p-6 rounded-3xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] hover:border-white/20 transition-all duration-300 shadow-lg cursor-pointer"
-                >
-                  <div className="space-y-1">
-                    <div className="text-[10px] font-mono text-neutral-400 uppercase tracking-wider">Direct Email</div>
-                    <div className="font-syne text-base sm:text-lg font-semibold text-white group-hover:text-[#67E8F9] transition-colors">
-                      kelslin@umich.edu
-                    </div>
-                    <div className="text-[11px] font-mono text-neutral-400">Direct response within 24 hours</div>
-                  </div>
-                  <div className="w-11 h-11 rounded-full bg-white/[0.06] group-hover:bg-white text-white group-hover:text-black flex items-center justify-center transition-all duration-300 shrink-0">
-                    <Mail className="w-4 h-4" />
-                  </div>
-                </a>
-
-                {/* Secondary Channels Grid: LinkedIn & GitHub */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* LinkedIn */}
-                  <a
-                    href="https://www.linkedin.com/in/kel-lin"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex flex-col justify-between p-5 rounded-3xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] hover:border-white/20 transition-all duration-300 shadow-md cursor-pointer"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-wider">Network</span>
-                      <ExternalLink className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white transition-colors" />
-                    </div>
-                    <div className="font-syne text-base font-semibold text-white group-hover:text-[#67E8F9] transition-colors mt-4">
-                      LinkedIn ↗
-                    </div>
-                  </a>
-
-                  {/* GitHub */}
-                  <a
-                    href="https://github.com/Kelslin"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex flex-col justify-between p-5 rounded-3xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] hover:border-white/20 transition-all duration-300 shadow-md cursor-pointer"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-wider">Code</span>
-                      <ExternalLink className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white transition-colors" />
-                    </div>
-                    <div className="font-syne text-base font-semibold text-white group-hover:text-[#67E8F9] transition-colors mt-4">
-                      GitHub ↗
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ========================================================================= */}
-        {/* GROUNDED SITE FOOTER (FULL-BLEED ARCHITECTURAL BASE WITH SITEMAP & META)  */}
-        {/* ========================================================================= */}
-        <footer className="w-full border-t border-white/[0.08] bg-[#030406]/95 backdrop-blur-2xl py-12 sm:py-16 px-4 sm:px-8 lg:px-12 pointer-events-auto relative z-10">
-          <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-white/[0.06]">
-            {/* Identity & Mission */}
-            <div className="flex items-center gap-4">
-              <img
-                src="/kelsey-signature-logo.png"
-                alt="Kelsey Lin Logo"
-                className="h-9 w-auto object-contain opacity-90 filter drop-shadow-[0_2px_8px_rgba(255,255,255,0.25)]"
-              />
-              <div>
-                <div className="font-syne text-lg font-bold text-white tracking-tight">Kelsey Lin</div>
-                <div className="text-xs font-mono text-neutral-400 mt-0.5">
-                  Product Management · University of Michigan
-                </div>
-              </div>
-            </div>
-
-            {/* Sitemap Navigation & Return to Top */}
-            <div className="flex flex-wrap items-center gap-6 sm:gap-8">
-              <nav className="flex items-center gap-5 text-xs font-mono text-neutral-400">
-                <button onClick={handleScrollToTop} className="hover:text-white transition-colors cursor-pointer">
-                  Home
-                </button>
-                <button onClick={handleScrollToAbout} className="hover:text-white transition-colors cursor-pointer">
-                  About
-                </button>
-                <button onClick={handleScrollToVentures} className="hover:text-white transition-colors cursor-pointer">
-                  Ventures
-                </button>
-                <button onClick={handleScrollToLeadership} className="hover:text-white transition-colors cursor-pointer">
-                  Leadership
-                </button>
-                <button onClick={handleScrollToContact} className="hover:text-white transition-colors cursor-pointer">
-                  Contact
-                </button>
-              </nav>
-
-              <button
-                type="button"
-                onClick={handleScrollToTop}
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-white text-neutral-300 hover:text-black border border-white/10 hover:border-white text-xs font-mono uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-sm"
-              >
-                <span>Back to Top</span>
-                <ArrowUp className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </div>
-
-          {/* Colophon & Archival Stamps */}
-          <div className="max-w-6xl mx-auto pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[11px] font-mono text-neutral-500">
-            <div>© {new Date().getFullYear()} Kelsey Lin · Designed & Engineered in Ann Arbor, MI</div>
-            <div>Ann Arbor, MI & San Francisco / Bay Area</div>
-          </div>
-        </footer>
-
-        {/* ========================================================================= */}
         {/* FULL-SCREEN PROJECT DETAIL VIEW (DETAILED RESUME BREAKDOWN)               */}
         {/* ========================================================================= */}
         <ProjectDetailModal
@@ -1036,15 +925,6 @@ export default function App() {
           onNavigate={(wp) => setSelectedDetailWaypoint(wp)}
           language={language}
           onLanguageChange={handleLanguageChange}
-        />
-
-        {/* ========================================================================= */}
-        {/* FULL-SCREEN ABOUT STORY & PHOTO GALLERY FLOATING MODAL                    */}
-        {/* ========================================================================= */}
-        <AboutStoryModal
-          isOpen={isAboutStoryOpen}
-          onClose={() => setIsAboutStoryOpen(false)}
-          language={language}
         />
 
         {/* ========================================================================= */}

@@ -14,16 +14,16 @@ export default function LeadershipSection({
   const leadershipItems = PORTFOLIO_WAYPOINTS.filter((w) => w.lens === 'leadership');
 
   return (
-    <div id="chapter-leadership" className="pt-20 sm:pt-28 pb-12 max-w-6xl mx-auto scroll-mt-24">
+    <div id="chapter-leadership" className="pt-6 sm:pt-8 pb-10 max-w-6xl mx-auto scroll-mt-20">
       {/* Chapter Header */}
-      <div className="pb-3 mb-10 sm:mb-14 border-b border-white/[0.06]">
+      <div className="pb-3 mb-6 sm:mb-8 border-b border-white/[0.06]">
         <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
           Leadership
         </h2>
       </div>
 
       {/* Expanded Rows (Without Lines Between, Generous Breathing Room) */}
-      <div className="space-y-6 sm:space-y-8">
+      <div className="space-y-4 sm:space-y-5">
         {leadershipItems.map((item) => {
           const projectT = TRANSLATIONS[language]?.projects?.[item.id];
           const title = projectT?.title || item.title;

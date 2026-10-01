@@ -37,16 +37,16 @@ export default function ProjectScrollCard({
       id={`project-${waypoint.id}`}
       data-project-index={index}
       data-project-id={waypoint.id}
-      className="project-scroll-section py-14 sm:py-20 lg:py-24 flex items-center justify-center pointer-events-auto relative z-10 w-full"
+      className="project-scroll-section py-4 sm:py-6 lg:py-8 flex items-center justify-center pointer-events-auto relative z-10 w-full"
     >
       {/* Expansive "Whole View" Editorial Spread */}
       <div className="w-full max-w-6xl mx-auto">
         <div
-          className={`grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-16 items-center ${
+          className={`grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-14 items-center ${
             isEven ? '' : 'lg:grid-flow-dense'
           }`}
         >
-          {/* 1. Visual Card (Unified Editorial Architecture: Wireframe, Contact Sheet, Telemetry, Specimen, Liuli) */}
+          {/* 1. Visual Cover Card */}
           <div
             className={`w-full ${
               isEven ? 'lg:col-span-6' : 'lg:col-span-6 lg:col-start-7'
@@ -63,11 +63,7 @@ export default function ProjectScrollCard({
                 }
               }}
               aria-label={`Open case specification for ${title}`}
-              className={
-                isLiuli
-                  ? "relative w-full group/visual cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#F59E0B]/40 transition-all duration-500"
-                  : "relative w-full rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.85)] group/visual cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/40 transition-shadow duration-300 hover:shadow-[0_35px_90px_rgba(0,0,0,0.95)]"
-              }
+              className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.85)] group/visual cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#F59E0B]/40 transition-shadow duration-300 hover:shadow-[0_25px_60px_rgba(0,0,0,0.95)]"
             >
               <EditorialProjectVisual project={waypoint} />
 

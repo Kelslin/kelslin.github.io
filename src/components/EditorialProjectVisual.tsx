@@ -25,15 +25,46 @@ export default function EditorialProjectVisual({
   className = '',
   isModal = false,
 }: EditorialProjectVisualProps) {
-  const visualType = (project.id === 'warmilu' ? 'liuli' : project.visualType) || 'specimen';
-  const isLiuli = visualType === 'liuli';
+  const coverImage = project.images?.[0] || ('imageVisual' in project ? project.imageVisual : null);
+
+  // If a real visual image is provided, display that authentic photograph as the cover
+  if (coverImage) {
+    return (
+      <div
+        className={`relative w-full overflow-hidden select-none bg-[#07090E] transition-all duration-500 ${
+          isModal ? 'aspect-[16/9]' : 'aspect-[16/10]'
+        } ${className}`}
+      >
+        <img
+          src={coverImage}
+          alt={project.title}
+          className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover/visual:scale-105 filter contrast-[1.02] brightness-[0.98]"
+          loading="lazy"
+        />
+        {/* Subtle cinematic gradient vignette at bottom */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050608]/75 via-transparent to-black/15 pointer-events-none" />
+
+        {/* Top Minimal Pill Tag */}
+        <div className="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 font-mono text-[9px] sm:text-[10px] uppercase tracking-wider text-white pointer-events-none">
+          {('lens' in project && project.lens ? project.lens : 'Venture')} · {project.period || '2026'}
+        </div>
+
+        {/* Bottom Specimen Code Badge */}
+        {('specimenCode' in project && project.specimenCode) && (
+          <div className="absolute bottom-3 right-3.5 font-mono text-[10px] tracking-widest text-neutral-300 bg-black/60 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/10 pointer-events-none">
+            [{project.specimenCode}]
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  const visualType = project.visualType || 'specimen';
 
   return (
     <div
       className={`relative w-full select-none transition-all duration-500 ${
-        isLiuli
-          ? isModal ? 'aspect-[16/9]' : 'aspect-[16/10]'
-          : isModal ? 'aspect-[16/9] rounded-3xl overflow-hidden' : 'aspect-[16/10] rounded-3xl overflow-hidden'
+        isModal ? 'aspect-[16/9] rounded-3xl overflow-hidden' : 'aspect-[16/10] rounded-3xl overflow-hidden'
       } ${className}`}
     >
       {visualType === 'wireframe' && <WireframeVisual project={project} isModal={isModal} />}
