@@ -1,4 +1,5 @@
 import React from 'react';
+import { Linkedin, Github, Mail, FileText } from 'lucide-react';
 import type { SupportedLanguage } from '../data/translations';
 
 interface SiteFooterProps {
@@ -30,31 +31,35 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ language }) => {
             href="https://linkedin.com/in/kel-lin"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-white transition-colors duration-200"
+            className="inline-flex items-center gap-1.5 hover:text-white transition-colors duration-200"
           >
-            LinkedIn ↗
+            <Linkedin className="w-3.5 h-3.5" />
+            <span>LinkedIn</span>
           </a>
           <a
             href="https://github.com/Kelslin"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-white transition-colors duration-200"
+            className="inline-flex items-center gap-1.5 hover:text-white transition-colors duration-200"
           >
-            GitHub ↗
+            <Github className="w-3.5 h-3.5" />
+            <span>GitHub</span>
           </a>
           <a
             href="mailto:kelslin@umich.edu"
-            className="hover:text-white transition-colors duration-200"
+            className="inline-flex items-center gap-1.5 hover:text-white transition-colors duration-200"
           >
-            Email ↗
+            <Mail className="w-3.5 h-3.5" />
+            <span>Email</span>
           </a>
           <a
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#FFAA00] hover:text-[#FFC043] transition-colors duration-200"
+            className="inline-flex items-center gap-1.5 text-[#FFAA00] hover:text-[#FFC043] transition-colors duration-200"
           >
-            {isZh ? '请求简历 ↗' : 'Request Resume ↗'}
+            <FileText className="w-3.5 h-3.5" />
+            <span>{isZh ? '请求简历' : 'Request Resume'}</span>
           </a>
         </div>
 
