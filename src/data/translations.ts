@@ -281,40 +281,6 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           'Brought acoustic discipline into user experience design: pacing, cadence, and eliminating dissonance in user flows.',
         ],
       },
-      micro_sculpture: {
-        title: 'Miniature Wearable Sculptures',
-        subtitle: 'Millimeter-Scale Physical Craft & Mineral Chemistry',
-        role: 'Miniature Artisan & Sculptural Designer',
-        period: '2023 – Present',
-        deckSummary:
-          'Handcrafting millimeter-scale wearable sculptures using high-viscosity gels, Japanese chrome pigments, and raw minerals, exploring tactile aesthetics on miniature living canvases.',
-        story:
-          'Miniature nail sculpture is an obsession with extreme detail. Working on a 15mm canvas requires precision brushwork under magnifying light, balancing material viscosity, curing temperatures, and refractive light play.',
-        context:
-          'Product design is often intangible pixels on a glass screen. Handcrafting bespoke wearable nail art allows me to touch physical matter, test polymer chemistry, and experiment with luxury three-dimensional forms.',
-        bulletPoints: [
-          'Formulated custom layering techniques combining magnetic cat-eye pigments, real gold foil, and optical glass gels.',
-          'Crafted over 80 custom commissioned sets, custom-fitted to individual nail anatomy with micro-sculpting tools.',
-          'Refined acute spatial patience and steady-hand motor discipline that informs high-precision UI micro-interactions.',
-        ],
-      },
-      physical_discipline: {
-        title: 'Physical Discipline & Strength',
-        subtitle: 'Biomechanical Precision, Progressive Overload & Mental Grounding',
-        role: 'Strength Athlete & Mind-Body Grounding',
-        period: 'Ongoing Practice',
-        deckSummary:
-          'Grounding mental resilience and daily clarity through dedicated barbell strength training, biomechanical precision, and progressive athletic discipline.',
-        story:
-          'Lifting heavy barbells strips away distractions. It teaches honest feedback—gravity does not negotiate. The daily habit of showing up, tracking mechanical leverage, and managing physical recovery keeps me centered in high-stakes environments.',
-        context:
-          'High-paced product cycles and technical problem-solving can easily cause mental exhaustion without physical grounding. Powerlifting and strength training offer an unbending anchor of discipline and physiological clarity.',
-        bulletPoints: [
-          'Maintain consistent 4-day weekly strength training regimen focusing on compound barbell movements.',
-          'Applied principles of progressive overload and data logging to physical health and daily energy management.',
-          'Builds physical stamina and unwavering psychological endurance for navigating ambiguous 0→1 challenges.',
-        ],
-      },
     },
   },
   zh: {
@@ -524,40 +490,6 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           '将声学节奏美学注入产品体验设计中：把控用户流程的呼吸感，消除交互生硬阻滞。',
         ],
       },
-      micro_sculpture: {
-        title: '微型指尖穿戴雕塑',
-        subtitle: '毫米级物理工艺与矿物凝胶化学',
-        role: '微雕手作艺术家 & 造型设计',
-        period: '2023 – 至今',
-        deckSummary:
-          '在15毫米微型甲面上运用高粘度凝胶、日本铬粉与原矿矿石手工微雕穿戴艺术，探索方寸之间的立体触感美学。',
-        story:
-          '微型指甲雕塑是对极致细节的专注。在15毫米的方寸之间，需要在放大镜下精细运笔，平衡凝胶粘度、固化温控与光泽折射，打磨出兼具艺术美感与日常佩戴耐久度的微型雕塑。',
-        context:
-          '数字化设计往往停留在冰冷屏幕的像素之中。手工微缩指尖雕塑让我能真切触摸实体材料，测试聚合物化学特性，并在三维微观世界中实践前沿工艺。',
-        bulletPoints: [
-          '研发多层折射工艺，将磁性猫眼粉、纯金金箔与高透光波光学胶进行艺术融合。',
-          '定制设计并制作超过80套穿戴甲作品，根据个人甲型解剖结构进行高精度量体微雕。',
-          '锻炼出极致手部稳定性与微观空间感知力，为高精度数字交互与视觉设计提供独特灵感。',
-        ],
-      },
-      physical_discipline: {
-        title: '力量训练与身心沉淀',
-        subtitle: '生物力学、渐进负荷与日常心智锚定',
-        role: '力量训练者 & 身心沉淀',
-        period: '日常坚持',
-        deckSummary:
-          '通过杠铃力量训练、生物力学精准发力与日常规律纪律沉淀心绪，在复杂多变的高强度挑战中保持澄明专注。',
-        story:
-          '举起沉重杠铃的过程摒弃了一切浮躁。地心引力从不说谎，它给予最客观的即时反馈。每日坚持记录负荷数据、校准杠杆支点与专注呼吸，让我在高压环境中始终保持坚韧与清醒。',
-        context:
-          '快节奏的产品研发与高强度思考容易让人产生认知疲劳。力量训练提供了一个绝对纯粹的物理锚点，让身心在对抗阻力中重获平静与力量。',
-        bulletPoints: [
-          '坚持每周4次规律大重量杠铃复合力量训练，严格保持动作力学轨迹。',
-          '将渐进超负荷与数据量化追踪原则运用于体能管理与精力调配中。',
-          '锤炼出直面高难度不确定性时毫不退缩的专注力与抗压心理素质。',
-        ],
-      },
     },
   },
   es: {
@@ -748,40 +680,6 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           'Aplicación de cadencia y armonía acústica a la fluidez de flujos de interacción digital.',
         ],
       },
-      micro_sculpture: {
-        title: 'Esculturas Portátiles en Miniatura',
-        subtitle: 'Artesanía a Escala Milimétrica y Química Mineral',
-        role: 'Artesana de Miniaturas & Diseñadora Escultórica',
-        period: '2023 – Presente',
-        deckSummary:
-          'Creación manual de esculturas portátiles en miniatura sobre lienzos de 15 mm mediante geles de alta viscosidad y pigmentos minerales.',
-        story:
-          'La escultura en miniatura es una obsesión por el detalle extremo bajo luz de aumento, equilibrando viscosidad, curado y refracción.',
-        context:
-          'El diseño digital suele limitarse a píxeles en pantalla. La escultura en miniatura me conecta con materiales físicos y química de polímeros.',
-        bulletPoints: [
-          'Diseño de técnicas de capas combinando pigmentos magnéticos, oro y geles de vidrio óptico.',
-          'Creación de más de 80 sets personalizados adaptados anatómicamente a cada uña.',
-          'Desarrollo de precisión motriz que enriquece el diseño de microinteracciones de interfaz.',
-        ],
-      },
-      physical_discipline: {
-        title: 'Disciplina Física y Fuerza',
-        subtitle: 'Precisión Biomecánica, Sobrecarga Progresiva y Claridad Mental',
-        role: 'Atleta de Fuerza & Enfoque Mental',
-        period: 'Práctica Constante',
-        deckSummary:
-          'Fortalecimiento de la resiliencia mental y claridad diaria mediante entrenamiento estructurado con barra y disciplina atlética progresiva.',
-        story:
-          'El levantamiento de pesas elimina distracciones. La gravedad no negocia: el hábito diario de entrenar y registrar datos mantiene mi mente firme y enfocada.',
-        context:
-          'Los ciclos rápidos de producto pueden agotar mentalmente. El levantamiento de pesas proporciona un ancla inamovible de claridad fisiológica.',
-        bulletPoints: [
-          'Entrenamiento estructurado 4 veces por semana con movimientos compuestos de barra.',
-          'Aplicación de principios de sobrecarga progresiva y registro de datos biométricos.',
-          'Construcción de resistencia física y determinación psicológica para desafíos 0→1.',
-        ],
-      },
     },
   },
   fr: {
@@ -970,40 +868,6 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           '14 ans d’études de violon classique en soliste, quatuors à cordes et orchestres symphoniques.',
           'Exploration de la résonance acoustique et arrangements au piano en contrepoint créatif.',
           'Transposition de la respiration musicale dans le design d’interaction utilisateur.',
-        ],
-      },
-      micro_sculpture: {
-        title: 'Sculptures Portables Miniatures',
-        subtitle: 'Artisanat à l’Échelle Millimétrique & Chimie Minérale',
-        role: 'Artisane Miniaturiste & Créatrice Sculpturale',
-        period: '2023 – Présent',
-        deckSummary:
-          'Conception manuelle de sculptures portables sur ongles de 15 mm avec des gels haute viscosité, pigments japonais et poudres de quartz brut.',
-        story:
-          'La micro-sculpture sur ongle est une quête de précision absolue sous loupe grossissante, équilibrant viscosité, catalysation et réfraction de la lumière.',
-        context:
-          'Le design numérique s’arrête aux pixels. Façonner des sculptures portables me permet d’expérimenter la matière physique et la chimie des polymères.',
-        bulletPoints: [
-          'Développement de techniques de superposition combinant pigments magnétiques, or véritable et gels optiques.',
-          'Création de plus de 80 parures uniques ajustées sur mesure à l’anatomie de chaque main.',
-          'Maîtrise d’une motricité fine et d’une patience spatiale transposées dans les micro-interactions UI.',
-        ],
-      },
-      physical_discipline: {
-        title: 'Discipline Physique & Force',
-        subtitle: 'Biomécanique, Surcharge Progressive & Clarté Mentale',
-        role: 'Athlète de Force & Ancrage Mental',
-        period: 'Pratique Continue',
-        deckSummary:
-          'Ancrage mental et clarté quotidienne par la force athlétique à la barre, la précision biomécanique et la régularité physique.',
-        story:
-          'Soulever des barres lourdes élimine le superflu. La gravité ne négocie pas : cette rigueur quotidienne de mouvement et de respiration me garde centrée.',
-        context:
-          'Le rythme intense des cycles produit peut épuiser l’esprit. La force athlétique offre un socle immuable de clarté physiologique.',
-        bulletPoints: [
-          'Entraînement régulier 4 fois par semaine axé sur les mouvements composés à la barre.',
-          'Application des principes de surcharge progressive et de quantification métrique.',
-          'Développement d’une endurance psychologique inébranlable face aux défis 0→1.',
         ],
       },
     },

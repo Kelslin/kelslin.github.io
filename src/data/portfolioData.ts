@@ -62,8 +62,8 @@ export const LENS_CONFIG: Record<
     index: '03',
     label: 'Craft & Disciplines',
     shortLabel: 'Craft & Passions',
-    description: 'Classical Violin, Miniature Wearable Sculptures & Grounding',
-    tagline: 'Tactile Artistry & Routine',
+    description: '14-Year Classical Violin Training & Acoustic Resonance',
+    tagline: 'Acoustic Timbre & Harmonic Cadence',
   },
 };
 
@@ -663,94 +663,6 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
         'Brought acoustic discipline into user experience design: pacing, cadence, and eliminating dissonance in user flows.',
       ],
       technicalStack: ['Acoustic Violin', 'Steinway Grand Piano', 'Chamber Repertoire', 'Micro-Pacing'],
-    },
-  },
-  {
-    id: 'micro_sculpture',
-    slug: 'miniature-wearables',
-    visualType: 'specimen',
-    statusBadge: 'PRECISION',
-    specimenCode: '02 / NA',
-    images: ['/visuals/nail_art.jpg'],
-    lens: 'craft',
-    chapter: '02',
-    codeTag: 'mineral.gel',
-    subTag: 'sculpt:0.1mm',
-    title: 'Miniature Wearable Sculptures',
-    subtitle: 'Millimeter-Scale Physical Craft & Mineral Chemistry',
-    role: 'Miniature Artisan & Sculptural Designer',
-    period: '2023 – Present',
-    position3D: [0.6, -0.5, 0.2],
-    camPos: [0.45, -0.4, 2.0],
-    lookAt: [0.55, -0.45, 0.15],
-    accentColor: '#F59E0B',
-    glowColor: 'rgba(245, 158, 11, 0.18)',
-    imageVisual: '/visuals/nail_art.jpg',
-    summary:
-      'Handcrafting millimeter-scale wearable sculptures using high-viscosity gels, Japanese chrome pigments, and raw minerals, exploring tactile aesthetics on miniature living canvases.',
-    deckSummary:
-      'Handcrafting millimeter-scale wearable sculptures using high-viscosity gels, Japanese chrome pigments, and raw minerals, exploring tactile aesthetics on miniature living canvases.',
-    story:
-      'Miniature nail sculpture is an obsession with extreme detail. Working on a 15mm canvas requires precision brushwork under magnifying light, balancing material viscosity, curing temperatures, and refractive light play.',
-    metrics: [
-      { value: '80+', label: 'Bespoke Sets', delta: 'Handmade' },
-      { value: '0.1mm', label: 'Brush Precision', delta: 'Tactile' },
-      { value: 'Hand-Made', label: 'Wearable Sculptures', delta: 'Bespoke' },
-    ],
-    tags: ['0.1mm Detail Precision', 'Quartz & Gold Leaf', 'High-Viscosity Gels', 'Wearable Sculptures'],
-    detailedBreakdown: {
-      context:
-        'Product design is often intangible pixels on a glass screen. Handcrafting bespoke wearable nail art allows me to touch physical matter, test polymer chemistry, and experiment with luxury three-dimensional forms.',
-      bulletPoints: [
-        'Formulated custom layering techniques combining magnetic cat-eye pigments, real gold foil, and optical glass gels.',
-        'Crafted over 80 custom commissioned sets, custom-fitted to individual nail anatomy with micro-sculpting tools.',
-        'Refined acute spatial patience and steady-hand motor discipline that informs high-precision UI micro-interactions.',
-      ],
-      technicalStack: ['Japanese Gel Formulations', 'Gold Leaf Inlay', '0.1mm Micro-Brushes', 'Tactile Chemistry'],
-    },
-  },
-  {
-    id: 'physical_discipline',
-    slug: 'physical-discipline',
-    visualType: 'specimen',
-    statusBadge: 'GROUNDING',
-    specimenCode: '03 / PD',
-    images: ['/visuals/physical_discipline.jpg'],
-    lens: 'craft',
-    chapter: '03',
-    codeTag: 'biomech.iron',
-    subTag: 'cadence:4x',
-    title: 'Physical Discipline & Strength',
-    subtitle: 'Biomechanical Precision, Progressive Overload & Mental Grounding',
-    role: 'Strength Athlete & Mind-Body Grounding',
-    period: 'Ongoing Practice',
-    position3D: [0.1, 0.6, 0.2],
-    camPos: [0.0, 0.5, 2.2],
-    lookAt: [0.1, 0.55, 0.15],
-    accentColor: '#FFAA00',
-    glowColor: 'rgba(255, 170, 0, 0.18)',
-    imageVisual: '/visuals/physical_discipline.jpg',
-    summary:
-      'Grounding mental resilience and daily clarity through dedicated barbell strength training, biomechanical precision, and progressive athletic discipline.',
-    deckSummary:
-      'Grounding mental resilience and daily clarity through dedicated barbell strength training, biomechanical precision, and progressive athletic discipline.',
-    story:
-      'Lifting heavy barbells strips away distractions. It teaches honest feedback—gravity does not negotiate. The daily habit of showing up, tracking mechanical leverage, and managing physical recovery keeps me centered in high-stakes environments.',
-    metrics: [
-      { value: '4x / Wk', label: 'Discipline Cadence', delta: 'Consistency' },
-      { value: '100%', label: 'Mental Clarity', delta: 'Focus' },
-      { value: 'Biomechanical', label: 'Movement Control', delta: 'Leverage' },
-    ],
-    tags: ['Kinetic Biomechanics', 'Barbell Strength', 'Progressive Overload', 'Mental Grounding'],
-    detailedBreakdown: {
-      context:
-        'High-paced product cycles and technical problem-solving can easily cause mental exhaustion without physical grounding. Powerlifting and strength training offer an unbending anchor of discipline and physiological clarity.',
-      bulletPoints: [
-        'Maintain consistent 4-day weekly strength training regimen focusing on compound barbell movements.',
-        'Applied principles of progressive overload and data logging to physical health and daily energy management.',
-        'Builds physical stamina and unwavering psychological endurance for navigating ambiguous 0→1 challenges.',
-      ],
-      technicalStack: ['Compound Barbell Lifts', 'Biomechanical Leverage', 'Progressive Overload', 'Recovery Protocol'],
     },
   },
 ];

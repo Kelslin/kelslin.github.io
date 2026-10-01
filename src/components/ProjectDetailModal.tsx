@@ -4,7 +4,6 @@ import { X, ArrowLeft, ArrowRight, ExternalLink, VolumeX } from 'lucide-react';
 import { useAudio } from '../context/AudioContext';
 import { Waypoint, PORTFOLIO_WAYPOINTS } from '../data/portfolioData';
 import { Language, TRANSLATIONS } from '../data/translations';
-import EditorialProjectVisual from './EditorialProjectVisual';
 
 interface ProjectDetailModalProps {
   waypoint: Waypoint | null;
@@ -158,38 +157,26 @@ export default function ProjectDetailModal({
             ))}
           </div>
 
-          {/* Editorial Visual Hero */}
-          <EditorialProjectVisual
-            project={waypoint}
-            isModal={true}
-            className="mb-8 sm:mb-12"
-          />
+          {/* Narrative Overview & Expanded Deliverables */}
+          <div className="space-y-6 mb-8">
+            {context && (
+              <p className="font-sans text-[#D8ECF8]/90 text-sm sm:text-base md:text-lg font-light leading-relaxed">
+                {context}
+              </p>
+            )}
 
-          {/* Problem & Strategic Context */}
-          <div className="mb-8">
-            <h3 className="font-mono text-[11px] sm:text-xs tracking-[0.16em] text-[#F59E0B] font-semibold mb-2">
-              01 · Strategic Context & Problem Space
-            </h3>
-            <p className="font-sans text-[#D8ECF8]/90 text-xs sm:text-sm md:text-base font-light leading-relaxed">
-              {context}
-            </p>
-          </div>
-
-          {/* Key Architecture & Execution Deliverables */}
-          <div className="mb-8">
-            <h3 className="font-mono text-[11px] sm:text-xs tracking-[0.16em] text-[#F59E0B] font-semibold mb-3">
-              02 · Architecture & Execution Deliverables
-            </h3>
-            <ul className="space-y-3 font-sans text-xs sm:text-sm md:text-base text-[#D8ECF8]/85 font-light leading-relaxed">
-              {bulletPoints.map((bp, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <span className="font-mono text-xs font-semibold text-[#F59E0B] pt-0.5 shrink-0">
-                    {String(idx + 1).padStart(2, '0')}.
-                  </span>
-                  <span>{bp}</span>
-                </li>
-              ))}
-            </ul>
+            {bulletPoints && bulletPoints.length > 0 && (
+              <ul className="space-y-3.5 font-sans text-xs sm:text-sm md:text-base text-[#D8ECF8]/85 font-light leading-relaxed">
+                {bulletPoints.map((bp, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <span className="font-mono text-xs font-semibold text-[#F59E0B] pt-0.5 shrink-0">
+                      {String(idx + 1).padStart(2, '0')}.
+                    </span>
+                    <span>{bp}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           {/* Narrative Footnote */}
