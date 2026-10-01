@@ -14,12 +14,12 @@ export default function AboutSection({
   return (
     <section
       id="about"
-      className="relative z-10 w-full pt-8 sm:pt-10 pb-8 sm:pb-12 px-4 sm:px-8 lg:px-12 flex items-center justify-center pointer-events-auto scroll-mt-20"
+      className="relative z-10 w-full pt-14 sm:pt-18 md:pt-22 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-8 lg:px-12 flex items-center justify-center pointer-events-auto scroll-mt-24"
     >
       {/* Editorial Spread Container */}
       <div className="w-full max-w-6xl mx-auto">
         {/* Section Header Line (Consistent Across All Sessions) */}
-        <div className="pb-3 mb-6 sm:mb-8 border-b border-white/[0.06] flex items-baseline justify-between">
+        <div className="pb-3 mb-8 sm:mb-10 border-b border-white/[0.06] flex items-baseline justify-between">
           <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
             About
           </h2>

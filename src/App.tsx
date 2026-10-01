@@ -907,10 +907,10 @@ export default function App() {
         {/* ========================================================================= */}
         {/* 3. SELECTED WORKS (WHOLE VIEW SPREAD WITH PETALS ROTATING IN BACK)        */}
         {/* ========================================================================= */}
-        <section id="works" className="relative z-10 w-full px-4 sm:px-8 lg:px-12 pb-12 sm:pb-16">
+        <section id="works" className="relative z-10 w-full px-4 sm:px-8 lg:px-12 pb-16 sm:pb-20 md:pb-24">
           {/* VENTURES & PRODUCTS */}
-          <div id="chapter-ventures" className="pt-6 sm:pt-8 scroll-mt-20">
-            <div className="max-w-6xl mx-auto pb-3 mb-6 sm:mb-8 border-b border-white/[0.06] flex items-baseline justify-between">
+          <div id="chapter-ventures" className="pt-10 sm:pt-14 md:pt-16 scroll-mt-24">
+            <div className="max-w-6xl mx-auto pb-3 mb-8 sm:mb-10 border-b border-white/[0.06] flex items-baseline justify-between">
               <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
                 Ventures & Products
               </h2>
@@ -919,8 +919,8 @@ export default function App() {
               </span>
             </div>
 
-            {/* Whole View Projects One by One */}
-            <div className="space-y-4 sm:space-y-6">
+            {/* Whole View Projects One by One with Balanced Editorial Spacing */}
+            <div className="space-y-8 sm:space-y-12 md:space-y-14">
               {ventureProjects.map((wp, idx) => (
                 <ProjectScrollCard
                   key={wp.id}
