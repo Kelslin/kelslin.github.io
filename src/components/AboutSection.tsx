@@ -19,10 +19,13 @@ export default function AboutSection({
       {/* Editorial Spread Container */}
       <div className="w-full max-w-6xl mx-auto">
         {/* Section Header Line (Consistent Across All Sessions) */}
-        <div className="pb-3 mb-6 sm:mb-8 border-b border-white/[0.06]">
+        <div className="pb-3 mb-6 sm:mb-8 border-b border-white/[0.06] flex items-baseline justify-between">
           <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
             About
           </h2>
+          <span className="font-mono text-[10px] sm:text-xs tracking-[0.2em] text-[#FFAA00] uppercase font-semibold">
+            01 // Perspective
+          </span>
         </div>
 
         {/* Two-Column Haute Editorial Spread — Open, Human-Crafted */}
@@ -44,7 +47,7 @@ export default function AboutSection({
 
             {/* Direct Personal Manifesto (No generic 'Core Philosophy' label) */}
             <div className="max-w-sm sm:max-w-md lg:max-w-none mx-auto lg:mx-0">
-              <p className="font-serif italic text-lg sm:text-xl text-neutral-200 font-light leading-relaxed">
+              <p className="font-serif italic text-lg sm:text-xl text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-[#FFAA00]/80 font-light leading-relaxed">
                 "{t.manifesto}"
               </p>
             </div>
@@ -53,7 +56,7 @@ export default function AboutSection({
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <a
                 href="mailto:kelslin@umich.edu"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-mono text-xs font-semibold uppercase tracking-wider hover:bg-[#F59E0B] hover:text-black transition-all shadow-lg cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-mono text-xs font-semibold uppercase tracking-wider hover:bg-[#FFAA00] hover:text-black transition-all shadow-lg cursor-pointer"
                 title="Send email to kelslin@umich.edu"
               >
                 <Mail className="w-3.5 h-3.5" />
@@ -80,7 +83,7 @@ export default function AboutSection({
                 Building zero-to-one digital products and intentional physical craft.
               </h3>
 
-              <p className="font-sans text-sm sm:text-base text-neutral-200 font-normal leading-relaxed mt-4">
+              <p className="font-sans text-sm sm:text-base text-neutral-300 font-light leading-relaxed mt-4">
                 I am a Product Manager at the University of Michigan navigating high-ambiguity technical spaces—from real-time EV telemetry on factory floors to clinical neonatal warmers. My approach bridges extreme user listening, systems thinking, and execution momentum.
               </p>
             </div>
@@ -88,7 +91,7 @@ export default function AboutSection({
             {/* Pure Typographic Editorial Pillars (Frameless, Clean & Flush) */}
             <div className="space-y-6 pt-2">
               <div className="space-y-1.5">
-                <h3 className="font-mono text-xs uppercase tracking-wider text-white font-semibold">
+                <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-[#FFAA00] font-semibold">
                   0→1 Product Architecture & Systems Thinking
                 </h3>
                 <p className="text-sm text-neutral-300 font-light leading-relaxed">
@@ -97,7 +100,7 @@ export default function AboutSection({
               </div>
 
               <div className="space-y-1.5">
-                <h3 className="font-mono text-xs uppercase tracking-wider text-white font-semibold">
+                <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-[#FFAA00] font-semibold">
                   Adaptability & User Intuition in Ambiguity
                 </h3>
                 <p className="text-sm text-neutral-300 font-light leading-relaxed">
@@ -106,7 +109,7 @@ export default function AboutSection({
               </div>
 
               <div className="space-y-1.5">
-                <h3 className="font-mono text-xs uppercase tracking-wider text-white font-semibold">
+                <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-[#FFAA00] font-semibold">
                   Technical Leadership & Venture Mentorship
                 </h3>
                 <p className="text-sm text-neutral-300 font-light leading-relaxed">

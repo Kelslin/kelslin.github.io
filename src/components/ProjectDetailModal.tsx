@@ -115,52 +115,40 @@ export default function ProjectDetailModal({
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-8 lg:px-10 py-16 sm:py-24 text-[#D8ECF8]"
         >
-          {/* Clean Case Study Category */}
-          <div className="mb-3 text-[11px] font-mono tracking-wider text-neutral-400 uppercase">
-            <span className="font-semibold text-white">PERSPECTIVE</span>
-            <span className="text-white/20 mx-2">·</span>
-            <span>{waypoint.lens === 'ventures' ? 'VENTURES & PRODUCTS' : 'LEADERSHIP & COMMUNITY'}</span>
-          </div>
-
-          {/* Line 1: Title */}
-          <h1 className="font-syne text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.05] sm:leading-[0.98] mb-2">
-            {title}
-          </h1>
-
-          {/* Line 2: Job Title / Role */}
-          <div className="text-xs sm:text-sm font-mono uppercase tracking-[0.16em] text-white font-medium mb-1">
-            {role}
-          </div>
-
-          {/* Line 3: Period & Live Website Link */}
-          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5 mb-6 sm:mb-8">
-            <div className="text-[11px] sm:text-xs font-mono tracking-[0.15em] text-[#94A3B8] uppercase">
-              {period}
+          {/* Header Spread: Title, Role & Period on Left; Website Link on Right */}
+          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-8 sm:mb-10 pb-6 border-b border-white/[0.06]">
+            <div className="space-y-2 max-w-2xl">
+              <h1 className="font-syne text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.05] sm:leading-[0.98]">
+                {title}
+              </h1>
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs sm:text-sm font-mono uppercase tracking-[0.16em]">
+                <span className="text-[#FFAA00] font-semibold">{role}</span>
+                <span className="text-white/20">·</span>
+                <span className="text-[#94A3B8]">{period}</span>
+              </div>
             </div>
 
             {waypoint.websiteUrl && (
-              <>
-                <span className="text-white/20 hidden xs:inline">·</span>
-                <a
-                  href={waypoint.websiteUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group/site inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.08] hover:bg-white/[0.18] border border-white/10 hover:border-white/25 text-[11px] font-mono text-[#D8ECF8] hover:text-white transition-all shadow-sm cursor-pointer"
-                >
-                  <span className="font-medium text-white group-hover/site:text-[#F59E0B] transition-colors">
-                    {waypoint.websiteLabel || 'Visit Live Platform'}
-                  </span>
-                  <ExternalLink className="w-3 h-3 text-[#94A3B8] group-hover/site:text-white transition-transform group-hover/site:translate-x-0.5 group-hover/site:-translate-y-0.5" />
-                </a>
-              </>
+              <a
+                href={waypoint.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/site inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.08] hover:bg-[#FFAA00] text-white hover:text-black border border-white/15 hover:border-[#FFAA00] text-xs font-mono tracking-wider transition-all duration-300 shadow-md cursor-pointer shrink-0 self-start sm:self-auto mt-1"
+                aria-label={`Visit live website for ${title}`}
+              >
+                <span className="font-semibold">
+                  {waypoint.websiteLabel || 'Visit Website'}
+                </span>
+                <ExternalLink className="w-3.5 h-3.5 transition-transform group-hover/site:translate-x-0.5 group-hover/site:-translate-y-0.5" />
+              </a>
             )}
           </div>
 
-          {/* Impact Metrics (Pure Editorial Typography, Zero Pill Tags) */}
+          {/* Impact Metrics (Editorial Typography with Warm Amber numerals) */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-10 py-2">
             {waypoint.metrics.map((m, idx) => (
               <div key={idx} className="flex flex-col">
-                <span className="font-syne text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-none">
+                <span className="font-syne text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight leading-none text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-[#FFAA00]">
                   {m.value}
                 </span>
                 <span className="font-mono text-[10px] sm:text-xs text-[#94A3B8] uppercase tracking-[0.14em] mt-2">

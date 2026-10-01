@@ -84,10 +84,10 @@ export default function ProjectScrollCard({
             }`}
           >
             {/* Header Stamp */}
-            <div className="flex items-center gap-2 text-[11px] font-mono tracking-wider text-neutral-400 uppercase">
-              <span className="font-semibold text-white">{lensConfig?.label || waypoint.lens}</span>
-              <span className="text-white/20">·</span>
-              <span>{period}</span>
+            <div className="flex items-center gap-2 text-[10px] sm:text-[11px] font-mono tracking-[0.2em] uppercase">
+              <span className="text-[#FFAA00] font-semibold">{lensConfig?.label || waypoint.lens}</span>
+              <span className="text-white/20">/</span>
+              <span className="text-[#94A3B8]">{period}</span>
             </div>
 
             {/* Title */}
@@ -95,13 +95,13 @@ export default function ProjectScrollCard({
               {title}
             </h3>
 
-            {/* Role (Clean White Typography) */}
-            <div className="text-xs sm:text-sm font-mono uppercase tracking-wider text-white font-medium">
+            {/* Role (Warm Amber Tag) */}
+            <div className="text-xs sm:text-sm font-mono uppercase tracking-[0.16em] text-[#FFAA00] font-medium">
               {role}
             </div>
 
             {/* Human Narrative */}
-            <p className="font-sans text-neutral-200 text-sm sm:text-base font-light leading-relaxed max-w-xl">
+            <p className="font-sans text-neutral-300 text-sm sm:text-base font-light leading-relaxed max-w-xl">
               {deckSummary}
             </p>
 
@@ -109,10 +109,10 @@ export default function ProjectScrollCard({
             <div className="grid grid-cols-3 gap-4 sm:gap-6 pt-2 pb-1 max-w-lg">
               {waypoint.metrics.map((m, idx) => (
                 <div key={idx} className="flex flex-col justify-start">
-                  <span className="font-syne text-xl sm:text-2xl font-bold tracking-tight text-white leading-tight">
+                  <span className="font-syne text-xl sm:text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-[#FFAA00] leading-tight">
                     {m.value}
                   </span>
-                  <span className="font-mono text-[10px] text-neutral-400 uppercase tracking-wider mt-1 leading-tight">
+                  <span className="font-mono text-[10px] text-[#94A3B8] uppercase tracking-[0.16em] mt-1.5 leading-tight">
                     {m.label}
                   </span>
                 </div>

@@ -16,10 +16,13 @@ export default function LeadershipSection({
   return (
     <div id="chapter-leadership" className="pt-6 sm:pt-8 pb-10 max-w-6xl mx-auto scroll-mt-20">
       {/* Chapter Header */}
-      <div className="pb-3 mb-6 sm:mb-8 border-b border-white/[0.06]">
+      <div className="pb-3 mb-6 sm:mb-8 border-b border-white/[0.06] flex items-baseline justify-between">
         <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
           Leadership
         </h2>
+        <span className="font-mono text-[10px] sm:text-xs tracking-[0.2em] text-[#FFAA00] uppercase font-semibold">
+          03 // Roster & Community
+        </span>
       </div>
 
       {/* Expanded Rows (Without Lines Between, Generous Breathing Room) */}
@@ -58,15 +61,15 @@ export default function LeadershipSection({
                 {/* Main Identity & Narrative Body */}
                 <div className="min-w-0 flex-1">
                   {/* Period Tag */}
-                  <div className="flex items-center gap-2 text-[10px] sm:text-[11px] font-mono tracking-wider text-neutral-400 uppercase mb-1.5">
+                  <div className="flex items-center gap-2 text-[10px] sm:text-[11px] font-mono tracking-[0.18em] text-[#94A3B8] uppercase mb-1.5">
                     <span>{period}</span>
                   </div>
 
                   {/* Title & Role */}
-                  <h3 className="font-syne text-xl sm:text-2xl font-bold tracking-tight text-white group-hover:text-[#67E8F9] transition-colors">
+                  <h3 className="font-syne text-xl sm:text-2xl font-bold tracking-tight text-white group-hover:text-[#FFAA00] transition-colors">
                     {title}
                   </h3>
-                  <div className="text-xs sm:text-sm font-mono text-neutral-300 mt-1">
+                  <div className="text-xs sm:text-sm font-mono text-[#FFAA00]/90 font-medium tracking-wide mt-1">
                     {role}
                   </div>
 
