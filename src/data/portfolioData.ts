@@ -52,7 +52,7 @@ export const LENS_CONFIG: Record<
   leadership: {
     id: 'leadership',
     index: '02',
-    label: 'Leadership & DEI',
+    label: 'Leadership',
     shortLabel: 'Leadership',
     description: 'Fellowships, Student Ventures & Community Stewardship',
     tagline: 'Campus & Community Impact',

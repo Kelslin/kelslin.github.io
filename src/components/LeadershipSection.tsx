@@ -18,7 +18,7 @@ export default function LeadershipSection({
       {/* Chapter Header */}
       <div className="pb-3 mb-10 sm:mb-14 border-b border-white/[0.06]">
         <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
-          Leadership & Initiatives
+          Leadership
         </h2>
       </div>
 
