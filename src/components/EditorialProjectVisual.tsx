@@ -25,40 +25,6 @@ export default function EditorialProjectVisual({
   className = '',
   isModal = false,
 }: EditorialProjectVisualProps) {
-  const coverImage = project.images?.[0] || ('imageVisual' in project ? project.imageVisual : null);
-
-  // If a real visual image is provided, display that authentic photograph as the cover
-  if (coverImage) {
-    return (
-      <div
-        className={`relative w-full overflow-hidden select-none bg-[#07090E] transition-all duration-500 ${
-          isModal ? 'aspect-[16/9]' : 'aspect-[16/10]'
-        } ${className}`}
-      >
-        <img
-          src={coverImage}
-          alt={project.title}
-          className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover/visual:scale-105 filter contrast-[1.02] brightness-[0.98]"
-          loading="lazy"
-        />
-        {/* Subtle cinematic gradient vignette at bottom */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050608]/75 via-transparent to-black/15 pointer-events-none" />
-
-        {/* Top Minimal Pill Tag */}
-        <div className="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 font-mono text-[9px] sm:text-[10px] uppercase tracking-wider text-white pointer-events-none">
-          {('lens' in project && project.lens ? project.lens : 'Venture')} · {project.period || '2026'}
-        </div>
-
-        {/* Bottom Specimen Code Badge */}
-        {('specimenCode' in project && project.specimenCode) && (
-          <div className="absolute bottom-3 right-3.5 font-mono text-[10px] tracking-widest text-neutral-300 bg-black/60 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/10 pointer-events-none">
-            [{project.specimenCode}]
-          </div>
-        )}
-      </div>
-    );
-  }
-
   const visualType = project.visualType || 'specimen';
 
   return (
@@ -77,114 +43,125 @@ export default function EditorialProjectVisual({
 }
 
 // =========================================================================
-// 1. WIREFRAME / SCHEMATIC VISUAL
-// Clean UI component frames / vector wireframes for digital software products
+// 1. WIREFRAME / INTERACTIVE MEMORY CAPSULE SANDBOX
+// Functional micro-sandbox for digital software & ethical AI platforms
 // =========================================================================
 function WireframeVisual({ project, isModal }: { project: Project | Waypoint; isModal: boolean }) {
-  const coverImage = project.images?.[0] || ('imageVisual' in project ? project.imageVisual : null);
+  const [activeTab, setActiveTab] = React.useState(0);
+
+  const prompts = [
+    {
+      title: 'Family Traditions & Oral Histories',
+      date: 'Archived for Generation 2045',
+      excerpt: '“Every Autumn festival, grandma would tell us how our family crossed the river—preserving the recipe for sweet osmanthus tea.”',
+      hash: 'SHA-256 :: 8f3a...c9b2',
+      category: 'Oral History',
+    },
+    {
+      title: 'Letters to Future Generations',
+      date: 'Time-locked until 18th Birthday',
+      excerpt: '“The courage to begin always matters more than the certainty of where you will land. Never lose your gentle curiosity.”',
+      hash: 'SHA-256 :: 4d1e...a77f',
+      category: 'Time Capsule',
+    },
+    {
+      title: 'Life Philosophy & Disciplines',
+      date: 'Living Digital Testament',
+      excerpt: '“Intentional craft in music and engineering: the discipline to listen before speaking, and the patience to refine every stroke.”',
+      hash: 'SHA-256 :: 9b02...33e1',
+      category: 'Legacy Journal',
+    },
+  ];
+
+  const currentPrompt = prompts[activeTab];
 
   return (
-    <div
-      className="relative w-full h-full bg-[#07090E] border border-white/[0.08] flex flex-col justify-between p-4 sm:p-6 overflow-hidden"
-      style={{
-        backgroundImage: 'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)',
-        backgroundSize: '16px 16px',
-      }}
-    >
-      {/* Top App / Browser Chrome */}
+    <div className="relative w-full h-full bg-[#06080C] border border-white/[0.08] flex flex-col justify-between p-4 sm:p-6 select-none overflow-hidden group">
+      {/* Background CAD Blueprint Dots */}
+      <div
+        className="absolute inset-0 opacity-40 pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px)',
+          backgroundSize: '18px 18px',
+        }}
+      />
+
+      {/* Top Application Header Bar */}
       <div className="relative z-10 flex items-center justify-between pb-3 border-b border-white/[0.06] text-xs font-mono">
         <div className="flex items-center gap-2">
-          {/* Subtle Window Controls */}
+          {/* Subtle OS Window Controls */}
           <div className="flex items-center gap-1.5 mr-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
-            <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
-            <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+            <span className="w-2 h-2 rounded-full bg-white/20" />
+            <span className="w-2 h-2 rounded-full bg-white/20" />
+            <span className="w-2 h-2 rounded-full bg-white/20" />
           </div>
 
-          {/* URL / Route Pill */}
-          <div className="hidden xs:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[10px] text-neutral-300">
-            <Lock className="w-2.5 h-2.5 text-[#67E8F9]" />
-            <span className="tracking-wider">app.{project.slug}.internal/v1</span>
-          </div>
+          <span className="hidden xs:inline-block px-2.5 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-[10px] text-neutral-300">
+            app.afterlife.internal/vault
+          </span>
         </div>
 
-        {/* Status Badge */}
+        {/* Ethical Verification Gate Badge */}
         <div className="flex items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-white font-mono text-[9px] sm:text-[10px] uppercase tracking-wider font-semibold border border-white/15">
-            {project.statusBadge || 'BETA'}
-          </span>
-          <span className="text-[10px] font-mono text-neutral-400 hidden sm:inline">
-            SPEC · {project.specimenCode || '01'}
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/[0.1] text-emerald-400 font-mono text-[9px] uppercase tracking-wider font-semibold border border-emerald-500/20">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span>ZERO SYNTHETIC VOICE</span>
           </span>
         </div>
       </div>
 
-      {/* Main Wireframe Viewport & Architecture Mockup */}
-      <div className="relative z-10 my-auto py-3 sm:py-4 flex-1 flex flex-col justify-center">
-        {/* If product image exists, blend it inside the device wireframe frame */}
-        {coverImage ? (
-          <div className="relative w-full h-[180px] sm:h-[220px] md:h-[240px] rounded-2xl overflow-hidden border border-white/[0.12] shadow-2xl bg-black/60 group/frame">
-            <img
-              src={coverImage}
-              alt={project.title}
-              className="w-full h-full object-cover object-top filter brightness-90 contrast-105 group-hover/frame:scale-105 transition-transform duration-700 ease-out"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#07090E] via-transparent to-black/30 pointer-events-none" />
+      {/* Middle Interactive Memory Capsule UI */}
+      <div className="relative z-10 my-auto py-2 space-y-3">
+        {/* Memory Capsule Selector Tabs */}
+        <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1">
+          {prompts.map((p, idx) => (
+            <button
+              key={idx}
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveTab(idx);
+              }}
+              className={`px-3 py-1.5 rounded-xl font-mono text-[10px] uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap ${
+                activeTab === idx
+                  ? 'bg-white text-black font-semibold shadow-sm'
+                  : 'bg-white/[0.04] text-neutral-400 hover:text-white hover:bg-white/[0.08] border border-white/[0.06]'
+              }`}
+            >
+              {p.category}
+            </button>
+          ))}
+        </div>
 
-            {/* Wireframe Architectural Overlay Pins */}
-            <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-black/75 backdrop-blur-md border border-white/15 font-mono text-[9px] text-white uppercase tracking-wider">
-              1440 × 900 · DESKTOP VIEWPORT
+        {/* Active Memory Preview Card */}
+        <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] shadow-xl space-y-2.5 relative overflow-hidden backdrop-blur-sm">
+          <div className="flex items-baseline justify-between">
+            <div className="font-syne text-sm sm:text-base font-bold text-white tracking-tight">
+              {currentPrompt.title}
             </div>
-            <div className="absolute top-3 right-3 px-2 py-0.5 rounded bg-[#F59E0B]/20 backdrop-blur-md border border-[#F59E0B]/30 font-mono text-[9px] text-[#FCD34D] uppercase tracking-wider">
-              ETHICS GATE: ACTIVE
-            </div>
-
-            {/* Corner Alignment Targets */}
-            <span className="absolute top-1 left-1 text-white/30 font-mono text-[10px] leading-none">┌</span>
-            <span className="absolute top-1 right-1 text-white/30 font-mono text-[10px] leading-none">┐</span>
-            <span className="absolute bottom-1 left-1 text-white/30 font-mono text-[10px] leading-none">└</span>
-            <span className="absolute bottom-1 right-1 text-white/30 font-mono text-[10px] leading-none">┘</span>
-          </div>
-        ) : (
-          /* Pure Vector UI Component Wireframe */
-          <div className="w-full grid grid-cols-12 gap-3 sm:gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/[0.08]">
-            <div className="col-span-4 space-y-2 border-r border-white/[0.06] pr-3">
-              <div className="h-3 w-16 bg-white/20 rounded" />
-              <div className="h-2 w-full bg-white/10 rounded" />
-              <div className="h-2 w-3/4 bg-white/10 rounded" />
-              <div className="pt-2 space-y-1">
-                <div className="h-2 w-5/6 bg-white/10 rounded" />
-                <div className="h-2 w-2/3 bg-white/10 rounded" />
-              </div>
-            </div>
-            <div className="col-span-8 space-y-3 pl-1">
-              <div className="flex items-center justify-between">
-                <div className="h-4 w-32 bg-white/20 rounded" />
-                <div className="h-3 w-12 bg-white/10 rounded" />
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.06] space-y-1.5">
-                  <div className="h-2 w-16 bg-white/20 rounded" />
-                  <div className="h-2 w-full bg-white/10 rounded" />
-                </div>
-                <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.06] space-y-1.5">
-                  <div className="h-2 w-16 bg-white/20 rounded" />
-                  <div className="h-2 w-full bg-white/10 rounded" />
-                </div>
-              </div>
+            <div className="font-mono text-[9px] text-[#FFAA00] tracking-wider uppercase">
+              {currentPrompt.date}
             </div>
           </div>
-        )}
+
+          <p className="font-serif italic text-xs sm:text-sm text-neutral-300 font-light leading-relaxed">
+            {currentPrompt.excerpt}
+          </p>
+
+          <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[9px] font-mono text-neutral-400">
+            <span>TASK COMPLETION: 88%</span>
+            <span className="text-neutral-500 font-mono">{currentPrompt.hash}</span>
+          </div>
+        </div>
       </div>
 
       {/* Bottom Technical Spec Strip */}
-      <div className="relative z-10 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-neutral-400">
+      <div className="relative z-10 pt-2.5 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-neutral-400">
         <div className="flex items-center gap-2">
-          <Layers className="w-3 h-3 text-[#67E8F9]" />
-          <span className="uppercase tracking-wider">UI COMPONENT BLUEPRINT</span>
+          <Layers className="w-3 h-3 text-[#FFAA00]" />
+          <span className="uppercase tracking-wider">ETHICAL PRODUCT SPEC</span>
         </div>
-        <span className="text-neutral-400 hidden sm:inline">ZERO-VOICE-CLONING ETHICAL PRD</span>
+        <span className="text-[#FFAA00] hidden sm:inline">92% USER TRUST RATING</span>
       </div>
     </div>
   );
