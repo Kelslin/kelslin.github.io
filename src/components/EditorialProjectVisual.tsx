@@ -22,8 +22,8 @@ interface EditorialProjectVisualProps {
 
 const BOTANICAL_VISUALS: Record<string, { image: string; subtitle: string; tint: string }> = {
   afterlife: {
-    image: '/visuals/afterlife_memory_flower.jpg',
-    subtitle: 'ETHEREAL MEMORY BLOOM · DIGITAL LEGACY & TIME CAPSULE',
+    image: '/visuals/afterlife_chroma_lily.jpg',
+    subtitle: 'ETHEREAL CHROMA LILY · MEMORY PRESERVATION',
     tint: '#00F0FF',
   },
   warmilu: {
@@ -32,24 +32,24 @@ const BOTANICAL_VISUALS: Record<string, { image: string; subtitle: string; tint:
     tint: '#FFAA00',
   },
   luxshare: {
-    image: '/visuals/luxshare_mechanic_flower.jpg',
-    subtitle: 'TITANIUM TELEMETRY DAHLIA · HARDWARE-SOFTWARE OPTICAL QA',
+    image: '/visuals/luxshare_digital_lily.jpg',
+    subtitle: 'DIGITAL CIRCUIT LILY · HARDWARE-SOFTWARE INTEGRATION',
     tint: '#38BDF8',
   },
   somaseek: {
-    image: '/visuals/somaseek_robotic_flower.jpg',
-    subtitle: 'EMBODIED ROBOTIC BLOSSOM · INTERACTIVE AI EDUCATION',
+    image: '/visuals/somaseek_metal_flower.jpg',
+    subtitle: 'LIQUID CHROME IRIS · KINETIC EMBODIED ROBOTICS',
     tint: '#A855F7',
   },
   portrait_project: {
-    image: '/visuals/rich_collins_sensational_flower.jpg',
-    subtitle: 'HUMANIST SENSATIONAL PEONY · YOUTH LENS & COMMUNITY STORYTELLING',
-    tint: '#FB923C',
+    image: '/visuals/rich_collins_rainbow_lily.png',
+    subtitle: 'WARM SPECTRAL RAINBOW LILY · CAPTURED MOMENTS & YOUTH LENS',
+    tint: '#FFAA00',
   },
   rich_collins: {
-    image: '/visuals/rich_collins_sensational_flower.jpg',
-    subtitle: 'HUMANIST SENSATIONAL PEONY · YOUTH LENS & COMMUNITY STORYTELLING',
-    tint: '#FB923C',
+    image: '/visuals/rich_collins_rainbow_lily.png',
+    subtitle: 'WARM SPECTRAL RAINBOW LILY · CAPTURED MOMENTS & YOUTH LENS',
+    tint: '#FFAA00',
   },
 };
 
