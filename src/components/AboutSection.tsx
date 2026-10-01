@@ -14,7 +14,7 @@ export default function AboutSection({
   return (
     <section
       id="about"
-      className="relative z-10 w-full pt-14 sm:pt-18 md:pt-22 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-8 lg:px-12 flex items-center justify-center pointer-events-auto scroll-mt-24"
+      className="relative z-10 w-full pt-8 sm:pt-10 md:pt-12 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-8 lg:px-12 flex items-center justify-center pointer-events-auto scroll-mt-6"
     >
       {/* Editorial Spread Container */}
       <div className="w-full max-w-6xl mx-auto">

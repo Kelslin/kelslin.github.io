@@ -526,19 +526,26 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleScrollToAbout = () => {
+  const scrollToHeader = (containerId: string, offset = 76) => {
     setIsMobileMenuOpen(false);
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const container = document.getElementById(containerId);
+    if (container) {
+      const header = container.querySelector('h2') || container;
+      const targetY = header.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+    }
+  };
+
+  const handleScrollToAbout = () => {
+    scrollToHeader('about', 76);
   };
 
   const handleScrollToVentures = () => {
-    setIsMobileMenuOpen(false);
-    document.getElementById('chapter-ventures')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    scrollToHeader('chapter-ventures', 76);
   };
 
   const handleScrollToLeadership = () => {
-    setIsMobileMenuOpen(false);
-    document.getElementById('chapter-leadership')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    scrollToHeader('chapter-leadership', 76);
   };
 
   const handleJumpToWaypoint = (wp: Waypoint) => {
@@ -909,7 +916,7 @@ export default function App() {
         {/* ========================================================================= */}
         <section id="works" className="relative z-10 w-full px-4 sm:px-8 lg:px-12 pb-4 sm:pb-6 md:pb-8">
           {/* VENTURES & PRODUCTS */}
-          <div id="chapter-ventures" className="pt-10 sm:pt-14 md:pt-16 scroll-mt-24">
+          <div id="chapter-ventures" className="pt-6 sm:pt-8 md:pt-10 scroll-mt-6">
             <div className="max-w-6xl mx-auto pb-3 mb-8 sm:mb-10 border-b border-white/[0.06] flex items-baseline justify-between">
               <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">
                 Ventures & Products
