@@ -22,24 +22,34 @@ interface EditorialProjectVisualProps {
 
 const BOTANICAL_VISUALS: Record<string, { image: string; subtitle: string; tint: string }> = {
   afterlife: {
-    image: '/visuals/afterlife_chroma_lily.jpg',
-    subtitle: 'ETHEREAL CHROMA LILY · MEMORY PRESERVATION',
+    image: '/visuals/afterlife_memory_flower.jpg',
+    subtitle: 'ETHEREAL MEMORY BLOOM · DIGITAL LEGACY & TIME CAPSULE',
     tint: '#00F0FF',
   },
   warmilu: {
-    image: '/visuals/warmilu_amber_lotus.jpg',
-    subtitle: 'MOLTEN AMBER LOTUS · THERMAL PHASE-CHANGE CORE',
+    image: '/visuals/warmilu_jelly_flower.jpg',
+    subtitle: 'THERMAL HYDROGEL LOTUS · 37°C PHASE-CHANGE INCUBATION',
     tint: '#FFAA00',
   },
   luxshare: {
-    image: '/visuals/luxshare_optic_orchid.jpg',
-    subtitle: 'PRECISION OPTIC ORCHID · HIGH-SPEED TELEMETRY',
-    tint: '#0055FF',
+    image: '/visuals/luxshare_mechanic_flower.jpg',
+    subtitle: 'TITANIUM TELEMETRY DAHLIA · HARDWARE-SOFTWARE OPTICAL QA',
+    tint: '#38BDF8',
   },
   somaseek: {
-    image: '/visuals/somaseek_cyber_flora.jpg',
-    subtitle: 'CYBERNETIC DICHROIC FLORA · EMBODIED ROBOTICS',
-    tint: '#D946EF',
+    image: '/visuals/somaseek_robotic_flower.jpg',
+    subtitle: 'EMBODIED ROBOTIC BLOSSOM · INTERACTIVE AI EDUCATION',
+    tint: '#A855F7',
+  },
+  portrait_project: {
+    image: '/visuals/rich_collins_sensational_flower.jpg',
+    subtitle: 'HUMANIST SENSATIONAL PEONY · YOUTH LENS & COMMUNITY STORYTELLING',
+    tint: '#FB923C',
+  },
+  rich_collins: {
+    image: '/visuals/rich_collins_sensational_flower.jpg',
+    subtitle: 'HUMANIST SENSATIONAL PEONY · YOUTH LENS & COMMUNITY STORYTELLING',
+    tint: '#FB923C',
   },
 };
 
