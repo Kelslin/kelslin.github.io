@@ -551,7 +551,6 @@ export default function App() {
   // Grouped projects by chapter
   const ventureProjects = PORTFOLIO_WAYPOINTS.filter((w) => w.lens === 'ventures');
   const leadershipProjects = PORTFOLIO_WAYPOINTS.filter((w) => w.lens === 'leadership');
-  const craftProjects = PORTFOLIO_WAYPOINTS.filter((w) => w.lens === 'craft');
 
   return (
     <AudioProvider>

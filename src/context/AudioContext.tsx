@@ -45,9 +45,27 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     }, intervalTime);
   };
 
+  const getAudio = () => {
+    if (!audioRef.current) {
+      const audio = new Audio('/ambient-theme.m4a');
+      audio.loop = true;
+      audio.volume = 0;
+      audio.preload = 'none';
+      audioRef.current = audio;
+
+      const handleError = () => {
+        if (audio.src.includes('.m4a')) {
+          audio.src = '/ambient-theme.mp3';
+          audio.load();
+        }
+      };
+      audio.addEventListener('error', handleError);
+    }
+    return audioRef.current;
+  };
+
   const playAudio = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
+    const audio = getAudio();
     audio.volume = 0;
     audio
       .play()
@@ -79,25 +97,12 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
-    const audio = new Audio('/ambient-theme.m4a');
-    audio.loop = true;
-    audio.volume = 0;
-    audioRef.current = audio;
-
-    const handleError = () => {
-      if (audio.src.includes('.m4a')) {
-        audio.src = '/ambient-theme.mp3';
-        audio.load();
-      }
-    };
-    audio.addEventListener('error', handleError);
-
-    // Audio is strictly opt-in: no autoplay on mount or navigation
     return () => {
       if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
-      audio.removeEventListener('error', handleError);
-      audio.pause();
-      audioRef.current = null;
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
     };
   }, []);
 

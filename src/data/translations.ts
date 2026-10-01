@@ -264,23 +264,6 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           'Organized speaker panels and portfolio review sessions connecting undergrads with product leaders across software, health tech, and hardware.',
         ],
       },
-      classical_violin: {
-        title: '14-Year Classical Violin & Piano',
-        subtitle: 'Acoustic Resonance, Micro-Timing & Ensemble Harmony',
-        role: 'Classical Violinist & Sound Explorer',
-        period: '14 Years of Discipline',
-        deckSummary:
-          '14 years of rigorous classical violin training and acoustic piano study, cultivating acute attention to micro-timing, harmonic nuance, and patient tactile craftsmanship.',
-        story:
-          'Music is where I learned patience and listening. Mastering classical violin demands listening across an ensemble, refining physical micro-intonation by millimeters, and understanding that how you hold space is just as crucial as the notes you play.',
-        context:
-          'Classical performance is an exercise in absolute precision under pressure. The discipline of daily scales, tonal warmth, and ensemble balance directly translates into how I approach product craft and systemic flow.',
-        bulletPoints: [
-          '14 years of intensive classical violin study, performing solo repertoire, chamber quartets, and symphony orchestras.',
-          'Explored acoustic resonance and lo-fi piano arrangements as a tactile creative outlet alongside technical work.',
-          'Brought acoustic discipline into user experience design: pacing, cadence, and eliminating dissonance in user flows.',
-        ],
-      },
     },
   },
   zh: {
@@ -473,23 +456,6 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           '举办多场跨界工作坊，链接硬件、生物医疗与软件行业的资深产品导师。',
         ],
       },
-      classical_violin: {
-        title: '十四载古典小提琴与钢琴',
-        subtitle: '声学共振、微观律动与多声部交融',
-        role: '古典小提琴手 & 声学探索者',
-        period: '14年专注练习',
-        deckSummary:
-          '十四年严谨的小提琴古典演奏与声学钢琴探索，培养了对微秒律动、和声层次与触感细节的极致敏锐度。',
-        story:
-          '音乐是我学会沉淀与倾听的起点。古典小提琴的严苛训练要求在毫米之间精准修正音准，倾听四重奏中彼此的呼吸与留白，这深刻影响了我对产品体验节奏与留白的理解。',
-        context:
-          '古典音乐演奏是对高压环境下绝对专注的终极锤炼。每日音阶的打磨、音色的纯净度与声部间的平衡，直接映射到了我构建产品架构与交互细节的审美要求中。',
-        bulletPoints: [
-          '14年系统化古典小提琴训练，长期担任交响乐团与室内乐弦乐四重奏演奏。',
-          '在技术研发之余，探索声学钢琴即兴编配与律动设计，保持充沛的感性创造力。',
-          '将声学节奏美学注入产品体验设计中：把控用户流程的呼吸感，消除交互生硬阻滞。',
-        ],
-      },
     },
   },
   es: {
@@ -663,23 +629,6 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           'Organicé talleres conectando a estudiantes con líderes de la industria en software y hardware.',
         ],
       },
-      classical_violin: {
-        title: '14 Años de Violín Clásico y Piano',
-        subtitle: 'Resonancia Acústica, Micro-Sincronización y Armonía',
-        role: 'Violinista Clásica & Exploradora Sonora',
-        period: '14 Años de Práctica',
-        deckSummary:
-          '14 años de riguroso entrenamiento en violín clásico y piano acústico, cultivando atención al detalle sonoro y paciencia táctil.',
-        story:
-          'La música clásica me enseñó paciencia y escucha profunda: cómo ajustar la afinación en milímetros y respirar junto al ensamble de cámara.',
-        context:
-          'La interpretación clásica exige concentración total bajo presión. La disciplina de las escalas diarias y el equilibrio sonoro informan mi diseño de productos.',
-        bulletPoints: [
-          '14 años de estudio intensivo de violín en repertorio solista, cuartetos de cuerda y orquesta.',
-          'Exploración de resonancia acústica y composiciones en piano como contrapunto creativo.',
-          'Aplicación de cadencia y armonía acústica a la fluidez de flujos de interacción digital.',
-        ],
-      },
     },
   },
   fr: {
@@ -851,23 +800,6 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           'Élue Vice-Présidente de Product Motion, création de programmes de formation et de concours d’études de cas.',
           'Conseil de plus de 50 étudiants par semestre au CFE sur leurs parcours entrepreneuriaux et professionnels.',
           'Organisation d’ateliers réunissant étudiants et mentors seniors de la tech et du hardware.',
-        ],
-      },
-      classical_violin: {
-        title: '14 Ans de Violon Classique & Piano',
-        subtitle: 'Résonance Acoustique, Micro-Rythme & Harmonie d’Ensemble',
-        role: 'Violoniste Classique & Exploratrice Sonore',
-        period: '14 Ans de Rigueur',
-        deckSummary:
-          '14 années de pratique intensive du violon classique et du piano acoustique, développant une écoute millimétrique et une sensibilité tactile rigoureuse.',
-        story:
-          'La musique m’a appris la patience et l’écoute active : corriger l’intonation au millimètre près et respirer en osmose avec un quatuor à cordes.',
-        context:
-          'L’interprétation classique est une école de précision sous tension. La rigueur des gammes quotidiennes irrigue directement ma conception de parcours fluides.',
-        bulletPoints: [
-          '14 ans d’études de violon classique en soliste, quatuors à cordes et orchestres symphoniques.',
-          'Exploration de la résonance acoustique et arrangements au piano en contrepoint créatif.',
-          'Transposition de la respiration musicale dans le design d’interaction utilisateur.',
         ],
       },
     },

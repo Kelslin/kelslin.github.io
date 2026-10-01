@@ -51,28 +51,6 @@ export default function AboutSection({
                 "{t.manifesto}"
               </p>
             </div>
-
-            {/* Direct Action Channels */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <a
-                href="mailto:kelslin@umich.edu"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-mono text-xs font-semibold uppercase tracking-wider hover:bg-[#FFAA00] hover:text-black transition-all shadow-lg cursor-pointer"
-                title="Send email to kelslin@umich.edu"
-              >
-                <Mail className="w-3.5 h-3.5" />
-                <span>{t.getInTouch}</span>
-              </a>
-
-              <a
-                href="https://linkedin.com/in/kel-lin"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-white/10 hover:bg-white text-white hover:text-black font-mono text-xs uppercase tracking-wider backdrop-blur-md transition-all cursor-pointer shadow-md"
-                title="View LinkedIn Profile"
-              >
-                <span>LinkedIn ↗</span>
-              </a>
-            </div>
           </div>
 
           {/* Right Column: Pure Editorial Narrative — Frameless & Direct */}
@@ -86,6 +64,28 @@ export default function AboutSection({
               <p className="font-sans text-sm sm:text-base text-neutral-300 font-light leading-relaxed mt-4">
                 I am a Product Manager at the University of Michigan navigating high-ambiguity technical spaces—from real-time EV telemetry on factory floors to clinical neonatal warmers. My approach bridges extreme user listening, systems thinking, and execution momentum.
               </p>
+
+              {/* Direct Action Channels */}
+              <div className="flex flex-wrap items-center gap-3 pt-6">
+                <a
+                  href="mailto:kelslin@umich.edu"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-mono text-xs font-semibold uppercase tracking-wider hover:bg-[#FFAA00] hover:text-black transition-all shadow-lg cursor-pointer"
+                  title="Send email to kelslin@umich.edu"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  <span>{t.getInTouch}</span>
+                </a>
+
+                <a
+                  href="https://linkedin.com/in/kel-lin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-white/10 hover:bg-white text-white hover:text-black font-mono text-xs uppercase tracking-wider backdrop-blur-md transition-all cursor-pointer shadow-md"
+                  title="View LinkedIn Profile"
+                >
+                  <span>LinkedIn ↗</span>
+                </a>
+              </div>
             </div>
 
             {/* Pure Typographic Editorial Pillars (Frameless, Clean & Flush) */}

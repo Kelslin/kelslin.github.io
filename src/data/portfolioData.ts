@@ -1,7 +1,7 @@
 import { Project, ProjectVisualType } from './projects';
 export type { Project, ProjectVisualType };
 
-export type LensType = 'ventures' | 'leadership' | 'craft';
+export type LensType = 'ventures' | 'leadership';
 
 export interface Waypoint extends Project {
   lens: LensType;
@@ -56,14 +56,6 @@ export const LENS_CONFIG: Record<
     shortLabel: 'Leadership',
     description: 'Fellowships, Student Ventures & Community Stewardship',
     tagline: 'Campus & Community Impact',
-  },
-  craft: {
-    id: 'craft',
-    index: '03',
-    label: 'Craft & Disciplines',
-    shortLabel: 'Craft & Passions',
-    description: '14-Year Classical Violin Training & Acoustic Resonance',
-    tagline: 'Acoustic Timbre & Harmonic Cadence',
   },
 };
 
@@ -615,54 +607,6 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
         'Maintain and monitor public computing clusters and collaborative technical spaces.',
       ],
       technicalStack: ['Systems Troubleshooting', 'Network Infrastructure', 'Client Support'],
-    },
-  },
-
-  // ==========================================
-  // LENS 03 // CRAFT & DISCIPLINES
-  // ==========================================
-  {
-    id: 'classical_violin',
-    slug: 'classical-violin',
-    visualType: 'specimen',
-    statusBadge: 'DISCIPLINE',
-    specimenCode: '01 / VN',
-    images: ['/visuals/violin_piano.jpg'],
-    lens: 'craft',
-    chapter: '01',
-    codeTag: 'resonance.hz',
-    subTag: 'acoustic:14y',
-    title: '14-Year Classical Violin & Piano',
-    subtitle: 'Acoustic Resonance, Micro-Timing & Ensemble Harmony',
-    role: 'Classical Violinist & Sound Explorer',
-    period: '14 Years of Discipline',
-    position3D: [-0.6, 0.5, -0.3],
-    camPos: [-0.4, 0.4, 2.1],
-    lookAt: [-0.55, 0.45, -0.25],
-    accentColor: '#FF6600',
-    glowColor: 'rgba(255, 102, 0, 0.18)',
-    imageVisual: '/visuals/violin_piano.jpg',
-    summary:
-      '14 years of rigorous classical violin training and acoustic piano study, cultivating acute attention to micro-timing, harmonic nuance, and patient tactile craftsmanship.',
-    deckSummary:
-      '14 years of rigorous classical violin training and acoustic piano study, cultivating acute attention to micro-timing, harmonic nuance, and patient tactile craftsmanship.',
-    story:
-      'Music is where I learned patience and listening. Mastering classical violin demands listening across an ensemble, refining physical micro-intonation by millimeters, and understanding that how you hold space is just as crucial as the notes you play.',
-    metrics: [
-      { value: '14 Yrs', label: 'Continuous Practice', delta: 'Daily' },
-      { value: '1,200+', label: 'Rehearsal Hours', delta: 'Mastery' },
-      { value: 'Ensemble', label: 'Chamber Repertoire', delta: 'Harmonic' },
-    ],
-    tags: ['14-Year Practice', 'Acoustic Timbre', 'Micro-Timing Nuance', 'Chamber Harmony'],
-    detailedBreakdown: {
-      context:
-        'Classical performance is an exercise in absolute precision under pressure. The discipline of daily scales, tonal warmth, and ensemble balance directly translates into how I approach product craft and systemic flow.',
-      bulletPoints: [
-        '14 years of intensive classical violin study, performing solo repertoire, chamber quartets, and symphony orchestras.',
-        'Explored acoustic resonance and lo-fi piano arrangements as a tactile creative outlet alongside technical work.',
-        'Brought acoustic discipline into user experience design: pacing, cadence, and eliminating dissonance in user flows.',
-      ],
-      technicalStack: ['Acoustic Violin', 'Steinway Grand Piano', 'Chamber Repertoire', 'Micro-Pacing'],
     },
   },
 ];
