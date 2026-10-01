@@ -63,15 +63,15 @@ function AfterlifeLogoVisual({ isModal, className = '' }: { isModal: boolean; cl
     >
       {/* Soft Ambient Brand Glow (Salmon & Warm Apricot) */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-64 sm:w-80 h-64 sm:h-80 rounded-full bg-gradient-to-tr from-[#FA8072]/20 via-[#FFAA00]/15 to-transparent blur-[80px] opacity-40 group-hover/logo:opacity-85 group-hover/logo:scale-115 transition-all duration-700 ease-out" />
+        <div className="w-72 sm:w-88 h-72 sm:h-88 rounded-full bg-gradient-to-tr from-[#FA8072]/20 via-[#FFAA00]/15 to-transparent blur-[85px] opacity-40 group-hover/logo:opacity-85 group-hover/logo:scale-115 transition-all duration-700 ease-out" />
       </div>
 
-      {/* Pure Floating Brand Logo with 3D Pop-Out Effect (Zoomed Out & Razor Sharp) */}
-      <div className="relative z-10 w-full max-w-[210px] sm:max-w-[250px] md:max-w-[280px] p-2 flex items-center justify-center transform transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/logo:scale-108 group-hover/logo:-translate-y-1.5">
+      {/* Pure Floating Brand Logo with 3D Pop-Out Effect (Standardized Consistent Stage) */}
+      <div className="relative z-10 w-full max-w-[340px] sm:max-w-[380px] md:max-w-[420px] h-28 sm:h-32 md:h-36 p-2 flex items-center justify-center transform transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/logo:scale-108 group-hover/logo:-translate-y-1.5">
         <img
           src="/visuals/logos/afterlife.png"
           alt="Afterlife Club"
-          className="w-full h-auto object-contain [image-rendering:-webkit-optimize-contrast] drop-shadow-[0_4px_24px_rgba(250,128,114,0.35)] transition-all duration-500"
+          className="max-h-20 sm:max-h-24 md:max-h-26 w-auto max-w-full object-contain [image-rendering:-webkit-optimize-contrast] drop-shadow-[0_4px_24px_rgba(250,128,114,0.35)] transition-all duration-500"
           loading="eager"
         />
       </div>
@@ -92,12 +92,12 @@ function WarmiluLogoVisual({ isModal, className = '' }: { isModal: boolean; clas
         <div className="w-72 sm:w-88 h-72 sm:h-88 rounded-full bg-gradient-to-tr from-[#FFAA00]/25 via-amber-600/10 to-transparent blur-[85px] opacity-40 group-hover/logo:opacity-85 group-hover/logo:scale-115 transition-all duration-700 ease-out" />
       </div>
 
-      {/* Pure Floating Brandmark with 3D Pop-Out Effect (Zoomed Out & Razor Sharp) */}
-      <div className="relative z-10 w-full max-w-[230px] sm:max-w-[270px] md:max-w-[310px] p-2 flex items-center justify-center transform transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/logo:scale-108 group-hover/logo:-translate-y-1.5">
+      {/* Pure Floating Brandmark with 3D Pop-Out Effect (Standardized Consistent Stage) */}
+      <div className="relative z-10 w-full max-w-[340px] sm:max-w-[380px] md:max-w-[420px] h-28 sm:h-32 md:h-36 p-2 flex items-center justify-center transform transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/logo:scale-108 group-hover/logo:-translate-y-1.5">
         <img
           src="/visuals/logos/warmilu.png"
           alt="Warmilu"
-          className="w-full h-auto object-contain [image-rendering:-webkit-optimize-contrast] drop-shadow-[0_4px_24px_rgba(255,170,0,0.35)] transition-all duration-500"
+          className="max-h-16 sm:max-h-20 md:max-h-22 w-auto max-w-full object-contain [image-rendering:-webkit-optimize-contrast] drop-shadow-[0_4px_24px_rgba(255,170,0,0.35)] transition-all duration-500"
           loading="eager"
         />
       </div>
@@ -118,12 +118,12 @@ function LuxshareLogoVisual({ isModal, className = '' }: { isModal: boolean; cla
         <div className="w-72 sm:w-88 h-72 sm:h-88 rounded-full bg-gradient-to-tr from-sky-500/20 via-cyan-400/10 to-transparent blur-[85px] opacity-40 group-hover/logo:opacity-85 group-hover/logo:scale-115 transition-all duration-700 ease-out" />
       </div>
 
-      {/* Pure Floating Brandmark with 3D Pop-Out Effect (Zoomed Out & Razor Sharp) */}
-      <div className="relative z-10 w-full max-w-[240px] sm:max-w-[280px] md:max-w-[320px] p-2 flex items-center justify-center transform transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/logo:scale-108 group-hover/logo:-translate-y-1.5">
+      {/* Pure Floating Brandmark with 3D Pop-Out Effect (Standardized Consistent Stage) */}
+      <div className="relative z-10 w-full max-w-[340px] sm:max-w-[380px] md:max-w-[420px] h-28 sm:h-32 md:h-36 p-2 flex items-center justify-center transform transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/logo:scale-108 group-hover/logo:-translate-y-1.5">
         <img
           src="/visuals/logos/luxshare.png"
           alt="LUXSHARE-ICT"
-          className="w-full h-auto object-contain [image-rendering:-webkit-optimize-contrast] drop-shadow-[0_4px_24px_rgba(56,189,248,0.35)] transition-all duration-500"
+          className="max-h-16 sm:max-h-20 md:max-h-22 w-auto max-w-full object-contain [image-rendering:-webkit-optimize-contrast] drop-shadow-[0_4px_24px_rgba(56,189,248,0.35)] transition-all duration-500"
           loading="eager"
         />
       </div>
@@ -144,14 +144,14 @@ function SomaSeekLogoVisual({ isModal, className = '' }: { isModal: boolean; cla
         <div className="w-72 sm:w-88 h-72 sm:h-88 rounded-full bg-gradient-to-tr from-indigo-500/25 via-violet-500/15 to-transparent blur-[85px] opacity-40 group-hover/logo:opacity-85 group-hover/logo:scale-115 transition-all duration-700 ease-out" />
       </div>
 
-      {/* Pure Floating Brandmark with 3D Pop-Out Effect */}
-      <div className="relative z-10 flex flex-col items-center gap-3 transform transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/logo:scale-108 group-hover/logo:-translate-y-1.5">
+      {/* Pure Floating Brandmark with 3D Pop-Out Effect (Standardized Consistent Stage) */}
+      <div className="relative z-10 w-full max-w-[340px] sm:max-w-[380px] md:max-w-[420px] h-28 sm:h-32 md:h-36 p-2 flex flex-col items-center justify-center gap-2.5 sm:gap-3 transform transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/logo:scale-108 group-hover/logo:-translate-y-1.5">
         {/* Geometric Neural Ring Mark */}
-        <div className="w-14 h-14 rounded-full border-2 border-indigo-400/90 flex items-center justify-center p-2.5 shadow-[0_0_20px_rgba(99,102,241,0.4)] group-hover/logo:border-indigo-300 group-hover/logo:shadow-[0_0_30px_rgba(99,102,241,0.7)] transition-all duration-500">
-          <div className="w-4.5 h-4.5 rounded-full bg-indigo-400 shadow-[0_0_12px_#818CF8]" />
+        <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border-2 border-indigo-400/90 flex items-center justify-center p-2 shadow-[0_0_20px_rgba(99,102,241,0.4)] group-hover/logo:border-indigo-300 group-hover/logo:shadow-[0_0_30px_rgba(99,102,241,0.7)] transition-all duration-500">
+          <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-indigo-400 shadow-[0_0_12px_#818CF8]" />
         </div>
 
-        <span className="font-syne font-extrabold text-2xl sm:text-3xl md:text-4xl text-white tracking-[0.24em] uppercase drop-shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
+        <span className="font-syne font-extrabold text-xl sm:text-2xl md:text-3xl text-white tracking-[0.24em] uppercase drop-shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
           SOMASEEK
         </span>
       </div>

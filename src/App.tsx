@@ -634,8 +634,8 @@ export default function App() {
         <header
           className={`fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 pointer-events-auto ${
             isScrolled
-              ? 'bg-[#050608]/85 backdrop-blur-2xl border-b border-white/[0.08] shadow-[0_8px_30px_rgba(0,0,0,0.5)] py-3 sm:py-3.5'
-              : 'bg-transparent border-b border-transparent py-5 sm:py-6'
+              ? 'bg-[#050608]/85 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.5)] py-3 sm:py-3.5'
+              : 'bg-transparent py-5 sm:py-6'
           }`}
         >
           <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between">
@@ -699,8 +699,8 @@ export default function App() {
               </AnimatePresence>
             </div>
 
-            {/* Desktop Horizontal Navigation Capsule */}
-            <nav className="hidden md:flex items-center gap-1 p-1 rounded-full bg-white/[0.04] border border-white/[0.08] backdrop-blur-md">
+            {/* Desktop Horizontal Navigation Capsule (Frameless & Seamless) */}
+            <nav className="hidden md:flex items-center gap-1 p-1.5 rounded-full bg-white/[0.03] backdrop-blur-md">
               <button
                 onClick={handleScrollToTop}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
@@ -751,7 +751,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded-full bg-white/[0.06] border border-white/10 text-white hover:bg-white/15 transition-colors cursor-pointer shadow-md"
+                className="p-2 rounded-full bg-white/[0.06] text-white hover:bg-white/15 transition-colors cursor-pointer shadow-md"
                 aria-label="Toggle navigation menu"
               >
                 {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -768,7 +768,7 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.22 }}
-              className="fixed top-20 left-4 right-4 z-40 p-4 rounded-2xl bg-[#050608]/85 backdrop-blur-2xl border border-white/10 shadow-2xl flex flex-col gap-1.5 md:hidden pointer-events-auto"
+              className="fixed top-20 left-4 right-4 z-40 p-4 rounded-2xl bg-[#050608]/90 backdrop-blur-2xl shadow-2xl flex flex-col gap-1.5 md:hidden pointer-events-auto"
             >
               <button
                 onClick={handleScrollToTop}
