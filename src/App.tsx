@@ -10,6 +10,7 @@ import ProjectScrollCard from './components/ProjectScrollCard';
 import RecruiterIndexModal from './components/RecruiterIndexModal';
 import ProjectDetailModal from './components/ProjectDetailModal';
 import LeadershipSection from './components/LeadershipSection';
+import { SiteFooter } from './components/SiteFooter';
 import { AudioProvider } from './context/AudioContext';
 import { Waypoint, PORTFOLIO_WAYPOINTS, LensType } from './data/portfolioData';
 import { Language, TRANSLATIONS } from './data/translations';
@@ -939,6 +940,11 @@ export default function App() {
             language={language}
           />
         </section>
+
+        {/* ========================================================================= */}
+        {/* 4. EDITORIAL SITE FOOTER & CONTACT                                       */}
+        {/* ========================================================================= */}
+        <SiteFooter language={language} />
 
         {/* ========================================================================= */}
         {/* FULL-SCREEN PROJECT DETAIL VIEW (DETAILED RESUME BREAKDOWN)               */}

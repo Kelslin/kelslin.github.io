@@ -41,22 +41,8 @@ export default function LeadershipSection({
               className="group relative flex flex-col md:flex-row md:items-start justify-between gap-5 sm:gap-6 p-6 sm:p-8 rounded-3xl bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.03] hover:border-white/10 transition-all duration-300"
             >
               <div className="flex items-start gap-4 sm:gap-6 min-w-0 flex-1">
-                {/* Small Visual on the Left */}
-                {item.imageVisual ? (
-                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-neutral-900 border border-white/10 group-hover:border-white/25 transition-all shadow-md">
-                    <img
-                      src={item.imageVisual}
-                      alt={title}
-                      className="w-full h-full object-cover object-center transform transition-transform duration-500 ease-out group-hover:scale-105 filter brightness-95"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
-                  </div>
-                ) : (
-                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-white/[0.04] border border-white/10 flex items-center justify-center font-mono text-xs text-white/60">
-                    {item.specimenCode || '01'}
-                  </div>
-                )}
+                {/* Organization Brand Logo Badge on the Left */}
+                <LeadershipLogoBadge id={item.id} />
 
                 {/* Main Identity & Narrative Body */}
                 <div className="min-w-0 flex-1">
@@ -101,4 +87,82 @@ export default function LeadershipSection({
       </div>
     </div>
   );
+}
+
+function LeadershipLogoBadge({ id }: { id: string }) {
+  switch (id) {
+    case 'product_motion':
+      return (
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-gradient-to-br from-[#1A150D] to-[#0D0B07] border border-[#FFAA00]/25 group-hover:border-[#FFAA00]/50 transition-all flex flex-col items-center justify-center shadow-lg">
+          <div className="w-1.5 h-1.5 rounded-full bg-[#FFAA00] absolute top-2 right-2 animate-pulse" />
+          <span className="font-syne font-black text-xl sm:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-white via-[#FFAA00] to-[#FF8800]">
+            PM
+          </span>
+          <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.16em] uppercase text-[#FFAA00]/80 mt-0.5">
+            GUILD
+          </span>
+        </div>
+      );
+    case 'cfe_advising':
+      return (
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-[#00274C] border border-[#FFCB05]/30 group-hover:border-[#FFCB05]/60 transition-all flex flex-col items-center justify-center shadow-lg">
+          <span className="font-serif font-black text-2xl sm:text-3xl text-[#FFCB05] leading-none">
+            M
+          </span>
+          <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.18em] uppercase text-white/90 mt-1">
+            CFE
+          </span>
+        </div>
+      );
+    case 'elp_fellowship':
+      return (
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-gradient-to-br from-[#0B1528] to-[#040810] border border-[#38BDF8]/25 group-hover:border-[#38BDF8]/50 transition-all flex flex-col items-center justify-center shadow-lg">
+          <span className="font-syne font-black text-lg sm:text-xl text-transparent bg-clip-text bg-gradient-to-r from-[#38BDF8] to-white">
+            ELP
+          </span>
+          <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.18em] uppercase text-[#38BDF8]/90 mt-0.5">
+            FELLOW
+          </span>
+        </div>
+      );
+    case 'mpowered_career_fair':
+      return (
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-gradient-to-br from-[#0D1C28] to-[#080E14] border border-[#00F0FF]/30 group-hover:border-[#00F0FF]/60 transition-all flex flex-col items-center justify-center shadow-lg">
+          <span className="font-syne font-black text-xl sm:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] via-white to-[#00F0FF]">
+            M⚡
+          </span>
+          <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.14em] uppercase text-[#00F0FF]/80 mt-0.5">
+            STARTUP
+          </span>
+        </div>
+      );
+    case 'si201_ia':
+      return (
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-gradient-to-br from-[#121624] to-[#070A12] border border-[#818CF8]/25 group-hover:border-[#818CF8]/50 transition-all flex flex-col items-center justify-center shadow-lg">
+          <span className="font-mono font-bold text-xs sm:text-sm text-[#818CF8]">
+            {'{ SI }'}
+          </span>
+          <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.16em] uppercase text-white/90 mt-1">
+            201 · IA
+          </span>
+        </div>
+      );
+    case 'campus_tech_consultant':
+      return (
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-gradient-to-br from-[#0F171A] to-[#06090A] border border-[#34D399]/25 group-hover:border-[#34D399]/50 transition-all flex flex-col items-center justify-center shadow-lg">
+          <span className="font-mono font-black text-base sm:text-lg text-transparent bg-clip-text bg-gradient-to-r from-[#34D399] to-white">
+            ITS_
+          </span>
+          <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.16em] uppercase text-[#34D399]/80 mt-0.5">
+            TECH
+          </span>
+        </div>
+      );
+    default:
+      return (
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-white/[0.04] border border-white/10 flex items-center justify-center font-mono text-xs text-white/60">
+          U-M
+        </div>
+      );
+  }
 }

@@ -12,6 +12,12 @@ import {
   CheckCircle2,
   Terminal,
   Grid,
+  ExternalLink,
+  ShieldCheck,
+  Thermometer,
+  Sparkles,
+  Clock,
+  ArrowUpRight,
 } from 'lucide-react';
 
 interface EditorialProjectVisualProps {
@@ -20,51 +26,26 @@ interface EditorialProjectVisualProps {
   isModal?: boolean;
 }
 
-const BOTANICAL_VISUALS: Record<string, { image: string; subtitle: string; tint: string }> = {
-  afterlife: {
-    image: '/visuals/afterlife_chroma_lily.jpg',
-    subtitle: 'ETHEREAL CHROMA LILY · MEMORY PRESERVATION',
-    tint: '#00F0FF',
-  },
-  warmilu: {
-    image: '/visuals/warmilu_jelly_flower.jpg',
-    subtitle: 'THERMAL HYDROGEL LOTUS · 37°C PHASE-CHANGE INCUBATION',
-    tint: '#FFAA00',
-  },
-  luxshare: {
-    image: '/visuals/luxshare_digital_lily.jpg',
-    subtitle: 'DIGITAL CIRCUIT LILY · HARDWARE-SOFTWARE INTEGRATION',
-    tint: '#38BDF8',
-  },
-  somaseek: {
-    image: '/visuals/somaseek_metal_flower.jpg',
-    subtitle: 'LIQUID CHROME IRIS · KINETIC EMBODIED ROBOTICS',
-    tint: '#A855F7',
-  },
-  portrait_project: {
-    image: '/visuals/rich_collins_rainbow_lily.png',
-    subtitle: 'WARM SPECTRAL RAINBOW LILY · CAPTURED MOMENTS & YOUTH LENS',
-    tint: '#FFAA00',
-  },
-  rich_collins: {
-    image: '/visuals/rich_collins_rainbow_lily.png',
-    subtitle: 'WARM SPECTRAL RAINBOW LILY · CAPTURED MOMENTS & YOUTH LENS',
-    tint: '#FFAA00',
-  },
-};
-
 export default function EditorialProjectVisual({
   project,
   className = '',
   isModal = false,
 }: EditorialProjectVisualProps) {
-  // Check if project has a curated 3D chromatic botanical flower visual
-  if (project.id in BOTANICAL_VISUALS) {
-    return (
-      <div className={`relative w-full select-none ${className}`}>
-        <ChromaticBotanicalVisual project={project} isModal={isModal} />
-      </div>
-    );
+  // Brand & Live Website Artifact Visuals
+  if (project.id === 'afterlife') {
+    return <AfterlifeBrandVisual isModal={isModal} className={className} />;
+  }
+  if (project.id === 'warmilu') {
+    return <WarmiluBrandVisual isModal={isModal} className={className} />;
+  }
+  if (project.id === 'luxshare') {
+    return <LuxshareBrandVisual isModal={isModal} className={className} />;
+  }
+  if (project.id === 'somaseek') {
+    return <SomaSeekBrandVisual isModal={isModal} className={className} />;
+  }
+  if (project.id === 'portrait_project' || project.id === 'rich_collins') {
+    return <CapturedMomentsBrandVisual isModal={isModal} className={className} />;
   }
 
   const visualType = project.visualType || 'specimen';
@@ -85,46 +66,461 @@ export default function EditorialProjectVisual({
 }
 
 // =========================================================================
-// 0. BORDERLESS CHROMATIC BOTANICAL FLORA VISUAL
-// Surreal 3D iridescent liquid chrome & crystal glass floral sculptures
+// 1. AFTERLIFE CLUB // OFFICIAL BRAND & LIVE WEBSITE ARTIFACT
+// Brand mark: Official tulip bud SVG from afterlife-club.github.io/afterlife-site
 // =========================================================================
-function ChromaticBotanicalVisual({ project, isModal }: { project: Project | Waypoint; isModal: boolean }) {
-  const visual = BOTANICAL_VISUALS[project.id];
-  if (!visual) return null;
-
+function AfterlifeBrandVisual({ isModal, className = '' }: { isModal: boolean; className?: string }) {
   return (
     <div
-      className={`relative w-full flex items-center justify-center select-none overflow-visible group/flora transition-all duration-700 ${
-        isModal
-          ? 'h-[320px] sm:h-[420px] md:h-[480px]'
-          : 'h-[300px] sm:h-[380px] md:h-[420px]'
-      }`}
+      className={`relative w-full rounded-2xl sm:rounded-3xl border border-white/[0.08] bg-[#07080B] p-5 sm:p-7 flex flex-col justify-between overflow-hidden select-none group/brand transition-all duration-500 hover:border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.8)] ${
+        isModal ? 'min-h-[380px] sm:min-h-[440px]' : 'min-h-[340px] sm:min-h-[390px]'
+      } ${className}`}
     >
-      {/* 1. Ambient Background Glow Matching Flower Tonal Identity */}
-      <div
-        className="absolute w-[240px] sm:w-[320px] md:w-[380px] h-[240px] sm:h-[320px] md:h-[380px] rounded-full blur-[90px] sm:blur-[120px] opacity-20 pointer-events-none transition-all duration-700 ease-out group-hover/flora:scale-115 group-hover/flora:opacity-30"
-        style={{ backgroundColor: visual.tint }}
-      />
+      {/* Ambient Brand Glow (Soft Salmon / Warm Cream) */}
+      <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-[#FA8072]/15 blur-[80px] pointer-events-none" />
+      <div className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-[#704A36]/20 blur-[90px] pointer-events-none" />
 
-      {/* 2. Seamless Borderless Botanical Image with Elliptical Radial Mask */}
-      <div
-        className="relative z-10 w-full h-full flex items-center justify-center overflow-hidden transition-transform duration-700 ease-out group-hover/flora:scale-[1.04]"
-        style={{
-          maskImage: 'radial-gradient(ellipse at center, black 60%, transparent 96%)',
-          WebkitMaskImage: 'radial-gradient(ellipse at center, black 60%, transparent 96%)',
-        }}
-      >
-        <img
-          src={visual.image}
-          alt={`${project.title} - Chromatic Botanical Visual`}
-          className="w-full h-full object-contain object-center filter contrast-[1.05] brightness-[1.02] drop-shadow-[0_15px_35px_rgba(0,0,0,0.9)]"
-          loading="eager"
-        />
+      {/* Top Brand Header */}
+      <div className="relative z-10 flex items-center justify-between pb-4 border-b border-white/[0.06]">
+        <div className="flex items-center gap-3.5">
+          {/* Official Afterlife Tulip Icon SVG from live site */}
+          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#FDF5E6] p-2 shadow-md flex items-center justify-center shrink-0">
+            <svg viewBox="0 0 64 64" className="w-full h-full">
+              <path
+                d="M32 14c-6 0-10 5-10 11 0 4 2 7 4 9-2 2-3 5-3 8 0 6 4 10 9 10s9-4 9-10c0-3-1-6-3-8 2-2 4-5 4-9 0-6-4-11-10-11z"
+                fill="#704A36"
+              />
+              <path
+                d="M32 14c-3 0-5 3-5 6 0 2 1 4 2 5 1-1 2-3 3-3s2 2 3 3c1-1 2-3 2-5 0-3-2-6-5-6z"
+                fill="#FA8072"
+              />
+              <path d="M32 34c-2 0-3 2-3 4s1 4 3 4 3-2 3-4-1-4-3-4z" fill="#FDF5E6" />
+            </svg>
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="font-syne text-lg sm:text-xl font-bold tracking-tight text-white">
+                Afterlife
+              </span>
+              <span className="px-2 py-0.5 rounded-full bg-white/[0.06] text-[9px] font-mono uppercase tracking-wider text-[#FA8072] border border-[#FA8072]/20">
+                Live Platform
+              </span>
+            </div>
+            <p className="text-[10px] sm:text-xs font-mono text-neutral-400 tracking-wide mt-0.5">
+              时空胶囊 · 手账 · 记忆展柜
+            </p>
+          </div>
+        </div>
+
+        {/* Live Website Link Badge */}
+        <div className="hidden xs:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-neutral-300">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span>afterlife-site</span>
+        </div>
       </div>
 
-      {/* 3. Archival Monospace Caption (Borderless & Floating) */}
-      <div className="absolute bottom-1 right-2 sm:right-4 z-20 pointer-events-none select-none text-[9px] sm:text-[10px] font-mono tracking-[0.2em] text-[#94A3B8] opacity-75 group-hover/flora:opacity-100 transition-opacity">
-        [ {visual.subtitle} ]
+      {/* Middle: Live Product UI Artifact */}
+      <div className="relative z-10 my-auto py-3 space-y-3">
+        <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-md space-y-2.5">
+          <div className="flex items-center justify-between">
+            <span className="font-mono text-[9px] sm:text-[10px] text-[#FA8072] uppercase tracking-[0.18em]">
+              TIME-LOCKED ARTIFACT :: CAPSULE #2027
+            </span>
+            <span className="font-mono text-[9px] text-neutral-400">
+              SHA-256 :: 8f3a...c9b2
+            </span>
+          </div>
+
+          <p className="font-serif italic text-sm sm:text-base text-neutral-200 font-light leading-relaxed">
+            “把今天，寄给未来的自己。没有信息流，没有点赞，只有你和回忆在未来的准时抵达。”
+          </p>
+
+          <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-neutral-400">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#FA8072]" />
+              <span className="text-neutral-300">VOICE-FIRST TRANSCRIPTION</span>
+            </div>
+            <span className="text-emerald-400 font-semibold">88% TASK COMPLETION</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Architectural Spec Strip */}
+      <div className="relative z-10 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-neutral-400">
+        <span className="tracking-widest text-[#FA8072] uppercase">
+          [ SPECIMEN // 01 · ETHICAL PRODUCT PRD · ZERO SYNTHETIC VOICE ]
+        </span>
+        <span className="text-neutral-400">92% USER TRUST</span>
+      </div>
+    </div>
+  );
+}
+
+// =========================================================================
+// 2. WARMILU // OFFICIAL BRAND & CLINICAL TECHNOLOGY SPECIFICATION
+// Brand mark: Official Warmilu lowercase geometric wordmark & IncuBlanket data
+// =========================================================================
+function WarmiluBrandVisual({ isModal, className = '' }: { isModal: boolean; className?: string }) {
+  return (
+    <div
+      className={`relative w-full rounded-2xl sm:rounded-3xl border border-white/[0.08] bg-[#090807] p-5 sm:p-7 flex flex-col justify-between overflow-hidden select-none group/brand transition-all duration-500 hover:border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.8)] ${
+        isModal ? 'min-h-[380px] sm:min-h-[440px]' : 'min-h-[340px] sm:min-h-[390px]'
+      } ${className}`}
+    >
+      {/* Ambient Brand Glow (Warm Thermal Amber) */}
+      <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-[#FFAA00]/15 blur-[80px] pointer-events-none" />
+      <div className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-[#F59E0B]/10 blur-[90px] pointer-events-none" />
+
+      {/* Top Brand Header */}
+      <div className="relative z-10 flex items-center justify-between pb-4 border-b border-white/[0.06]">
+        <div className="flex items-center gap-3.5">
+          {/* Warmilu Geometric Wordmark Icon */}
+          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-[#FFAA00] to-[#EA580C] p-2 shadow-md flex items-center justify-center shrink-0">
+            <span className="font-syne font-black text-2xl text-black">w</span>
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="font-syne text-lg sm:text-xl font-bold tracking-tight text-white lowercase">
+                warmilu
+              </span>
+              <span className="px-2 py-0.5 rounded-full bg-white/[0.06] text-[9px] font-mono uppercase tracking-wider text-[#FFAA00] border border-[#FFAA00]/20">
+                Medical Device
+              </span>
+            </div>
+            <p className="text-[10px] sm:text-xs font-mono text-neutral-400 tracking-wide mt-0.5">
+              Non-Electric Infant Warming Technology · Ann Arbor, MI
+            </p>
+          </div>
+        </div>
+
+        {/* Live Website Link Badge */}
+        <div className="hidden xs:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-neutral-300">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#FFAA00] animate-pulse" />
+          <span>warmilu.com</span>
+        </div>
+      </div>
+
+      {/* Middle: Medical Technology & Clinical Intake Artifact */}
+      <div className="relative z-10 my-auto py-3 space-y-3">
+        <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-md space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="font-mono text-[9px] sm:text-[10px] text-[#FFAA00] uppercase tracking-[0.18em]">
+              CLINICAL SPEC :: INCUBASIC™ / INCUTechnology™
+            </span>
+            <span className="font-mono text-[9px] text-neutral-400">
+              PATENTED PCM PACK
+            </span>
+          </div>
+
+          {/* Product Schematic / Telemetry Matrix */}
+          <div className="grid grid-cols-3 gap-3 pt-1">
+            <div className="p-2.5 rounded-xl bg-black/40 border border-white/[0.04]">
+              <div className="font-mono text-[9px] text-neutral-400 uppercase">Regulated Temp</div>
+              <div className="font-syne text-base sm:text-lg font-bold text-white mt-0.5">37.0°C</div>
+              <div className="font-mono text-[8px] text-[#FFAA00]">Zero Electricity</div>
+            </div>
+            <div className="p-2.5 rounded-xl bg-black/40 border border-white/[0.04]">
+              <div className="font-mono text-[9px] text-neutral-400 uppercase">Direct Sales</div>
+              <div className="font-syne text-base sm:text-lg font-bold text-white mt-0.5">+20%</div>
+              <div className="font-mono text-[8px] text-emerald-400">Buyer Conversion</div>
+            </div>
+            <div className="p-2.5 rounded-xl bg-black/40 border border-white/[0.04]">
+              <div className="font-mono text-[9px] text-neutral-400 uppercase">Triage Time</div>
+              <div className="font-syne text-base sm:text-lg font-bold text-white mt-0.5">-40%</div>
+              <div className="font-mono text-[8px] text-emerald-400">Internal Routing</div>
+            </div>
+          </div>
+
+          <p className="font-sans text-xs text-neutral-300 font-light leading-relaxed pt-1">
+            Redesigned hospital buyer intake funnels and procurement checkout to rapidly deliver non-electric blankets to clinics in need.
+          </p>
+        </div>
+      </div>
+
+      {/* Bottom Architectural Spec Strip */}
+      <div className="relative z-10 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-neutral-400">
+        <span className="tracking-widest text-[#FFAA00] uppercase">
+          [ SPECIMEN // 02 · NON-ELECTRIC INFANT THERMOREGULATION ]
+        </span>
+        <span className="text-neutral-400">CLINICAL DEPLOYMENT</span>
+      </div>
+    </div>
+  );
+}
+
+// =========================================================================
+// 3. LUXSHARE PRECISION // OFFICIAL CORPORATE MARK & EV TELEMETRY QA
+// Brand mark: Official LUXSHARE-ICT precision engineering mark
+// =========================================================================
+function LuxshareBrandVisual({ isModal, className = '' }: { isModal: boolean; className?: string }) {
+  return (
+    <div
+      className={`relative w-full rounded-2xl sm:rounded-3xl border border-white/[0.08] bg-[#07090E] p-5 sm:p-7 flex flex-col justify-between overflow-hidden select-none group/brand transition-all duration-500 hover:border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.8)] ${
+        isModal ? 'min-h-[380px] sm:min-h-[440px]' : 'min-h-[340px] sm:min-h-[390px]'
+      } ${className}`}
+    >
+      {/* Ambient Brand Glow (Klein Blue / Cyan) */}
+      <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-[#0070FF]/15 blur-[80px] pointer-events-none" />
+      <div className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-[#38BDF8]/10 blur-[90px] pointer-events-none" />
+
+      {/* Top Brand Header */}
+      <div className="relative z-10 flex items-center justify-between pb-4 border-b border-white/[0.06]">
+        <div className="flex items-center gap-3.5">
+          {/* Luxshare Corporate Precision Monogram */}
+          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-[#0055FF] to-[#0284C7] p-2 shadow-md flex items-center justify-center shrink-0">
+            <span className="font-syne font-black text-sm text-white tracking-tighter">ICT</span>
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="font-syne text-lg sm:text-xl font-bold tracking-tight text-white uppercase">
+                LUXSHARE-ICT
+              </span>
+              <span className="px-2 py-0.5 rounded-full bg-white/[0.06] text-[9px] font-mono uppercase tracking-wider text-[#38BDF8] border border-[#38BDF8]/20">
+                Precision EV
+              </span>
+            </div>
+            <p className="text-[10px] sm:text-xs font-mono text-neutral-400 tracking-wide mt-0.5">
+              立讯精密 · Hardware-Software Telemetry Integration
+            </p>
+          </div>
+        </div>
+
+        {/* Live Website Link Badge */}
+        <div className="hidden xs:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-neutral-300">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
+          <span>luxshare-ict.com</span>
+        </div>
+      </div>
+
+      {/* Middle: EV Manufacturing Telemetry Console */}
+      <div className="relative z-10 my-auto py-3 space-y-3">
+        <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-md space-y-3">
+          <div className="flex items-center justify-between font-mono text-[9px] sm:text-[10px]">
+            <span className="text-[#38BDF8] uppercase tracking-[0.18em]">
+              TELEMETRY LOG :: 200 AUDIT CHECKPOINTS
+            </span>
+            <span className="text-emerald-400 flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+              LIVE MONITORING
+            </span>
+          </div>
+
+          {/* Precision Metrics Grid */}
+          <div className="grid grid-cols-3 gap-3 pt-1">
+            <div className="p-2.5 rounded-xl bg-black/40 border border-white/[0.04]">
+              <div className="font-mono text-[9px] text-neutral-400 uppercase">Assembly QA</div>
+              <div className="font-syne text-base sm:text-lg font-bold text-white mt-0.5">98.0%</div>
+              <div className="font-mono text-[8px] text-[#38BDF8]">Optical Line Spec</div>
+            </div>
+            <div className="p-2.5 rounded-xl bg-black/40 border border-white/[0.04]">
+              <div className="font-mono text-[9px] text-neutral-400 uppercase">Operator Error</div>
+              <div className="font-syne text-base sm:text-lg font-bold text-white mt-0.5">-30%</div>
+              <div className="font-mono text-[8px] text-emerald-400">PRD Standardization</div>
+            </div>
+            <div className="p-2.5 rounded-xl bg-black/40 border border-white/[0.04]">
+              <div className="font-mono text-[9px] text-neutral-400 uppercase">Daily Runs</div>
+              <div className="font-syne text-base sm:text-lg font-bold text-white mt-0.5">1,000+</div>
+              <div className="font-mono text-[8px] text-emerald-400">Python Automated</div>
+            </div>
+          </div>
+
+          <p className="font-sans text-xs text-neutral-300 font-light leading-relaxed pt-1">
+            Standardized optical camera inspection checklists across 200 technical audits, eliminating high-speed EV electronics manufacturing bottlenecks.
+          </p>
+        </div>
+      </div>
+
+      {/* Bottom Architectural Spec Strip */}
+      <div className="relative z-10 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-neutral-400">
+        <span className="tracking-widest text-[#38BDF8] uppercase">
+          [ SPECIMEN // 03 · HARDWARE-SOFTWARE OPTICAL QA ]
+        </span>
+        <span className="text-neutral-400">AUTOMATED PYTHON TELEMETRY</span>
+      </div>
+    </div>
+  );
+}
+
+// =========================================================================
+// 4. SOMASEEK // OFFICIAL ROBOTICS LAB BRAND & EXPO KEYNOTE ARTIFACT
+// Brand mark: Official SomaSeek robotics lab mark & Big Data Expo validation
+// =========================================================================
+function SomaSeekBrandVisual({ isModal, className = '' }: { isModal: boolean; className?: string }) {
+  return (
+    <div
+      className={`relative w-full rounded-2xl sm:rounded-3xl border border-white/[0.08] bg-[#09080F] p-5 sm:p-7 flex flex-col justify-between overflow-hidden select-none group/brand transition-all duration-500 hover:border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.8)] ${
+        isModal ? 'min-h-[380px] sm:min-h-[440px]' : 'min-h-[340px] sm:min-h-[390px]'
+      } ${className}`}
+    >
+      {/* Ambient Brand Glow (Cybernetic Cyan & Violet) */}
+      <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-[#A855F7]/15 blur-[80px] pointer-events-none" />
+      <div className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-[#06B6D4]/10 blur-[90px] pointer-events-none" />
+
+      {/* Top Brand Header */}
+      <div className="relative z-10 flex items-center justify-between pb-4 border-b border-white/[0.06]">
+        <div className="flex items-center gap-3.5">
+          {/* SomaSeek Robotics Lab Mark */}
+          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-[#7C3AED] to-[#06B6D4] p-2 shadow-md flex items-center justify-center shrink-0">
+            <span className="font-syne font-black text-sm text-white tracking-widest">SS</span>
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="font-syne text-lg sm:text-xl font-bold tracking-tight text-white">
+                SomaSeek
+              </span>
+              <span className="px-2 py-0.5 rounded-full bg-white/[0.06] text-[9px] font-mono uppercase tracking-wider text-[#A855F7] border border-[#A855F7]/20">
+                Embodied AI
+              </span>
+            </div>
+            <p className="text-[10px] sm:text-xs font-mono text-neutral-400 tracking-wide mt-0.5">
+              Multi-Robot Embodied AI & Interactive Robotics Platform
+            </p>
+          </div>
+        </div>
+
+        {/* Live Broadcast Badge */}
+        <div className="hidden xs:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-neutral-300">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#A855F7] animate-pulse" />
+          <span>Big Data Expo 2025</span>
+        </div>
+      </div>
+
+      {/* Middle: Keynote Demonstration & Prompt Architecture */}
+      <div className="relative z-10 my-auto py-3 space-y-3">
+        <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-md space-y-3">
+          <div className="flex items-center justify-between font-mono text-[9px] sm:text-[10px]">
+            <span className="text-[#A855F7] uppercase tracking-[0.18em]">
+              FEW-SHOT PROMPT GROUNDING SYSTEM
+            </span>
+            <span className="text-neutral-400">1.5M+ VIEWERS LIVE</span>
+          </div>
+
+          {/* Metrics Grid */}
+          <div className="grid grid-cols-3 gap-3 pt-1">
+            <div className="p-2.5 rounded-xl bg-black/40 border border-white/[0.04]">
+              <div className="font-mono text-[9px] text-neutral-400 uppercase">Live Broadcast</div>
+              <div className="font-syne text-base sm:text-lg font-bold text-white mt-0.5">1.5M+</div>
+              <div className="font-mono text-[8px] text-[#A855F7]">Expo Attendees</div>
+            </div>
+            <div className="p-2.5 rounded-xl bg-black/40 border border-white/[0.04]">
+              <div className="font-mono text-[9px] text-neutral-400 uppercase">Pilot Adoption</div>
+              <div className="font-syne text-base sm:text-lg font-bold text-white mt-0.5">+40%</div>
+              <div className="font-mono text-[8px] text-emerald-400">Classroom Growth</div>
+            </div>
+            <div className="p-2.5 rounded-xl bg-black/40 border border-white/[0.04]">
+              <div className="font-mono text-[9px] text-neutral-400 uppercase">Educator Trust</div>
+              <div className="font-syne text-base sm:text-lg font-bold text-white mt-0.5">95%+</div>
+              <div className="font-mono text-[8px] text-emerald-400">Zero Hallucinations</div>
+            </div>
+          </div>
+
+          <p className="font-sans text-xs text-neutral-300 font-light leading-relaxed pt-1">
+            Architected structured prompt frameworks and few-shot evaluation rubrics for physical multi-robot interactions, eliminating hallucinations in classroom pilots.
+          </p>
+        </div>
+      </div>
+
+      {/* Bottom Architectural Spec Strip */}
+      <div className="relative z-10 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-neutral-400">
+        <span className="tracking-widest text-[#A855F7] uppercase">
+          [ SPECIMEN // 04 · EMBODIED ROBOTICS & AI EDUCATION ]
+        </span>
+        <span className="text-neutral-400">PILOT VALIDATED</span>
+      </div>
+    </div>
+  );
+}
+
+// =========================================================================
+// 5. CAPTURED MOMENTS // BRANDEIS ARTS FESTIVAL & REAL DOCUMENTARY PHOTO
+// Brand mark: Official Brandeis Leonard Bernstein Arts Festival & Chesterbrook
+// =========================================================================
+function CapturedMomentsBrandVisual({ isModal, className = '' }: { isModal: boolean; className?: string }) {
+  return (
+    <div
+      className={`relative w-full rounded-2xl sm:rounded-3xl border border-white/[0.08] bg-[#090807] p-5 sm:p-7 flex flex-col justify-between overflow-hidden select-none group/brand transition-all duration-500 hover:border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.8)] ${
+        isModal ? 'min-h-[380px] sm:min-h-[440px]' : 'min-h-[340px] sm:min-h-[390px]'
+      } ${className}`}
+    >
+      {/* Ambient Brand Glow (Warm Sunset / Golden Amber) */}
+      <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-[#F59E0B]/15 blur-[80px] pointer-events-none" />
+      <div className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-[#EA580C]/10 blur-[90px] pointer-events-none" />
+
+      {/* Top Brand Header */}
+      <div className="relative z-10 flex items-center justify-between pb-4 border-b border-white/[0.06]">
+        <div className="flex items-center gap-3.5">
+          {/* Brandeis University Arts Festival Monogram */}
+          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-[#003478] to-[#1E3A8A] p-2 shadow-md flex items-center justify-center shrink-0 border border-white/10">
+            <span className="font-serif font-black text-sm text-[#FBBF24] tracking-tight">CAST</span>
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="font-syne text-lg sm:text-xl font-bold tracking-tight text-white">
+                Captured Moments
+              </span>
+              <span className="px-2 py-0.5 rounded-full bg-white/[0.06] text-[9px] font-mono uppercase tracking-wider text-[#F59E0B] border border-[#F59E0B]/20">
+                Fellowship
+              </span>
+            </div>
+            <p className="text-[10px] sm:text-xs font-mono text-neutral-400 tracking-wide mt-0.5">
+              Richard Collins Fellowship · Brandeis Arts Festival & Chesterbrook Community
+            </p>
+          </div>
+        </div>
+
+        {/* Live Festival Badge */}
+        <div className="hidden xs:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-neutral-300">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] animate-pulse" />
+          <span>brandeis.edu/arts</span>
+        </div>
+      </div>
+
+      {/* Middle: Real Exhibition Documentary Photography Artifact */}
+      <div className="relative z-10 my-auto py-3 space-y-3">
+        <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
+          <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-white/10 shadow-md">
+            <img
+              src="/visuals/rich_collins_exhibition.jpg"
+              alt="Slosberg Lobby Exhibition"
+              className="w-full h-full object-cover filter contrast-[1.05] brightness-95"
+            />
+            <span className="absolute bottom-1 left-1.5 px-1.5 py-0.5 rounded bg-black/70 backdrop-blur-sm text-[8px] font-mono text-neutral-300">
+              Slosberg Lobby
+            </span>
+          </div>
+          <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-white/10 shadow-md">
+            <img
+              src="/visuals/portrait_project.jpg"
+              alt="Youth Photography Walk"
+              className="w-full h-full object-cover filter contrast-[1.05] brightness-95"
+            />
+            <span className="absolute bottom-1 left-1.5 px-1.5 py-0.5 rounded bg-black/70 backdrop-blur-sm text-[8px] font-mono text-neutral-300">
+              Community Walk
+            </span>
+          </div>
+          <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-white/10 shadow-md">
+            <img
+              src="/visuals/rich_collins_poster.jpg"
+              alt="Fellowship Research Poster"
+              className="w-full h-full object-cover filter contrast-[1.05] brightness-95"
+            />
+            <span className="absolute bottom-1 left-1.5 px-1.5 py-0.5 rounded bg-black/70 backdrop-blur-sm text-[8px] font-mono text-neutral-300">
+              Research Poster
+            </span>
+          </div>
+        </div>
+
+        <p className="font-sans text-xs text-neutral-300 font-light leading-relaxed pt-1">
+          Co-founded after-school youth photography workshops teaching camera mechanics and visual self-expression, culminating in a featured public exhibition at Brandeis University.
+        </p>
+      </div>
+
+      {/* Bottom Architectural Spec Strip */}
+      <div className="relative z-10 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-neutral-400">
+        <span className="tracking-widest text-[#F59E0B] uppercase">
+          [ SPECIMEN // 05 · YOUTH PHOTOGRAPHY & STORYTELLING ]
+        </span>
+        <span className="text-neutral-400">100% YOUTH-CURATED ART</span>
       </div>
     </div>
   );
