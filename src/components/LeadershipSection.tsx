@@ -89,6 +89,17 @@ export default function LeadershipSection({
   );
 }
 
+const MichiganBlockM = ({ className = "w-7 sm:w-8 h-auto" }: { className?: string }) => (
+  <svg viewBox="0 0 100 75" className={className}>
+    <path
+      d="M 6 10 h 20 v 8 h -6 v 39 h 6 v 8 h -20 v -8 h 6 v -39 h -6 z 
+         M 74 10 h 20 v 8 h -6 v 39 h 6 v 8 h -20 v -8 h 6 v -39 h -6 z 
+         M 26 10 h 11 l 13 25 l 13 -25 h 11 l -19 36 v 20 h -10 v -20 z"
+      fill="#FFCB05"
+    />
+  </svg>
+);
+
 function LeadershipLogoBadge({ id }: { id: string }) {
   switch (id) {
     case 'product_motion':
@@ -105,12 +116,13 @@ function LeadershipLogoBadge({ id }: { id: string }) {
       );
     case 'cfe_advising':
       return (
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-[#00274C] border border-[#FFCB05]/30 group-hover:border-[#FFCB05]/60 transition-all flex flex-col items-center justify-center shadow-lg">
-          <span className="font-serif font-black text-2xl sm:text-3xl text-[#FFCB05] leading-none">
-            M
-          </span>
-          <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.18em] uppercase text-white/90 mt-1">
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-[#00274C] border border-[#FFCB05]/30 group-hover:border-[#FFCB05]/60 transition-all flex flex-col items-center justify-center p-2 shadow-lg">
+          <MichiganBlockM />
+          <span className="font-sans font-black text-[10px] sm:text-[11px] text-white tracking-widest mt-1">
             CFE
+          </span>
+          <span className="font-mono text-[6px] sm:text-[7px] text-[#FFCB05] tracking-wider uppercase font-semibold">
+            ENTREPRENEURSHIP
           </span>
         </div>
       );
@@ -138,30 +150,32 @@ function LeadershipLogoBadge({ id }: { id: string }) {
       );
     case 'si201_ia':
       return (
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-gradient-to-br from-[#121624] to-[#070A12] border border-[#818CF8]/25 group-hover:border-[#818CF8]/50 transition-all flex flex-col items-center justify-center shadow-lg">
-          <span className="font-mono font-bold text-xs sm:text-sm text-[#818CF8]">
-            {'{ SI }'}
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-[#00274C] border border-[#FFCB05]/30 group-hover:border-[#FFCB05]/60 transition-all flex flex-col items-center justify-center p-2 shadow-lg">
+          <MichiganBlockM />
+          <span className="font-sans font-black text-[10px] sm:text-[11px] text-white tracking-widest mt-1">
+            UMSI
           </span>
-          <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.16em] uppercase text-white/90 mt-1">
-            201 · IA
+          <span className="font-mono text-[6px] sm:text-[7px] text-[#FFCB05] tracking-wider uppercase font-semibold">
+            SCHOOL OF INFO
           </span>
         </div>
       );
     case 'campus_tech_consultant':
       return (
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-gradient-to-br from-[#0F171A] to-[#06090A] border border-[#34D399]/25 group-hover:border-[#34D399]/50 transition-all flex flex-col items-center justify-center shadow-lg">
-          <span className="font-mono font-black text-base sm:text-lg text-transparent bg-clip-text bg-gradient-to-r from-[#34D399] to-white">
-            ITS_
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-[#00274C] border border-[#FFCB05]/30 group-hover:border-[#FFCB05]/60 transition-all flex flex-col items-center justify-center p-2 shadow-lg">
+          <MichiganBlockM />
+          <span className="font-sans font-black text-[10px] sm:text-[11px] text-white tracking-widest mt-1">
+            ITS
           </span>
-          <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.16em] uppercase text-[#34D399]/80 mt-0.5">
-            TECH
+          <span className="font-mono text-[6px] sm:text-[7px] text-[#FFCB05] tracking-wider uppercase font-semibold">
+            TECH SERVICES
           </span>
         </div>
       );
     default:
       return (
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-white/[0.04] border border-white/10 flex items-center justify-center font-mono text-xs text-white/60">
-          U-M
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-[#00274C] border border-[#FFCB05]/30 flex items-center justify-center shadow-lg">
+          <MichiganBlockM />
         </div>
       );
   }
