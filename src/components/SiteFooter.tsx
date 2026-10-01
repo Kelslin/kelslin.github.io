@@ -9,7 +9,7 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ language }) => {
   const isZh = language === 'zh';
 
   return (
-    <footer className="relative z-10 w-full border-t border-white/[0.06] py-16 sm:py-20 px-4 sm:px-8 lg:px-12 bg-[#050608] select-none">
+    <footer className="relative z-10 w-full border-t border-white/[0.06] py-16 sm:py-20 px-4 sm:px-8 lg:px-12 bg-transparent select-none">
       <div className="max-w-3xl mx-auto text-center space-y-6">
         {/* Title */}
         <h2 className="font-syne text-3xl sm:text-4xl md:text-5xl text-white font-bold tracking-tight">

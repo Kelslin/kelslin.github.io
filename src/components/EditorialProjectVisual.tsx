@@ -68,7 +68,7 @@ function AfterlifeLogoVisual({ isModal, className = '' }: { isModal: boolean; cl
       </div>
 
       {/* Pure Floating Brand Logo with 3D Pop-Out Effect */}
-      <div className="relative z-10 w-full max-w-[280px] sm:max-w-[340px] md:max-w-[380px] p-2 flex items-center justify-center transform transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/logo:scale-115 group-hover/logo:-translate-y-2.5">
+      <div className="relative z-10 w-full max-w-[320px] sm:max-w-[390px] md:max-w-[430px] p-2 flex items-center justify-center transform transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/logo:scale-115 group-hover/logo:-translate-y-2.5">
         <img
           src="/visuals/logos/afterlife.png"
           alt="Afterlife Club"
