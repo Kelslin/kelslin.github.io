@@ -107,8 +107,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     },
     about: {
       badge: 'PERSPECTIVE',
-      title: 'Building products with empathy,',
-      subtitle: 'technical care, and curiosity.',
+      title: 'Building products with',
+      subtitle: 'empathy, technical care, and curiosity.',
       manifesto:
         'Great products come from paying close attention to people—not just measuring vanity metrics, but understanding what people truly feel, need, and trust.',
       location: 'University of Michigan · Ann Arbor, MI',
@@ -491,8 +491,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     },
     about: {
       badge: 'SOBRE MÍ',
-      title: 'Creando productos con empatía,',
-      subtitle: 'cuidado técnico y curiosidad.',
+      title: 'Creando productos con',
+      subtitle: 'empatía, cuidado técnico y curiosidad.',
       manifesto:
         'Para mí, los grandes productos nacen de prestar atención profunda a las personas: no solo medir clics, sino comprender lo que realmente sienten y necesitan.',
       location: 'KELSEY LIN · UNIVERSIDAD DE MICHIGAN',
@@ -664,8 +664,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     },
     about: {
       badge: 'À PROPOS',
-      title: 'Concevoir des produits avec empathie,',
-      subtitle: 'rigueur technique et curiosité.',
+      title: 'Concevoir des produits avec',
+      subtitle: 'empathie, rigueur technique et curiosité.',
       manifesto:
         "Pour moi, les grands produits naissent d'une attention profonde aux personnes : comprendre ce qu'elles ressentent plutôt que simplement mesurer des clics.",
       location: 'KELSEY LIN · UNIVERSITÉ DU MICHIGAN',

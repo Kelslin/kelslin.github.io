@@ -69,13 +69,9 @@ export default function AboutSection({
                   </>
                 ) : (
                   <>
-                    Building products with{' '}
+                    Building products with <br />
                     <span className="font-serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-[#D8ECF8] to-[#FFAA00]/90">
-                      empathy,
-                    </span>
-                    <br />
-                    <span className="font-serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-[#D8ECF8] to-[#FFAA00]/90">
-                      technical care, and curiosity.
+                      empathy, technical care, and curiosity.
                     </span>
                   </>
                 )}
