@@ -19,6 +19,9 @@ interface LiuliLilyModelProps {
     dragTiltX: number;
     hoverX: number;
     hoverY: number;
+    isDragging?: boolean;
+    velocityX?: number;
+    velocityY?: number;
   }>;
 }
 
@@ -79,22 +82,38 @@ export default function LiuliLilyModel({
 
   // 3. Butter-smooth physical damping for tilt and horizontal turntable spin
   useFrame((state, delta) => {
-    const targetDragY = manualOrbitRef?.current ? manualOrbitRef.current.dragY : dragAngleOffset;
-    const targetDragTiltX = manualOrbitRef?.current ? manualOrbitRef.current.dragTiltX : dragTiltOffset;
-    const targetHoverX = manualOrbitRef?.current ? manualOrbitRef.current.hoverX : hoverOffset.x;
-    const targetHoverY = manualOrbitRef?.current ? manualOrbitRef.current.hoverY : hoverOffset.y;
+    const orbit = manualOrbitRef?.current;
+    const isDragging = Boolean(orbit?.isDragging);
+    const targetHoverX = orbit ? orbit.hoverX : hoverOffset.x;
+    const targetHoverY = orbit ? orbit.hoverY : hoverOffset.y;
 
-    // Smoothly damp manual user mouse/touch orbit offsets
+    // Apply inertia or ambient drift when user is NOT dragging
+    if (orbit) {
+      if (!isDragging) {
+        if (Math.abs(orbit.velocityX || 0) > 0.0001) {
+          orbit.dragY += orbit.velocityX || 0;
+          orbit.velocityX = (orbit.velocityX || 0) * 0.93; // physical inertia decay
+        } else if (activeSection === 'hero' && heroToAboutTransition < 0.1) {
+          // Gentle ambient drift strictly on the home page when idle
+          orbit.dragY += delta * 0.08;
+        }
+      }
+    }
+
+    const targetDragY = orbit ? orbit.dragY : dragAngleOffset;
+    const targetDragTiltX = orbit ? orbit.dragTiltX : dragTiltOffset;
+
+    // Responsive, silky damping without stutter
     currentDragYRef.current = THREE.MathUtils.damp(
       currentDragYRef.current,
       targetDragY,
-      5.0,
+      8.0,
       delta
     );
     currentDragXRef.current = THREE.MathUtils.damp(
       currentDragXRef.current,
       targetDragTiltX,
-      5.0,
+      7.0,
       delta
     );
 
@@ -103,45 +122,30 @@ export default function LiuliLilyModel({
       const sideTiltX = 0.28;
       const topTiltX = -0.50; // Points flower face directly up toward camera
       const baseTiltX = THREE.MathUtils.lerp(sideTiltX, topTiltX, heroToAboutTransition);
-      const targetTiltX =
-        baseTiltX + currentDragXRef.current + targetHoverY * 0.15;
+      const hoverEffectY = isDragging ? 0 : targetHoverY * 0.15;
+      const targetTiltX = baseTiltX + currentDragXRef.current + hoverEffectY;
 
       currentTiltXRef.current = THREE.MathUtils.damp(
         currentTiltXRef.current,
         targetTiltX,
-        4.0,
+        6.0,
         delta
       );
       tiltGroupRef.current.rotation.x = currentTiltXRef.current;
       tiltGroupRef.current.rotation.z = THREE.MathUtils.lerp(-0.06, 0, heroToAboutTransition);
     }
 
-    // 2. Turntable Spin Y: Ambient auto-rotation ONLY on the home page; zero auto-rotation on scroll
+    // 2. Turntable Spin Y: Driven directly with silky damping
     if (petalSpinGroupRef.current) {
-      if (activeSection === 'hero' && heroToAboutTransition < 0.1) {
-        // Gentle ambient rotation strictly on the home page
-        targetAngleRef.current += delta * 0.12;
-      }
-      // When scrolling past the home page, zero auto-rotation is applied.
-      // Petals do not auto-rotate on scroll, keeping the flower settled.
-
-      currentAngleRef.current = THREE.MathUtils.damp(
-        currentAngleRef.current,
-        targetAngleRef.current,
-        3.8,
-        delta
-      );
-      petalSpinGroupRef.current.rotation.y =
-        currentAngleRef.current +
-        currentDragYRef.current +
-        targetHoverX * 0.2;
+      const hoverEffectX = isDragging ? 0 : targetHoverX * 0.18;
+      petalSpinGroupRef.current.rotation.y = currentDragYRef.current + hoverEffectX;
     }
   });
 
   return (
     <group ref={groupRef} position={position} scale={2.35}>
-      {/* Organic floating breath */}
-      <Float speed={1.4} rotationIntensity={0.15} floatIntensity={0.22}>
+      {/* Organic floating breath - zero rotational wobble to preserve precise user drag */}
+      <Float speed={1.2} rotationIntensity={0} floatIntensity={0.2}>
         {/* Tilt group: transitions from side view (hero) to centered top-to-bottom bloom (about & projects) */}
         <group ref={tiltGroupRef}>
           {/* Revolving petal carousel group: smoothly spins flower horizontally behind project texts */}

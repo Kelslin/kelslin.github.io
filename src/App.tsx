@@ -305,6 +305,9 @@ export default function App() {
     dragTiltX: 0,
     hoverX: 0,
     hoverY: 0,
+    isDragging: false,
+    velocityX: 0,
+    velocityY: 0,
   });
 
   // Mobile menu dropdown state
@@ -336,11 +339,12 @@ export default function App() {
   const [selectedDetailWaypoint, setSelectedDetailWaypoint] = useState<Waypoint | null>(null);
   const [isIndexOpen, setIsIndexOpen] = useState(false);
 
-  // Interactive Mouse / Touch Drag Orbit Control for 3D Flower
+  // Interactive Mouse / Touch Drag Orbit Control for 3D Flower with momentum physics
   useEffect(() => {
     let isDragging = false;
     let lastX = 0;
     let lastY = 0;
+    let lastTime = 0;
 
     const onPointerDown = (e: PointerEvent) => {
       // Don't hijack clicks on buttons, links, inputs, and modal contents
@@ -353,8 +357,12 @@ export default function App() {
         return;
       }
       isDragging = true;
+      manualOrbitRef.current.isDragging = true;
+      manualOrbitRef.current.velocityX = 0;
+      manualOrbitRef.current.velocityY = 0;
       lastX = e.clientX;
       lastY = e.clientY;
+      lastTime = performance.now();
     };
 
     const onPointerMove = (e: PointerEvent) => {
@@ -366,20 +374,33 @@ export default function App() {
 
       if (!isDragging) return;
 
+      const now = performance.now();
+      const dt = Math.max(1, now - lastTime);
       const dx = e.clientX - lastX;
       const dy = e.clientY - lastY;
       lastX = e.clientX;
       lastY = e.clientY;
+      lastTime = now;
 
-      manualOrbitRef.current.dragY += dx * 0.007;
+      const deltaAngleY = dx * 0.0065;
+      const deltaTiltX = dy * 0.0035;
+
+      manualOrbitRef.current.dragY += deltaAngleY;
       manualOrbitRef.current.dragTiltX = Math.max(
         -0.7,
-        Math.min(0.7, manualOrbitRef.current.dragTiltX + dy * 0.004)
+        Math.min(0.7, manualOrbitRef.current.dragTiltX + deltaTiltX)
       );
+
+      // Smooth velocity estimation for silky momentum after release
+      const instVx = (deltaAngleY / dt) * 16;
+      manualOrbitRef.current.velocityX = manualOrbitRef.current.velocityX * 0.35 + instVx * 0.65;
     };
 
     const onPointerUp = () => {
-      isDragging = false;
+      if (isDragging) {
+        isDragging = false;
+        manualOrbitRef.current.isDragging = false;
+      }
     };
 
     window.addEventListener('pointerdown', onPointerDown);
