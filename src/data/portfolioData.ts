@@ -578,7 +578,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     visualType: 'telemetry',
     statusBadge: 'CONSULTING',
     specimenCode: 'TC',
-    images: ['/visuals/campus_leadership.jpg'],
+    images: ['/visuals/logos/its.png'],
     lens: 'leadership',
     chapter: '06',
     codeTag: 'umich.its',
@@ -592,7 +592,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     lookAt: [0.75, -0.35, 0.1],
     accentColor: '#F59E0B',
     glowColor: 'rgba(245, 158, 11, 0.18)',
-    imageVisual: '/visuals/campus_leadership.jpg',
+    imageVisual: '/visuals/logos/its.png',
     summary:
       'Providing hardware, software, and systems consulting across campus computing sites, troubleshooting technical issues and supporting accessible digital infrastructure for university students and faculty.',
     deckSummary:

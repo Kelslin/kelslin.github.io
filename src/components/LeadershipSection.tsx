@@ -159,14 +159,13 @@ function LeadershipLogoBadge({ id }: { id: string }) {
       );
     case 'campus_tech_consultant':
       return (
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-[#00274C] border border-[#FFCB05]/30 group-hover:border-[#FFCB05]/60 transition-all flex flex-col items-center justify-center p-2 shadow-lg">
-          <MichiganBlockM />
-          <span className="font-sans font-black text-[10px] sm:text-[11px] text-white tracking-widest mt-1">
-            ITS
-          </span>
-          <span className="font-mono text-[6px] sm:text-[7px] text-[#FFCB05] tracking-wider uppercase font-semibold">
-            TECH SERVICES
-          </span>
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-[#00274C] border border-[#FFCB05]/30 group-hover:border-[#FFCB05]/60 transition-all flex items-center justify-center shadow-lg">
+          <img
+            src="/visuals/logos/its.png"
+            alt="Information and Technology Services (ITS)"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
         </div>
       );
     default:
