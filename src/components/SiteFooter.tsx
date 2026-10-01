@@ -12,16 +12,15 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ language }) => {
     <footer className="relative z-10 w-full border-t border-white/[0.06] py-16 sm:py-20 px-4 sm:px-8 lg:px-12 bg-transparent select-none">
       <div className="max-w-3xl mx-auto text-center space-y-6">
         {/* Title with Decorative Editorial Italic */}
-        <h2 className="font-syne text-3xl sm:text-4xl md:text-5xl text-white font-bold tracking-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight">
           {isZh ? (
-            '共同创造'
+            <span className="font-serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-[#D8ECF8] to-[#FFAA00]/90">
+              共同创造
+            </span>
           ) : (
-            <>
-              Let's build{' '}
-              <span className="font-serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-[#D8ECF8] to-[#FFAA00]/90">
-                together
-              </span>
-            </>
+            <span className="font-serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-[#D8ECF8] to-[#FFAA00]/90">
+              Let's build together
+            </span>
           )}
         </h2>
 

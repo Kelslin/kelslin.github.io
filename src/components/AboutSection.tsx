@@ -57,11 +57,28 @@ export default function AboutSection({
           <div className="lg:col-span-7 space-y-8">
             {/* Headline with Haute Editorial Decorative Typography */}
             <div>
-              <h2 className="font-syne text-3xl sm:text-4xl lg:text-5xl text-white font-bold leading-[1.12] tracking-tight mb-4">
-                {t.title} <br />
-                <span className="font-serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-[#D8ECF8] to-[#FFAA00]/90">
-                  {t.subtitle}
-                </span>
+              <h2 className="font-syne text-3xl sm:text-4xl lg:text-5xl text-white font-bold leading-[1.15] tracking-tight mb-4">
+                {language === 'zh' ? (
+                  <>
+                    用{' '}
+                    <span className="font-serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-[#D8ECF8] to-[#FFAA00]/90">
+                      同理心、严谨技术与好奇心，
+                    </span>
+                    <br />
+                    打磨真正打动人心的产品。
+                  </>
+                ) : (
+                  <>
+                    Building products with{' '}
+                    <span className="font-serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-[#D8ECF8] to-[#FFAA00]/90">
+                      empathy,
+                    </span>
+                    <br />
+                    <span className="font-serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-[#D8ECF8] to-[#FFAA00]/90">
+                      technical care, and curiosity.
+                    </span>
+                  </>
+                )}
               </h2>
 
               <p className="font-sans text-sm sm:text-base text-neutral-300 font-light leading-relaxed mt-4">
