@@ -55,11 +55,14 @@ export default function AboutSection({
 
           {/* Right Column: Pure Editorial Narrative — Frameless & Direct */}
           <div className="lg:col-span-7 space-y-8">
-            {/* Headline */}
+            {/* Headline with Haute Editorial Decorative Typography */}
             <div>
-              <h3 className="font-syne text-3xl sm:text-4xl lg:text-5xl text-white font-bold leading-[1.1] tracking-tight mb-4">
-                Building zero-to-one digital products and intentional physical craft.
-              </h3>
+              <h2 className="font-syne text-3xl sm:text-4xl lg:text-5xl text-white font-bold leading-[1.12] tracking-tight mb-4">
+                {t.title} <br className="hidden sm:inline" />
+                <span className="font-serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-[#D8ECF8] to-[#FFAA00]/90">
+                  {t.subtitle}
+                </span>
+              </h2>
 
               <p className="font-sans text-sm sm:text-base text-neutral-300 font-light leading-relaxed mt-4">
                 I am a Product Manager at the University of Michigan navigating high-ambiguity technical spaces—from real-time EV telemetry on factory floors to clinical neonatal warmers. My approach bridges extreme user listening, systems thinking, and execution momentum.

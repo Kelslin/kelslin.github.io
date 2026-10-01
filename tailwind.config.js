@@ -44,11 +44,12 @@ export default {
         },
       },
       fontFamily: {
-        // Identity Display & Haute Fashion Editorial Typography (Vogue Didot / Bodoni)
+        // Identity Display & Haute Fashion Editorial Typography (Vogue Didot / Bodoni / Instrument Serif)
         vogue: [
           'Didot',
           '"Bodoni MT"',
           '"Bodoni Moda"',
+          '"Instrument Serif"',
           '"Playfair Display"',
           'Georgia',
           'serif',
@@ -57,6 +58,7 @@ export default {
           'Didot',
           '"Bodoni MT"',
           '"Bodoni Moda"',
+          '"Instrument Serif"',
           '"Playfair Display"',
           'Georgia',
           'serif',
@@ -65,6 +67,7 @@ export default {
           'Didot',
           '"Bodoni MT"',
           '"Bodoni Moda"',
+          '"Instrument Serif"',
           '"Playfair Display"',
           'Georgia',
           'serif',

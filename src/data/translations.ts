@@ -107,8 +107,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     },
     about: {
       badge: 'PERSPECTIVE',
-      title: 'Building zero-to-one digital products',
-      subtitle: 'and intentional physical craft.',
+      title: 'Building products with empathy,',
+      subtitle: 'technical care, and curiosity.',
       manifesto:
         'Great products come from paying close attention to people—not just measuring vanity metrics, but understanding what people truly feel, need, and trust.',
       location: 'University of Michigan · Ann Arbor, MI',
