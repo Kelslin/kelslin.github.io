@@ -104,60 +104,57 @@ function LeadershipLogoBadge({ id }: { id: string }) {
   switch (id) {
     case 'product_motion':
       return (
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-gradient-to-br from-[#1A150D] to-[#0D0B07] border border-[#FFAA00]/25 group-hover:border-[#FFAA00]/50 transition-all flex flex-col items-center justify-center shadow-lg">
-          <div className="w-1.5 h-1.5 rounded-full bg-[#FFAA00] absolute top-2 right-2 animate-pulse" />
-          <span className="font-syne font-black text-xl sm:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-white via-[#FFAA00] to-[#FF8800]">
-            PM
-          </span>
-          <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.16em] uppercase text-[#FFAA00]/80 mt-0.5">
-            GUILD
-          </span>
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-white border border-white/20 group-hover:border-white/40 transition-all flex items-center justify-center p-2.5 sm:p-3 shadow-lg">
+          <img
+            src="/visuals/logos/product_motion.png"
+            alt="Product Motion"
+            className="w-full h-full object-contain filter contrast-105"
+            loading="lazy"
+          />
         </div>
       );
     case 'cfe_advising':
       return (
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-[#00274C] border border-[#FFCB05]/30 group-hover:border-[#FFCB05]/60 transition-all flex flex-col items-center justify-center p-2 shadow-lg">
-          <MichiganBlockM />
-          <span className="font-sans font-black text-[10px] sm:text-[11px] text-white tracking-widest mt-1">
-            CFE
-          </span>
-          <span className="font-mono text-[6px] sm:text-[7px] text-[#FFCB05] tracking-wider uppercase font-semibold">
-            ENTREPRENEURSHIP
-          </span>
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-[#00274C] border border-[#FFCB05]/30 group-hover:border-[#FFCB05]/60 transition-all flex items-center justify-center p-2 sm:p-2.5 shadow-lg">
+          <img
+            src="/visuals/logos/entr_minor.png"
+            alt="Entrepreneurship Minor (CFE)"
+            className="w-full h-full object-contain"
+            loading="lazy"
+          />
         </div>
       );
     case 'elp_fellowship':
       return (
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-gradient-to-br from-[#0B1528] to-[#040810] border border-[#38BDF8]/25 group-hover:border-[#38BDF8]/50 transition-all flex flex-col items-center justify-center shadow-lg">
-          <span className="font-syne font-black text-lg sm:text-xl text-transparent bg-clip-text bg-gradient-to-r from-[#38BDF8] to-white">
-            ELP
-          </span>
-          <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.18em] uppercase text-[#38BDF8]/90 mt-0.5">
-            FELLOW
-          </span>
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-[#00274C] border border-[#FFCB05]/30 group-hover:border-[#FFCB05]/60 transition-all flex items-center justify-center p-2.5 sm:p-3 shadow-lg">
+          <img
+            src="/visuals/logos/cfe.png"
+            alt="Center for Entrepreneurship (CFE)"
+            className="w-full h-full object-contain"
+            loading="lazy"
+          />
         </div>
       );
     case 'mpowered_career_fair':
       return (
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-gradient-to-br from-[#0D1C28] to-[#080E14] border border-[#00F0FF]/30 group-hover:border-[#00F0FF]/60 transition-all flex flex-col items-center justify-center shadow-lg">
-          <span className="font-syne font-black text-xl sm:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] via-white to-[#00F0FF]">
-            M⚡
-          </span>
-          <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.14em] uppercase text-[#00F0FF]/80 mt-0.5">
-            STARTUP
-          </span>
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-white border border-white/20 group-hover:border-white/40 transition-all flex items-center justify-center p-2 sm:p-2.5 shadow-lg">
+          <img
+            src="/visuals/logos/mpowered.png"
+            alt="MPowered Entrepreneurship"
+            className="w-full h-full object-contain"
+            loading="lazy"
+          />
         </div>
       );
     case 'si201_ia':
       return (
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-[#00274C] border border-[#FFCB05]/30 group-hover:border-[#FFCB05]/60 transition-all flex flex-col items-center justify-center p-2 shadow-lg">
-          <MichiganBlockM />
-          <span className="font-sans font-black text-[10px] sm:text-[11px] text-white tracking-widest mt-1">
-            UMSI
-          </span>
-          <span className="font-mono text-[6px] sm:text-[7px] text-[#FFCB05] tracking-wider uppercase font-semibold">
-            SCHOOL OF INFO
-          </span>
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shrink-0 bg-[#00274C] border border-[#FFCB05]/30 group-hover:border-[#FFCB05]/60 transition-all flex items-center justify-center shadow-lg">
+          <img
+            src="/visuals/logos/umsi.png"
+            alt="School of Information (UMSI)"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
         </div>
       );
     case 'campus_tech_consultant':

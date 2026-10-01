@@ -347,7 +347,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     visualType: 'telemetry',
     statusBadge: 'ACTIVE',
     specimenCode: 'PM',
-    images: ['/visuals/campus_leadership.jpg'],
+    images: ['/visuals/logos/product_motion.png'],
     lens: 'leadership',
     chapter: '01',
     codeTag: 'pm.guild',
@@ -361,7 +361,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     lookAt: [0.65, 0.25, 0.25],
     accentColor: '#FFAA00',
     glowColor: 'rgba(255, 170, 0, 0.18)',
-    imageVisual: '/visuals/campus_leadership.jpg',
+    imageVisual: '/visuals/logos/product_motion.png',
     summary:
       'Directing Michigan’s premier undergraduate product management guild. Leading end-to-end strategy for PM case competitions, sprint curricula, and industry portfolio teardowns to open accessible product pathways for students across disciplines.',
     deckSummary:
@@ -393,7 +393,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     visualType: 'specimen',
     statusBadge: 'ADVISING',
     specimenCode: 'CFE',
-    images: ['/visuals/cfe_advising.jpg'],
+    images: ['/visuals/logos/entr_minor.png'],
     lens: 'leadership',
     chapter: '02',
     codeTag: 'cfe.advising',
@@ -407,7 +407,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     lookAt: [0.45, 0.1, 0.15],
     accentColor: '#F59E0B',
     glowColor: 'rgba(245, 158, 11, 0.18)',
-    imageVisual: '/visuals/cfe_advising.jpg',
+    imageVisual: '/visuals/logos/entr_minor.png',
     summary:
       'Appointed peer advisor guiding undergraduate founders and engineers across campus through venture capstones, grant navigation, and zero-to-one business hypotheses at the Center for Entrepreneurship.',
     deckSummary:
@@ -439,7 +439,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     visualType: 'contact-sheet',
     statusBadge: 'FELLOW',
     specimenCode: 'ELP',
-    images: ['/visuals/elp_fellowship.jpg'],
+    images: ['/visuals/logos/cfe.png'],
     lens: 'leadership',
     chapter: '03',
     codeTag: 'elp.cohort2',
@@ -453,7 +453,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     lookAt: [0.55, -0.2, 0.25],
     accentColor: '#FFAA00',
     glowColor: 'rgba(255, 170, 0, 0.18)',
-    imageVisual: '/visuals/elp_fellowship.jpg',
+    imageVisual: '/visuals/logos/cfe.png',
     summary:
       'Selected for the competitive, year-long venture leadership fellowship. Immersion in venture creation, founder masterclasses, and executive problem-solving alongside top builders across the university.',
     deckSummary:
@@ -485,7 +485,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     visualType: 'specimen',
     statusBadge: 'DIRECTOR',
     specimenCode: 'MP',
-    images: ['/visuals/campus_leadership.jpg'],
+    images: ['/visuals/logos/mpowered.png'],
     lens: 'leadership',
     chapter: '04',
     codeTag: 'mpowered.fair',
@@ -499,7 +499,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     lookAt: [0.6, -0.25, 0.2],
     accentColor: '#D97706',
     glowColor: 'rgba(217, 119, 6, 0.18)',
-    imageVisual: '/visuals/campus_leadership.jpg',
+    imageVisual: '/visuals/logos/mpowered.png',
     summary:
       'Directed Michigan’s premier annual Startup Career Fair, connecting venture-backed startups and early-stage founders with top engineering, design, and product talent across campus.',
     deckSummary:
@@ -530,7 +530,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     visualType: 'specimen',
     statusBadge: 'INSTRUCTION',
     specimenCode: 'SI',
-    images: ['/visuals/campus_leadership.jpg'],
+    images: ['/visuals/logos/umsi.png'],
     lens: 'leadership',
     chapter: '05',
     codeTag: 'umich.si201',
@@ -544,7 +544,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     lookAt: [0.7, -0.3, 0.15],
     accentColor: '#F59E0B',
     glowColor: 'rgba(245, 158, 11, 0.18)',
-    imageVisual: '/visuals/campus_leadership.jpg',
+    imageVisual: '/visuals/logos/umsi.png',
     summary:
       'Teaching and mentoring students in computational data manipulation, Python architecture, RESTful API integration, and structured data handling at the University of Michigan School of Information.',
     deckSummary:
