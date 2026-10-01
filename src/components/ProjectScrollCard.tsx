@@ -2,6 +2,7 @@ import React from 'react';
 import { ExternalLink, ArrowRight } from 'lucide-react';
 import { Waypoint, LENS_CONFIG } from '../data/portfolioData';
 import { Language, TRANSLATIONS } from '../data/translations';
+import EditorialProjectVisual from './EditorialProjectVisual';
 
 interface ProjectScrollCardProps {
   waypoint: Waypoint;
@@ -44,43 +45,35 @@ export default function ProjectScrollCard({
             isEven ? '' : 'lg:grid-flow-dense'
           }`}
         >
-          {/* 1. Visual Hero Photograph (Frameless with Natural Shadows) */}
+          {/* 1. Visual Card (Unified Editorial Architecture: Wireframe, Contact Sheet, Telemetry, Specimen) */}
           <div
             className={`w-full ${
               isEven ? 'lg:col-span-6' : 'lg:col-span-6 lg:col-start-7'
             }`}
           >
-            {waypoint.imageVisual && (
-              <div
-                role="button"
-                tabIndex={0}
-                onClick={() => onOpenDetails(waypoint)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onOpenDetails(waypoint);
-                  }
-                }}
-                aria-label={`Open case specification for ${title}`}
-                className="relative w-full aspect-[16/10] rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.85)] group/visual bg-black/40 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/40 transition-shadow duration-300 hover:shadow-[0_35px_90px_rgba(0,0,0,0.95)]"
-              >
-                <img
-                  src={waypoint.imageVisual}
-                  alt={title}
-                  className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover/visual:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050608]/90 via-transparent to-black/20 pointer-events-none" />
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={() => onOpenDetails(waypoint)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onOpenDetails(waypoint);
+                }
+              }}
+              aria-label={`Open case specification for ${title}`}
+              className="relative w-full rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.85)] group/visual cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/40 transition-shadow duration-300 hover:shadow-[0_35px_90px_rgba(0,0,0,0.95)]"
+            >
+              <EditorialProjectVisual project={waypoint} />
 
-                {/* Subtle Hover Affordance */}
-                <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 opacity-0 group-hover/visual:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center gap-1.5">
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-white">
-                    View Spec
-                  </span>
-                  <ArrowRight className="w-3 h-3 text-white" />
-                </div>
+              {/* Subtle Hover Affordance */}
+              <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 opacity-0 group-hover/visual:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center gap-1.5 z-20">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-white">
+                  View Spec
+                </span>
+                <ArrowRight className="w-3 h-3 text-white" />
               </div>
-            )}
+            </div>
           </div>
 
           {/* 2. Expansive Haute Editorial Typography (Frameless & Open, No Box) */}

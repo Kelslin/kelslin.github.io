@@ -4,6 +4,7 @@ import { X, ArrowLeft, ArrowRight, ExternalLink, VolumeX } from 'lucide-react';
 import { useAudio } from '../context/AudioContext';
 import { Waypoint, PORTFOLIO_WAYPOINTS } from '../data/portfolioData';
 import { Language, TRANSLATIONS } from '../data/translations';
+import EditorialProjectVisual from './EditorialProjectVisual';
 
 interface ProjectDetailModalProps {
   waypoint: Waypoint | null;
@@ -169,17 +170,12 @@ export default function ProjectDetailModal({
             ))}
           </div>
 
-          {/* Visual Hero Image in Full Spec / Archive View */}
-          {waypoint.imageVisual && (
-            <div className="relative w-full aspect-[16/9] mb-8 sm:mb-12 rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.85)] bg-black/40">
-              <img
-                src={waypoint.imageVisual}
-                alt={title}
-                className="w-full h-full object-cover object-center"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#06080E]/70 via-transparent to-transparent pointer-events-none" />
-            </div>
-          )}
+          {/* Editorial Visual Hero (Wireframe, Contact Sheet, Telemetry, Specimen) */}
+          <EditorialProjectVisual
+            project={waypoint}
+            isModal={true}
+            className="mb-8 sm:mb-12 shadow-[0_30px_80px_rgba(0,0,0,0.85)]"
+          />
 
           {/* Problem & Strategic Context */}
           <div className="mb-8">

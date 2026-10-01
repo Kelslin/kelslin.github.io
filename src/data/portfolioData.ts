@@ -1,15 +1,14 @@
+import { Project, ProjectVisualType } from './projects';
+export type { Project, ProjectVisualType };
+
 export type LensType = 'ventures' | 'leadership' | 'craft';
 
-export interface Waypoint {
-  id: string;
+export interface Waypoint extends Project {
   lens: LensType;
   chapter: string;
   codeTag: string;
   subTag: string;
-  title: string;
   subtitle: string;
-  role: string;
-  period: string;
   position3D: [number, number, number];
   camPos: [number, number, number];
   lookAt: [number, number, number];
@@ -19,8 +18,7 @@ export interface Waypoint {
   deckSummary?: string;
   narrativeOrigin?: string;
   imageVisual?: string;
-  metrics: { value: string; label: string }[];
-  tags: string[];
+  metrics: { value: string; label: string; delta?: string }[];
   websiteUrl?: string;
   websiteLabel?: string;
   isLive?: boolean;
@@ -75,6 +73,11 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
   // ==========================================
   {
     id: 'afterlife',
+    slug: 'afterlife-club',
+    visualType: 'wireframe',
+    statusBadge: 'BETA',
+    specimenCode: '01 / AC',
+    images: ['/visuals/afterlife.jpg'],
     lens: 'ventures',
     chapter: '01',
     codeTag: 'afterlife.prd',
@@ -89,6 +92,8 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     accentColor: '#FF5500',
     glowColor: 'rgba(255, 85, 0, 0.45)',
     imageVisual: '/visuals/afterlife.jpg',
+    summary:
+      'An AI memory preservation and digital legacy platform that transforms end-of-life planning into daily life celebration—deliberately built without artificial voice cloning to safeguard family trust.',
     deckSummary:
       'An AI memory preservation and digital legacy platform that transforms end-of-life planning into daily life celebration—deliberately built without artificial voice cloning to safeguard family trust.',
     story:
@@ -96,9 +101,9 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     narrativeOrigin:
       'Rooted in my family annual portrait tradition—finding ways to keep loved ones feeling close across oceans.',
     metrics: [
-      { value: '88%', label: 'Task Completion' },
-      { value: '92%', label: 'User Trust Rating' },
-      { value: '0 → 1', label: 'Venture & PRD' },
+      { value: '88%', label: 'Task Completion', delta: '+42%' },
+      { value: '92%', label: 'User Trust Rating', delta: 'High Confidence' },
+      { value: '0 → 1', label: 'Venture & PRD', delta: 'Shipped' },
     ],
     tags: ['Digital Legacy', 'Zero Voice Cloning', 'Field Interviews', 'Figma Interactive V1'],
     websiteUrl: 'https://afterlife-club.github.io/afterlife-site/',
@@ -123,6 +128,11 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
   },
   {
     id: 'warmilu',
+    slug: 'warmilu-neonatal',
+    visualType: 'specimen',
+    statusBadge: 'CLINICAL',
+    specimenCode: '02 / WM',
+    images: ['/visuals/warmilu.jpg'],
     lens: 'ventures',
     chapter: '02',
     codeTag: 'thermal.flow',
@@ -137,14 +147,16 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     accentColor: '#0044FF',
     glowColor: 'rgba(0, 68, 255, 0.4)',
     imageVisual: '/visuals/warmilu.jpg',
+    summary:
+      'Engineered digital procurement and clinician intake workflows for non-electric phase-change medical blankets saving preterm infants in resource-constrained clinics without reliable electricity.',
     deckSummary:
       'Engineered digital procurement and clinician intake workflows for non-electric phase-change medical blankets saving preterm infants in resource-constrained clinics without reliable electricity.',
     story:
       'Warmilu creates non-electric warming blankets to prevent infant hypothermia in resource-constrained clinics. I led the complete redesign of our customer intake workflows and direct sales journey, increasing orders by 20% and cutting clinician triage response time by 40%.',
     metrics: [
-      { value: '+20%', label: 'Direct Sale Conversion' },
-      { value: '-40%', label: 'Internal Triage Time' },
-      { value: '+18%', label: 'Qualified Inquiries' },
+      { value: '+20%', label: 'Direct Sale Conversion', delta: 'Revenue' },
+      { value: '-40%', label: 'Internal Triage Time', delta: 'Efficiency' },
+      { value: '+18%', label: 'Qualified Inquiries', delta: 'Pipelines' },
     ],
     tags: ['Medical Phase-Change', 'Non-Electric Heating', 'Clinician Triage', 'A/B Testing'],
     websiteUrl: 'https://warmilu.com',
@@ -170,6 +182,11 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
   },
   {
     id: 'luxshare',
+    slug: 'luxshare-ict-ev',
+    visualType: 'telemetry',
+    statusBadge: 'DEPLOYED',
+    specimenCode: '03 / LX',
+    images: ['/visuals/luxshare.jpg'],
     lens: 'ventures',
     chapter: '03',
     codeTag: 'telemetry.qa',
@@ -184,14 +201,16 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     accentColor: '#FFAA00',
     glowColor: 'rgba(255, 170, 0, 0.4)',
     imageVisual: '/visuals/luxshare.jpg',
+    summary:
+      'Standardized hardware-software telemetry and automated optical QA protocols across EV electronics manufacturing lines, auditing 200 checkpoints to eliminate assembly bottlenecks.',
     deckSummary:
       'Standardized hardware-software telemetry and automated optical QA protocols across EV electronics manufacturing lines, auditing 200 checkpoints to eliminate assembly bottlenecks.',
     story:
       'Working on high-precision EV electronics lines, I unified telemetry specifications and inspection checklists across 200 technical audits, achieving 98% line accuracy and reducing operator training errors by 30% through real-time Python and Excel monitoring.',
     metrics: [
-      { value: '98%', label: 'Production Accuracy' },
-      { value: '-30%', label: 'Operator Training Errors' },
-      { value: '1,000+', label: 'Daily Tasks Automated' },
+      { value: '98%', label: 'Production Accuracy', delta: 'ISO QA' },
+      { value: '-30%', label: 'Operator Training Errors', delta: 'Standardized' },
+      { value: '1,000+', label: 'Daily Tasks Automated', delta: 'High Scale' },
     ],
     tags: ['Hardware-Software QA', 'Python Telemetry', 'EV Assembly Lines', 'Optical Inspection'],
     websiteUrl: 'https://www.luxshare-ict.com',
@@ -216,6 +235,11 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
   },
   {
     id: 'somaseek',
+    slug: 'somaseek-robotics',
+    visualType: 'telemetry',
+    statusBadge: 'PILOT',
+    specimenCode: '04 / SS',
+    images: ['/visuals/somaseek.jpg'],
     lens: 'ventures',
     chapter: '04',
     codeTag: 'embodied.ai',
@@ -230,14 +254,16 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     accentColor: '#FF2A55',
     glowColor: 'rgba(255, 42, 85, 0.4)',
     imageVisual: '/visuals/somaseek.jpg',
+    summary:
+      'Designed hallucination-free prompt grounding and few-shot evaluation rubrics for multi-robot embodied AI education, validated live before 1.5M viewers at the China Big Data Expo.',
     deckSummary:
       'Designed hallucination-free prompt grounding and few-shot evaluation rubrics for multi-robot embodied AI education, validated live before 1.5M viewers at the China Big Data Expo.',
     story:
       'At SomaSeek, I designed structured prompt frameworks and evaluation rubrics for physical multi-robot interactions, eliminating AI hallucinations and boosting classroom pilot adoption by 40% with 95%+ educator trust.',
     metrics: [
-      { value: '1.5M+', label: 'Expo Live Audience' },
-      { value: '+40%', label: 'Pilot Adoption Gain' },
-      { value: '95%+', label: 'Educator Trust' },
+      { value: '1.5M+', label: 'Expo Live Audience', delta: 'Broadcast' },
+      { value: '+40%', label: 'Pilot Adoption Gain', delta: 'Schools' },
+      { value: '95%+', label: 'Educator Trust', delta: 'Validation' },
     ],
     tags: ['Embodied Robotics', 'Prompt Grounding', 'Responsible AI', 'Classroom Pilot UX'],
     links: [
@@ -258,6 +284,15 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
   },
   {
     id: 'portrait_project',
+    slug: 'captured-moments',
+    visualType: 'contact-sheet',
+    statusBadge: 'EXHIBITION',
+    specimenCode: '05 / CM',
+    images: [
+      '/visuals/rich_collins_exhibition.jpg',
+      '/visuals/portrait_project.jpg',
+      '/visuals/rich_collins_poster.jpg',
+    ],
     lens: 'ventures',
     chapter: '05',
     codeTag: 'fellowship.arts',
@@ -272,6 +307,8 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     accentColor: '#0055FF',
     glowColor: 'rgba(0, 85, 255, 0.45)',
     imageVisual: '/visuals/rich_collins_exhibition.jpg',
+    summary:
+      'Co-founded after-school photography workshops teaching camera mechanics and visual self-expression to youth at Chesterbrook Community Foundation, culminating in a featured public exhibition at the Brandeis University Leonard Bernstein Festival of the Creative Arts.',
     deckSummary:
       'Co-founded after-school photography workshops teaching camera mechanics and visual self-expression to youth at Chesterbrook Community Foundation, culminating in a featured public exhibition at the Brandeis University Leonard Bernstein Festival of the Creative Arts.',
     story:
@@ -279,9 +316,9 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     narrativeOrigin:
       'Drawn to photography in elementary school for its power to convey personal emotion without words—now offering young students a space to tell their stories through their own lens.',
     metrics: [
-      { value: '2nd Year', label: 'Festival Feature' },
-      { value: '100%', label: 'Youth-Curated Art' },
-      { value: 'Slosberg', label: 'Lobby Exhibition' },
+      { value: '2nd Year', label: 'Festival Feature', delta: 'Annual' },
+      { value: '100%', label: 'Youth-Curated Art', delta: 'Student Led' },
+      { value: 'Slosberg', label: 'Lobby Exhibition', delta: 'Brandeis CAST' },
     ],
     tags: ['Richard Collins Fellowship', 'Youth Photography', 'Chesterbrook Foundation', 'Brandeis Arts Festival'],
     websiteUrl: 'https://www.brandeis.edu/arts/festival/festival-features.html',
@@ -308,6 +345,11 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
   // ==========================================
   {
     id: 'product_motion',
+    slug: 'product-motion',
+    visualType: 'telemetry',
+    statusBadge: 'ACTIVE',
+    specimenCode: 'PM',
+    images: ['/visuals/campus_leadership.jpg'],
     lens: 'leadership',
     chapter: '01',
     codeTag: 'pm.guild',
@@ -322,14 +364,16 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     accentColor: '#FFAA00',
     glowColor: 'rgba(255, 170, 0, 0.45)',
     imageVisual: '/visuals/campus_leadership.jpg',
+    summary:
+      'Directing Michigan’s premier undergraduate product management guild. Led end-to-end strategy for PM case competitions, sprint curricula, and industry portfolio teardowns to open accessible product pathways for students across disciplines.',
     deckSummary:
       'Directing Michigan’s premier undergraduate product management guild. Led end-to-end strategy for PM case competitions, sprint curricula, and industry portfolio teardowns to open accessible product pathways for students across disciplines.',
     story:
       'As VP of Product Motion, I lead our executive board in architecting hands-on product sprints, case competitions, and interview preparation tracks that bridge academic coursework with real-world product management execution.',
     metrics: [
-      { value: 'VP', label: 'Executive Board' },
-      { value: '200+', label: 'Students Mentored' },
-      { value: '0 → 1', label: 'Product Sprints' },
+      { value: 'VP', label: 'Executive Board', delta: 'Guild Lead' },
+      { value: '200+', label: 'Students Mentored', delta: 'Campus Reach' },
+      { value: '0 → 1', label: 'Product Sprints', delta: 'Shipped' },
     ],
     tags: ['Product Motion VP', 'PM Case Sprints', 'Curriculum Design', 'Student Guild'],
     websiteUrl: 'https://www.productmotion.org/',
@@ -351,8 +395,13 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
   },
   {
     id: 'cfe_advising',
+    slug: 'cfe-advising',
+    visualType: 'specimen',
+    statusBadge: 'ADVISING',
+    specimenCode: 'CFE',
+    images: ['/visuals/cfe_advising.jpg'],
     lens: 'leadership',
-    chapter: '03',
+    chapter: '02',
     codeTag: 'cfe.advising',
     subTag: 'peer.advisor',
     title: 'Center for Entrepreneurship Advising',
@@ -365,14 +414,16 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     accentColor: '#0055FF',
     glowColor: 'rgba(0, 85, 255, 0.4)',
     imageVisual: '/visuals/cfe_advising.jpg',
+    summary:
+      'Appointed peer advisor guiding undergraduate founders and engineers across campus through venture capstones, grant navigation, and zero-to-one business hypotheses at the Center for Entrepreneurship.',
     deckSummary:
       'Appointed peer advisor guiding undergraduate founders and engineers across campus through venture capstones, grant navigation, and zero-to-one business hypotheses at the Center for Entrepreneurship.',
     story:
       'At the Center for Entrepreneurship (CFE), I provide one-on-one academic and venture advising for students pursuing the Entrepreneurship Minor, helping them select capstones, test market hypotheses, and secure campus startup resources.',
     metrics: [
-      { value: '80+', label: 'Founders Guided' },
-      { value: '1-on-1', label: 'Capstone Advising' },
-      { value: 'CFE', label: 'Venture Guild' },
+      { value: '80+', label: 'Founders Guided', delta: 'Ventures' },
+      { value: '1-on-1', label: 'Capstone Advising', delta: 'Advisory' },
+      { value: 'CFE', label: 'Venture Guild', delta: 'College of Eng' },
     ],
     tags: ['CFE Peer Advisor', 'Entrepreneurship Minor', 'Venture Capstones', 'Founder Office Hours'],
     websiteUrl: 'https://ent-minor.umich.edu/advising/',
@@ -394,6 +445,11 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
   },
   {
     id: 'elp_fellowship',
+    slug: 'elp-fellowship',
+    visualType: 'contact-sheet',
+    statusBadge: 'FELLOW',
+    specimenCode: 'ELP',
+    images: ['/visuals/elp_fellowship.jpg'],
     lens: 'leadership',
     chapter: '03',
     codeTag: 'elp.cohort2',
@@ -408,14 +464,16 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     accentColor: '#FFAA00',
     glowColor: 'rgba(255, 170, 0, 0.45)',
     imageVisual: '/visuals/elp_fellowship.jpg',
+    summary:
+      'Selected for the competitive, year-long venture leadership fellowship. Immersion in venture creation, founder masterclasses, and executive problem-solving alongside top builders across the university.',
     deckSummary:
       'Selected for the competitive, year-long venture leadership fellowship. Immersion in venture creation, founder masterclasses, and executive problem-solving alongside top builders across the university.',
     story:
       'As an ELP Cohort 2 Fellow, I participate in rigorous venture leadership immersions, executive roundtables, and collaborative problem-solving treks designed to build resilient 0→1 founders and technology leaders.',
     metrics: [
-      { value: 'Cohort 2', label: 'Competitive Fellow' },
-      { value: 'Year-Long', label: 'Venture Immersion' },
-      { value: 'Top 5%', label: 'Selective Cohort' },
+      { value: 'Cohort 2', label: 'Competitive Fellow', delta: 'Selected' },
+      { value: 'Year-Long', label: 'Venture Immersion', delta: 'Active' },
+      { value: 'Top 5%', label: 'Selective Cohort', delta: 'Admit Rate' },
     ],
     tags: ['ELP Fellowship', 'Venture Immersion', 'Cohort 2', 'Founder Masterclasses'],
     websiteUrl: 'https://cfe.umich.edu/launch/entrepreneurial-leadership-program/entrepreneurial-leadership-program-cohort-2/',
@@ -441,6 +499,11 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
   // ==========================================
   {
     id: 'classical_violin',
+    slug: 'classical-violin',
+    visualType: 'specimen',
+    statusBadge: 'DISCIPLINE',
+    specimenCode: '01 / VN',
+    images: ['/visuals/violin_piano.jpg'],
     lens: 'craft',
     chapter: '01',
     codeTag: 'resonance.hz',
@@ -455,14 +518,16 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     accentColor: '#FF6600',
     glowColor: 'rgba(255, 102, 0, 0.45)',
     imageVisual: '/visuals/violin_piano.jpg',
+    summary:
+      '14 years of rigorous classical violin training and acoustic piano study, cultivating acute attention to micro-timing, harmonic nuance, and patient tactile craftsmanship.',
     deckSummary:
       '14 years of rigorous classical violin training and acoustic piano study, cultivating acute attention to micro-timing, harmonic nuance, and patient tactile craftsmanship.',
     story:
       'Music is where I learned patience and listening. Mastering classical violin demands listening across an ensemble, refining physical micro-intonation by millimeters, and understanding that how you hold space is just as crucial as the notes you play.',
     metrics: [
-      { value: '14 Yrs', label: 'Continuous Practice' },
-      { value: '1,200+', label: 'Rehearsal Hours' },
-      { value: 'Ensemble', label: 'Chamber Repertoire' },
+      { value: '14 Yrs', label: 'Continuous Practice', delta: 'Daily' },
+      { value: '1,200+', label: 'Rehearsal Hours', delta: 'Mastery' },
+      { value: 'Ensemble', label: 'Chamber Repertoire', delta: 'Harmonic' },
     ],
     tags: ['14-Year Practice', 'Acoustic Timbre', 'Micro-Timing Nuance', 'Chamber Harmony'],
     detailedBreakdown: {
@@ -478,6 +543,11 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
   },
   {
     id: 'micro_sculpture',
+    slug: 'miniature-wearables',
+    visualType: 'specimen',
+    statusBadge: 'PRECISION',
+    specimenCode: '02 / NA',
+    images: ['/visuals/nail_art.jpg'],
     lens: 'craft',
     chapter: '02',
     codeTag: 'mineral.gel',
@@ -492,14 +562,16 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     accentColor: '#0038FF',
     glowColor: 'rgba(0, 56, 255, 0.45)',
     imageVisual: '/visuals/nail_art.jpg',
+    summary:
+      'Handcrafting millimeter-scale wearable sculptures using high-viscosity gels, Japanese chrome pigments, and raw minerals, exploring tactile aesthetics on miniature living canvases.',
     deckSummary:
       'Handcrafting millimeter-scale wearable sculptures using high-viscosity gels, Japanese chrome pigments, and raw minerals, exploring tactile aesthetics on miniature living canvases.',
     story:
       'Miniature nail sculpture is an obsession with extreme detail. Working on a 15mm canvas requires precision brushwork under magnifying light, balancing material viscosity, curing temperatures, and refractive light play.',
     metrics: [
-      { value: '80+', label: 'Bespoke Sets' },
-      { value: '0.1mm', label: 'Brush Precision' },
-      { value: 'Hand-Made', label: 'Wearable Sculptures' },
+      { value: '80+', label: 'Bespoke Sets', delta: 'Handmade' },
+      { value: '0.1mm', label: 'Brush Precision', delta: 'Tactile' },
+      { value: 'Hand-Made', label: 'Wearable Sculptures', delta: 'Bespoke' },
     ],
     tags: ['0.1mm Detail Precision', 'Quartz & Gold Leaf', 'High-Viscosity Gels', 'Wearable Sculptures'],
     detailedBreakdown: {
@@ -515,6 +587,11 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
   },
   {
     id: 'physical_discipline',
+    slug: 'physical-discipline',
+    visualType: 'specimen',
+    statusBadge: 'GROUNDING',
+    specimenCode: '03 / PD',
+    images: ['/visuals/physical_discipline.jpg'],
     lens: 'craft',
     chapter: '03',
     codeTag: 'biomech.iron',
@@ -529,14 +606,16 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     accentColor: '#FF3366',
     glowColor: 'rgba(255, 51, 102, 0.45)',
     imageVisual: '/visuals/physical_discipline.jpg',
+    summary:
+      'Grounding mental resilience and daily clarity through dedicated barbell strength training, biomechanical precision, and progressive athletic discipline.',
     deckSummary:
       'Grounding mental resilience and daily clarity through dedicated barbell strength training, biomechanical precision, and progressive athletic discipline.',
     story:
       'Lifting heavy barbells strips away distractions. It teaches honest feedback—gravity does not negotiate. The daily habit of showing up, tracking mechanical leverage, and managing physical recovery keeps me centered in high-stakes environments.',
     metrics: [
-      { value: '4x / Wk', label: 'Discipline Cadence' },
-      { value: '100%', label: 'Mental Clarity' },
-      { value: 'Biomechanical', label: 'Movement Control' },
+      { value: '4x / Wk', label: 'Discipline Cadence', delta: 'Consistency' },
+      { value: '100%', label: 'Mental Clarity', delta: 'Focus' },
+      { value: 'Biomechanical', label: 'Movement Control', delta: 'Leverage' },
     ],
     tags: ['Kinetic Biomechanics', 'Barbell Strength', 'Progressive Overload', 'Mental Grounding'],
     detailedBreakdown: {
@@ -556,6 +635,11 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
 export const HIDDEN_WAYPOINTS: Waypoint[] = [
   {
     id: 'bestfit',
+    slug: 'bestfit-hr',
+    visualType: 'wireframe',
+    statusBadge: 'ARCHIVE',
+    specimenCode: 'BF',
+    images: ['/visuals/bestfit.jpg'],
     lens: 'ventures',
     chapter: '05',
     codeTag: 'hackathon.fsf',
@@ -570,14 +654,16 @@ export const HIDDEN_WAYPOINTS: Waypoint[] = [
     accentColor: '#FFAA00',
     glowColor: 'rgba(255, 170, 0, 0.4)',
     imageVisual: '/visuals/bestfit.jpg',
+    summary:
+      'Engineered during freshman year to connect prospective students with Fashion Scholarship Fund opportunities and alumni mentors through personalized matchmaking algorithms.',
     deckSummary:
       'Engineered during freshman year to connect prospective students with Fashion Scholarship Fund opportunities and alumni mentors through personalized matchmaking algorithms.',
     story:
       'Developed during a freshman year hackathon, Best Fit bridges the gap between prospective students and competitive fashion scholarships. We built an intuitive matching interface in Figma and CodePen that surfaces tailored opportunities from the Fashion Scholarship Fund and pairs applicants directly with alumni mentors.',
     metrics: [
-      { value: 'Freshman', label: 'Hackathon Venture' },
-      { value: 'Devpost', label: 'Featured Project' },
-      { value: 'FSF', label: 'Scholarship Focus' },
+      { value: 'Freshman', label: 'Hackathon Venture', delta: 'Hackathon' },
+      { value: 'Devpost', label: 'Featured Project', delta: 'Submission' },
+      { value: 'FSF', label: 'Scholarship Focus', delta: 'Matchmaking' },
     ],
     tags: ['Devpost Hackathon', 'Figma Prototype', 'Frontend Architecture', 'Freshman Venture'],
     websiteUrl: 'https://devpost.com/software/best-fit',
