@@ -12,7 +12,7 @@ export default function LiuliGlass({
   glow = 'mixed' 
 }: LiuliGlassProps) {
   return (
-    <div className={`liuli-slab liuli-prism-edge relative transition-all duration-500 hover:shadow-[0_25px_60px_-10px_rgba(0,47,167,0.35)] ${className}`}>
+    <div className={`liuli-slab liuli-prism-edge relative transition-all duration-500 hover:shadow-[0_25px_60px_-10px_rgba(245,158,11,0.25)] ${className}`}>
       
       {/* 1. Internal Molten Smoky Glass Caustics */}
       <div className="absolute inset-0 liuli-caustic-bg pointer-events-none -z-10" />
@@ -23,15 +23,15 @@ export default function LiuliGlass({
       {/* 3. Subtle Color Glow Anchors */}
       {glow === 'mixed' && (
         <>
-          <div className="absolute -top-12 -left-12 w-48 h-48 bg-[#002FA7]/30 rounded-full blur-3xl pointer-events-none -z-10" />
-          <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-[#FF4500]/25 rounded-full blur-3xl pointer-events-none -z-10" />
+          <div className="absolute -top-12 -left-12 w-48 h-48 bg-[#F59E0B]/20 rounded-full blur-3xl pointer-events-none -z-10" />
+          <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-[#FFAA00]/18 rounded-full blur-3xl pointer-events-none -z-10" />
         </>
       )}
       {glow === 'blue' && (
-        <div className="absolute -top-12 -left-12 w-52 h-52 bg-[#002FA7]/35 rounded-full blur-3xl pointer-events-none -z-10" />
+        <div className="absolute -top-12 -left-12 w-52 h-52 bg-[#F59E0B]/20 rounded-full blur-3xl pointer-events-none -z-10" />
       )}
       {glow === 'flame' && (
-        <div className="absolute -bottom-12 -right-12 w-52 h-52 bg-[#FF4500]/30 rounded-full blur-3xl pointer-events-none -z-10" />
+        <div className="absolute -bottom-12 -right-12 w-52 h-52 bg-[#FFAA00]/20 rounded-full blur-3xl pointer-events-none -z-10" />
       )}
 
       {/* Real Content */}

@@ -37,12 +37,12 @@ export default function RequestResumeModal({ isOpen, onClose }: RequestResumeMod
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.96, y: 15 }}
           transition={{ duration: 0.3 }}
-          className="relative z-10 w-full max-w-lg p-6 sm:p-8 text-neutral-100 selection:bg-[#002FA7] selection:text-white"
+          className="relative z-10 w-full max-w-lg p-6 sm:p-8 text-neutral-100 selection:bg-[#F59E0B] selection:text-black"
         >
           {/* Top Bar */}
           <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
             <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-neutral-400">
-              <ShieldCheck className="w-4 h-4 text-[#70CFFF]" />
+              <ShieldCheck className="w-4 h-4 text-[#F59E0B]" />
               <span>DIRECT VERIFICATION & PRIVACY</span>
             </div>
             <button
@@ -98,7 +98,7 @@ export default function RequestResumeModal({ isOpen, onClose }: RequestResumeMod
               className="flex items-center gap-1 text-white hover:text-amber-300 transition-colors"
             >
               <span>LinkedIn Profile</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#0044FF]" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#F59E0B]" />
             </a>
           </div>
         </motion.div>

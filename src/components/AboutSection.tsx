@@ -55,7 +55,7 @@ export default function AboutSection({
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <a
                 href="mailto:kelslin@umich.edu"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-mono text-xs font-semibold uppercase tracking-wider hover:bg-[#0055FF] hover:text-white transition-all shadow-lg cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-mono text-xs font-semibold uppercase tracking-wider hover:bg-[#F59E0B] hover:text-black transition-all shadow-lg cursor-pointer"
                 title="Send email to kelslin@umich.edu"
               >
                 <Mail className="w-3.5 h-3.5" />

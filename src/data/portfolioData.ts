@@ -89,8 +89,8 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     position3D: [0, -0.15, 0.2],
     camPos: [0.35, 0.0, 2.1],
     lookAt: [0, -0.15, 0.15],
-    accentColor: '#FF5500',
-    glowColor: 'rgba(255, 85, 0, 0.45)',
+    accentColor: '#FF6600',
+    glowColor: 'rgba(255, 102, 0, 0.20)',
     imageVisual: '/visuals/afterlife.jpg',
     summary:
       'An AI memory preservation and digital legacy platform that transforms end-of-life planning into daily life celebration—deliberately built without artificial voice cloning to safeguard family trust.',
@@ -129,7 +129,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
   {
     id: 'warmilu',
     slug: 'warmilu-neonatal',
-    visualType: 'specimen',
+    visualType: 'liuli',
     statusBadge: 'CLINICAL',
     specimenCode: '02 / WM',
     images: ['/visuals/warmilu.jpg'],
@@ -144,8 +144,8 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     position3D: [-1.2, 0.15, 0.15],
     camPos: [-0.9, 0.25, 2.0],
     lookAt: [-1.15, 0.15, 0.1],
-    accentColor: '#0044FF',
-    glowColor: 'rgba(0, 68, 255, 0.4)',
+    accentColor: '#F59E0B',
+    glowColor: 'rgba(245, 158, 11, 0.20)',
     imageVisual: '/visuals/warmilu.jpg',
     summary:
       'Engineered digital procurement and clinician intake workflows for non-electric phase-change medical blankets saving preterm infants in resource-constrained clinics without reliable electricity.',
@@ -199,7 +199,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     camPos: [0.95, -0.75, 1.9],
     lookAt: [1.1, -0.8, 0.3],
     accentColor: '#FFAA00',
-    glowColor: 'rgba(255, 170, 0, 0.4)',
+    glowColor: 'rgba(255, 170, 0, 0.18)',
     imageVisual: '/visuals/luxshare.jpg',
     summary:
       'Standardized hardware-software telemetry and automated optical QA protocols across EV electronics manufacturing lines, auditing 200 checkpoints to eliminate assembly bottlenecks.',
@@ -251,8 +251,8 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     position3D: [0.85, 0.45, -0.2],
     camPos: [0.65, 0.45, 2.0],
     lookAt: [0.8, 0.4, -0.15],
-    accentColor: '#FF2A55',
-    glowColor: 'rgba(255, 42, 85, 0.4)',
+    accentColor: '#F59E0B',
+    glowColor: 'rgba(245, 158, 11, 0.18)',
     imageVisual: '/visuals/somaseek.jpg',
     summary:
       'Designed hallucination-free prompt grounding and few-shot evaluation rubrics for multi-robot embodied AI education, validated live before 1.5M viewers at the China Big Data Expo.',
@@ -304,8 +304,8 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     position3D: [-0.8, -0.2, 0.4],
     camPos: [-0.6, 0.0, 2.1],
     lookAt: [-0.75, -0.15, 0.35],
-    accentColor: '#0055FF',
-    glowColor: 'rgba(0, 85, 255, 0.45)',
+    accentColor: '#F59E0B',
+    glowColor: 'rgba(245, 158, 11, 0.18)',
     imageVisual: '/visuals/rich_collins_exhibition.jpg',
     summary:
       'Co-founded after-school photography workshops teaching camera mechanics and visual self-expression to youth at Chesterbrook Community Foundation, culminating in a featured public exhibition at the Brandeis University Leonard Bernstein Festival of the Creative Arts.',
@@ -364,7 +364,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     camPos: [0.55, 0.3, 2.0],
     lookAt: [0.65, 0.25, 0.25],
     accentColor: '#FFAA00',
-    glowColor: 'rgba(255, 170, 0, 0.45)',
+    glowColor: 'rgba(255, 170, 0, 0.18)',
     imageVisual: '/visuals/campus_leadership.jpg',
     summary:
       'Directing Michigan’s premier undergraduate product management guild. Leading end-to-end strategy for PM case competitions, sprint curricula, and industry portfolio teardowns to open accessible product pathways for students across disciplines.',
@@ -409,8 +409,8 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     position3D: [0.5, 0.1, 0.2],
     camPos: [0.4, 0.2, 1.9],
     lookAt: [0.45, 0.1, 0.15],
-    accentColor: '#0055FF',
-    glowColor: 'rgba(0, 85, 255, 0.4)',
+    accentColor: '#F59E0B',
+    glowColor: 'rgba(245, 158, 11, 0.18)',
     imageVisual: '/visuals/cfe_advising.jpg',
     summary:
       'Appointed peer advisor guiding undergraduate founders and engineers across campus through venture capstones, grant navigation, and zero-to-one business hypotheses at the Center for Entrepreneurship.',
@@ -456,7 +456,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     camPos: [0.5, -0.1, 2.0],
     lookAt: [0.55, -0.2, 0.25],
     accentColor: '#FFAA00',
-    glowColor: 'rgba(255, 170, 0, 0.45)',
+    glowColor: 'rgba(255, 170, 0, 0.18)',
     imageVisual: '/visuals/elp_fellowship.jpg',
     summary:
       'Selected for the competitive, year-long venture leadership fellowship. Immersion in venture creation, founder masterclasses, and executive problem-solving alongside top builders across the university.',
@@ -501,8 +501,8 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     position3D: [0.65, -0.3, 0.25],
     camPos: [0.55, -0.2, 1.95],
     lookAt: [0.6, -0.25, 0.2],
-    accentColor: '#002FA7',
-    glowColor: 'rgba(0, 47, 167, 0.4)',
+    accentColor: '#D97706',
+    glowColor: 'rgba(217, 119, 6, 0.18)',
     imageVisual: '/visuals/campus_leadership.jpg',
     summary:
       'Directed Michigan’s premier annual Startup Career Fair, connecting venture-backed startups and early-stage founders with top engineering, design, and product talent across campus.',
@@ -546,8 +546,8 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     position3D: [0.75, -0.35, 0.2],
     camPos: [0.65, -0.25, 1.9],
     lookAt: [0.7, -0.3, 0.15],
-    accentColor: '#67E8F9',
-    glowColor: 'rgba(103, 232, 249, 0.4)',
+    accentColor: '#F59E0B',
+    glowColor: 'rgba(245, 158, 11, 0.18)',
     imageVisual: '/visuals/campus_leadership.jpg',
     summary:
       'Teaching and mentoring students in computational data manipulation, Python architecture, RESTful API integration, and structured data handling at the University of Michigan School of Information.',
@@ -591,8 +591,8 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     position3D: [0.8, -0.4, 0.15],
     camPos: [0.7, -0.3, 1.85],
     lookAt: [0.75, -0.35, 0.1],
-    accentColor: '#0055FF',
-    glowColor: 'rgba(0, 85, 255, 0.4)',
+    accentColor: '#F59E0B',
+    glowColor: 'rgba(245, 158, 11, 0.18)',
     imageVisual: '/visuals/campus_leadership.jpg',
     summary:
       'Providing hardware, software, and systems consulting across campus computing sites, troubleshooting technical issues and supporting accessible digital infrastructure for university students and faculty.',
@@ -641,7 +641,7 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     camPos: [-0.4, 0.4, 2.1],
     lookAt: [-0.55, 0.45, -0.25],
     accentColor: '#FF6600',
-    glowColor: 'rgba(255, 102, 0, 0.45)',
+    glowColor: 'rgba(255, 102, 0, 0.18)',
     imageVisual: '/visuals/violin_piano.jpg',
     summary:
       '14 years of rigorous classical violin training and acoustic piano study, cultivating acute attention to micro-timing, harmonic nuance, and patient tactile craftsmanship.',
@@ -684,8 +684,8 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     position3D: [0.6, -0.5, 0.2],
     camPos: [0.45, -0.4, 2.0],
     lookAt: [0.55, -0.45, 0.15],
-    accentColor: '#0038FF',
-    glowColor: 'rgba(0, 56, 255, 0.45)',
+    accentColor: '#F59E0B',
+    glowColor: 'rgba(245, 158, 11, 0.18)',
     imageVisual: '/visuals/nail_art.jpg',
     summary:
       'Handcrafting millimeter-scale wearable sculptures using high-viscosity gels, Japanese chrome pigments, and raw minerals, exploring tactile aesthetics on miniature living canvases.',
@@ -728,8 +728,8 @@ export const PORTFOLIO_WAYPOINTS: Waypoint[] = [
     position3D: [0.1, 0.6, 0.2],
     camPos: [0.0, 0.5, 2.2],
     lookAt: [0.1, 0.55, 0.15],
-    accentColor: '#FF3366',
-    glowColor: 'rgba(255, 51, 102, 0.45)',
+    accentColor: '#FFAA00',
+    glowColor: 'rgba(255, 170, 0, 0.18)',
     imageVisual: '/visuals/physical_discipline.jpg',
     summary:
       'Grounding mental resilience and daily clarity through dedicated barbell strength training, biomechanical precision, and progressive athletic discipline.',
@@ -777,7 +777,7 @@ export const HIDDEN_WAYPOINTS: Waypoint[] = [
     camPos: [-0.3, -0.5, 2.1],
     lookAt: [-0.45, -0.55, 0.15],
     accentColor: '#FFAA00',
-    glowColor: 'rgba(255, 170, 0, 0.4)',
+    glowColor: 'rgba(255, 170, 0, 0.18)',
     imageVisual: '/visuals/bestfit.jpg',
     summary:
       'Engineered during freshman year to connect prospective students with Fashion Scholarship Fund opportunities and alumni mentors through personalized matchmaking algorithms.',

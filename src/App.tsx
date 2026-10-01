@@ -37,7 +37,7 @@ class WebGLErrorBoundary extends React.Component<
     if (this.state.hasError) {
       return (
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-auto z-20">
-          <div className="w-[360px] h-[360px] rounded-full bg-gradient-to-tr from-[#002FA7]/30 to-[#FFAA00]/20 blur-[100px] pointer-events-none" />
+          <div className="w-[360px] h-[360px] rounded-full bg-gradient-to-tr from-[#F59E0B]/20 to-[#FFAA00]/15 blur-[100px] pointer-events-none" />
           <div className="relative z-10 text-center space-y-3 px-4">
             <p className="font-syne text-lg text-white font-bold">3D View Offline</p>
             <p className="text-xs font-mono text-neutral-400 max-w-sm">
@@ -207,7 +207,7 @@ function CrystalFollowerCursor() {
               <linearGradient id="fireflyWing" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.9" />
                 <stop offset="50%" stopColor="#67E8F9" stopOpacity="0.55" />
-                <stop offset="100%" stopColor="#002FA7" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#F59E0B" stopOpacity="0.3" />
               </linearGradient>
               <radialGradient id="lanternHalo" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stopColor="#FFAA00" stopOpacity="0.8" />
@@ -545,7 +545,7 @@ export default function App() {
 
   return (
     <AudioProvider>
-      <div className="relative w-full min-h-screen bg-[#050608] text-[#D8ECF8] font-sans selection:bg-[#002FA7] selection:text-white overflow-x-hidden">
+      <div className="relative w-full min-h-screen bg-[#050608] text-[#D8ECF8] font-sans selection:bg-[#F59E0B] selection:text-black overflow-x-hidden">
         {/* 0. Preloader Screen with Asset Loading Progress & Cinematic Fade-out */}
         <LiuliPreloader />
 
@@ -604,8 +604,8 @@ export default function App() {
         </div>
 
         {/* Soft Radial Ambient Glow */}
-        <div className="fixed top-[-10%] left-[-10%] w-[650px] h-[650px] rounded-full bg-[#002FA7]/10 blur-[180px] pointer-events-none" />
-        <div className="fixed bottom-[-10%] right-[-10%] w-[650px] h-[650px] rounded-full bg-[#FF5500]/08 blur-[180px] pointer-events-none" />
+        <div className="fixed top-[-10%] left-[-10%] w-[650px] h-[650px] rounded-full bg-[#F59E0B]/15 blur-[180px] pointer-events-none" />
+        <div className="fixed bottom-[-10%] right-[-10%] w-[650px] h-[650px] rounded-full bg-[#FFAA00]/12 blur-[180px] pointer-events-none" />
 
         {/* Dynamic atmospheric scrim & backdrop blur over 3D background canvas:
             Starts at 0px blur & transparent in Hero, smoothly blurring to soft bokeh as user scrolls down */}

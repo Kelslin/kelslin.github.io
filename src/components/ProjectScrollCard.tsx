@@ -30,6 +30,7 @@ export default function ProjectScrollCard({
 
   const lensConfig = LENS_CONFIG[waypoint.lens];
   const isEven = index % 2 === 0;
+  const isLiuli = waypoint.visualType === 'liuli' || waypoint.id === 'warmilu';
 
   return (
     <div
@@ -45,7 +46,7 @@ export default function ProjectScrollCard({
             isEven ? '' : 'lg:grid-flow-dense'
           }`}
         >
-          {/* 1. Visual Card (Unified Editorial Architecture: Wireframe, Contact Sheet, Telemetry, Specimen) */}
+          {/* 1. Visual Card (Unified Editorial Architecture: Wireframe, Contact Sheet, Telemetry, Specimen, Liuli) */}
           <div
             className={`w-full ${
               isEven ? 'lg:col-span-6' : 'lg:col-span-6 lg:col-start-7'
@@ -62,7 +63,11 @@ export default function ProjectScrollCard({
                 }
               }}
               aria-label={`Open case specification for ${title}`}
-              className="relative w-full rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.85)] group/visual cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/40 transition-shadow duration-300 hover:shadow-[0_35px_90px_rgba(0,0,0,0.95)]"
+              className={
+                isLiuli
+                  ? "relative w-full group/visual cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#F59E0B]/40 transition-all duration-500"
+                  : "relative w-full rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.85)] group/visual cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/40 transition-shadow duration-300 hover:shadow-[0_35px_90px_rgba(0,0,0,0.95)]"
+              }
             >
               <EditorialProjectVisual project={waypoint} />
 

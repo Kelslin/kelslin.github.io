@@ -98,7 +98,7 @@ export default function AboutStoryModal({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 overflow-y-auto bg-[#050608]/96 backdrop-blur-2xl selection:bg-[#002FA7] selection:text-white pointer-events-auto">
+      <div className="fixed inset-0 z-50 overflow-y-auto bg-[#050608]/96 backdrop-blur-2xl selection:bg-[#F59E0B] selection:text-black pointer-events-auto">
         {/* Fixed Top Exit Bar */}
         <div className="fixed top-4 sm:top-5 left-4 right-4 sm:left-10 sm:right-10 z-[70] flex items-center justify-between gap-3 pointer-events-auto">
           {/* Header Monospace Stamp */}
@@ -111,7 +111,7 @@ export default function AboutStoryModal({
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="flex items-center gap-1.5 sm:gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold hover:bg-[#0055FF] hover:text-white transition-colors shadow-2xl cursor-pointer"
+            className="flex items-center gap-1.5 sm:gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold hover:bg-[#F59E0B] hover:text-black transition-colors shadow-2xl cursor-pointer"
           >
             <span>Close</span>
             <X className="w-3.5 h-3.5" />
@@ -155,7 +155,7 @@ export default function AboutStoryModal({
             <span className="text-white/20">·</span>
             <a
               href="mailto:kelslin@umich.edu"
-              className="inline-flex items-center gap-1.5 text-white hover:text-[#0055FF] transition-colors underline underline-offset-4 decoration-neutral-600 hover:decoration-white cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-white hover:text-[#F59E0B] transition-colors underline underline-offset-4 decoration-neutral-600 hover:decoration-white cursor-pointer"
             >
               <Mail className="w-3 h-3" />
               <span>kelslin@umich.edu</span>
@@ -165,7 +165,7 @@ export default function AboutStoryModal({
               href="https://linkedin.com/in/kel-lin"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-white hover:text-[#0055FF] transition-colors underline underline-offset-4 decoration-neutral-600 hover:decoration-white cursor-pointer"
+              className="inline-flex items-center gap-1 text-white hover:text-[#F59E0B] transition-colors underline underline-offset-4 decoration-neutral-600 hover:decoration-white cursor-pointer"
             >
               <span>LinkedIn</span>
               <ExternalLink className="w-3 h-3" />
@@ -330,7 +330,7 @@ export default function AboutStoryModal({
           <div className="pt-12 sm:pt-16 text-center">
             <button
               onClick={onClose}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-[#0055FF] hover:text-white transition-all shadow-xl cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-[#F59E0B] hover:text-black transition-all shadow-xl cursor-pointer"
             >
               <span>Return to Portfolio</span>
               <X className="w-3.5 h-3.5" />

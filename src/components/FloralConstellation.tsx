@@ -18,7 +18,7 @@ export default function FloralConstellation({
   position = [0, -0.6, 0],
 }: FloralConstellationProps) {
 
-  // 2. Klein Blue (#002FA7) & Forensic Cyan Constellation Network
+  // 2. Amber Liuli (#F59E0B) Constellation Network
   const lineGeometry = useMemo(() => {
     const points: THREE.Vector3[] = [];
     const waypoints = PORTFOLIO_WAYPOINTS;
@@ -47,9 +47,9 @@ export default function FloralConstellation({
       {!activeWaypoint && (
         <lineSegments geometry={lineGeometry}>
           <lineBasicMaterial
-            color="#0044FF"
+            color="#F59E0B"
             transparent
-            opacity={0.32}
+            opacity={0.25}
             blending={THREE.AdditiveBlending}
           />
         </lineSegments>

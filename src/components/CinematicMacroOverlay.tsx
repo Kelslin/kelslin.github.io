@@ -145,7 +145,7 @@ export default function CinematicMacroOverlay({
 
           {/* Line 2: Role & Period in one balanced line */}
           <div className="flex flex-wrap items-baseline gap-2 mb-3">
-            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.16em] text-[#0055FF] font-semibold">
+            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.16em] text-[#F59E0B] font-semibold">
               {role}
             </span>
             <span className="text-neutral-500 text-[10px] font-mono">·</span>
@@ -250,7 +250,7 @@ export default function CinematicMacroOverlay({
                   {config.index} // {config.shortLabel}
                 </span>
                 {isLensActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#0055FF]" />
+                  <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#F59E0B]" />
                 )}
               </button>
             );

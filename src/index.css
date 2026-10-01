@@ -73,14 +73,14 @@ body {
 }
 
 .decorative-name-glow {
-  text-shadow: 0 0 35px rgba(216, 236, 248, 0.2), 0 0 70px rgba(0, 56, 255, 0.2);
+  text-shadow: 0 0 35px rgba(254, 243, 199, 0.2), 0 0 70px rgba(245, 158, 11, 0.18);
 }
 
 .amber-klein-prismatic-text {
-  background: linear-gradient(135deg, #FFB800 0%, #FF6600 38%, #0055FF 82%, #002FA7 100%);
+  background: linear-gradient(135deg, #FFB800 0%, #FF6600 38%, #FFAA00 82%, #F59E0B 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 24px rgba(255, 136, 0, 0.35));
+  filter: drop-shadow(0 0 24px rgba(245, 158, 11, 0.25));
 }
 
 /* DIRECTION B: TACTILE LIULI GLASS SHIMMER (TIED TO 3D LILY) */
@@ -101,8 +101,8 @@ body {
     115deg,
     #FFFFFF 0%,
     #F1F5F9 20%,
-    #BAE6FD 36%,
-    #0055FF 48%,
+    #FEF3C7 36%,
+    #F59E0B 48%,
     #FFAA00 62%,
     #FFFFFF 78%,
     #E2E8F0 100%
@@ -111,12 +111,12 @@ body {
   animation: liuliGlassShimmer 12s ease-in-out infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 14px rgba(0, 85, 255, 0.32)) drop-shadow(0 8px 30px rgba(255, 170, 0, 0.18));
+  filter: drop-shadow(0 2px 14px rgba(245, 158, 11, 0.25)) drop-shadow(0 8px 30px rgba(255, 170, 0, 0.18));
   transition: filter 0.5s ease;
 }
 
 .liuli-glass-shimmer-text:hover {
-  filter: drop-shadow(0 0 22px rgba(0, 85, 255, 0.55)) drop-shadow(0 0 45px rgba(255, 170, 0, 0.35));
+  filter: drop-shadow(0 0 22px rgba(245, 158, 11, 0.35)) drop-shadow(0 0 45px rgba(255, 170, 0, 0.25));
 }
 
 /* 3. PALE FROSTED QUARTZ TEXT FINISH */

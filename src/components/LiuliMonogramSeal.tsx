@@ -7,10 +7,10 @@ export default function LiuliMonogramSeal({ className = '' }: { className?: stri
       title="Kelsey Lin · Bespoke Liuli Artisan Seal"
     >
       {/* Ambient Caustic Halo behind glass seal */}
-      <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#0038FF]/35 via-transparent to-[#FFAA00]/30 blur-md opacity-70 group-hover/seal:opacity-100 group-hover/seal:scale-110 transition-all duration-500 pointer-events-none" />
+      <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#F59E0B]/25 via-transparent to-[#FFAA00]/25 blur-md opacity-70 group-hover/seal:opacity-100 group-hover/seal:scale-110 transition-all duration-500 pointer-events-none" />
 
       {/* Tactile Liuli Glass Seal Badge */}
-      <div className="relative w-full h-full rounded-full p-[1px] bg-gradient-to-b from-white/40 via-white/10 to-[#0055FF]/40 shadow-[0_8px_24px_rgba(0,47,167,0.35)] backdrop-blur-md transition-transform duration-500 group-hover/seal:scale-105">
+      <div className="relative w-full h-full rounded-full p-[1px] bg-gradient-to-b from-white/40 via-white/10 to-[#F59E0B]/30 shadow-[0_8px_24px_rgba(245,158,11,0.20)] backdrop-blur-md transition-transform duration-500 group-hover/seal:scale-105">
         <svg
           viewBox="0 0 100 100"
           className="w-full h-full drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
@@ -23,11 +23,11 @@ export default function LiuliMonogramSeal({ className = '' }: { className?: stri
               <stop offset="100%" stopColor="#050814" stopOpacity="0.95" />
             </radialGradient>
 
-            {/* 2. Prismatic Klein Blue & Amber Rim */}
+            {/* 2. Prismatic Amber Rim */}
             <linearGradient id="prismaticRimGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.9" />
-              <stop offset="25%" stopColor="#67E8F9" stopOpacity="0.75" />
-              <stop offset="60%" stopColor="#0055FF" stopOpacity="0.85" />
+              <stop offset="30%" stopColor="#FEF3C7" stopOpacity="0.75" />
+              <stop offset="60%" stopColor="#F59E0B" stopOpacity="0.85" />
               <stop offset="85%" stopColor="#FFAA00" stopOpacity="0.8" />
               <stop offset="100%" stopColor="#FF5500" stopOpacity="0.65" />
             </linearGradient>
@@ -38,10 +38,10 @@ export default function LiuliMonogramSeal({ className = '' }: { className?: stri
               <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0.0" />
             </linearGradient>
 
-            {/* 4. Klein Blue Internal Caustic Pool */}
+            {/* 4. Amber Internal Caustic Pool */}
             <radialGradient id="causticPool" cx="50%" cy="55%" r="45%">
-              <stop offset="0%" stopColor="#0044FF" stopOpacity="0.6" />
-              <stop offset="70%" stopColor="#002FA7" stopOpacity="0.25" />
+              <stop offset="0%" stopColor="#FFAA00" stopOpacity="0.5" />
+              <stop offset="70%" stopColor="#F59E0B" stopOpacity="0.2" />
               <stop offset="100%" stopColor="#000000" stopOpacity="0" />
             </radialGradient>
 

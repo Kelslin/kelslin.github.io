@@ -1,4 +1,4 @@
-export type ProjectVisualType = 'wireframe' | 'contact-sheet' | 'telemetry' | 'specimen';
+export type ProjectVisualType = 'wireframe' | 'contact-sheet' | 'telemetry' | 'specimen' | 'liuli';
 
 export interface Project {
   id: string;

@@ -63,7 +63,7 @@ export default function ProjectDetailModal({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 overflow-y-auto bg-[#050608]/96 backdrop-blur-2xl selection:bg-[#002FA7] selection:text-white pointer-events-auto">
+      <div className="fixed inset-0 z-50 overflow-y-auto bg-[#050608]/96 backdrop-blur-2xl selection:bg-[#F59E0B] selection:text-black pointer-events-auto">
         {/* Fixed Top Exit & Navigation Bar */}
         <div className="fixed top-4 sm:top-5 left-4 right-4 sm:left-10 sm:right-10 z-[70] flex items-center justify-between gap-3 pointer-events-auto">
           {/* Arrow cycle buttons (Visible on all devices, single arrow each) */}
@@ -92,7 +92,7 @@ export default function ProjectDetailModal({
             {/* Close Fullscreen Button */}
             <button
               onClick={onClose}
-              className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold hover:bg-[#0055FF] hover:text-white transition-colors shadow-2xl cursor-pointer"
+              className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold hover:bg-[#F59E0B] hover:text-black transition-colors shadow-2xl cursor-pointer"
             >
               <span>Close</span>
               <X className="w-3.5 h-3.5" />
@@ -147,7 +147,7 @@ export default function ProjectDetailModal({
                   rel="noopener noreferrer"
                   className="group/site inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.08] hover:bg-white/[0.18] border border-white/10 hover:border-white/25 text-[11px] font-mono text-[#D8ECF8] hover:text-white transition-all shadow-sm cursor-pointer"
                 >
-                  <span className="font-medium text-white group-hover/site:text-[#0055FF] transition-colors">
+                  <span className="font-medium text-white group-hover/site:text-[#F59E0B] transition-colors">
                     {waypoint.websiteLabel || 'Visit Live Platform'}
                   </span>
                   <ExternalLink className="w-3 h-3 text-[#94A3B8] group-hover/site:text-white transition-transform group-hover/site:translate-x-0.5 group-hover/site:-translate-y-0.5" />
@@ -179,7 +179,7 @@ export default function ProjectDetailModal({
 
           {/* Problem & Strategic Context */}
           <div className="mb-8">
-            <h3 className="font-mono text-[11px] sm:text-xs tracking-[0.16em] text-[#67E8F9] font-semibold mb-2">
+            <h3 className="font-mono text-[11px] sm:text-xs tracking-[0.16em] text-[#F59E0B] font-semibold mb-2">
               01 · Strategic Context & Problem Space
             </h3>
             <p className="font-sans text-[#D8ECF8]/90 text-xs sm:text-sm md:text-base font-light leading-relaxed">
@@ -189,13 +189,13 @@ export default function ProjectDetailModal({
 
           {/* Key Architecture & Execution Deliverables */}
           <div className="mb-8">
-            <h3 className="font-mono text-[11px] sm:text-xs tracking-[0.16em] text-[#0055FF] font-semibold mb-3">
+            <h3 className="font-mono text-[11px] sm:text-xs tracking-[0.16em] text-[#F59E0B] font-semibold mb-3">
               02 · Architecture & Execution Deliverables
             </h3>
             <ul className="space-y-3 font-sans text-xs sm:text-sm md:text-base text-[#D8ECF8]/85 font-light leading-relaxed">
               {bulletPoints.map((bp, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <span className="font-mono text-xs font-semibold text-[#0055FF] pt-0.5 shrink-0">
+                  <span className="font-mono text-xs font-semibold text-[#F59E0B] pt-0.5 shrink-0">
                     {String(idx + 1).padStart(2, '0')}.
                   </span>
                   <span>{bp}</span>

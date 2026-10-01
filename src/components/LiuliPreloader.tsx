@@ -79,7 +79,7 @@ export default function LiuliPreloader() {
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#050608] text-white selection:bg-transparent pointer-events-auto"
         >
           {/* Subtle Ambient Radial Glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full bg-gradient-to-tr from-[#002FA7]/30 to-[#FFAA00]/25 blur-[130px] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full bg-gradient-to-tr from-[#F59E0B]/20 to-[#FFAA00]/15 blur-[130px] pointer-events-none" />
 
           {/* Centered Monogram & Brand Logo with Animated Vector Trace */}
           <div className="relative z-10 flex flex-col items-center gap-6">
@@ -91,14 +91,14 @@ export default function LiuliPreloader() {
             >
               <svg
                 viewBox={LOGO_SVG_DATA.viewBox}
-                className="w-full h-full filter drop-shadow-[0_0_24px_rgba(0,85,255,0.7)] drop-shadow-[0_0_40px_rgba(255,170,0,0.4)] overflow-visible"
+                className="w-full h-full filter drop-shadow-[0_0_24px_rgba(245,158,11,0.5)] drop-shadow-[0_0_40px_rgba(255,170,0,0.3)] overflow-visible"
               >
                 <defs>
-                  {/* Glowing Electric Klein & Molten Amber Drawing Gradient */}
+                  {/* Glowing Amber Heart Drawing Gradient */}
                   <linearGradient id="signatureTraceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#FFFFFF" />
-                    <stop offset="35%" stopColor="#67E8F9" />
-                    <stop offset="65%" stopColor="#0055FF" />
+                    <stop offset="35%" stopColor="#FEF3C7" />
+                    <stop offset="65%" stopColor="#F59E0B" />
                     <stop offset="100%" stopColor="#FFAA00" />
                   </linearGradient>
 
@@ -144,7 +144,7 @@ export default function LiuliPreloader() {
             {/* Slender Minimalist Progress Bar */}
             <div className="w-48 sm:w-56 h-[1.5px] bg-white/10 rounded-full overflow-hidden mt-2 relative">
               <motion.div
-                className="h-full bg-gradient-to-r from-[#0055FF] via-white to-[#FFAA00] rounded-full"
+                className="h-full bg-gradient-to-r from-[#F59E0B] via-white to-[#FFAA00] rounded-full"
                 style={{ width: `${Math.max(10, displayProgress)}%` }}
                 transition={{ ease: 'easeOut', duration: 0.2 }}
               />

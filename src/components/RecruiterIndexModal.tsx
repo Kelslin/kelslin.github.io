@@ -36,12 +36,12 @@ export default function RecruiterIndexModal({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 overflow-y-auto bg-[#050608]/96 backdrop-blur-2xl selection:bg-[#002FA7] selection:text-white pointer-events-auto">
+      <div className="fixed inset-0 z-50 overflow-y-auto bg-[#050608]/96 backdrop-blur-2xl selection:bg-[#F59E0B] selection:text-black pointer-events-auto">
         {/* Fixed Top Exit Bar */}
         <div className="fixed top-4 right-4 sm:top-5 sm:right-10 z-[70] flex items-center gap-3 pointer-events-auto">
           <button
             onClick={onClose}
-            className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold hover:bg-[#0055FF] hover:text-white transition-colors shadow-2xl cursor-pointer"
+            className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] font-semibold hover:bg-[#F59E0B] hover:text-black transition-colors shadow-2xl cursor-pointer"
           >
             <span>{t.close}</span>
             <X className="w-3.5 h-3.5" />
@@ -78,7 +78,7 @@ export default function RecruiterIndexModal({
                 href="mailto:kelslin@umich.edu"
                 className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/10 text-white font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] hover:bg-white/20 transition-colors"
               >
-                <Mail className="w-3.5 h-3.5 text-[#0055FF]" />
+                <Mail className="w-3.5 h-3.5 text-[#F59E0B]" />
                 <span>kelslin@umich.edu ↗</span>
               </a>
             </div>
@@ -95,7 +95,7 @@ export default function RecruiterIndexModal({
                   {/* Lens Header */}
                   <div className="flex items-baseline justify-between pb-2 border-b border-white/[0.08]">
                     <div className="flex items-center gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#0055FF]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B]" />
                       <h3 className="font-syne text-base sm:text-lg text-white font-semibold uppercase tracking-wider">
                         {config.label}
                       </h3>
@@ -132,7 +132,7 @@ export default function RecruiterIndexModal({
                                 className="w-2 h-2 rounded-full shrink-0"
                                 style={{ backgroundColor: wp.accentColor }}
                               />
-                              <h4 className="font-syne text-base sm:text-lg text-white font-semibold group-hover:text-blue-300 transition-colors">
+                              <h4 className="font-syne text-base sm:text-lg text-white font-semibold group-hover:text-[#FCD34D] transition-colors">
                                 {title}
                               </h4>
                               <span className="text-[10px] sm:text-[11px] font-mono text-[#94A3B8]">
@@ -140,7 +140,7 @@ export default function RecruiterIndexModal({
                               </span>
                             </div>
 
-                            <div className="text-xs font-mono text-[#0055FF] tracking-wider uppercase pl-5">
+                            <div className="text-xs font-mono text-[#F59E0B] tracking-wider uppercase pl-5">
                               {role}
                             </div>
 

@@ -25,18 +25,22 @@ export default function EditorialProjectVisual({
   className = '',
   isModal = false,
 }: EditorialProjectVisualProps) {
-  const visualType = project.visualType || 'specimen';
+  const visualType = (project.id === 'warmilu' ? 'liuli' : project.visualType) || 'specimen';
+  const isLiuli = visualType === 'liuli';
 
   return (
     <div
-      className={`relative w-full overflow-hidden select-none transition-all duration-500 ${
-        isModal ? 'aspect-[16/9] rounded-3xl' : 'aspect-[16/10] rounded-3xl'
+      className={`relative w-full select-none transition-all duration-500 ${
+        isLiuli
+          ? isModal ? 'aspect-[16/9]' : 'aspect-[16/10]'
+          : isModal ? 'aspect-[16/9] rounded-3xl overflow-hidden' : 'aspect-[16/10] rounded-3xl overflow-hidden'
       } ${className}`}
     >
       {visualType === 'wireframe' && <WireframeVisual project={project} isModal={isModal} />}
       {visualType === 'contact-sheet' && <ContactSheetVisual project={project} isModal={isModal} />}
       {visualType === 'telemetry' && <TelemetryVisual project={project} isModal={isModal} />}
       {visualType === 'specimen' && <SpecimenVisual project={project} isModal={isModal} />}
+      {visualType === 'liuli' && <LiuliGlassVisual project={project} isModal={isModal} />}
     </div>
   );
 }
@@ -101,7 +105,7 @@ function WireframeVisual({ project, isModal }: { project: Project | Waypoint; is
             <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-black/75 backdrop-blur-md border border-white/15 font-mono text-[9px] text-white uppercase tracking-wider">
               1440 × 900 · DESKTOP VIEWPORT
             </div>
-            <div className="absolute top-3 right-3 px-2 py-0.5 rounded bg-[#0055FF]/40 backdrop-blur-md border border-[#0055FF]/40 font-mono text-[9px] text-[#67E8F9] uppercase tracking-wider">
+            <div className="absolute top-3 right-3 px-2 py-0.5 rounded bg-[#F59E0B]/20 backdrop-blur-md border border-[#F59E0B]/30 font-mono text-[9px] text-[#FCD34D] uppercase tracking-wider">
               ETHICS GATE: ACTIVE
             </div>
 
@@ -269,8 +273,8 @@ function TelemetryVisual({ project, isModal }: { project: Project | Waypoint; is
         <div className="flex items-center gap-2.5">
           {/* Radar Ping Dot */}
           <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#67E8F9] opacity-75" />
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#0055FF]" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F59E0B] opacity-75" />
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#F59E0B]" />
           </span>
           <span className="text-white font-semibold uppercase tracking-wider">
             {project.statusBadge || 'DEPLOYED'}
@@ -297,7 +301,7 @@ function TelemetryVisual({ project, isModal }: { project: Project | Waypoint; is
           </div>
 
           <div className="p-2 sm:p-2.5 rounded-xl bg-white/[0.05] border border-white/15 shadow-md">
-            <div className="text-[9px] font-mono text-[#67E8F9] uppercase tracking-wider mb-0.5">
+            <div className="text-[9px] font-mono text-[#F59E0B] uppercase tracking-wider mb-0.5">
               Pipeline
             </div>
             <div className="font-mono text-[11px] sm:text-xs text-white font-medium truncate">
@@ -320,9 +324,9 @@ function TelemetryVisual({ project, isModal }: { project: Project | Waypoint; is
           <svg className="w-full h-8 overflow-visible" preserveAspectRatio="none" viewBox="0 0 400 32">
             <defs>
               <linearGradient id="telemetryStreamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#0055FF" stopOpacity="0.3" />
-                <stop offset="50%" stopColor="#67E8F9" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="#FFAA00" stopOpacity="0.8" />
+                <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.4" />
+                <stop offset="50%" stopColor="#FFAA00" stopOpacity="0.9" />
+                <stop offset="100%" stopColor="#F59E0B" stopOpacity="0.8" />
               </linearGradient>
             </defs>
             <path
@@ -446,6 +450,152 @@ function SpecimenVisual({ project, isModal }: { project: Project | Waypoint; isM
         <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-wider">
           SWISS SPECIMEN ARCHIVE
         </span>
+      </div>
+    </div>
+  );
+}
+
+// =========================================================================
+// 5. LIULI GLASS VISUAL (PÂTE-DE-VERRE / CAST CRYSTAL)
+// Organic, borderless sculptural cast crystal with amber and smoked-quartz refraction
+// =========================================================================
+function LiuliGlassVisual({ project, isModal }: { project: Project | Waypoint; isModal: boolean }) {
+  return (
+    <div
+      className="relative w-full h-full flex items-center justify-center select-none overflow-hidden"
+      style={{
+        maskImage: 'radial-gradient(circle at center, black 60%, transparent 95%)',
+        WebkitMaskImage: 'radial-gradient(circle at center, black 60%, transparent 95%)',
+      }}
+    >
+      {/* 1. Deep Smoked-Quartz & Void Atmosphere */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-black via-[#0C0A09]/95 to-[#1C1917]/70 pointer-events-none" />
+
+      {/* 2. Internal Amber Heart Radiance (Warm Honey #F59E0B Glow at 18-20% Opacity) */}
+      <div className="absolute w-[260px] sm:w-[340px] md:w-[420px] h-[260px] sm:h-[340px] md:h-[420px] rounded-full bg-gradient-to-r from-[#F59E0B]/22 via-[#FFAA00]/18 to-transparent blur-[85px] pointer-events-none transform -translate-x-6 -translate-y-4 group-hover/visual:scale-110 transition-transform duration-700 ease-out" />
+      <div className="absolute w-[150px] sm:w-[200px] h-[150px] sm:h-[200px] rounded-full bg-[#F59E0B]/25 blur-[50px] pointer-events-none transform translate-x-8 translate-y-6" />
+      <div className="absolute w-[80px] sm:w-[110px] h-[80px] sm:h-[110px] rounded-full bg-[#FEF3C7]/35 blur-[25px] pointer-events-none" />
+
+      {/* 3. Sculptural Cast-Crystal (Pâte-de-Verre) Curves */}
+      <div className="relative z-10 w-full h-full flex items-center justify-center p-2 sm:p-4 transform group-hover/visual:scale-[1.03] transition-transform duration-700 ease-out">
+        <svg
+          viewBox="0 0 800 500"
+          className="w-full h-full max-h-[360px] sm:max-h-[420px] filter drop-shadow-[0_20px_60px_rgba(245,158,11,0.22)]"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            {/* Molten Amber Internal Refraction */}
+            <linearGradient id="amberCoreGrad" x1="160" y1="90" x2="660" y2="410" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#FFFBEB" stopOpacity="0.88" />
+              <stop offset="16%" stopColor="#F59E0B" stopOpacity="0.9" />
+              <stop offset="42%" stopColor="#D97706" stopOpacity="0.75" />
+              <stop offset="70%" stopColor="#78350F" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#1C1917" stopOpacity="0" />
+            </linearGradient>
+
+            {/* Smoked Quartz Outer Contour */}
+            <radialGradient id="smokedQuartzGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#292524" stopOpacity="0.8" />
+              <stop offset="55%" stopColor="#1C1917" stopOpacity="0.65" />
+              <stop offset="85%" stopColor="#0C0A09" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+            </radialGradient>
+
+            {/* High-Gloss Wet Glaze Specular Rim */}
+            <linearGradient id="specularRimGrad" x1="190" y1="70" x2="560" y2="390" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.75" />
+              <stop offset="28%" stopColor="#FEF3C7" stopOpacity="0.4" />
+              <stop offset="65%" stopColor="#F59E0B" stopOpacity="0.25" />
+              <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+            </linearGradient>
+
+            {/* Internal Caustic Ribbon */}
+            <linearGradient id="causticFlowGrad" x1="120" y1="250" x2="680" y2="250" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#000000" stopOpacity="0" />
+              <stop offset="35%" stopColor="#F59E0B" stopOpacity="0.38" />
+              <stop offset="50%" stopColor="#FEF3C7" stopOpacity="0.65" />
+              <stop offset="65%" stopColor="#F59E0B" stopOpacity="0.38" />
+              <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+
+          {/* Layer 1: Ambient Smoked-Quartz Mass (Heavy Cast Glass Silhouette) */}
+          <path
+            d="M 180 260 C 190 140, 320 90, 440 110 C 560 130, 640 210, 620 310 C 600 410, 480 430, 360 410 C 250 390, 170 360, 180 260 Z"
+            fill="url(#smokedQuartzGrad)"
+          />
+
+          {/* Layer 2: Main Sculptural Pâte-de-Verre Curve (Cast Crystal Body) */}
+          <path
+            d="M 220 280 C 230 170, 350 120, 460 140 C 570 160, 610 230, 580 320 C 550 400, 450 410, 350 380 C 270 350, 210 360, 220 280 Z"
+            fill="url(#amberCoreGrad)"
+            stroke="url(#specularRimGrad)"
+            strokeWidth="1.5"
+          />
+
+          {/* Layer 3: Secondary Swirling Glass Petal / Thermal Phase-Change Matrix */}
+          <path
+            d="M 280 240 C 310 160, 420 150, 490 180 C 560 210, 570 290, 520 340 C 460 390, 370 370, 320 330 C 280 295, 260 280, 280 240 Z"
+            fill="#F59E0B"
+            fillOpacity="0.25"
+            stroke="url(#specularRimGrad)"
+            strokeWidth="0.8"
+          />
+
+          {/* Layer 4: Internal Caustic Ribbons (Light Traveling Through Optical Density) */}
+          <path
+            d="M 240 290 Q 380 180 500 240 T 560 320"
+            stroke="url(#causticFlowGrad)"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            fill="none"
+          />
+          <path
+            d="M 270 260 Q 400 160 520 220 T 540 290"
+            stroke="#FFFBEB"
+            strokeOpacity="0.45"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+            fill="none"
+          />
+          <path
+            d="M 310 320 Q 420 350 510 300"
+            stroke="#F59E0B"
+            strokeOpacity="0.5"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            fill="none"
+          />
+
+          {/* Layer 5: Artisanal Pâte-de-Verre Micro Air Bubble Inclusions */}
+          <g opacity="0.75">
+            <circle cx="340" cy="230" r="3.5" fill="#FFFBEB" fillOpacity="0.85" />
+            <circle cx="340" cy="230" r="1.5" fill="#FFFFFF" />
+            <circle cx="420" cy="200" r="2.5" fill="#FFFBEB" fillOpacity="0.75" />
+            <circle cx="470" cy="260" r="4.0" fill="#FFFBEB" fillOpacity="0.7" />
+            <circle cx="470" cy="260" r="1.8" fill="#FFFFFF" />
+            <circle cx="380" cy="290" r="2.0" fill="#FFFBEB" fillOpacity="0.65" />
+            <circle cx="440" cy="320" r="3.0" fill="#FFFBEB" fillOpacity="0.55" />
+            <circle cx="510" cy="240" r="2.0" fill="#FFFBEB" fillOpacity="0.65" />
+            <circle cx="310" cy="270" r="1.5" fill="#FFFBEB" fillOpacity="0.55" />
+          </g>
+
+          {/* Layer 6: Prismatic Sheen Highlight Arc along Rim */}
+          <path
+            d="M 260 210 C 330 145, 430 135, 510 165"
+            stroke="#FFFFFF"
+            strokeOpacity="0.7"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            fill="none"
+          />
+        </svg>
+      </div>
+
+      {/* 4. Monospace Archival Label in Bottom-Right Corner */}
+      <div className="absolute bottom-3 right-4 z-20 pointer-events-none select-none text-[10px] font-mono tracking-widest text-neutral-400">
+        [ SPECIMEN // 02 — WARMTH IN THE RAIN ]
       </div>
     </div>
   );
