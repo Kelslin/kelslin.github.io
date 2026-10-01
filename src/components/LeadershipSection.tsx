@@ -14,7 +14,7 @@ export default function LeadershipSection({
   const leadershipItems = PORTFOLIO_WAYPOINTS.filter((w) => w.lens === 'leadership');
 
   return (
-    <div id="chapter-leadership" className="pt-14 sm:pt-18 md:pt-22 pb-12 sm:pb-16 max-w-6xl mx-auto scroll-mt-24">
+    <div id="chapter-leadership" className="pt-14 sm:pt-18 md:pt-22 pb-4 sm:pb-6 max-w-6xl mx-auto scroll-mt-24">
       {/* Chapter Header */}
       <div className="pb-3 mb-8 sm:mb-10 border-b border-white/[0.06] flex items-baseline justify-between">
         <h2 className="font-syne text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight">

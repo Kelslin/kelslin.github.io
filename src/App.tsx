@@ -907,7 +907,7 @@ export default function App() {
         {/* ========================================================================= */}
         {/* 3. SELECTED WORKS (WHOLE VIEW SPREAD WITH PETALS ROTATING IN BACK)        */}
         {/* ========================================================================= */}
-        <section id="works" className="relative z-10 w-full px-4 sm:px-8 lg:px-12 pb-16 sm:pb-20 md:pb-24">
+        <section id="works" className="relative z-10 w-full px-4 sm:px-8 lg:px-12 pb-4 sm:pb-6 md:pb-8">
           {/* VENTURES & PRODUCTS */}
           <div id="chapter-ventures" className="pt-10 sm:pt-14 md:pt-16 scroll-mt-24">
             <div className="max-w-6xl mx-auto pb-3 mb-8 sm:mb-10 border-b border-white/[0.06] flex items-baseline justify-between">
