@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ArrowUp, Linkedin, Github, Mail, FileText, Menu, X, RotateCcw, Plus, Minus, ExternalLink } from 'lucide-react';
+import { ChevronDown, ArrowUp, Linkedin, Github, Mail, Menu, X, RotateCcw, Plus, Minus, ExternalLink } from 'lucide-react';
 import * as THREE from 'three';
 import LiuliPreloader from './components/LiuliPreloader';
 import LiuliLilyModel from './components/LiuliLilyModel';
@@ -733,16 +733,6 @@ export default function App() {
                         aria-label="Email"
                       >
                         <Mail className="w-3.5 h-3.5" />
-                      </a>
-                      <a
-                        href="/resume.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-1.5 rounded-full text-neutral-400 hover:text-[#FFAA00] hover:bg-white/[0.08] transition-colors"
-                        title={language === 'zh' ? '简历' : 'Resume'}
-                        aria-label="Resume"
-                      >
-                        <FileText className="w-3.5 h-3.5" />
                       </a>
                     </div>
                   </motion.div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linkedin, Github, Mail, FileText } from 'lucide-react';
+import { Linkedin, Github, Mail } from 'lucide-react';
 import type { SupportedLanguage } from '../data/translations';
 
 interface SiteFooterProps {
@@ -51,15 +51,6 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ language }) => {
           >
             <Mail className="w-3.5 h-3.5" />
             <span>Email</span>
-          </a>
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-[#FFAA00] hover:text-[#FFC043] transition-colors duration-200"
-          >
-            <FileText className="w-3.5 h-3.5" />
-            <span>{isZh ? '请求简历' : 'Request Resume'}</span>
           </a>
         </div>
 
