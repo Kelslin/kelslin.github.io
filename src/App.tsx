@@ -444,8 +444,8 @@ export default function App() {
           const scrollY = window.scrollY;
           const vh = window.innerHeight;
 
-          // Update header frosted glass state
-          setIsScrolled(scrollY > 20);
+          // Update header frosted glass state with smooth hysteresis to prevent micro-jitter
+          setIsScrolled((prev) => (prev ? scrollY > 25 : scrollY > 45));
 
           // 1. Continuous smooth hero progress for Three.js camera & model tilt
           const heroProgress = Math.min(1, Math.max(0, scrollY / (vh * 0.65)));
@@ -639,14 +639,14 @@ export default function App() {
         {/* COHESIVE EDGE-TO-EDGE TOP NAVIGATION (FROSTED ON SCROLL, MASKING CONTENT) */}
         {/* ========================================================================= */}
         <header
-          className={`fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 pointer-events-auto ${
+          className={`fixed top-0 left-0 right-0 z-40 w-full pointer-events-auto transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[padding,background-color,backdrop-filter] ${
             isScrolled
               ? 'bg-[#050608]/85 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.5)] py-3 sm:py-3.5 px-4 sm:px-8 lg:px-12'
               : 'bg-transparent py-5 sm:py-6 px-6 sm:px-12 lg:px-20'
           }`}
         >
           <div
-            className={`mx-auto flex items-center justify-between transition-all duration-300 ease-out ${
+            className={`mx-auto flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[max-width] ${
               isScrolled ? 'max-w-6xl' : 'max-w-[2560px]'
             }`}
           >
@@ -667,54 +667,56 @@ export default function App() {
                 </span>
               </button>
 
-              {/* Dynamic Contact Channels in Sticky Header on Scroll */}
+              {/* Dynamic Contact Channels in Sticky Header on Scroll (Smooth Collapsible Tray) */}
               <AnimatePresence>
                 {isScrolled && (
                   <motion.div
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -8 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex items-center gap-1 sm:gap-1.5 pl-2 sm:pl-3 border-l border-white/10"
+                    initial={{ opacity: 0, width: 0, filter: 'blur(4px)' }}
+                    animate={{ opacity: 1, width: 'auto', filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, width: 0, filter: 'blur(4px)' }}
+                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    className="overflow-hidden flex items-center"
                   >
-                    <a
-                      href="https://www.linkedin.com/in/kel-lin"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-1.5 rounded-full text-neutral-400 hover:text-white hover:bg-white/[0.08] transition-colors"
-                      title="LinkedIn"
-                      aria-label="LinkedIn"
-                    >
-                      <Linkedin className="w-3.5 h-3.5" />
-                    </a>
-                    <a
-                      href="https://github.com/Kelslin"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-1.5 rounded-full text-neutral-400 hover:text-white hover:bg-white/[0.08] transition-colors"
-                      title="GitHub"
-                      aria-label="GitHub"
-                    >
-                      <Github className="w-3.5 h-3.5" />
-                    </a>
-                    <a
-                      href="mailto:kelslin@umich.edu"
-                      className="p-1.5 rounded-full text-neutral-400 hover:text-white hover:bg-white/[0.08] transition-colors"
-                      title="Email Kelsey"
-                      aria-label="Email"
-                    >
-                      <Mail className="w-3.5 h-3.5" />
-                    </a>
-                    <a
-                      href="/resume.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-1.5 rounded-full text-neutral-400 hover:text-[#FFAA00] hover:bg-white/[0.08] transition-colors"
-                      title={language === 'zh' ? '简历' : 'Resume'}
-                      aria-label="Resume"
-                    >
-                      <FileText className="w-3.5 h-3.5" />
-                    </a>
+                    <div className="flex items-center gap-1 sm:gap-1.5 pl-2 sm:pl-3 border-l border-white/10 whitespace-nowrap">
+                      <a
+                        href="https://www.linkedin.com/in/kel-lin"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-1.5 rounded-full text-neutral-400 hover:text-white hover:bg-white/[0.08] transition-colors"
+                        title="LinkedIn"
+                        aria-label="LinkedIn"
+                      >
+                        <Linkedin className="w-3.5 h-3.5" />
+                      </a>
+                      <a
+                        href="https://github.com/Kelslin"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-1.5 rounded-full text-neutral-400 hover:text-white hover:bg-white/[0.08] transition-colors"
+                        title="GitHub"
+                        aria-label="GitHub"
+                      >
+                        <Github className="w-3.5 h-3.5" />
+                      </a>
+                      <a
+                        href="mailto:kelslin@umich.edu"
+                        className="p-1.5 rounded-full text-neutral-400 hover:text-white hover:bg-white/[0.08] transition-colors"
+                        title="Email Kelsey"
+                        aria-label="Email"
+                      >
+                        <Mail className="w-3.5 h-3.5" />
+                      </a>
+                      <a
+                        href="/resume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-1.5 rounded-full text-neutral-400 hover:text-[#FFAA00] hover:bg-white/[0.08] transition-colors"
+                        title={language === 'zh' ? '简历' : 'Resume'}
+                        aria-label="Resume"
+                      >
+                        <FileText className="w-3.5 h-3.5" />
+                      </a>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
