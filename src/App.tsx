@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ArrowUp, Linkedin, Github, Mail, Menu, X, RotateCcw, Plus, Minus, ExternalLink } from 'lucide-react';
+import { ChevronDown, ArrowUp, Linkedin, Github, Mail, FileText, Menu, X, RotateCcw, Plus, Minus, ExternalLink } from 'lucide-react';
 import * as THREE from 'three';
 import LiuliPreloader from './components/LiuliPreloader';
 import LiuliLilyModel from './components/LiuliLilyModel';
@@ -639,18 +639,22 @@ export default function App() {
         {/* COHESIVE EDGE-TO-EDGE TOP NAVIGATION (FROSTED ON SCROLL, MASKING CONTENT) */}
         {/* ========================================================================= */}
         <header
-          className={`fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 pointer-events-auto px-4 sm:px-8 lg:px-12 ${
+          className={`fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 pointer-events-auto ${
             isScrolled
-              ? 'bg-[#050608]/85 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.5)] py-3 sm:py-3.5'
-              : 'bg-transparent py-5 sm:py-6'
+              ? 'bg-[#050608]/85 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.5)] py-3 sm:py-3.5 px-4 sm:px-8 lg:px-12'
+              : 'bg-transparent py-5 sm:py-6 px-6 sm:px-12 lg:px-20'
           }`}
         >
-          <div className="max-w-6xl mx-auto flex items-center justify-between">
+          <div
+            className={`mx-auto flex items-center justify-between transition-all duration-300 ease-out ${
+              isScrolled ? 'max-w-6xl' : 'max-w-[2560px]'
+            }`}
+          >
             {/* Brand Signature Monogram & Name + Dynamic Contact Icons on Scroll */}
             <div className="flex items-center gap-2 sm:gap-3">
               <button
                 onClick={handleScrollToTop}
-                className="flex items-center gap-2.5 p-1 rounded-full hover:opacity-90 transition-opacity cursor-pointer focus:outline-none"
+                className="flex items-center gap-2.5 p-1 -ml-1 rounded-full hover:opacity-90 transition-opacity cursor-pointer focus:outline-none"
                 title="Kelsey Lin — Return to Top"
               >
                 <img
@@ -700,6 +704,16 @@ export default function App() {
                       aria-label="Email"
                     >
                       <Mail className="w-3.5 h-3.5" />
+                    </a>
+                    <a
+                      href="/resume.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-1.5 rounded-full text-neutral-400 hover:text-[#FFAA00] hover:bg-white/[0.08] transition-colors"
+                      title={language === 'zh' ? '简历' : 'Resume'}
+                      aria-label="Resume"
+                    >
+                      <FileText className="w-3.5 h-3.5" />
                     </a>
                   </motion.div>
                 )}
@@ -826,89 +840,85 @@ export default function App() {
         {/* ========================================================================= */}
         <section
           id="hero"
-          className="relative min-h-[100dvh] h-[100dvh] flex flex-col justify-between pt-24 pb-8 sm:pb-12 px-4 sm:px-8 lg:px-12 pointer-events-none select-none z-10"
+          className="relative min-h-[100dvh] h-[100dvh] flex flex-col justify-between pt-24 pb-8 sm:pb-12 px-6 sm:px-12 lg:px-20 pointer-events-none select-none z-10"
         >
-          {/* Hero Typography & Identity Container (Consistent with About, Ventures & Leadership) */}
-          <div className="w-full max-w-6xl mx-auto my-auto pointer-events-auto">
-            <div className="max-w-3xl lg:max-w-4xl xl:max-w-5xl">
-              {/* Haute Fashion Editorial Name */}
-              <h1 className="select-none relative z-30 cursor-default overflow-visible mb-4 sm:mb-6">
-                <span className="font-vogue text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-normal leading-[1.24] whitespace-nowrap block liuli-glass-shimmer-text pb-6 sm:pb-8 lg:pb-10 overflow-visible">
-                  {t.hero.name}
-                </span>
-              </h1>
+          {/* Hero Typography & Identity */}
+          <div className="my-auto max-w-3xl lg:max-w-4xl xl:max-w-5xl pointer-events-auto">
+            {/* Haute Fashion Editorial Name */}
+            <h1 className="select-none relative z-30 cursor-default overflow-visible mb-4 sm:mb-6">
+              <span className="font-vogue text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-normal leading-[1.24] whitespace-nowrap block liuli-glass-shimmer-text pb-6 sm:pb-8 lg:pb-10 overflow-visible">
+                {t.hero.name}
+              </span>
+            </h1>
 
-              {/* Refined Human Introduction */}
-              <p className="relative z-10 font-sans text-neutral-200 text-sm sm:text-base md:text-lg lg:text-xl font-normal leading-relaxed max-w-xl sm:max-w-2xl drop-shadow-sm">
-                {t.hero.intro}
-              </p>
+            {/* Refined Human Introduction */}
+            <p className="relative z-10 font-sans text-neutral-200 text-sm sm:text-base md:text-lg lg:text-xl font-normal leading-relaxed max-w-xl sm:max-w-2xl drop-shadow-sm">
+              {t.hero.intro}
+            </p>
 
-              {/* Direct Contact Channels */}
-              <div className="flex items-center gap-3 pt-5">
-                <a
-                  href="https://www.linkedin.com/in/kel-lin"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-white/20 text-neutral-300 hover:text-white text-xs font-mono transition-all duration-200"
-                  aria-label="LinkedIn Profile"
-                >
-                  <Linkedin className="w-3.5 h-3.5 text-neutral-300" />
-                  <span>LinkedIn</span>
-                </a>
-                <a
-                  href="https://github.com/Kelslin"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-white/20 text-neutral-300 hover:text-white text-xs font-mono transition-all duration-200"
-                  aria-label="GitHub Profile"
-                >
-                  <Github className="w-3.5 h-3.5 text-neutral-300" />
-                  <span>GitHub</span>
-                </a>
-                <a
-                  href="mailto:kelslin@umich.edu"
-                  className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-white/20 text-neutral-300 hover:text-white text-xs font-mono transition-all duration-200"
-                  aria-label="Email Kelsey"
-                >
-                  <Mail className="w-3.5 h-3.5 text-neutral-300" />
-                  <span>Email</span>
-                </a>
-              </div>
+            {/* Direct Contact Channels */}
+            <div className="flex items-center gap-3 pt-5">
+              <a
+                href="https://www.linkedin.com/in/kel-lin"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-white/20 text-neutral-300 hover:text-white text-xs font-mono transition-all duration-200"
+                aria-label="LinkedIn Profile"
+              >
+                <Linkedin className="w-3.5 h-3.5 text-neutral-300" />
+                <span>LinkedIn</span>
+              </a>
+              <a
+                href="https://github.com/Kelslin"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-white/20 text-neutral-300 hover:text-white text-xs font-mono transition-all duration-200"
+                aria-label="GitHub Profile"
+              >
+                <Github className="w-3.5 h-3.5 text-neutral-300" />
+                <span>GitHub</span>
+              </a>
+              <a
+                href="mailto:kelslin@umich.edu"
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-white/20 text-neutral-300 hover:text-white text-xs font-mono transition-all duration-200"
+                aria-label="Email Kelsey"
+              >
+                <Mail className="w-3.5 h-3.5 text-neutral-300" />
+                <span>Email</span>
+              </a>
             </div>
           </div>
 
           {/* 3D Model Interactive Zoom Controls */}
-          <div className="w-full max-w-6xl mx-auto flex justify-end pointer-events-auto z-20">
-            <div className="flex items-center gap-1.5 p-1.5 rounded-full bg-[#050608]/60 backdrop-blur-xl border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
-              <button
-                type="button"
-                onClick={handleZoomOut}
-                className="w-8 h-8 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
-                title="Zoom Out Lily"
-                aria-label="Zoom out 3D flower"
-              >
-                <Minus className="w-3.5 h-3.5" />
-              </button>
+          <div className="absolute bottom-6 right-6 sm:bottom-10 sm:right-12 lg:right-20 z-20 pointer-events-auto flex items-center gap-1.5 p-1.5 rounded-full bg-[#050608]/60 backdrop-blur-xl border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
+            <button
+              type="button"
+              onClick={handleZoomOut}
+              className="w-8 h-8 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              title="Zoom Out Lily"
+              aria-label="Zoom out 3D flower"
+            >
+              <Minus className="w-3.5 h-3.5" />
+            </button>
 
-              <button
-                type="button"
-                onClick={handleZoomReset}
-                className="px-2.5 py-1 rounded-full text-[10px] font-mono text-white/80 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
-                title="Reset Lily View"
-              >
-                {zoomDisplay}%
-              </button>
+            <button
+              type="button"
+              onClick={handleZoomReset}
+              className="px-2.5 py-1 rounded-full text-[10px] font-mono text-white/80 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              title="Reset Lily View"
+            >
+              {zoomDisplay}%
+            </button>
 
-              <button
-                type="button"
-                onClick={handleZoomIn}
-                className="w-8 h-8 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
-                title="Zoom In Lily"
-                aria-label="Zoom in 3D flower"
-              >
-                <Plus className="w-3.5 h-3.5" />
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={handleZoomIn}
+              className="w-8 h-8 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              title="Zoom In Lily"
+              aria-label="Zoom in 3D flower"
+            >
+              <Plus className="w-3.5 h-3.5" />
+            </button>
           </div>
         </section>
 
