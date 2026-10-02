@@ -520,14 +520,20 @@ export default function App() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Smooth scroll navigation anchors
+  // Smooth scroll navigation anchors with immediate reactive layout morphing
   const handleScrollToTop = () => {
     setIsMobileMenuOpen(false);
+    setActiveSection('hero');
+    setIsScrolled(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const scrollToHeader = (containerId: string, offset = 76) => {
+  const scrollToHeader = (containerId: string, offset = 76, sectionName?: string) => {
     setIsMobileMenuOpen(false);
+    setIsScrolled(true);
+    if (sectionName) {
+      setActiveSection(sectionName);
+    }
     const container = document.getElementById(containerId);
     if (container) {
       const header = container.querySelector('h2') || container;
@@ -537,15 +543,17 @@ export default function App() {
   };
 
   const handleScrollToAbout = () => {
-    scrollToHeader('about', 76);
+    scrollToHeader('about', 76, 'about');
   };
 
   const handleScrollToVentures = () => {
-    scrollToHeader('chapter-ventures', 76);
+    setActiveLens('ventures');
+    scrollToHeader('chapter-ventures', 76, 'chapter-ventures');
   };
 
   const handleScrollToLeadership = () => {
-    scrollToHeader('chapter-leadership', 76);
+    setActiveLens('leadership');
+    scrollToHeader('chapter-leadership', 76, 'leadership');
   };
 
   const handleJumpToWaypoint = (wp: Waypoint) => {
@@ -638,20 +646,35 @@ export default function App() {
         {/* ========================================================================= */}
         {/* COHESIVE EDGE-TO-EDGE TOP NAVIGATION (FROSTED ON SCROLL, MASKING CONTENT) */}
         {/* ========================================================================= */}
-        <header
-          className={`fixed top-0 left-0 right-0 z-40 w-full pointer-events-auto transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[padding,background-color,backdrop-filter] ${
+        <motion.header
+          layout
+          transition={{
+            layout: { type: 'spring', stiffness: 220, damping: 28, mass: 0.9 },
+          }}
+          className={`fixed top-0 left-0 right-0 z-40 w-full pointer-events-auto transition-[background-color,backdrop-filter,box-shadow] duration-500 ease-out will-change-[padding,background-color,backdrop-filter] ${
             isScrolled
               ? 'bg-[#050608]/85 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.5)] py-3 sm:py-3.5 px-4 sm:px-8 lg:px-12'
               : 'bg-transparent py-5 sm:py-6 px-6 sm:px-12 lg:px-20'
           }`}
         >
-          <div
-            className={`mx-auto flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[max-width] ${
-              isScrolled ? 'max-w-6xl' : 'max-w-[2560px]'
+          <motion.div
+            layout
+            transition={{
+              type: 'spring',
+              stiffness: 220,
+              damping: 28,
+              mass: 0.9,
+            }}
+            className={`mx-auto flex items-center justify-between ${
+              isScrolled ? 'max-w-6xl' : 'max-w-full'
             }`}
           >
             {/* Brand Signature Monogram & Name + Dynamic Contact Icons on Scroll */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            <motion.div
+              layout
+              transition={{ type: 'spring', stiffness: 220, damping: 28, mass: 0.9 }}
+              className="flex items-center gap-2 sm:gap-3"
+            >
               <button
                 onClick={handleScrollToTop}
                 className="flex items-center gap-2.5 p-1 -ml-1 rounded-full hover:opacity-90 transition-opacity cursor-pointer focus:outline-none"
@@ -671,10 +694,15 @@ export default function App() {
               <AnimatePresence>
                 {isScrolled && (
                   <motion.div
-                    initial={{ opacity: 0, width: 0, filter: 'blur(4px)' }}
-                    animate={{ opacity: 1, width: 'auto', filter: 'blur(0px)' }}
-                    exit={{ opacity: 0, width: 0, filter: 'blur(4px)' }}
-                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    initial={{ opacity: 0, width: 0, scale: 0.92, filter: 'blur(4px)' }}
+                    animate={{ opacity: 1, width: 'auto', scale: 1, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, width: 0, scale: 0.92, filter: 'blur(4px)' }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 240,
+                      damping: 26,
+                      mass: 0.8,
+                    }}
                     className="overflow-hidden flex items-center"
                   >
                     <div className="flex items-center gap-1 sm:gap-1.5 pl-2 sm:pl-3 border-l border-white/10 whitespace-nowrap">
@@ -720,57 +748,66 @@ export default function App() {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </motion.div>
 
-            {/* Desktop Horizontal Navigation Capsule (Frameless & Seamless) */}
-            <nav className="hidden md:flex items-center gap-1 p-1.5 rounded-full bg-white/[0.03] backdrop-blur-md">
-              <button
-                onClick={handleScrollToTop}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
-                  activeSection === 'hero'
-                    ? 'bg-white text-black font-semibold shadow-sm'
-                    : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
-                }`}
-              >
-                Home
-              </button>
-
-              <button
-                onClick={handleScrollToAbout}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
-                  activeSection === 'about'
-                    ? 'bg-white text-black font-semibold shadow-sm'
-                    : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
-                }`}
-              >
-                About
-              </button>
-
-              <button
-                onClick={handleScrollToVentures}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
-                  activeLens === 'ventures' && activeSection !== 'hero' && activeSection !== 'about'
-                    ? 'bg-white text-black font-semibold shadow-sm'
-                    : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
-                }`}
-              >
-                Ventures
-              </button>
-
-              <button
-                onClick={handleScrollToLeadership}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
-                  activeLens === 'leadership' && activeSection !== 'hero' && activeSection !== 'about'
-                    ? 'bg-white text-black font-semibold shadow-sm'
-                    : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
-                }`}
-              >
-                Leadership
-              </button>
-            </nav>
+            {/* Desktop Horizontal Navigation Capsule with Sliding Active Pill */}
+            <motion.nav
+              layout
+              transition={{ type: 'spring', stiffness: 220, damping: 28, mass: 0.9 }}
+              className="hidden md:flex items-center gap-1 p-1.5 rounded-full bg-white/[0.03] backdrop-blur-md relative"
+            >
+              {[
+                { id: 'hero', label: 'Home', action: handleScrollToTop, isActive: activeSection === 'hero' },
+                { id: 'about', label: 'About', action: handleScrollToAbout, isActive: activeSection === 'about' },
+                {
+                  id: 'ventures',
+                  label: 'Ventures',
+                  action: handleScrollToVentures,
+                  isActive:
+                    activeSection === 'chapter-ventures' ||
+                    (activeLens === 'ventures' &&
+                      activeSection !== 'hero' &&
+                      activeSection !== 'about' &&
+                      activeSection !== 'leadership' &&
+                      activeSection !== 'chapter-leadership'),
+                },
+                {
+                  id: 'leadership',
+                  label: 'Leadership',
+                  action: handleScrollToLeadership,
+                  isActive:
+                    activeSection === 'leadership' ||
+                    activeSection === 'chapter-leadership' ||
+                    (activeLens === 'leadership' && activeSection !== 'hero' && activeSection !== 'about'),
+                },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={tab.action}
+                  className={`relative px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-colors duration-200 cursor-pointer ${
+                    tab.isActive
+                      ? 'text-black font-semibold'
+                      : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
+                  }`}
+                >
+                  {tab.isActive && (
+                    <motion.div
+                      layoutId="activeNavPill"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      className="absolute inset-0 bg-white rounded-full shadow-sm"
+                    />
+                  )}
+                  <span className="relative z-10">{tab.label}</span>
+                </button>
+              ))}
+            </motion.nav>
 
             {/* Mobile Menu Toggle Floating Capsule */}
-            <div className="flex items-center gap-2 md:hidden">
+            <motion.div
+              layout
+              transition={{ type: 'spring', stiffness: 220, damping: 28, mass: 0.9 }}
+              className="flex items-center gap-2 md:hidden"
+            >
               <button
                 type="button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -779,9 +816,9 @@ export default function App() {
               >
                 {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
-            </div>
-          </div>
-        </header>
+            </motion.div>
+          </motion.div>
+        </motion.header>
 
         {/* Mobile Dropdown Navigation Card (Floating Island) */}
         <AnimatePresence>
